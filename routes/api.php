@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\EmployeeController;
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+// Route::group(['middleware' => 'guest', 'prefix' => '/certify'], function () {
+//     Route::get('/', [RegisterController::class, 'createCertification'])->name('register.create');
+//     Route::get('/', [EmployeeController::class, 'certify'])->name('register.certify');
+// });
