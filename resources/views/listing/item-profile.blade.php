@@ -13,7 +13,7 @@
                     <div class="card-header">{{ __('Dashboard') }}</div>
                     <div class="card-body">
 
-                        <form method="POST" action='{{ route('itemlist') }}'>
+                        <form method="POST" action='{{ route('itemstore') }}'>
                             @csrf
                             <div class="row">
                                 <div class="col-sm">
@@ -227,9 +227,9 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Trade in Value</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="trade_value">
+                                            name="trade_in_value">
                                     </div>
-                                    @error('trade_value')
+                                    @error('trade_in_value')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -385,10 +385,6 @@
                             <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
                                 Submit
                             </button>
-
-
-
-
                         </form>
                     </div>
                 </div>

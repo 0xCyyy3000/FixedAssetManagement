@@ -32,6 +32,6 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
     Route::post('/store', [RegisterController::class, 'store'])->name('register.store');
 });
 
-Route::get('/ProfileItem' , [ListingItem::class, 'create'])->name('listitem');
-Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemlist');
-
+Route::get('/ProfileItem' , [ItemProfileController::class, 'create'])->name('itemshow');
+Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');
+Route::get('/ItemList' , [ItemProfileController::class, 'view'])->name('itemlist');
