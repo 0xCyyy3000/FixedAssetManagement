@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ListingItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +30,7 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
     Route::post('/certify', [EmployeeController::class, 'certify'])->name('register.certify');
     Route::post('/store', [RegisterController::class, 'store'])->name('register.store');
 });
+
+Route::get('/ProfileItem' , [ListingItem::class, 'create'])->name('listitem');
+Route::post('/ProfileItem', [ListingItem::class, 'store'])->name('itemlist');
+
