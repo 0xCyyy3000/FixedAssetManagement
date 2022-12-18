@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PhpOption\Option;
 use App\Models\ItemProfile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -19,8 +20,8 @@ class ItemProfileController extends Controller
             'type'=>'required',
             'salvage_value'=>'required',
             'serial_number'=>'required',
-            'classification'=>'required',
             'lifespan'=>'required',
+            'classifications'=>'required',
             'department'=>'required',
             'quantity'=>'required',
             'annual_operating_cost'=>'required',
@@ -33,13 +34,14 @@ class ItemProfileController extends Controller
             'comments'=>'required',
             'notes'=>'required',
         ]);
-        
-        ItemProfile::create($items);
+        $option = $request->input('option');
+        ItemProfile::create($items, $option );
         return redirect('/home');
     }
 
     public function create(){
-        return view('listing.item-profile');
+        $options = ['machine', 'equipment'];
+        return view('listing.item-profile', compact('options'));
 
     }
     public function view(){
