@@ -5,6 +5,10 @@
     color: white !important;
 }
 
+.active .material-icons-outlined {
+    color: white !important;
+}
+
 .my-bg-secondary {
     background-color: #e0e0e0 !important;
 }
@@ -22,6 +26,7 @@ body {
     width: 100vw !important;
     padding: 0 !important;
     margin: 0 !important;
+    overflow: hidden !important;
 }
 
 .layout {
@@ -30,8 +35,14 @@ body {
     width: 100vw !important;
 }
 
-nav ul {
+nav {
     height: 100% !important;
+}
+
+main .container {
+    max-height: 88vh !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
 }
 
 .input-group .form-control,
@@ -49,5 +60,10 @@ a {
 }
 
 li a {
+    color: black !important;
+}
+
+.material-icons-outlined {
+    font-size: 1rem !important;
     color: black !important;
 }

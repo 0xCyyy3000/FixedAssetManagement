@@ -14,8 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -24,69 +23,58 @@
 <body>
     <div id="app" class="layout row" style="background-color: #e0e0e0">
         <nav class="bg-transparent p-0 col-2 position-relative" style="">
-            <ul class="list-group bg-white rounded-0 p-3 position-relative">
+            <ul class="list-group bg-white h-100 rounded-0 p-3 position-relative">
                 <li class="w-50 mt-3 m-auto mb-4 list-group ">
                     <img class="w-100" src="{{ asset('imgs/BFP Logo.png') }}" alt="bfp.logo">
                 </li>
                 <li class="list-group">
                     <a href="#"
-                        class="active fs-6 rounded-3 mb-2 fs-5 d-inline-block align-text-top pe-4 ps-4 pt-1 pb-1">
-                        <img class="mb-1 me-2" src="{{ asset('imgs/category.png') }}" alt="" width="14"
-                            height="14">
+                        class="active fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                        <span class="material-icons-outlined me-2">category</span>
                         Dashboard
                     </a>
                 </li>
                 <li class="list-group">
-                    <a href="#"
-                        class="fs-6 rounded-3 mb-2 fs-5 d-inline-block align-text-top pe-4 ps-4 pt-1 pb-1">
-                        <img class="mb-1 me-2" src="{{ asset('imgs/layer.png') }}" alt="" width="14"
-                            height="14">
+                    <a href="#" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                        <span class="material-icons-outlined me-2">layers</span>
                         Item List
                     </a>
                 </li>
                 <li class="list-group">
-                    <a href=""
-                        class="fs-6 rounded-3 mb-2 fs-5 d-inline-block align-text-top pe-4 ps-4 pt-1 pb-1">
-                        <img class="mb-1 me-2" src="{{ asset('imgs/documenttext.png') }}" alt="" width="14"
-                            height="14">
+                    <a href="#" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                        <span class="material-icons-outlined me-2">description</span>
                         Process Request
                     </a>
                 </li>
                 <li class="list-group">
-                    <a href=""
-                        class="fs-6 rounded-3 mb-2 fs-5 d-inline-block align-text-top pe-4 ps-4 pt-1 pb-1">
-                        <img class="mb-1 me-2" src="{{ asset('imgs/book.png') }}" alt="" width="14"
-                            height="14">
+                    <a href="#" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                        <span class="material-icons-outlined me-2">library_books</span>
                         Data Entry
                     </a>
                 </li>
                 <li class="list-group">
-                    <a href=""
-                        class="fs-6 rounded-3 mb-2 fs-5 d-inline-block align-text-top pe-4 ps-4 pt-1 pb-1">
-                        <img class="mb-1 me-2" src="{{ asset('imgs/book.png') }}" alt="" width="14"
-                            height="14">
+                    <a href="#" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                        <span class="material-icons-outlined me-2">book</span>
                         Reports
                     </a>
                 </li>
             </ul>
 
             <div class="position-absolute bottom-0 p-3 mb-5">
-                <a class="text-decoration-none text-black fs-6 rounded-3 mb-2 fs-5  d-inline-block align-text-top pe-4 ps-4 pt-1 pb-1"
-                    href="#">
-                    <img class="mb-1 me-2" src="{{ asset('imgs/documenttext.png') }}" alt="" width="14"
-                        height="14">
+                <a href="#"
+                    class="text-black fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                    <span class="material-icons-outlined me-2">work_history</span>
                     Transaction History
                 </a>
-                <a class="text-decoration-none text-black fs-6 rounded-3 mb-2 fs-5  d-inline-block align-text-top pe-4 ps-4 pt-1 pb-1"
-                    href="#">
-                    <img class="mb-1 me-2" src="{{ asset('imgs/setting4.png') }}" alt="" width="14"
-                        height="14">
+                <a href="#"
+                    class="text-black fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                    <span class="material-icons-outlined me-2">settings</span>
                     Settings
                 </a>
             </div>
         </nav>
         <div class="col">
-            <div class="p-4">
+            <div class="p-4 pb-0">
                 <div class="row bg-white rounded p-2 align-items-center">
                     <h4 class="col fw-bold fs-4 m-0">Fixed Assets Information Management</h4>
                     <div class="col d-flex gap-3">
@@ -105,7 +93,7 @@
                         <button class="btn d-flex gap-1 align-items-center p-1 ps-2 pe-2 my-bg-secondary"
                             type="button">
                             New
-                            <span class="material-symbols-rounded">add_circle</span>
+                            <span class="material-icons">add_circle_outline</span>
                         </button>
                         <button class="btn d-flex gap-1 align-items-center p-1 ps-2 pe-2 my-bg-secondary"
                             type="button">
@@ -113,11 +101,15 @@
                         </button>
                         <div class="d-flex gap-0 align-items-center profile">
                             <div class="row">
-                                <h1 class="mb-0 fw-semibold">{{ Auth::user()->name }}</h1>
+                                <h1 class="mb-0 fw-semibold">
+                                    @php
+                                        $name = explode(' ', Auth::user()->name);
+                                    @endphp
+                                    {{ $name[0] }}</h1>
                                 <small class="text-muted">Chief Inspector</small>
                             </div>
-                            <img class="my-bg-secondary rounded-4" src="{{ asset('imgs/avatar.png') }}"
-                                alt="" width="42" height="42">
+                            <img class="my-bg-secondary rounded-4" src="{{ asset('imgs/avatar.png') }}" alt=""
+                                width="42" height="42">
                             <div class="drop-down">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -130,7 +122,7 @@
                     </div>
                 </div>
             </div>
-            <main>
+            <main class="my-2">
                 @yield('content')
             </main>
         </div>
