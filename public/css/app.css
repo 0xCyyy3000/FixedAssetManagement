@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+.active {
+    background-color: #2F234D !important;
+    color: white !important;
+}
+
+.my-bg-secondary {
+    background-color: #e0e0e0 !important;
+}
+
+.my-bg-third {
+    background-color: #f5f5f5 !important;
+}
+
+.my-primary {
+    color: #301F4C !important
+}
+
+body {
+    height: 100vh !important;
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.layout {
+    --bs-gutter-x: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+}
+
+nav ul {
+    height: 100% !important;
+}
+
+.input-group .form-control,
+.input-group-text {
+    border: 0 !important;
+}
+
+h1 {
+    font-size: 1rem !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+li a {
+    color: black !important;
+}

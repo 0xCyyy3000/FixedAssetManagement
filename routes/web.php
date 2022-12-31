@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/test', function () {
+    return view('layouts.layout');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -32,6 +36,6 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
     Route::post('/store', [RegisterController::class, 'store'])->name('register.store');
 });
 
-Route::get('/ProfileItem' , [ItemProfileController::class, 'create'])->name('itemshow');
+Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
 Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');
-Route::get('/ItemList' , [ItemProfileController::class, 'view'])->name('itemlist');
+Route::get('/ItemList', [ItemProfileController::class, 'view'])->name('itemlist');
