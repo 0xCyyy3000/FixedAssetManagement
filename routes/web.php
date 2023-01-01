@@ -39,3 +39,8 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
 Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
 Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');
 Route::get('/ItemList', [ItemProfileController::class, 'view'])->name('itemlist');
+
+
+Route::get('/ProfileItem/page2' , [ItemProfileController::class, 'nextview'])->name('itemshownext');
+Route::get('/ProfileItem/page3' , [ItemProfileController::class, 'lastview']);
+// Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
