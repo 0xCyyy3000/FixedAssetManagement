@@ -1,9 +1,9 @@
 @extends('layouts.app')
-
-
-
-
 @section('content')
+<head>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
     <div class="container">
 
         <div class="row justify-content-center">
@@ -12,7 +12,6 @@
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
                     
-
                         <form method="POST">
                             @csrf
                             <div class="card-body">
@@ -31,9 +30,9 @@
                                     @enderror
                                 </div>
                                 <div class="col-sm">
-                                    <div class="mb-3">
+                                    <div class="mb-3 ">
                                         <label for="exampleFormControlInput1" class="form-label">Purchase Date</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        <input type="text" class="form-control" id="datepicker"
                                             name="purchase_date">
                                     </div>
                                     @error('purchase_date')
@@ -72,8 +71,14 @@
                                 <div class="col-sm">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Type</label>
-                                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="type">
+                                        <select id="type" name="type" class="form-control" >
+                                            <option value="Machine">Machine</option>
+                                            <option value="plant">plant</option>
+                                            <option value="Tangible">Tangible</option>
+                                          </select>
+                                        
+                                        {{-- <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            name="type"> --}}
                                     </div>
                                     @error('type')
                                         <span class="invalid-feedback" role="alert">
@@ -290,11 +295,22 @@
                                 @enderror
                                 
                             </div>
+
+                        
                                     <div class="ml-auto">
                                         <button class="btn btn-primary float-right">
                                             Next
                                         </button>
                                     </div>
+
+                                    <script>
+                                      $(function () {
+                                            $("#datepicker").datepicker({ 
+                                                    autoclose: true, 
+                                                    todayHighlight: true
+                                            }).datepicker('update', new Date());
+                                            });
+                                      </script>
                         </form>
                     </div>
                 </div>
