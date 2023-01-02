@@ -51,18 +51,28 @@ class ItemProfileController extends Controller
     public function nextview(){
         // Retrieve the most recent transaction from the database
         $transaction = ItemProfile::latest()->first();
-        $transaction->purchase_number= 'Update purchase_number';
         return view('listing.item-profile-next', compact('transaction'));
         // $lastRecord = ItemProfile::latest()->first();
         // return view('listing.item-profile-next', ['items' =>$lastRecord]); 
     }
 
-    public function lastview(){
+    public function update(Request $request){
         // Retrieve the most recent transaction from the database
-        $transaction = ItemProfile::latest()->first();
+        $request->validate([
+            'type'=>'required',
+            'purchase_date'=>'required',
+            'purchase_price'=>'required'
+        ]);
+        $itemProfile = ItemProfile::latest()->first();
+        ItemProfile::where('transaction_number', $itemProfile->transaction_number)->update([
+            'purchase_date' => $request->purchase_date,
+            'purchase_price' => $request->purchase_price,
+            'type' => $request->type,
+        ]);
 
         // Update the post
-        return redirect('listing.item-profile-last', compact('transaction'));
+        // Update the post
+        return redirect('/home');
     }
 
     // public function updatenxt(){

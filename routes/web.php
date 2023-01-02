@@ -42,5 +42,5 @@ Route::get('/ItemList', [ItemProfileController::class, 'view'])->name('itemlist'
 
 
 Route::get('/ProfileItem/page2' , [ItemProfileController::class, 'nextview'])->name('itemshownext');
-Route::get('/ProfileItem/page3' , [ItemProfileController::class, 'lastview']);
+Route::put('/latest' , [ItemProfileController::class, 'update']);
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');

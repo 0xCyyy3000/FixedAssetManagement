@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li class="list-group">
-                    <a href="#" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                    <a href="{{ route('itemshow') }}" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
                         <span class="material-icons-outlined me-2">library_books</span>
                         Data Entry
                     </a>
