@@ -53,8 +53,6 @@ class ItemProfileController extends Controller
         // Retrieve the most recent transaction from the database
         $transaction = ItemProfile::latest()->first();
         return view('listing.item-profile-next', compact('transaction'));
-        // $lastRecord = ItemProfile::latest()->first();
-        // return view('listing.item-profile-next', ['items' =>$lastRecord]); 
     }
 
     public function update(Request $request){
@@ -86,23 +84,6 @@ class ItemProfileController extends Controller
         return redirect('/home');
     }
 
-    // public function updatenxt(){
-
-    //     $task = ItemProfile::getTable('item_profiles')->latest()->first();
-    //     $task->transaction_number = 'Updated transaction_number';
-    //     $task->purchase_date = 'Updated purchase_date';
-    //     $task->type = 'Updated type';
-    //     $task->classification = 'Updated classification';
-    //     $task->quantity = 'Updated quantity';
-    //     $task->replacement_value = 'Updated replacement_value';
-    //     $task->trade_in_value = 'Updated trade_in_value';
-    //     $task->present_value = 'Updated present_value';
-    //     $task->purchase_price = 'Updated purchase_price';
-    //     $task->save();
-
-    //     return redirect('listing.item-profile-last');
-
-    // }
     
 
 }
