@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use PhpOption\Option;
 use App\Models\ItemProfile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Symfony\Component\Console\Input\Input;
 
 class ItemProfileController extends Controller
 {
@@ -14,14 +14,14 @@ class ItemProfileController extends Controller
     public function store(Request $request)
     {
         $items = $request->validate([
-            'purchase_date'=>'required',
+            'purchase_date'=>'required|date', 
             'purchase_price'=>'required',
             'inventory_number'=>'required',
-            'type'=>'required',
+            'type'=>'required|in:Machine,plant,Tangible',
             'salvage_value'=>'required',
             'serial_number'=>'required',
+            'classification'=>'required',
             'lifespan'=>'required',
-            'classifications'=>'required',
             'department'=>'required',
             'quantity'=>'required',
             'annual_operating_cost'=>'required',
@@ -34,14 +34,13 @@ class ItemProfileController extends Controller
             'comments'=>'required',
             'notes'=>'required',
         ]);
-        $option = $request->input('option');
-        ItemProfile::create($items, $option );
-        return redirect('/home');
+        
+        ItemProfile::create($items);
+        return redirect('/ProfileItem/page2');
     }
 
     public function create(){
-        $options = ['machine', 'equipment'];
-        return view('listing.item-profile', compact('options'));
+        return view('listing.item-profile');
 
     }
     public function view(){
@@ -49,5 +48,42 @@ class ItemProfileController extends Controller
         return view('listing.item-list', ['items' =>$data]);
 
     }
+
+    public function nextview(){
+        // Retrieve the most recent transaction from the database
+        $transaction = ItemProfile::latest()->first();
+        return view('listing.item-profile-next', compact('transaction'));
+    }
+
+    public function update(Request $request){
+        // Retrieve the most recent transaction from the database
+        $request->validate([
+            'type'=>'required',
+            'purchase_date'=>'required',
+            'classification'=>'required',
+            'purchase_price'=>'required',
+            'replacement_value'=>'required',
+            'trade_in_value'=>'required',
+            'present_value'=>'required',
+            'quantity'=>'required'
+        ]);
+        $itemProfile = ItemProfile::latest()->first();
+        ItemProfile::where('transaction_number', $itemProfile->transaction_number)->update([
+            'purchase_date' => $request->purchase_date,
+            'purchase_price' => $request->purchase_price,
+            'type' => $request->type,
+            'classification' => $request->classification,
+            'replacement_value' => $request->replacement_value,
+            'trade_in_value' => $request->trade_in_value,
+            'present_value' => $request->present_value,
+            'quantity' => $request->quantity,
+        ]);
+
+        // Update the post
+        // Update the post
+        return redirect('/home');
+    }
+
+    
 
 }
