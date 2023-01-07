@@ -39,7 +39,7 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
 Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
 Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');
 
-Route::post('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
+Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 Route::get('/ItemList', [ItemProfileController::class, 'view'])->name('itemlist');
 
 

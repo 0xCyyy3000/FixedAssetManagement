@@ -49,6 +49,59 @@ class ItemProfileController extends Controller
         return view('listing.item-list', ['items' => $data]);
     }
 
+    public function listEdit(Request $request)
+    {   
+        // Retrieve the most recent transaction from the database
+       $request->validate([
+            'purchase_date' => ['required','date'],
+            'purchase_price' => 'required',
+            'inventory_number' => 'required',
+            'type' => 'required|in:Machine,plant,Tangible',
+            'salvage_value' => 'required',
+            'serial_number' => 'required',
+            'classification' => 'required',
+            'lifespan' => 'required',
+            'department' => 'required',
+            'quantity' => 'required',
+            'annual_operating_cost' => 'required',
+            'year' => 'required',
+            'replacement_value' => 'required',
+            'title' => 'required',
+            'trade_in_value' => 'required',
+            'body' => 'required',
+            'present_value' => 'required',
+            'comments' => 'required',
+            'notes' => 'required',
+        ]);
+        
+        $item = ItemProfile::where('transaction_number', $request->transaction_number)->update([
+            'purchase_date' => $request->input('purchase_date'),
+            'purchase_price'=> $request->input('purchase_price'),
+            'inventory_number' => $request->input('inventory_number'),
+            'type' => $request->input('type'),
+            'salvage_value' => $request->input('salvage_value'),
+            'classification' => $request->input('classification'),
+            'lifespan' => $request->input('lifespan'),
+            'department' => $request->input('department'),
+            'quantity' => $request->input('quantity'),
+            'annual_operating_cost' => $request->input('annual_operating_cost'),
+            'body' => $request->input('body'),
+            'comments' => $request->input('comments'),
+            'notes' => $request->input('notes'),
+            'title' => $request->input('title'),
+            'replacement_value' => $request->input('replacement_value'),
+            'trade_in_value' => $request->input('trade_in_value'),
+            'present_value' => $request->input('present_value')
+
+        ]);
+          
+        
+            return redirect('/ItemList');
+        // Update the post
+        // Update the post
+    }
+
+
     public function nextview()
     {
         // Retrieve the most recent transaction from the database
