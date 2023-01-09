@@ -9,6 +9,21 @@
     color: white !important;
 }
 
+.accordion.active button {
+    color: white !important;
+    padding: .16rem !important;
+}
+
+.accordion.accordion .accordion-body ul.selected li a {
+    color: white !important;
+}
+
+.accordion.accordion .accordion-body ul li a.selected {
+    text-decoration: underline !important;
+    text-decoration-color: goldenrod !important;
+    text-decoration-thickness: 1.5px !important;
+}
+
 .my-bg-secondary {
     background-color: #e0e0e0 !important;
 }
@@ -66,4 +81,23 @@ li a {
 .material-icons-outlined {
     font-size: 1rem !important;
     color: black !important;
+}
+
+.accordion {
+    --bs-accordion-active-color: #000000 !important;
+    --bs-accordion-btn-bg: none !important;
+    --bs-accordion-border-color: none !important;
+    --bs-accordion-btn-focus-border-color: none !important;
+    --bs-accordion-btn-focus-box-shadow: none !important;
+    --bs-accordion-btn-icon: none !important;
+    --bs-accordion-btn-active-icon: none !important;
+}
+
+.accordion-button::after {
+    display: none !important;
+}
+
+.accordion::focus {
+    border-color: none !important;
+    box-shadow: none !important;
 }

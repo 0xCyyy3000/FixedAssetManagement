@@ -43,4 +43,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getPosition()
+    {
+        return Position::where('id', $this->position)->first('position');
+    }
+
+    public function totalItems()
+    {
+        return $this->position == 1 ? ItemProfile::count() : '';
+    }
+
+    public function itemType($type)
+    {
+        return ItemProfile::where('type', $type)->count();
+    }
 }
