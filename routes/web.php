@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ItemProfileController;
 use App\Http\Controllers\ListingItem;
+use App\Http\Controllers\RepairRequestController;
+use App\Models\RepairRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,5 +48,9 @@ Route::get('/ItemList', [ItemProfileController::class, 'view'])->name('itemlist'
 Route::get('/ProfileItem/page2' , [ItemProfileController::class, 'nextview'])->name('itemshownext');
 Route::put('/latest' , [ItemProfileController::class, 'update']);
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
+
+
+Route::get('/RepairRequest', [RepairRequestController::class, 'view'])->name('repairview');
+Route::post('/create', [RepairRequestController::class, 'create'])->name('createrepair');
 
 
