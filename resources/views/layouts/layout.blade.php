@@ -7,6 +7,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="shortcut icon" href="{{ asset('imgs/BFP Logo.png') }}" type="image/x-icon">
+
     <title>Fixed Assets</title>
 
     <!-- Fonts -->
@@ -16,12 +19,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-
-
-
-    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
-    </script> --}}
 
     <script src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
     <script src="{{ asset('js/clickEvents.js') }}"></script>
@@ -42,51 +39,164 @@
     <div id="app" class="layout row" style="background-color: #e0e0e0">
         <nav class="bg-transparent p-0 col-2 position-relative" style="">
             <ul class="list-group bg-white h-100 rounded-0 p-3 position-relative">
-                <li class="w-50 mt-3 m-auto mb-4 list-group ">
+                <li class="w-75 mt-3 m-auto mb-4 list-group ">
                     <img class="w-100" src="{{ asset('imgs/BFP Logo.png') }}" alt="bfp.logo">
                 </li>
                 <li class="list-group">
-                    <a href="#"
-                        class="active fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                    <a href="{{ route('dashboard') }}"
+                        class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('dashboard') ? 'active' : '' }}">
                         <span class="material-icons-outlined me-2">category</span>
                         Dashboard
                     </a>
                 </li>
                 <li class="list-group">
-                    <a href="#" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                    <a href="{{ route('item.list') }}"
+                        class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('item.list') ? 'active' : '' }}">
                         <span class="material-icons-outlined me-2">layers</span>
                         Item List
                     </a>
                 </li>
                 <li class="list-group">
-                    <a href="{{ route('repairview') }}" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
-                        <span class="material-icons-outlined me-2">description</span>
-                        Process Request
-                    </a>
+                    <div class="accordion mb-2 pt-1 ps-4 pb-1 @if (Request::routeIs('purchase.request') ||
+                        Request::routeIs('repair.request') ||
+                        Request::routeIs('replace.request') ||
+                        Request::routeIs('return.request')) active @endif"
+                        id="accordionExample">
+                        <div class="accordion-item bg-transparent">
+                            <h2 class="accordion-header bg-transparent fs-6 rounded-3 d-flex align-items-center"
+                                id="headingOne">
+                                <span class="material-icons-outlined me-2">book</span>
+                                <button class="accordion-button collapsed bg-transparent p-0 fs-6" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
+                                    aria-controls="collapseOne">
+                                    Process Request
+                                </button>
+                            </h2>
+                            <div id="collapseOne"
+                                class="accordion-collapse collapse @if (Request::routeIs('purchase.request') ||
+                                    Request::routeIs('repair.request') ||
+                                    Request::routeIs('replace.request') ||
+                                    Request::routeIs('return.request')) show @endif"
+                                aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body pt-0 pb-0">
+                                    <ul class=" list-group pt-2 @if (Request::routeIs('purchase.request') ||
+                                        Request::routeIs('repair.request') ||
+                                        Request::routeIs('replace.request') ||
+                                        Request::routeIs('return.request')) selected @endif">
+                                        <li class=" list-group">
+                                            <a class="fs-6 d-flex mb-1 align-items-center
+                                                @if (Request::routeIs('purchase.request')) selected @endif"
+                                                href="">
+                                                <span class="material-icons-outlined me-2">shopping_cart</span>
+                                                Purchase Request
+                                            </a>
+                                        </li>
+                                        <li class=" list-group">
+                                            <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('repair.request')) selected @endif"
+                                                href="">
+                                                <span class="material-icons-outlined me-2">build</span>
+                                                Repair Request
+                                            </a>
+                                        </li>
+                                        <li class=" list-group"><a
+                                                class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('replace.request')) selected @endif"
+                                                href="">
+                                                <span class="material-icons-outlined me-2">find_replace</span>
+                                                Replace Request
+                                            </a>
+                                        </li>
+                                        <li class=" list-group">
+                                            <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('return.request')) selected @endif"
+                                                href="">
+                                                <span class="material-icons-outlined me-2">assignment_return</span>
+                                                Return Request
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li class="list-group">
-                    <a href="{{ route('itemshow') }}"
-                        class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
-                        <span class="material-icons-outlined me-2">library_books</span>
-                        Data Entry
-                    </a>
+                    <div class="accordion mb-2 pt-1 ps-4 pb-1 rounded-2 @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) active @endif"
+                        id="accordionExample2">
+                        <div class="accordion-item bg-transparent">
+                            <h2 class="accordion-header bg-transparent fs-6 rounded-3 d-flex align-items-center"
+                                id="headingTwo">
+                                <span class="material-icons-outlined me-2">description</span>
+                                <button class="accordion-button collapsed bg-transparent p-0 fs-6" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true"
+                                    aria-controls="collapseTwo">
+                                    Data entry
+                                </button>
+                            </h2>
+                            <div id="collapseTwo"
+                                class="accordion-collapse collapse @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) show @endif"
+                                aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                                <div class="accordion-body pt-0 pb-0">
+                                    <ul class="list-group pt-2 @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) selected @endif">
+                                        <li>
+                                            <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('itemshow')) selected @endif"
+                                                href="{{ route('itemshow') }}">Fixed Asset
+                                                Inventory Form</a>
+                                        </li>
+                                        <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('usershow')) selected @endif"
+                                                href="">
+                                                User List Form
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li class="list-group">
-                    <a href="#" class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
-                        <span class="material-icons-outlined me-2">book</span>
-                        Reports
-                    </a>
+                    <div class="accordion mb-2 pt-1 ps-4 pb-1 @if (Request::routeIs('asset.report') || Request::routeIs('user.report')) active @endif"
+                        id="accordionExample3">
+                        <div class="accordion-item bg-transparent">
+                            <h2 class="accordion-header bg-transparent fs-6 rounded-3 d-flex align-items-center"
+                                id="heading3">
+                                <span class="material-icons-outlined me-2">description</span>
+                                <button class="accordion-button collapsed bg-transparent p-0 fs-6" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true"
+                                    aria-controls="collapse3">
+                                    Reports
+                                </button>
+                            </h2>
+                            <div id="collapse3"
+                                class="accordion-collapse collapse @if (Request::routeIs('asset.report') || Request::routeIs('user.report')) show @endif"
+                                aria-labelledby="heading3" data-bs-parent="#accordionExample3">
+                                <div class="accordion-body pt-0 pb-0">
+                                    <ul class=" list-group pt-2">
+                                        <li>
+                                            <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('asset.report')) active @endif"
+                                                href="">
+                                                Fixed Asset Inventory Report
+                                            </a>
+                                        </li>
+                                        <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('user.report')) active @endif"
+                                                href="">
+                                                User List Report
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
             </ul>
 
-            <div class="position-absolute bottom-0 p-3 mb-5">
+            <div class="position-fixed bottom-0 ps-3 mb-2">
                 <a href="#"
-                    class="text-black fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                    class="text-black fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 {{ Request::routeIs('history') ? 'active' : '' }}">
                     <span class="material-icons-outlined me-2">work_history</span>
                     Transaction History
                 </a>
                 <a href="#"
-                    class="text-black fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1">
+                    class="text-black fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 {{ Request::routeIs('settings') ? 'active' : '' }}">
                     <span class="material-icons-outlined me-2">settings</span>
                     Settings
                 </a>
@@ -125,16 +235,27 @@
                                         $name = explode(' ', Auth::user()->name);
                                     @endphp
                                     {{ $name[0] }}</h1>
-                                <small class="text-muted">Chief Inspector</small>
+                                <small class="text-muted">{{ Auth::user()->getPosition()->position }}</small>
                             </div>
-                            <img class="my-bg-secondary rounded-4" src="{{ asset('imgs/avatar.png') }}" alt=""
-                                width="42" height="42">
+                            <img class="my-bg-secondary rounded-4" src="{{ asset('imgs/avatar.png') }}"
+                                alt="" width="42" height="42">
                             <div class="drop-down">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>

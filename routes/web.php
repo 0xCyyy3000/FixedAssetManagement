@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemProfileController;
 use App\Http\Controllers\ListingItem;
 use App\Http\Controllers\RepairRequestController;
@@ -26,11 +27,11 @@ Route::get('/test', function () {
     return view('layouts.layout');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::get('/item-list', [HomeController::class, 'itemList'])->name('item.list');
+Route::get('/process-request', [HomeController::class, 'processRequest'])->name('process.request');
+Route::get('/data-entry', [HomeController::class, 'dataEntry'])->name('data.entry');
+Route::get('/reports', [HomeController::class, 'reports'])->name('reports');
 
 Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
     Route::get('/badge-number', [EmployeeController::class, 'create'])->name('register.certify-create');
@@ -42,15 +43,12 @@ Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('item
 Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');
 
 Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
-Route::get('/ItemList', [ItemProfileController::class, 'view'])->name('itemlist');
 
 
-Route::get('/ProfileItem/page2' , [ItemProfileController::class, 'nextview'])->name('itemshownext');
-Route::put('/latest' , [ItemProfileController::class, 'update']);
+Route::get('/ProfileItem/page2', [ItemProfileController::class, 'nextview'])->name('itemshownext');
+Route::put('/latest', [ItemProfileController::class, 'update']);
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
 
 
 Route::get('/RepairRequest', [RepairRequestController::class, 'view'])->name('repairview');
 Route::post('/create', [RepairRequestController::class, 'create'])->name('createrepair');
-
-

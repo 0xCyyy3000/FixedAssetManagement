@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemProfile;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -21,8 +22,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function dashboard()
     {
-        return view('home');
+        return view('home', ['page' => 'Dashboard']);
+    }
+
+    public function itemList()
+    {
+        $data = ItemProfile::latest()->paginate(10);
+        return view('listing.item-list', ['items' => $data]);
     }
 }

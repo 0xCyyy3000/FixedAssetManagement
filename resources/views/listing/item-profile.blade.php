@@ -4,10 +4,10 @@
         <div class="row justify-content-center">
             <div class="">
                 <div class="card">
-                    <div class="card-header">{{ __('    ') }}</div>                  
-                        <form method="POST">
-                            @csrf
-                            <div class="card-body">
+                    <div class="card-header">{{ __('    ') }}</div>
+                    <form method="POST">
+                        @csrf
+                        <div class="card-body">
                             <div class="row">
                                 <div class="col-sm">
                                     <div class="mb-3">
@@ -25,8 +25,7 @@
                                 <div class="col-sm">
                                     <div class="mb-3 ">
                                         <label for="date" class="form-label">Purchase Date</label>
-                                        <input type="text" class="form-control" id="date"
-                                            name="purchase_date">
+                                        <input type="text" class="form-control" id="date" name="purchase_date">
                                     </div>
                                 </div>
                                 <div class="col-sm">
@@ -59,11 +58,11 @@
                                 <div class="col-sm">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Type</label>
-                                        <select id="type" name="type" class="form-control" >
+                                        <select id="type" name="type" class="form-control">
                                             <option value="Machine">Machine</option>
                                             <option value="plant">plant</option>
                                             <option value="Tangible">Tangible</option>
-                                          </select>                                        {{-- <input type="text" class="form-control" id="exampleFormControlInput1"
+                                        </select> {{-- <input type="text" class="form-control" id="exampleFormControlInput1"
                                             name="type"> --}}
                                     </div>
                                     @error('type')
@@ -279,24 +278,24 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                
+
                             </div>
-                                    <div class="ml-auto">
-                                        <button class="btn btn-primary float-right">
-                                            Next
-                                        </button>
-                                    </div>
-                        </form>
-                    </div>
+                            <div class="ml-auto">
+                                <button class="btn btn-primary float-right">
+                                    Next
+                                </button>
+                            </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <script>
-            $(function () {
-                  $("#date").datepicker({ 
-                          autoclose: true, 
-                          todayHighlight: true
-                  })
-                  });
-            </script>
+    </div>
+    <script>
+        $(function() {
+            $("#date").datepicker({
+                autoclose: true,
+                todayHighlight: true
+            })
+        });
+    </script>
 @endsection
