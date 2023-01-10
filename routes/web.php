@@ -27,6 +27,7 @@ Route::get('/test', function () {
     return view('layouts.layout');
 });
 
+Route::get('/', [HomeController::class, 'home']);
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
 Route::get('/item-list', [HomeController::class, 'itemList'])->name('item.list');
 Route::get('/process-request', [HomeController::class, 'processRequest'])->name('process.request');

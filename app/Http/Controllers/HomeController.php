@@ -22,6 +22,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+    public function home()
+    {
+        return redirect()->route('dashboard');
+    }
+
     public function dashboard()
     {
         return view('home', ['page' => 'Dashboard']);
