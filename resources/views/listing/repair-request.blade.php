@@ -13,21 +13,21 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Entity Name</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="entity_name">
+                                            name="entity_name" value="{{ old('entity_name') }}">
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="mb-3 ">
                                         <label for="date" class="form-label">Fund Cluster</label>
                                         <input type="text" class="form-control" id=""
-                                            name="fund_cluster">
+                                            name="fund_cluster" value="{{ old('fund_cluster') }}">
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="mb-3">
                                         <label for="date" class="form-label">Date</label>
                                         <input type="text" class="form-control" id="date"
-                                            name="date">
+                                            name="date" value="{{ old('date') }}">
                                     </div>
                                 </div>
                             </div>
@@ -37,14 +37,14 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Office SEction</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="office_section">
+                                            name="office_section" value="{{ old('office_section') }}">
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Purchase Rq No.</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="purchase_id">
+                                            name="purchase_id" value="{{ old('purchase_id') }}">
                                     </div>
                                     @error('type')
                                         <span class="invalid-feedback" role="alert">
@@ -56,7 +56,7 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Transaction No.</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="salvage_value">
+                                            name="salvage_value" value="{{ old('salvage_value') }}">
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +67,7 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Appendic No.</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="appendix_no">
+                                            name="appendix_no" value="{{ old('appendix_no') }}">
                                     </div>
                                     @error('serial_number')
                                         <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
                                     <div class="col-20">
                                         <div class="form-group mb-3">
                                             <label for="exampleFormControlTextarea1">Purpose</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="notes"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="notes" value="{{ old('notes') }}"></textarea>
                                         </div>
                                      </div>
                                 </div>               

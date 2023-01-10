@@ -19,6 +19,13 @@ class RepairRequestController extends Controller
     public function create(Request $request){
 
         $items = $request->validate([
+            'entity'=>'required',
+            'fund_cluster'=>'required',
+            'date'=>'required',
+            'office_sec'=>'required',
+            'transaction_no'=>'required',
+            'appendix_no'=>'required',
+            'purpose'=>'required',
             'item'=>'required',
             'description'=>'required',
             'qty'=>'required',
@@ -27,7 +34,6 @@ class RepairRequestController extends Controller
             'total'=>'required',
         ]);
 
-    RepairRequest::create($items);
-    return redirect('/RepairRequest');
+    dd($items);
     }
 }
