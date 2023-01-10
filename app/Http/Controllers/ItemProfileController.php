@@ -96,7 +96,7 @@ class ItemProfileController extends Controller
         ]);
           
         
-            return redirect('/ItemList');
+            return redirect('/item-list');
         // Update the post
         // Update the post
     }

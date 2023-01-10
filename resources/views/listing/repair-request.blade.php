@@ -4,83 +4,85 @@
         <div class="row justify-content-center">
             <div class="card">
 
-                <form method="POST" action="" enctype="">
-                    @csrf
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Entity Name</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="entity_name">
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="mb-3 ">
-                                    <label for="date" class="form-label">Fund Cluster</label>
-                                    <input type="text" class="form-control" id="" name="fund_cluster">
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="mb-3">
-                                    <label for="date" class="form-label">Date</label>
-                                    <input type="text" class="form-control" id="date" name="date">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Office SEction</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="office_section">
-                                </div>
-                            </div>
-                            <div class="col-sm">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Purchase Rq No.</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="purchase_id">
-                                </div>
-                                @error('type')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="col-sm">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Transaction No.</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="salvage_value">
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Appendic No.</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        name="appendix_no">
-                                </div>
-                                @error('serial_number')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                    <form method="POST" action="" enctype="">
+                          @csrf
+                          <div class="card-body">
                             <div class="row">
-                                <div class="col-20">
-                                    <div class="form-group mb-3">
-                                        <label for="exampleFormControlTextarea1">Purpose</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="notes"></textarea>
+                                <div class="col-sm">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Entity Name</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            name="entity_name" value="{{ old('entity_name') }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="mb-3 ">
+                                        <label for="date" class="form-label">Fund Cluster</label>
+                                        <input type="text" class="form-control" id=""
+                                            name="fund_cluster" value="{{ old('fund_cluster') }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="mb-3">
+                                        <label for="date" class="form-label">Date</label>
+                                        <input type="text" class="form-control" id="date"
+                                            name="date" value="{{ old('date') }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-sm">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Office SEction</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            name="office_section" value="{{ old('office_section') }}">
+                                    </div>
+                                </div>
+                                <div class="col-sm">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Purchase Rq No.</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            name="purchase_id" value="{{ old('purchase_id') }}">
+                                    </div>
+                                    @error('type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="col-sm">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Transaction No.</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            name="salvage_value" value="{{ old('salvage_value') }}">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Appendic No.</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            name="appendix_no" value="{{ old('appendix_no') }}">
+                                    </div>
+                                    @error('serial_number')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="row">
+                                    <div class="col-20">
+                                        <div class="form-group mb-3">
+                                            <label for="exampleFormControlTextarea1">Purpose</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="notes" value="{{ old('notes') }}"></textarea>
+                                        </div>
+                                     </div>
+                                </div>               
+                      <div class="card-body">
 
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <button class="btn btn-primary" type="button" data-toggle="modal"
