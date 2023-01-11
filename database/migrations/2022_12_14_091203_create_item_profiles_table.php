@@ -19,21 +19,19 @@ return new class extends Migration
             $table->string('purchase_price');
             $table->string('inventory_number');
             $table->string('type');
-            $table->double('salvage_value');
             $table->string('serial_number')->unique();
             $table->string('classification');
             $table->string('lifespan');
             $table->string('department');
-            $table->integer('quantity');
-            $table->double('annual_operating_cost');
             $table->string('year');
-            $table->double('replacement_value');
             $table->string('title');
-            $table->double('trade_in_value');
-            $table->string('body');
-            $table->double('present_value');
-            $table->longText('comments');
+            $table->string('condition');
+            $table->string('image')->nullable();
+            $table->double('depreciation');
             $table->longText('notes');
+            $table->longText('description');
+
+
             $table->timestamps();
         });
     }
