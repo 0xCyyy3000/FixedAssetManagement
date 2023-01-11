@@ -22,7 +22,7 @@ class RepairRequestController extends Controller
 
         RepairRequest::create([
             'entity_name' => $request->input('entity_name'),
-            'fund_cluster' =>$request->input('fund_cluster'),
+            'fund_cluster' => $request->input('fund_cluster'),
             'date' => $request->input('date'),
             'office_sec' => $request->input('office_sec'),
             'transaction_no' => $request->input('transaction_no'),
@@ -31,7 +31,5 @@ class RepairRequestController extends Controller
         ]);
 
         return redirect('/RepairRequest')->withInput();
-        dd($items);
     }
-  
 }
