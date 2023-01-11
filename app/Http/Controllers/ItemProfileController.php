@@ -50,10 +50,10 @@ class ItemProfileController extends Controller
     }
 
     public function listEdit(Request $request)
-    {   
+    {
         // Retrieve the most recent transaction from the database
-       $request->validate([
-            'purchase_date' => ['required','date'],
+        $request->validate([
+            'purchase_date' => ['required', 'date'],
             'purchase_price' => 'required',
             'inventory_number' => 'required',
             'type' => 'required|in:Machine,plant,Tangible',
@@ -73,10 +73,10 @@ class ItemProfileController extends Controller
             'comments' => 'required',
             'notes' => 'required',
         ]);
-        
+
         $item = ItemProfile::where('transaction_number', $request->transaction_number)->update([
             'purchase_date' => $request->input('purchase_date'),
-            'purchase_price'=> $request->input('purchase_price'),
+            'purchase_price' => $request->input('purchase_price'),
             'inventory_number' => $request->input('inventory_number'),
             'type' => $request->input('type'),
             'salvage_value' => $request->input('salvage_value'),
@@ -94,9 +94,9 @@ class ItemProfileController extends Controller
             'present_value' => $request->input('present_value')
 
         ]);
-          
-        
-            return redirect('/item-list');
+
+
+        return redirect('/item-list');
         // Update the post
         // Update the post
     }
@@ -136,7 +136,7 @@ class ItemProfileController extends Controller
 
         // Update the post
         // Update the post
-        return redirect('/home');
+        return redirect('/');
     }
 
     public function select(Request $request)

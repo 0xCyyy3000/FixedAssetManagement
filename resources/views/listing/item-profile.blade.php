@@ -4,7 +4,6 @@
         <div class="row justify-content-center">
             <div class="">
                 <div class="card">
-                    <div class="card-header">{{ __('    ') }}</div>
                     <form method="POST">
                         @csrf
                         <div class="card-body">
