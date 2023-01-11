@@ -17,26 +17,20 @@ class ItemProfileController extends Controller
             'purchase_date' => 'required|date',
             'purchase_price' => 'required',
             'inventory_number' => 'required',
-            'type' => 'required|in:Machine,plant,Tangible',
-            'salvage_value' => 'required',
+            'type' => 'required|in:Machine,Plant,Tangible',
             'serial_number' => 'required',
-            'classification' => 'required',
+            'classification' => 'required|in:Functional,Non-Functional',
             'lifespan' => 'required',
             'department' => 'required',
-            'quantity' => 'required',
-            'annual_operating_cost' => 'required',
             'year' => 'required',
-            'replacement_value' => 'required',
             'title' => 'required',
-            'trade_in_value' => 'required',
-            'body' => 'required',
-            'present_value' => 'required',
-            'comments' => 'required',
+            'depreciation' => 'required',
+            'description' => 'required',
+            'condition' => 'required',
             'notes' => 'required',
         ]);
-
         ItemProfile::create($items);
-        return redirect('/ProfileItem/page2');
+        return redirect('/dashboard');
     }
 
     public function create()
@@ -52,25 +46,20 @@ class ItemProfileController extends Controller
     public function listEdit(Request $request)
     {
         // Retrieve the most recent transaction from the database
-        $request->validate([
-            'purchase_date' => ['required', 'date'],
+       $request->validate([
+            'purchase_date' => 'required|date',
             'purchase_price' => 'required',
             'inventory_number' => 'required',
-            'type' => 'required|in:Machine,plant,Tangible',
-            'salvage_value' => 'required',
+            'type' => 'required|in:Machine,Plant,Tangible',
             'serial_number' => 'required',
-            'classification' => 'required',
+            'classification' => 'required|in:Functional,Non-Functional',
             'lifespan' => 'required',
             'department' => 'required',
-            'quantity' => 'required',
-            'annual_operating_cost' => 'required',
             'year' => 'required',
-            'replacement_value' => 'required',
             'title' => 'required',
-            'trade_in_value' => 'required',
-            'body' => 'required',
-            'present_value' => 'required',
-            'comments' => 'required',
+            'depreciation' => 'required',
+            'description' => 'required',
+            'condition' => 'required',
             'notes' => 'required',
         ]);
 
