@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id('id');
+            $table->foreignId('reference_no')->constrained('repair_requests', 'purchase_id');
             $table->string('item');
             $table->string('description');
             $table->integer('qty');
-            $table->double('unit');
+            $table->string('unit');
             $table->string('price');
             $table->double('total');
             $table->timestamps();

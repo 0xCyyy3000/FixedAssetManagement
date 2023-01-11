@@ -33,7 +33,16 @@
 }
 
 .my-primary {
-    color: #301F4C !important
+    color: #301F4C !important;
+}
+
+.my-btn-primary {
+    background-color: #301F4C !important;
+    color: white !important;
+}
+
+.my-bg-primary {
+    background-color: #301F4C !important;
 }
 
 body {
@@ -100,4 +109,10 @@ li a {
 .accordion::focus {
     border-color: none !important;
     box-shadow: none !important;
+}
+
+
+/* Styles for Requests Information */
+.request-information {
+    height: 88vh !important;
 }

@@ -35,16 +35,20 @@ $(document).ready(function () {
             }
         });
     });
+    $(document).on('click', '#btn', function () {
+        console.log('hello!');
+    });
 });
 
-$('#updateForm').on('submit', function(e) {
+$('#updateForm').on('submit', function (e) {
     e.preventDefault();
     $.ajax({
-      type: 'POST',
-      url: '/update',
-      data: $('#updateForm').serialize(),
-      success: function(response) {
-        console.log(response);
-      }
+        type: 'POST',
+        url: '/update',
+        data: $('#updateForm').serialize(),
+        success: function (response) {
+            console.log(response);
+        }
     });
-  });
+});
+

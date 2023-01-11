@@ -1,85 +1,86 @@
 @extends('layouts.layout')
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="">
+        <div class="row justify-content-center hello">
+            <div class="p-1">
                 <div class="card">
                     <div class="card-body">
-                    <form class="row g-3" method="POST" action="/ProfileItem">
-                        @csrf
-                        <div class="row g-3">
-                            <div class="col">
-                                <label for="colFormLabelSm">Transaction Number</label>
-                                <input type="text" class="form-control" name="transaction_number">
+                        <form class="row g-3" method="POST" action="/ProfileItem">
+                            @csrf
+                            <div class="row g-3">
+                                <div class="col">
+                                    <label for="colFormLabelSm">Transaction Number</label>
+                                    <input type="text" class="form-control" name="transaction_number">
+                                </div>
+                                <div class="col">
+                                    <label for="colFormLabelSm">Purchase Date</label>
+                                    <input type="text" class="form-control" name="purchase_date" id="date">
+                                </div>
+                                <div class="col">
+                                    <label for="colFormLabelSm">Notes</label>
+                                    <input type="text" class="form-control" name="notes">
+                                </div>
                             </div>
-                            <div class="col">
-                                <label for="colFormLabelSm">Purchase Date</label>
-                                <input type="text" class="form-control" name="purchase_date" id="date">
-                            </div>
-                            <div class="col">
-                                <label for="colFormLabelSm">Notes</label>
-                                <input type="text" class="form-control" name="notes">
-                            </div>
-                          </div>
 
-                          <div class="row g-3">
-                            <div class="col-4">
-                                <label for="colFormLabelSm">Inventory Number</label>
-                                <input type="text" class="form-control" name="inventory_number">
+                            <div class="row g-3">
+                                <div class="col-4">
+                                    <label for="colFormLabelSm">Inventory Number</label>
+                                    <input type="text" class="form-control" name="inventory_number">
+                                </div>
+                                <div class="col-4">
+                                    <label for="colFormLabelSm">Type</label>
+                                    <select class="form-select" aria-label="Default select example" name="type">
+                                        <option value="Machine">Machine</option>
+                                        <option value="Plant">Plant</option>
+                                        <option value="Tangible">Tangible</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="col-4">
-                                <label for="colFormLabelSm">Type</label>
-                                <select class="form-select" aria-label="Default select example" name="type">
-                                    <option value="Machine">Machine</option>
-                                    <option value="Plant">Plant</option>
-                                    <option value="Tangible">Tangible</option>
-                                  </select>
-                            </div>
-                          </div>
 
-                          <div class="row g-3">
-                            <div class="col">
-                                <label for="colFormLabelSm">Serial Number</label>
-                                <input type="text" class="form-control" name="serial_number">
+                            <div class="row g-3">
+                                <div class="col">
+                                    <label for="colFormLabelSm">Serial Number</label>
+                                    <input type="text" class="form-control" name="serial_number">
+                                </div>
+                                <div class="col">
+                                    <label for="colFormLabelSm">Classification</label>
+                                    <select class="form-select" aria-label="Default select example" name="classification">
+                                        <option value="Functional">Functional</option>
+                                        <option value="Non-Functional">Non-Functional</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="colFormLabelSm">Notes</label>
+                                    <input type="text" class="form-control" name="notes">
+                                </div>
                             </div>
-                            <div class="col">
-                                <label for="colFormLabelSm">Classification</label>
-                                <select class="form-select" aria-label="Default select example" name="classification">
-                                    <option value="Functional">Functional</option>
-                                    <option value="Non-Functional">Non-Functional</option>
-                                  </select>
-                            </div>
-                            <div class="col">
-                                <label for="colFormLabelSm">Notes</label>
-                                <input type="text" class="form-control" name="notes">
-                            </div>
-                          </div>
 
-                          <div class="row g-3">
-                            <div class="col">
-                                <label for="colFormLabelSm">Department</label>
-                                <input type="text" class="form-control" name="department">
+                            <div class="row g-3">
+                                <div class="col">
+                                    <label for="colFormLabelSm">Department</label>
+                                    <input type="text" class="form-control" name="department">
+                                </div>
+                                <div class="col">
+                                    <label for="colFormLabelSm">Purchase Price</label>
+                                    <input type="text" class="form-control" name="purchase_price">
+                                </div>
+                                <div class="col">
+                                    <label for="colFormLabelSm">Inventoried By</label>
+                                    <input type="text" class="form-control" disabled name="user"
+                                        value="{{ Auth::user()->name }}">
+                                </div>
                             </div>
-                            <div class="col">
-                                <label for="colFormLabelSm">Purchase Price</label>
-                                <input type="text" class="form-control" name="purchase_price">
-                            </div>
-                            <div class="col">
-                                <label for="colFormLabelSm">Inventoried By</label>
-                                <input type="text" class="form-control" disabled name="user" value="{{ Auth::user()->name }}">
-                            </div>
-                          </div>
 
 
-                          <div class="row g-3">
-                            <div class="col-4">
-                                <label for="colFormLabelSm">Year</label>
-                                <input type="text" class="form-control" name="year">
-                            </div>
-                            <div class="col-4">
-                                <label for="colFormLabelSm">Condition</label>
-                                <input type="text" class="form-control" name="condition">
-                            </div>
+                            <div class="row g-3">
+                                <div class="col-4">
+                                    <label for="colFormLabelSm">Year</label>
+                                    <input type="text" class="form-control" name="year">
+                                </div>
+                                <div class="col-4">
+                                    <label for="colFormLabelSm">Condition</label>
+                                    <input type="text" class="form-control" name="condition">
+                                </div>
                             </div>
 
 
@@ -104,18 +105,18 @@
                                     <input type="text" class="form-control" name="depreciation">
                                 </div>
                             </div>
-                            
+
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <button class="btn btn-primary me-md-2" type="Submit">Register</button>
                                 <button class="btn btn-primary" type="button">Close</button>
-                              </div>
+                            </div>
 
-                          </div>
-                        </div>
-                      </form>
+                    </div>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
     <script>
         $(function() {

@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Employee;
 use App\Models\Position;
+use App\Models\Transaction;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -43,6 +44,7 @@ class DatabaseSeeder extends Seeder
         Position::create(['position' => 'Master']);
         Position::create(['position' => 'Normal']);
 
-        
+        Transaction::create(['content' => 'testing']);
+        Transaction::create(['content' => 'testing']);
     }
 }
