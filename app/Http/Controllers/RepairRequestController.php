@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\items;
 use App\Models\RepairRequest;
 use Illuminate\Http\Request;
 
@@ -12,28 +13,23 @@ class RepairRequestController extends Controller
     //
     public function view()
     {   
-        $data = RepairRequest::all();
+        $data = items::latest()->get();
         return view('listing.repair-request', ['item' => $data]);
     }
 
     public function create(Request $request){
 
-        $items = $request->validate([
-            'entity'=>'required',
-            'fund_cluster'=>'required',
-            'date'=>'required',
-            'office_sec'=>'required',
-            'transaction_no'=>'required',
-            'appendix_no'=>'required',
-            'purpose'=>'required',
-            'item'=>'required',
-            'description'=>'required',
-            'qty'=>'required',
-            'unit'=>'required',
-            'price'=>'required',
-            'total'=>'required',
+        RepairRequest::create([
+            'entity_name' => $request->input('entity_name'),
+            'fund_cluster' =>$request->input('fund_cluster'),
+            'date' => $request->input('date'),
+            'office_sec' => $request->input('office_sec'),
+            'transaction_no' => $request->input('transaction_no'),
+            'appendix_no' => $request->input('appendix_no'),
+            'purpose' => $request->input('purpose'),
         ]);
 
-    dd($items);
+        return redirect('/RepairRequest')->withInput();
     }
+  
 }

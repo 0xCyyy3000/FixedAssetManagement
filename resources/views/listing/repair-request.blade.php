@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
                 <div class="card">
 
-                    <form method="POST" action="" enctype="">
+                    <form method="POST" action="/create" enctype="">
                           @csrf
                           <div class="card-body">
                             <div class="row">
@@ -37,7 +37,7 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Office SEction</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="office_section" value="{{ old('office_section') }}">
+                                            name="office_sec" value="{{ old('office_sec') }}">
                                     </div>
                                 </div>
                                 <div class="col-sm">
@@ -56,7 +56,7 @@
                                     <div class="mb-3">
                                         <label for="exampleFormControlInput1" class="form-label">Transaction No.</label>
                                         <input type="text" class="form-control" id="exampleFormControlInput1"
-                                            name="salvage_value" value="{{ old('salvage_value') }}">
+                                            name="transaction_no" value="{{ old('transaction_no') }}">
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     <div class="col-20">
                                         <div class="form-group mb-3">
                                             <label for="exampleFormControlTextarea1">Purpose</label>
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="notes" value="{{ old('notes') }}"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="purpose" value="{{ old('purpose') }}"></textarea>
                                         </div>
                                      </div>
                                 </div>               
@@ -105,24 +105,31 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if(!empty($item))
+                                @foreach($item as $items)
                                     <tr>
-                                        @foreach($item as $items)
+                                        
                                         <td></td>
-                                        <td>{{ $item->item }}</td>
-                                        <td>{{ $item->description }}</td>
-                                        <td>{{ $item->qty }}</td>
-                                        <td>{{ $item->unit }}</td>
-                                        <td>{{ $item->price }}</td>
-                                        @endforeach
-                                    
+                                        <td>{{ $items->item }}</td>
+                                        <td>{{ $items->description }}</td>
+                                        <td>{{ $items->qty }}</td>
+                                        <td>{{ $items->unit }}</td>
+                                        <td>{{ $items->price }}</td>
                                     </tr>
+                                        @endforeach
+                                @else
+                                        <tr>
+                                            <td colspan="2">No data yet!</td>
+                                        </tr>
+                                        @endif
+                                    
                             </tbody>
                         
                         </table>
                     </div>
                 </form>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-primary me-md-2" type="sumbit">Button</button>
+                        <button class="btn btn-primary me-md-2" type="sumbit">Submit</button>
                       </div>
                     
                           
@@ -140,7 +147,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/create">
+                <form method="POST" action="/additem">
                     @csrf
                     <div class="card-body">
                         <div class="row">
@@ -177,6 +184,13 @@
                                         <label for="inventory_number" class="form-label">Quantity</label>
                                         <input type="text" class="form-control" 
                                             name="qty" >
+                                    </div>
+                                    <div class="col-sm">
+                                        <div class="mb-3">
+                                            <label for="inventory_number" class="form-label">Total</label>
+                                            <input type="text" class="form-control" 
+                                                name="total" >
+                                        </div>
                                     </div>
             
                                 <div class="modal-footer">
