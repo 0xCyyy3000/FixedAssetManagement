@@ -98,6 +98,7 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.status == 200) {
                     alert('Replace Request has been submitted!');
+                    location.reload();
                 }
             }
         });

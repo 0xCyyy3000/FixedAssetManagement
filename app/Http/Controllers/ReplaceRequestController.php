@@ -23,28 +23,40 @@ class ReplaceRequestController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
-
+        // dd($request->all());
         $newTransaction = Transaction::create(['content' => 'New Replace Request submitted by ' . Auth::user()->name]);
         $newRequest = ReplaceRequest::create([
             'transaction_no' => $newTransaction->id,
-            'office_section' => $request->office_section,
+            'office_section' => $request->section,
             'amount' => $request->amount,
             'status' => $request->status
         ]);
 
         if ($newRequest) {
-            items::create([
-                'reference_no' => $newRequest->id,
-                'serial_no' => $request->serial_no,
-                'item' => $request->item,
-                'description' => $request->description,
-                'qty' => $request->quantity,
-                'unit' => $request->unit,
-                'price' => $request->price,
-                'total' => $request->total,
-                'remarks' => $request->remarks
-            ]);
+            foreach ($request->items as $item) {
+                items::create([
+                    'reference_no' => $newRequest->id,
+                    'serial_no' => $item['serial_no'],
+                    'item' => $item['item'],
+                    'description' => $item['description'],
+                    'qty' => $item['quantity'],
+                    'unit' => $item['unit'],
+                    'price' => $item['price'],
+                    'total' => $item['total'],
+                    'remarks' => $item['remarks']
+                ]);
+            }
+
+            // return redirect()->route('replace.request');
+            return response()->json(['status' => 200]);
         }
+    }
+
+    public function destroy(Request $request)
+    {
+        // dd($request->all());
+        items::where('reference_no', $request->reference)->delete();
+        ReplaceRequest::where('id', $request->reference)->delete();
+        return back();
     }
 }

@@ -14,7 +14,7 @@ class RepairRequestController extends Controller
     public function view()
     {
         $data = items::latest()->get();
-        return view('listing.repair-request', ['item' => $data]);
+        return view('listing.repair-request', ['items' => $data]);
     }
 
     public function create(Request $request)

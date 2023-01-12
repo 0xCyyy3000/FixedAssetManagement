@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('replace_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid('transaction_no')->constrained('transactions');
+            $table->string('transaction_no');
             $table->string('office_section');
             $table->double('amount');
             $table->string('status');

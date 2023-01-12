@@ -32,11 +32,15 @@
                                         <td>{{ $request->office_section }}</td>
                                         <td>{{ $request->amount }}</td>
                                         <td>{{ $request->status }}</td>
-                                        <td>
+                                        <td class="d-flex">
                                             <button class="btn btn-primary me-3" value="{{ $request->id }}">
                                                 View details</button>
                                             <button class="btn btn-primary me-3" value="{{ $request->id }}">Edit</button>
-                                            <button class="btn btn-danger" value="{{ $request->id }}">Remove</button>
+                                            <form action="{{ route('replace.destroy') }}" method="post" id="remove-item">
+                                                <button class="btn btn-danger" form="remove-item" name="reference"
+                                                    value="{{ $request->id }}" type="submit">Remove</button>
+                                                @csrf
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -3,13 +3,12 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ReplaceRequest extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
     public function getCreatedAtAttribute($value)
     {
