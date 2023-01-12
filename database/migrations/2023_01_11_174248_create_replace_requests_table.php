@@ -16,10 +16,7 @@ return new class extends Migration
         Schema::create('replace_requests', function (Blueprint $table) {
             $table->id();
             $table->foreignUuid('transaction_no')->constrained('transactions');
-            $table->foreignId('purchase_req')->constrained('purchase_requests');
             $table->string('office_section');
-            $table->string('serial_no')->unique();
-            $table->string('item');
             $table->double('amount');
             $table->string('status');
             $table->timestamps();

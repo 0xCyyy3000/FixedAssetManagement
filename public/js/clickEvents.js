@@ -35,9 +35,6 @@ $(document).ready(function () {
             }
         });
     });
-    $(document).on('click', '#btn', function () {
-        console.log('hello!');
-    });
 });
 
 $('#updateForm').on('submit', function (e) {

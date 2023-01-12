@@ -17,10 +17,7 @@
                             <tr>
                                 <th scope="col">Date</th>
                                 <th scope="col">TR No.</th>
-                                <th scope="col">Purchase Req No.</th>
                                 <th scope="col">Office Section</th>
-                                <th scope="col">Serial No.</th>
-                                <th scope="col">Item</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
@@ -32,15 +29,14 @@
                                     <tr>
                                         <td>{{ $request->created_at }}</td>
                                         <td>{{ $request->transaction_no }}</td>
-                                        <td>{{ $request->purchase_req }}</td>
                                         <td>{{ $request->office_section }}</td>
-                                        <td>{{ $request->serial_no }}</td>
-                                        <td>{{ $request->item }}</td>
                                         <td>{{ $request->amount }}</td>
                                         <td>{{ $request->status }}</td>
                                         <td>
-                                            <button class="btn btn-primary me-3">Edit</button>
-                                            <button class="btn btn-danger">Remove</button>
+                                            <button class="btn btn-primary me-3" value="{{ $request->id }}">
+                                                View details</button>
+                                            <button class="btn btn-primary me-3" value="{{ $request->id }}">Edit</button>
+                                            <button class="btn btn-danger" value="{{ $request->id }}">Remove</button>
                                         </td>
                                     </tr>
                                 @endforeach

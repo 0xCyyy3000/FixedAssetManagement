@@ -46,6 +46,8 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
 Route::get('/replace-request', [ReplaceRequestController::class, 'index'])->name('replace.request');
 Route::get('/replace-request/create', [ReplaceRequestController::class, 'create'])->name('replace.create');
 Route::post('/replace-request/store', [ReplaceRequestController::class, 'store'])->name('replace.store');
+// Route::post('/replace-request/add-item', [ReplaceRequestController::class, 'addItem'])->name('replace.add-item');
+
 
 Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
 Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');

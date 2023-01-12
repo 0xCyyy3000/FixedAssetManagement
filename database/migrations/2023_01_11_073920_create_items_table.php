@@ -15,13 +15,15 @@ return new class extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id('id');
-            $table->foreignId('reference_no')->constrained('repair_requests', 'purchase_id');
+            $table->integer('reference_no');
+            $table->string('serial_no')->unique();
             $table->string('item');
             $table->string('description');
             $table->integer('qty');
             $table->string('unit');
-            $table->string('price');
+            $table->integer('price');
             $table->double('total');
+            $table->string('remarks');
             $table->timestamps();
         });
     }
