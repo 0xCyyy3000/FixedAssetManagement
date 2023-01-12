@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ItemProfileController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ListingItem;
+use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\RepairRequestController;
 use App\Http\Controllers\ReplaceRequestController;;
 
@@ -65,3 +66,10 @@ Route::get('/repair-request', [RepairRequestController::class, 'index'])->name('
 Route::get('/repair-request/create', [RepairRequestController::class, 'create'])->name('repair.create');
 Route::post('/repair-request/store', [RepairRequestController::class, 'store'])->name('repair.store');
 Route::post('/repair-request/destroy', [RepairRequestController::class, 'destroy'])->name('repair.destroy');
+
+
+// For Purchase Request Routes
+Route::get('/purchase-request', [PurchaseRequestController::class, 'index'])->name('purchase.request');
+Route::get('/purchase-request/create', [PurchaseRequestController::class, 'create'])->name('purchase.create');
+Route::post('/purchase-request/store', [PurchaseRequestController::class, 'store'])->name('purchase.store');
+Route::post('/purchase-request/destroy', [PurchaseRequestController::class, 'destroy'])->name('purchase.destroy');

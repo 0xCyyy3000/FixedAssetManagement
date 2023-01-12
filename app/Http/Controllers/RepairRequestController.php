@@ -16,12 +16,12 @@ class RepairRequestController extends Controller
     public function index()
     {
         $requests = RepairRequest::latest()->paginate(10);
-        return view('request.repair.index', ['requests' => $requests]);
+        return view('requests.repair.index', ['requests' => $requests]);
     }
 
     public function create()
     {
-        return view('request.repair.create');
+        return view('requests.repair.create');
     }
 
     public function store(Request $request)

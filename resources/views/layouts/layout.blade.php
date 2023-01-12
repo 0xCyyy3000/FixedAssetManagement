@@ -87,7 +87,7 @@
                                         <li class=" list-group">
                                             <a class="fs-6 d-flex mb-1 align-items-center
                                                 @if (Request::routeIs('purchase.request')) selected @endif"
-                                                href="">
+                                                href="{{ route('purchase.request') }}">
                                                 <span class="material-icons-outlined me-2">shopping_cart</span>
                                                 Purchase Request
                                             </a>
