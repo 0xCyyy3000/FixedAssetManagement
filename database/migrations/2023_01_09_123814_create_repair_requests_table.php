@@ -14,14 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('repair_requests', function (Blueprint $table) {
-            $table->id('purchase_id');
-            $table->string('entity_name');
-            $table->string('fund_cluster');
-            $table->string('date');
-            $table->string('office_sec');
-            $table->double('transaction_no');
-            $table->string('appendix_no');
-            $table->string('purpose');
+            $table->id();
+            $table->string('transaction_no');
+            $table->string('office_section');
+            $table->double('amount');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <script src="{{ asset('js/replaceRequest.js') }}"></script>
+    <script src="{{ asset('js/repairRequest.js') }}"></script>
     <div class="container">
         <div class="row justify-content-center px-2">
             <div class="container bg-white rounded request-information">
@@ -8,14 +8,14 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item fs-5 text-decoration-underline"><a
-                                    href="{{ route('replace.request') }}">Replace Requests</a></li>
+                                    href="{{ route('repair.request') }}">Repair Requests</a></li>
                             <li class="breadcrumb-item fs-5" aria-current="page">Create</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="row p-3">
                     <div class="row mb-3">
-                        <h3 class="text-center fw-semibold">Replace Request Form</h3>
+                        <h3 class="text-center fw-semibold">Repair Request Form</h3>
                     </div>
                     <div class="row w-75 m-auto">
                         <div class="mb-3 col-4">
@@ -27,8 +27,8 @@
                             <input type="text" class="form-control" id="fund_cluster" name="fund_cluster">
                         </div>
                         <div class="mb-3 col-4">
-                            <label for="replace_date" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="replace_date" name="date"
+                            <label for="repair_date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="repair_date" name="date"
                                 value="<?php echo date('Y-m-d'); ?>">
                         </div>
                     </div>
@@ -78,8 +78,8 @@
                     </div>
                     <div class="d-flex p-3 justify-content-end gap-2">
                         <input type="hidden" id="token" value="{{ csrf_token() }}">
-                        <button type="button" class="btn my-btn-primary" id="submit-replace">Submit Form</button>
-                        <a href="{{ route('replace.request') }}" class="btn btn-secondary">Cancel</a>
+                        <button type="button" class="btn my-btn-primary" id="submit-repair">Submit Form</button>
+                        <a href="{{ route('repair.request') }}" class="btn btn-secondary">Cancel</a>
                     </div>
                 </div>
             </div>

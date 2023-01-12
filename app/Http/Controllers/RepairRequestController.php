@@ -3,33 +3,63 @@
 namespace App\Http\Controllers;
 
 use App\Models\items;
-use App\Models\RepairRequest;
-use Illuminate\Http\Request;
-
+use App\Models\Transaction;
 use function Ramsey\Uuid\v1;
+
+use Illuminate\Http\Request;
+use App\Models\RepairRequest;
+use Illuminate\Support\Facades\Auth;
 
 class RepairRequestController extends Controller
 {
     //
-    public function view()
+    public function index()
     {
-        $data = items::latest()->get();
-        return view('listing.repair-request', ['items' => $data]);
+        $requests = RepairRequest::latest()->paginate(10);
+        return view('request.repair.index', ['requests' => $requests]);
     }
 
-    public function create(Request $request)
+    public function create()
     {
+        return view('request.repair.create');
+    }
 
-        RepairRequest::create([
-            'entity_name' => $request->input('entity_name'),
-            'fund_cluster' => $request->input('fund_cluster'),
-            'date' => $request->input('date'),
-            'office_sec' => $request->input('office_sec'),
-            'transaction_no' => $request->input('transaction_no'),
-            'appendix_no' => $request->input('appendix_no'),
-            'purpose' => $request->input('purpose'),
+    public function store(Request $request)
+    {
+        // dd($request->all());
+        $newTransaction = Transaction::create(['content' => 'New Repair Request submitted by ' . Auth::user()->name]);
+        $newRequest = RepairRequest::create([
+            'transaction_no' => $newTransaction->id,
+            'office_section' => $request->section,
+            'amount' => $request->amount,
+            'status' => $request->status
         ]);
 
-        return redirect('/RepairRequest')->withInput();
+        if ($newRequest) {
+            foreach ($request->items as $item) {
+                items::create([
+                    'reference_no' => $newRequest->id,
+                    'serial_no' => $item['serial_no'],
+                    'item' => $item['item'],
+                    'description' => $item['description'],
+                    'qty' => $item['quantity'],
+                    'unit' => $item['unit'],
+                    'price' => $item['price'],
+                    'total' => $item['total'],
+                    'remarks' => $item['remarks']
+                ]);
+            }
+
+            // return redirect()->route('replace.request');
+            return response()->json(['status' => 200]);
+        }
+    }
+
+    public function destroy(Request $request)
+    {
+        // dd($request->all());
+        items::where('reference_no', $request->reference)->delete();
+        RepairRequest::where('id', $request->reference)->delete();
+        return back();
     }
 }

@@ -78,9 +78,9 @@ $(document).ready(function () {
         $('#total').val($('#quantity').val() * $(this).val())
     });
 
-    $(document).on('click', '#submit-replace', function () {
+    $(document).on('click', '#submit-repair', function () {
         $.ajax({
-            url: '/replace-request/store',
+            url: '/repair-request/store',
             method: 'POST',
             dataType: 'JSON',
             data: {
@@ -88,7 +88,7 @@ $(document).ready(function () {
                 items: items,
                 entity: $('#entity').val(),
                 fund_cluster: $('#fund_cluster').val(),
-                replace_date: $('#replace_date').val(),
+                repair_date: $('#repair_date').val(),
                 section: $('#section').val(),
                 appendix_no: $('#appendix_no').val(),
                 note: $('#note').val(),
@@ -97,7 +97,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response.status == 200) {
-                    alert('Replace Request has been submitted!');
+                    alert('Repair Request has been submitted!');
                     location.reload();
                 }
             }

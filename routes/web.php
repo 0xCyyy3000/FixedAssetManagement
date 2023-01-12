@@ -60,6 +60,8 @@ Route::put('/latest', [ItemProfileController::class, 'update']);
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
 
 
-Route::get('/RepairRequest', [RepairRequestController::class, 'view'])->name('repairview');
-Route::post('/create', [RepairRequestController::class, 'create']);
-Route::post('/additem', [ItemsController::class, 'additem']);
+// For Repair Request Routes
+Route::get('/repair-request', [RepairRequestController::class, 'index'])->name('repair.request');
+Route::get('/repair-request/create', [RepairRequestController::class, 'create'])->name('repair.create');
+Route::post('/repair-request/store', [RepairRequestController::class, 'store'])->name('repair.store');
+Route::post('/repair-request/destroy', [RepairRequestController::class, 'destroy'])->name('repair.destroy');
