@@ -108,7 +108,7 @@
                                         </li>
                                         <li class=" list-group">
                                             <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('return.request')) selected @endif"
-                                                href="">
+                                                href="{{ route('return.request') }}">
                                                 <span class="material-icons-outlined me-2">assignment_return</span>
                                                 Return Request
                                             </a>

@@ -8,7 +8,10 @@ use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\ListingItem;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\RepairRequestController;
-use App\Http\Controllers\ReplaceRequestController;;
+use App\Http\Controllers\ReplaceRequestController;
+use App\Http\Controllers\ReturnRequestController;
+
+;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,18 +52,6 @@ Route::get('/replace-request/create', [ReplaceRequestController::class, 'create'
 Route::post('/replace-request/store', [ReplaceRequestController::class, 'store'])->name('replace.store');
 Route::post('/replace-request/destroy', [ReplaceRequestController::class, 'destroy'])->name('replace.destroy');
 
-
-Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
-Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');
-
-Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
-
-
-Route::get('/ProfileItem/page2', [ItemProfileController::class, 'nextview'])->name('itemshownext');
-Route::put('/latest', [ItemProfileController::class, 'update']);
-// Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
-
-
 // For Repair Request Routes
 Route::get('/repair-request', [RepairRequestController::class, 'index'])->name('repair.request');
 Route::get('/repair-request/create', [RepairRequestController::class, 'create'])->name('repair.create');
@@ -73,3 +64,23 @@ Route::get('/purchase-request', [PurchaseRequestController::class, 'index'])->na
 Route::get('/purchase-request/create', [PurchaseRequestController::class, 'create'])->name('purchase.create');
 Route::post('/purchase-request/store', [PurchaseRequestController::class, 'store'])->name('purchase.store');
 Route::post('/purchase-request/destroy', [PurchaseRequestController::class, 'destroy'])->name('purchase.destroy');
+
+// For return Request Routes
+Route::get('/return-request', [ReturnRequestController::class, 'index'])->name('return.request');
+Route::get('/return-request/create', [ReturnRequestController::class, 'create'])->name('return.create');
+Route::post('/return-request/store', [ReturnRequestController::class, 'store'])->name('return.store');
+Route::post('/return-request/destroy', [ReturnRequestController::class, 'destroy'])->name('return.destroy');
+
+
+Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
+Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');
+
+Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
+
+
+Route::get('/ProfileItem/page2', [ItemProfileController::class, 'nextview'])->name('itemshownext');
+Route::put('/latest', [ItemProfileController::class, 'update']);
+// Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
+
+
+
