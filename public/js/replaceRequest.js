@@ -23,7 +23,7 @@ $(document).ready(function () {
         // Adding the item to the items[] array
         items.push(
             new Item(
-                $('#serial_no').val(), $('#item').val(),
+                $('#serial_no').val(),$('#item').val(),
                 $('#description').val(), $('#quantity').val(),
                 $('#unit').val(), $('#remarks').val(),
                 $('#price').val(), $('#total').val()

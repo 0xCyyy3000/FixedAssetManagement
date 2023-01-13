@@ -77,9 +77,6 @@ Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('item
 
 Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 
-
-Route::get('/ProfileItem/page2', [ItemProfileController::class, 'nextview'])->name('itemshownext');
-Route::put('/latest', [ItemProfileController::class, 'update']);
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
 
 
