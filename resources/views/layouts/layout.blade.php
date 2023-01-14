@@ -74,7 +74,7 @@
                                 </button>
                             </h2>
                             <div id="collapseOne"
-                                class="accordion-collapse collapse @if (Request::routeIs('purchase.request') ||
+                                class="accordion-collapse collapse show @if (Request::routeIs('purchase.request') ||
                                     Request::routeIs('repair.request') ||
                                     Request::routeIs('replace.request') ||
                                     Request::routeIs('return.request')) show @endif"
@@ -133,7 +133,7 @@
                                 </button>
                             </h2>
                             <div id="collapseTwo"
-                                class="accordion-collapse collapse @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) show @endif"
+                                class="accordion-collapse collapse show @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) show @endif"
                                 aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
                                 <div class="accordion-body pt-0 pb-0">
                                     <ul class="list-group pt-2 @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) selected @endif">
@@ -167,7 +167,7 @@
                                 </button>
                             </h2>
                             <div id="collapse3"
-                                class="accordion-collapse collapse @if (Request::routeIs('asset.report') || Request::routeIs('user.report')) show @endif"
+                                class="accordion-collapse collapse show @if (Request::routeIs('asset.report') || Request::routeIs('user.report')) show @endif"
                                 aria-labelledby="heading3" data-bs-parent="#accordionExample3">
                                 <div class="accordion-body pt-0 pb-0">
                                     <ul class=" list-group pt-2">
@@ -231,11 +231,7 @@
                         </button>
                         <div class="d-flex gap-0 align-items-center profile">
                             <div class="row">
-                                <h1 class="mb-0 fw-semibold">
-                                    @php
-                                        $name = explode(' ', Auth::user()->name);
-                                    @endphp
-                                    {{ $name[0] }}</h1>
+                                <h1 class="mb-0 fw-semibold">{{ Auth::user()->getName() }}</h1>
                                 <small class="text-muted">{{ Auth::user()->getPosition()->position }}</small>
                             </div>
                             <img class="my-bg-secondary rounded-4" src="{{ asset('imgs/avatar.png') }}"

@@ -1,9 +1,9 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="container pb-3 mt-4">
+    <div class="container">
         <div class="row justify-content-center">
-            <div class="row gap-3">
+            <div class="row gap-3 p-1">
                 <div class="col card mb-3 rounded">
                     <div class="card-body">
                         <div class="row mb-3">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row gap-3">
+            <div class="row gap-3 p-1">
                 <div class="col card mb-3 rounded">
                     <div class="card-body">
                         <div class="row mb-3">
@@ -112,5 +112,4 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-        @endsection
+    @endsection

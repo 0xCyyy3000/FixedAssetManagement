@@ -44,6 +44,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getName()
+    {
+        return explode(' ', $this->name)[0];
+    }
+
     public function getPosition()
     {
         return Position::where('id', $this->position)->first('position');

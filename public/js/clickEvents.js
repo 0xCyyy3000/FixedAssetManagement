@@ -10,7 +10,6 @@ $(document).ready(function () {
                 id: $(this).val()
             },
             success: function (response) {
-                console.table(response);
                 $('#transaction_number').val(response.transaction_number);
                 $('#date').val(response.purchase_date);
                 $('#price').val(response.purchase_price);
@@ -31,7 +30,6 @@ $(document).ready(function () {
                 $('#present_value').val(response.present_value);
                 $('#comment').val(response.comments);
                 $('#note').val(response.notes);
-
             }
         });
     });

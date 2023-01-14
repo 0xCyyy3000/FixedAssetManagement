@@ -16,7 +16,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th scope="col">Date</th>
-                                <th scope="col">TR No.</th>
+                                <th scope="col">Transaction No.</th>
                                 <th scope="col">Office Section</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Status</th>

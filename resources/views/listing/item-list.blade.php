@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="">
+            <div class="p-1">
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
                     <div class="card-body">
@@ -15,7 +15,6 @@
                                     <th scope="col">Item</th>
                                     <th scope="col">Classification</th>
                                     <th scope="col">Type</th>
-                                    <th scope="col">Quantity</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -28,7 +27,6 @@
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->classification }}</td>
                                         <td>{{ $item->type }}</td>
-                                        <td>{{ $item->quantity }}</td>
                                         <td>
                                             <button type="button" class="btn btn-sm " data-toggle="modal"
                                                 data-target="#exampleModal" id="edit-item-list"
@@ -67,21 +65,21 @@
                                     <div class="mb-3">
                                         <label for="transaction_number" class="form-label">Transaction Number</label>
                                         <input type="text" class="form-control" id="transaction_number"
-                                            name="transaction_number" value="{{ $item->transaction_number }}">
+                                            name="transaction_number" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="mb-3 ">
                                         <label for="date" class="form-label">Purchased Date</label>
                                         <input type="text" id="date" class="form-control" name="purchase_date"
-                                            value="{{ $item->purchase_date }}">
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="col-sm">
                                     <div class="mb-3">
                                         <label for="price" class="form-label">Purchase Price</label>
                                         <input type="text" class="form-control" id="price" name="purchase_price"
-                                            value="{{ $item->purchase_price }}">
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +89,7 @@
                                     <div class="mb-3">
                                         <label for="inventory_number" class="form-label">Inventory Number</label>
                                         <input type="text" class="form-control" id="inventory_number"
-                                            name="inventory_number" value="{{ $item->inventory_number }}">
+                                            name="inventory_number" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm">
@@ -108,7 +106,7 @@
                                     <div class="mb-3">
                                         <label for="salvage_value" class="form-label"> Salvage Value</label>
                                         <input type="text" class="form-control" id="salvage_value" name="salvage_value"
-                                            value="{{ $item->salvage_value }}">
+                                            value="">
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +117,7 @@
                                     <div class="mb-3">
                                         <label for="serial_number" class="form-label">Serial Number</label>
                                         <input type="text" class="form-control" id="serial_number"
-                                            name="serial_number" value="{{ $item->serial_number }}">
+                                            name="serial_number" value="">
                                     </div>
                                 </div>
 
@@ -127,7 +125,7 @@
                                     <div class="mb-3">
                                         <label for="classication" class="form-label">Classification</label>
                                         <input type="text" class="form-control" id="classification"
-                                            name="classification" value="{{ $item->classification }}">
+                                            name="classification" value="">
                                     </div>
                                 </div>
 
@@ -184,7 +182,7 @@
                                     <div class="mb-3">
                                         <label for="inventoried_by" class="form-label">Inventoried By</label>
                                         <input type="text" class="form-control" id="inventoried_by"
-                                            placeholder="{{ Auth::user()->name }}">
+                                            value="{{ Auth::user()->name }}">
                                     </div>
                                 </div>
                             </div>

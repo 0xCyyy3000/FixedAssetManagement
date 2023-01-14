@@ -46,8 +46,6 @@ class ReplaceRequestController extends Controller
                     'remarks' => $item['remarks']
                 ]);
             }
-
-            // return redirect()->route('replace.request');
             return response()->json(['status' => 200]);
         }
     }
