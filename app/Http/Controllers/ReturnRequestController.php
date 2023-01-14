@@ -4,31 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\items;
 use App\Models\Transaction;
-use function Ramsey\Uuid\v1;
-
 use Illuminate\Http\Request;
-use App\Models\RepairRequest;
+use App\Models\ReturnRequest;
 use Illuminate\Support\Facades\Auth;
 
-class RepairRequestController extends Controller
+class ReturnRequestController extends Controller
 {
     //
     public function index()
     {
-        $requests = RepairRequest::latest()->paginate(10);
-        return view('requests.repair.index', ['requests' => $requests]);
+        $requests = ReturnRequest::latest()->paginate(10);
+        return view('requests.return.index', ['requests' => $requests]);
     }
 
     public function create()
     {
-        return view('requests.repair.create');
+        return view('requests.return.create');
     }
 
     public function store(Request $request)
     {
         // dd($request->all());
-        $newTransaction = Transaction::create(['content' => 'New Repair Request submitted by ' . Auth::user()->name]);
-        $newRequest = RepairRequest::create([
+        $newTransaction = Transaction::create(['content' => 'New Return Request submitted by ' . Auth::user()->name]);
+        $newRequest = ReturnRequest::create([
             'transaction_no' => $newTransaction->id,
             'office_section' => $request->section,
             'amount' => $request->amount,
@@ -59,7 +57,7 @@ class RepairRequestController extends Controller
     {
         // dd($request->all());
         items::where('reference_no', $request->reference)->delete();
-        RepairRequest::where('id', $request->reference)->delete();
+        ReturnRequest::where('id', $request->reference)->delete();
         return back();
     }
 }

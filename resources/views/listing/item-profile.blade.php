@@ -14,7 +14,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="colFormLabelSm">Purchase Date</label>
-                                    <input type="text" class="form-control" name="purchase_date" id="date">
+                                    <input type="text" class="form-select" name="purchase_date " id="date">
                                 </div>
                                 <div class="col">
                                     <label for="colFormLabelSm">Notes</label>
@@ -39,8 +39,8 @@
 
                             <div class="row g-3">
                                 <div class="col">
-                                    <label for="colFormLabelSm">Serial Number</label>
-                                    <input type="text" class="form-control" name="serial_number">
+                                    <label for="colFormLabelSm">Notes</label>
+                                    <input type="text" class="form-control" name="notes">
                                 </div>
                                 <div class="col">
                                     <label for="colFormLabelSm">Classification</label>
@@ -50,8 +50,9 @@
                                     </select>
                                 </div>
                                 <div class="col">
-                                    <label for="colFormLabelSm">Notes</label>
-                                    <input type="text" class="form-control" name="notes">
+                                    <label for="colFormLabelSm">Inventoried By</label>
+                                    <input type="text" class="form-control" disabled name="user"
+                                        value="{{ Auth::user()->name }}">
                                 </div>
                             </div>
 
@@ -65,9 +66,9 @@
                                     <input type="text" class="form-control" name="purchase_price">
                                 </div>
                                 <div class="col">
-                                    <label for="colFormLabelSm">Inventoried By</label>
-                                    <input type="text" class="form-control" disabled name="user"
-                                        value="{{ Auth::user()->name }}">
+                                    <label for="colFormLabelSm">Serial Number</label>
+                                    <input type="text" class="form-control" name="serial_number" id="inputField">
+                                    <button type="button" class="btn btn-primary btn-sm" id="addButton">add</button>
                                 </div>
                             </div>
 
@@ -110,20 +111,21 @@
                                 <button class="btn btn-primary me-md-2" type="Submit">Register</button>
                                 <button class="btn btn-primary" type="button">Close</button>
                             </div>
-
+                        </form>
                     </div>
                 </div>
-                </form>
             </div>
         </div>
     </div>
-    </div>
     <script>
-        $(function() {
-            $("#date").datepicker({
-                autoclose: true,
-                todayHighlight: true
-            })
+        document.getElementById("addButton").addEventListener("click", function() {
+            // Create a new input field
+            var newInput = document.createElement("input");
+            newInput.type = "text";
+            newInput.classList.add("form-control");
+    
+            // Add the new input field to the form
+            document.getElementById("form").appendChild(newInput);
         });
     </script>
 @endsection

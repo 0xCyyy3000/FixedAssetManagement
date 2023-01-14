@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('purchase_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('transaction_no');
+            $table->string('office_section');
+            $table->double('amount');
+            $table->string('status');
             $table->timestamps();
         });
     }

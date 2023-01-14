@@ -1,6 +1,6 @@
-window.onbeforeunload = function () {
-    return "Data will be lost if you leave the page, are you sure?";
-};
+// window.onbeforeunload = function () {
+//     return "Data will be lost if you leave the page, are you sure?";
+// };
 
 $(document).ready(function () {
     class Item {
@@ -23,7 +23,7 @@ $(document).ready(function () {
         // Adding the item to the items[] array
         items.push(
             new Item(
-                $('#serial_no').val(),$('#item').val(),
+                $('#serial_no').val(), $('#item').val(),
                 $('#description').val(), $('#quantity').val(),
                 $('#unit').val(), $('#remarks').val(),
                 $('#price').val(), $('#total').val()
@@ -78,9 +78,9 @@ $(document).ready(function () {
         $('#total').val($('#quantity').val() * $(this).val())
     });
 
-    $(document).on('click', '#submit-replace', function () {
+    $(document).on('click', '#submit-purchase', function () {
         $.ajax({
-            url: '/replace-request/store',
+            url: '/purchase-request/store',
             method: 'POST',
             dataType: 'JSON',
             data: {
@@ -97,7 +97,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 if (response.status == 200) {
-                    alert('Replace Request has been submitted!');
+                    alert('Purchase Request has been submitted!');
                     location.reload();
                 }
             }
