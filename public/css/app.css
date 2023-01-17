@@ -116,3 +116,10 @@ li a {
 .request-information {
     height: 88vh !important;
 }
+
+.item_image {
+    width: 20%;
+    height: 29px;
+    object-position: center;
+    object-fit: scale-down;
+}

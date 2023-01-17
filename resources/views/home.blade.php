@@ -8,12 +8,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <p class=" fs-5 mb-1">Total Items</p>
-                            <h5>0{{ Auth::user()->totalItems() }}</h5>
-                        </div>
-                        <div class="row gap-4">
-                            <small class="col">Tangible {{ Auth::user()->itemType('Tangible') }}</small>
-                            <small class="col">Plant {{ Auth::user()->itemType('Plant') }}</small>
-                            <small class="col">Machine {{ Auth::user()->itemType('Machine') }}</small>
+                            <h5>{{ Auth::user()->totalItems() }}</h5>
                         </div>
                     </div>
                 </div>
@@ -21,12 +16,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <p class=" fs-5 mb-1">Functional Items</p>
-                            <h5>0{{ Auth::user()->totalItems() }}</h5>
-                        </div>
-                        <div class="row gap-4">
-                            <small class="col">Tangible {{ Auth::user()->itemType('Tangible') }}</small>
-                            <small class="col">Plant {{ Auth::user()->itemType('Plant') }}</small>
-                            <small class="col">Machine {{ Auth::user()->itemType('Machine') }}</small>
+                            <h5>{{ Auth::user()->functionalItems() }}</h5>
                         </div>
                     </div>
                 </div>
@@ -34,12 +24,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <p class=" fs-5 mb-1">Non Functional Items</p>
-                            <h5>0{{ Auth::user()->totalItems() }}</h5>
-                        </div>
-                        <div class="row gap-4">
-                            <small class="col">Tangible {{ Auth::user()->itemType('Tangible') }}</small>
-                            <small class="col">Plant {{ Auth::user()->itemType('Plant') }}</small>
-                            <small class="col">Machine {{ Auth::user()->itemType('Machine') }}</small>
+                            <h5>{{ Auth::user()->nonFunctionalItems() }}</h5>
                         </div>
                     </div>
                 </div>
@@ -47,12 +32,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <p class=" fs-5 mb-1">Purchased Orders</p>
-                            <h5>0{{ Auth::user()->totalItems() }}</h5>
-                        </div>
-                        <div class="row gap-4">
-                            <small class="col">Tangible {{ Auth::user()->itemType('Tangible') }}</small>
-                            <small class="col">Plant {{ Auth::user()->itemType('Plant') }}</small>
-                            <small class="col">Machine {{ Auth::user()->itemType('Machine') }}</small>
+                            <h5>{{ '0' }}</h5>
                         </div>
                     </div>
                 </div>
@@ -62,12 +42,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <p class=" fs-5 mb-1">Pending</p>
-                            <h5>0{{ Auth::user()->totalItems() }}</h5>
-                        </div>
-                        <div class="row gap-4">
-                            <small class="col">Tangible {{ Auth::user()->itemType('Tangible') }}</small>
-                            <small class="col">Plant {{ Auth::user()->itemType('Plant') }}</small>
-                            <small class="col">Machine {{ Auth::user()->itemType('Machine') }}</small>
+                            <h5>{{ Auth::user()->totalItems() }}</h5>
                         </div>
                     </div>
                 </div>
@@ -75,12 +50,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <p class=" fs-5 mb-1">Approved</p>
-                            <h5>0{{ Auth::user()->totalItems() }}</h5>
-                        </div>
-                        <div class="row gap-4">
-                            <small class="col">Tangible {{ Auth::user()->itemType('Tangible') }}</small>
-                            <small class="col">Plant {{ Auth::user()->itemType('Plant') }}</small>
-                            <small class="col">Machine {{ Auth::user()->itemType('Machine') }}</small>
+                            <h5>{{ Auth::user()->totalItems() }}</h5>
                         </div>
                     </div>
                 </div>
@@ -88,12 +58,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <p class=" fs-5 mb-1">Denied</p>
-                            <h5>0{{ Auth::user()->totalItems() }}</h5>
-                        </div>
-                        <div class="row gap-4">
-                            <small class="col">Tangible {{ Auth::user()->itemType('Tangible') }}</small>
-                            <small class="col">Plant {{ Auth::user()->itemType('Plant') }}</small>
-                            <small class="col">Machine {{ Auth::user()->itemType('Machine') }}</small>
+                            <h5>{{ Auth::user()->totalItems() }}</h5>
                         </div>
                     </div>
                 </div>
@@ -101,12 +66,7 @@
                     <div class="card-body">
                         <div class="row mb-3">
                             <p class=" fs-5 mb-1">Purchased Orders</p>
-                            <h5>0{{ Auth::user()->totalItems() }}</h5>
-                        </div>
-                        <div class="row gap-4">
-                            <small class="col">Tangible {{ Auth::user()->itemType('Tangible') }}</small>
-                            <small class="col">Plant {{ Auth::user()->itemType('Plant') }}</small>
-                            <small class="col">Machine {{ Auth::user()->itemType('Machine') }}</small>
+                            <h5>{{ Auth::user()->totalItems() }}</h5>
                         </div>
                     </div>
                 </div>

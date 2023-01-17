@@ -1,33 +1,37 @@
 @extends('layouts.layout')
 @section('content')
-<script src="{{ asset('js/itemProfile.js') }}"></script>
+    <script src="{{ asset('js/itemProfile.js') }}"></script>
     <div class="container">
         <div class="row justify-content-center">
             <div class="p-1">
                 <div class="card">
                     <div class="card-body">
-                        <form class="row g-3" >
+                        <form class="row g-3" method="POST" action="{{ url('/ProfileItem/store') }}"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="row g-3">
                                 <div class="col-4">
                                     <label for="colFormLabelSm">Purchase Date</label>
-                                    <input type="text" class="form-select" name="purchase_date" id="purchase_date">
+                                    <input type="text" autocomplete="off" class="form-control" name="purchase_date"
+                                        id="date">
                                 </div>
                                 <div class="col-4">
-                                    <label for="logo"> Item Image </label>
-                                    <input type="file" class="form-select" name="logo"/>
+                                    <label for="photo"> Item Image </label>
+                                    <input type="file" class="form-control" name="photo" id="photo" />
                                 </div>
-                                
+
                             </div>
 
                             <div class="row g-3">
                                 <div class="col-4">
                                     <label for="colFormLabelSm">Inventory Number</label>
-                                    <input type="text" class="form-control" name="inventory_number" id="inventory_number">
+                                    <input type="text" class="form-control" name="inventory_number"
+                                        id="inventory_number">
                                 </div>
                                 <div class="col-4">
-                                    <label for="colFormLabelSm">Conditions</label>
-                                    <select class="form-select" aria-label="Default select example" name="type" id="type">
+                                    <label for="colFormLabelSm">Type</label>
+                                    <select class="form-select" aria-label="Default select example" name="type"
+                                        id="type">
                                         <option value="Machine">Machine</option>
                                         <option value="Plant">Plant</option>
                                         <option value="Tangible">Tangible</option>
@@ -35,7 +39,7 @@
                                 </div>
                                 <div class="col">
                                     <label for="colFormLabelSm">Inventoried By</label>
-                                    <input type="text" class="form-control" disabled name="user"
+                                    <input type="text" class="form-control" readonly name="user"
                                         value="{{ Auth::user()->name }}">
                                 </div>
                             </div>
@@ -47,12 +51,13 @@
                                 </div>
                                 <div class="col-4">
                                     <label for="colFormLabelSm">Classification</label>
-                                    <select class="form-select" aria-label="Default select example" name="classification" id="classification">
+                                    <select class="form-select" aria-label="Default select example" name="classification"
+                                        id="classification">
                                         <option value="Functional">Functional</option>
                                         <option value="Non-Functional">Non-Functional</option>
                                     </select>
                                 </div>
-                               
+
                             </div>
 
                             <div class="row g-3">
@@ -64,7 +69,7 @@
                                     <label for="colFormLabelSm">Purchase Price</label>
                                     <input type="text" class="form-control" name="purchase_price" id="purchase_price">
                                 </div>
-                               
+
                             </div>
 
 
@@ -96,16 +101,15 @@
                                     <label for="colFormLabelSm">Description</label>
                                     <input type="text" class="form-control" name="description" id="description">
                                 </div>
-                                <div class="col-4">
+                                <div class="col-4" id="serial_input">
                                     <label for="colFormLabelSm">Serial Number</label>
-                                    <input type="text" class="form-control" name="serial_no" id="serial_no">
-                                    <button class="btn btn-primary me-md-2" type="submit" id="btn_serial">Add</button>
+                                    <input type="text" class="form-control" id="serial_no">
+                                    <button class="btn btn-primary me-md-2" type="button" id="btn_serial">Add</button>
                                     <table class="table mb-3">
                                         <thead class="table-light">
-                                            <tr>
-                                                <th scope="col">Serial No.</th>
+                                            <th scope="col">Serial No.</th>
                                         </thead>
-                                        <tbody id="items-table-body"></tbody>
+                                        <tbody id="serials-table-body"></tbody>
                                     </table>
                                 </div>
                             </div>

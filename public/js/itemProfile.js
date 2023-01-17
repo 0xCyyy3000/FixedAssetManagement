@@ -11,27 +11,28 @@ $(document).ready(function () {
     let items = [];
     $(document).on('click', '#btn_serial', function (e) {
         e.preventDefault();
-        // Adding the item to the items[] array
-        items.push(
-            new Item(
-                $('#serial_no').val()
-            )
-        );
 
-        loadItems();
-        resetFields();
+        // Adding the item to the items[] array
+        if ($('#serial_no').val()) {
+            items.push(new Item($('#serial_no').val()));
+            console.table(items);
+
+            loadItems();
+            resetFields();
+        }
     });
 
     function loadItems() {
-        let tableBody = document.getElementById('items-table-body');
+        let tableBody = document.getElementById('serials-table-body');
         tableBody.innerHTML = '';
-        total = 0;
+        console.log('hello');
         items.forEach(item => {
-                `
-                <tr>
-                    <td>${item.serial_no}</td>
-                </tr>
-            `;
+            let template =
+                `   <tr>
+                        <td>${item.serial_no}</td>
+                     </tr>
+                `;
+            tableBody.innerHTML += template;
         });
     }
 
@@ -41,33 +42,37 @@ $(document).ready(function () {
 
 
     $(document).on('click', '#sumbit-reg', function () {
-        $.ajax({
-            url: '/ProfileItem/store',
-            method: 'POST',
-            dataType: 'JSON',
-            data: {
-                _token: $('#token').val(),
-                items: items,
-                purchase_date: $('#purchase_date').val(),
-                purchase_price: $('#purchase_price').val(),
-                inventory_number: $('#inventory_number').val(),
-                type: $('#type').val(),
-                classification: $('#classification').val(),
-                lifespan: $('#lifespan').val(),
-                department: $('#department').val(),
-                year: $('#year').val(),
-                title: $('#title').val(),
-                depreciation: $('#depreciation').val(),
-                description: $('#description').val(),
-                type: $('#condition').val(),
-                notes: $('#notes').val(),
-            },
-            success: function (response) {
-                if (response.status == 200) {
-                    alert('Item has been submitted!');
-                    location.reload();
-                }
-            }
+        items.forEach(item => {
+            let serial = `<input type="hidden" name="serials[]" value="${item.serial_no}">`;
+            let serialInput = document.getElementById('serial_input');
+            serialInput.innerHTML += serial;
         });
+        //     url: '/ProfileItem/store',
+        //     method: 'POST',
+        //     dataType: 'JSON',
+        //     data: {
+        //         _token: $('#token').val(),
+        //         items: items,
+        //         purchase_date: $('#purchase_date').val(),
+        //         purchase_price: $('#purchase_price').val(),
+        //         inventory_number: $('#inventory_number').val(),
+        //         type: $('#type').val(),
+        //         classification: $('#classification').val(),
+        //         lifespan: $('#lifespan').val(),
+        //         department: $('#department').val(),
+        //         year: $('#year').val(),
+        //         title: $('#title').val(),
+        //         depreciation: $('#depreciation').val(),
+        //         description: $('#description').val(),
+        //         type: $('#condition').val(),
+        //         notes: $('#notes').val(),
+        //     },
+        //     success: function (response) {
+        //         if (response.status == 200) {
+        //             alert('Item has been submitted!');
+        //             location.reload();
+        //         }
+        //     }
+        // });
     });
 });

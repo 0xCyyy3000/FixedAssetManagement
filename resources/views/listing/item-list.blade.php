@@ -9,32 +9,39 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Date Purchased</th>
-                                    <th scope="col">Inventory no.</th>
-                                    <th scope="col">Serial Number</th>
                                     <th scope="col">Item</th>
+                                    <th scope="col">Serial No.</th>
+                                    <th scope="col">Inventory No.</th>
+                                    <th scope="col">Date Purchased</th>
+                                    <th scope="col">Condition</th>
                                     <th scope="col">Classification</th>
-                                    <th scope="col">condition</th>
-                                    <th scope="col">Quantity</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($items as $item)
-                                    <tr>
-                                        <td>{{ $item->purchase_date }}</td>
-                                        <td>{{ $item->inventory_number }}</td>
-                                        <td>{{ $item->serial_number }}</td>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->classification }}</td>
-                                        <td>{{ $item->condition }}</td>
-                                        <td>{{ $item->quantity }}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-sm " data-toggle="modal"
-                                                data-target="#exampleModal" id="edit-item-list"
-                                                value="{{ $item->transaction_number }}">Edit</button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($serials as $serial)
+                                        @if ($serial->reference_no == $item->id)
+                                            <tr>
+                                                <td class="w-25 text-truncate">
+                                                    <img class="item_image"
+                                                        src="{{ $item->image ? asset('storage/' . $item->image) : asset('imgs/BFP Logo.png') }}"
+                                                        alt="">
+                                                    {{ $item->title }} asdf 0asdf 0asdf -asdf 0a-sfd 0
+                                                </td>
+                                                <td>{{ $serial->serial_no }}</td>
+                                                <td>{{ $item->inventory_number }}</td>
+                                                <td>{{ $item->purchase_date }}</td>
+                                                <td>{{ $item->classification }}</td>
+                                                <td>{{ $item->type }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-warning " data-toggle="modal"
+                                                        data-target="#exampleModal" id="edit-item-list"
+                                                        value="{{ $item->transaction_no }}">Edit</button>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                             </tbody>
                             @endforeach
                         </table>

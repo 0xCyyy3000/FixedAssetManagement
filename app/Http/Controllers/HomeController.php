@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ItemProfile;
+use App\Models\SerialNumber;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -36,6 +37,7 @@ class HomeController extends Controller
     public function itemList()
     {
         $item = ItemProfile::latest()->paginate(10);
-        return view('listing.item-list', ['items' => $item]);
+        $serials = SerialNumber::latest()->paginate(10);
+        return view('listing.item-list', ['items' => $item, 'serials' => $serials]);
     }
 }

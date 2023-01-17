@@ -59,9 +59,9 @@
                 </li>
                 <li class="list-group">
                     <div class="accordion mb-2 pt-1 ps-4 pb-1 @if (Request::routeIs('purchase.request') ||
-                        Request::routeIs('repair.request') ||
-                        Request::routeIs('replace.request') ||
-                        Request::routeIs('return.request')) active @endif"
+                            Request::routeIs('repair.request') ||
+                            Request::routeIs('replace.request') ||
+                            Request::routeIs('return.request')) active @endif"
                         id="accordionExample">
                         <div class="accordion-item bg-transparent">
                             <h2 class="accordion-header bg-transparent fs-6 rounded-3 d-flex align-items-center"
@@ -74,16 +74,16 @@
                                 </button>
                             </h2>
                             <div id="collapseOne"
-                                class="accordion-collapse collapse show @if (Request::routeIs('purchase.request') ||
-                                    Request::routeIs('repair.request') ||
-                                    Request::routeIs('replace.request') ||
-                                    Request::routeIs('return.request')) show @endif"
+                                class="accordion-collapse collapse @if (Request::routeIs('purchase.request') ||
+                                        Request::routeIs('repair.request') ||
+                                        Request::routeIs('replace.request') ||
+                                        Request::routeIs('return.request')) show @endif"
                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body pt-0 pb-0">
                                     <ul class=" list-group pt-2 @if (Request::routeIs('purchase.request') ||
-                                        Request::routeIs('repair.request') ||
-                                        Request::routeIs('replace.request') ||
-                                        Request::routeIs('return.request')) selected @endif">
+                                            Request::routeIs('repair.request') ||
+                                            Request::routeIs('replace.request') ||
+                                            Request::routeIs('return.request')) selected @endif">
                                         <li class=" list-group">
                                             <a class="fs-6 d-flex mb-1 align-items-center
                                                 @if (Request::routeIs('purchase.request')) selected @endif"
@@ -133,7 +133,7 @@
                                 </button>
                             </h2>
                             <div id="collapseTwo"
-                                class="accordion-collapse collapse show @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) show @endif"
+                                class="accordion-collapse collapse @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) show @endif"
                                 aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
                                 <div class="accordion-body pt-0 pb-0">
                                     <ul class="list-group pt-2 @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) selected @endif">
@@ -167,7 +167,7 @@
                                 </button>
                             </h2>
                             <div id="collapse3"
-                                class="accordion-collapse collapse show @if (Request::routeIs('asset.report') || Request::routeIs('user.report')) show @endif"
+                                class="accordion-collapse collapse @if (Request::routeIs('asset.report') || Request::routeIs('user.report')) show @endif"
                                 aria-labelledby="heading3" data-bs-parent="#accordionExample3">
                                 <div class="accordion-body pt-0 pb-0">
                                     <ul class=" list-group pt-2">
@@ -264,6 +264,13 @@
             </main>
         </div>
     </div>
+    <script>
+        let msg = "{{ Session::get('alert') }}";
+        let exist = "{{ Session::has('alert') }}";
+        if (exist) {
+            alert(msg);
+        }
+    </script>
 </body>
 
 </html>

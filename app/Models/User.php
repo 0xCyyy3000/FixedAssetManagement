@@ -56,7 +56,17 @@ class User extends Authenticatable
 
     public function totalItems()
     {
-        return $this->position == 1 ? ItemProfile::count() : '';
+        return ItemProfile::count();
+    }
+
+    public function functionalItems()
+    {
+        return ItemProfile::where('classification', 'Functional')->count();
+    }
+
+    public function nonFunctionalItems()
+    {
+        return ItemProfile::where('classification', 'Non-Functional')->count();
     }
 
     public function itemType($type)

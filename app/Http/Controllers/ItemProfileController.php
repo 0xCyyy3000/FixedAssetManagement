@@ -13,11 +13,14 @@ use Symfony\Component\Console\Input\Input;
 class ItemProfileController extends Controller
 {
     public function store(Request $request)
-    {   
-        dd($request->all());
-        $newTransaction = Transaction::create(['content' => 'New Item submitted by ' . Auth::user()->name]);
+    {
+        if ($request->hasFile('photo')) {
+            $imagePath = $request->file('photo')->store('photos', 'public');
+        } else $imagePath = null;
+
+        $newTransaction = Transaction::create(['content' => 'New Item Profile added by ' . Auth::user()->name]);
         $newRequest = ItemProfile::create([
-            'transaction_no' => $newTransaction ->id,
+            'transaction_no' => $newTransaction->id,
             'purchase_date' => $request->purchase_date,
             'purchase_price' => $request->purchase_price,
             'inventory_number' => $request->inventory_number,
@@ -29,6 +32,7 @@ class ItemProfileController extends Controller
             'depreciation' => $request->depreciation,
             'description' => $request->description,
             'type' => $request->type,
+            'image' => $imagePath,
             'notes' => $request->notes,
         ]);
 
@@ -36,12 +40,10 @@ class ItemProfileController extends Controller
             foreach ($request->serials as $serial) {
                 SerialNumber::create([
                     'reference_no' => $newRequest->id,
-                    'serial_no' => $serial['serial_no']
+                    'serial_no' => $serial
                 ]);
             }
-
-            // return redirect()->route('replace.request');
-            return response()->json(['status' => 200]);
+            return back()->with('alert', 'Item profile added!');
         }
         // $items = $request->validate([
         //     'purchase_date' => 'required|date',
@@ -119,9 +121,9 @@ class ItemProfileController extends Controller
 
     // }
 
-    // public function select(Request $request)
-    // {
-    //     $item = ItemProfile::where('transaction_number', $request->id)->first();
-    //     return response()->json($item);
-    // }
+    public function select(Request $request)
+    {
+        $item = ItemProfile::where('transaction_no', $request->id)->first();
+        return response()->json($item);
+    }
 }
