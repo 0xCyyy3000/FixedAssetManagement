@@ -73,9 +73,8 @@ Route::post('/return-request/destroy', [ReturnRequestController::class, 'destroy
 
 
 Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
-Route::post('/ProfileItem', [ItemProfileController::class, 'store'])->name('itemstore');
-
-Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
+Route::post('/ProfileItem/store', [ItemProfileController::class, 'store'])->name('itemstore');
+// Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
 

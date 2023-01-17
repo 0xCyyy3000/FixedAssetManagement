@@ -14,7 +14,7 @@
                                     <th scope="col">Serial Number</th>
                                     <th scope="col">Item</th>
                                     <th scope="col">Classification</th>
-                                    <th scope="col">Type</th>
+                                    <th scope="col">condition</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -27,7 +27,7 @@
                                         <td>{{ $item->serial_number }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->classification }}</td>
-                                        <td>{{ $item->type }}</td>
+                                        <td>{{ $item->condition }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>
                                             <button type="button" class="btn btn-sm " data-toggle="modal"

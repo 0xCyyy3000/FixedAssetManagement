@@ -78,7 +78,7 @@ $(document).ready(function () {
         $('#total').val($('#quantity').val() * $(this).val())
     });
 
-    $(document).on('click', '#submit-purchase', function () {
+    $(document).on('click', '#sumbit-purchase', function () {
         $.ajax({
             url: '/purchase-request/store',
             method: 'POST',
