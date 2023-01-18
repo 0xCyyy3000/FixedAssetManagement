@@ -36,8 +36,7 @@ class HomeController extends Controller
 
     public function itemList()
     {
-        $item = ItemProfile::latest()->paginate(10);
-        $serials = SerialNumber::latest()->paginate(10);
-        return view('listing.item-list', ['items' => $item, 'serials' => $serials]);
+        $items = ItemProfile::latest()->paginate(8);
+        return view('listing.item-list', ['items' => $items]);
     }
 }

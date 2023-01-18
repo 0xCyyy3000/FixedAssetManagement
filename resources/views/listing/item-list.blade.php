@@ -2,15 +2,16 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="p-1">
+            <div class="p-2">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header">
+                        <h5 class="m-auto p-2">List of items</h5>
+                    </div>
                     <div class="card-body">
-                        <table class="table table-striped">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">Item</th>
-                                    <th scope="col">Serial No.</th>
                                     <th scope="col">Inventory No.</th>
                                     <th scope="col">Date Purchased</th>
                                     <th scope="col">Condition</th>
@@ -20,38 +21,35 @@
                             </thead>
                             <tbody>
                                 @foreach ($items as $item)
-                                    @foreach ($serials as $serial)
-                                        @if ($serial->reference_no == $item->id)
-                                            <tr>
-                                                <td class="w-25 text-truncate">
-                                                    <img class="item_image"
-                                                        src="{{ $item->image ? asset('storage/' . $item->image) : asset('imgs/BFP Logo.png') }}"
-                                                        alt="">
-                                                    {{ $item->title }} asdf 0asdf 0asdf -asdf 0a-sfd 0
-                                                </td>
-                                                <td>{{ $serial->serial_no }}</td>
-                                                <td>{{ $item->inventory_number }}</td>
-                                                <td>{{ $item->purchase_date }}</td>
-                                                <td>{{ $item->classification }}</td>
-                                                <td>{{ $item->type }}</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-warning " data-toggle="modal"
-                                                        data-target="#exampleModal" id="edit-item-list"
-                                                        value="{{ $item->transaction_no }}">Edit</button>
-                                                </td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
+                                    <tr>
+                                        <td class="w-25 text-truncate">
+                                            <img class="item_image"
+                                                src="{{ $item->image ? asset('storage/' . $item->image) : asset('imgs/BFP Logo.png') }}"
+                                                alt="">
+                                            {{ $item->title }} asdf 0asdf 0asdf -asdf 0a-sfd 0
+                                        </td>
+                                        <td>{{ $item->inventory_number }}</td>
+                                        <td>{{ $item->purchase_date }}</td>
+                                        <td>{{ $item->classification }}</td>
+                                        <td>{{ $item->type }}</td>
+                                        <td>
+                                            <button type="button"
+                                                class="btn text-start rounded-5 p-0 bg-warning text-white"
+                                                data-toggle="modal" data-target="#exampleModal" id="edit-item-list"
+                                                value="{{ $item->transaction_no }}">
+                                                <small class="p-3 my-primary">See details</small>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
-                            @endforeach
                         </table>
-
                     </div>
                 </div>
             </div>
         </div>
+        {{ $items->links() }}
     </div>
-
     <!-- Edit Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -114,8 +112,8 @@
                                 <div class="col-sm">
                                     <div class="mb-3">
                                         <label for="salvage_value" class="form-label"> Salvage Value</label>
-                                        <input type="text" class="form-control" id="salvage_value" name="salvage_value"
-                                            value="">
+                                        <input type="text" class="form-control" id="salvage_value"
+                                            name="salvage_value" value="">
                                     </div>
                                 </div>
                             </div>
