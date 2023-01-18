@@ -73,4 +73,9 @@ class User extends Authenticatable
     {
         return ItemProfile::where('type', $type)->count();
     }
+
+    public function countItem($reference_no)
+    {
+        return SerialNumber::where('reference_no', $reference_no)->count();
+    }
 }

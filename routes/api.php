@@ -27,6 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     Route::get('/', [EmployeeController::class, 'certify'])->name('register.certify');
 // });
 
-Route::group(['prefix' => '/item-list/select'], function () {
-    Route::get('/{item_id}', [ItemProfileController::class, 'select']);
+Route::group(['prefix' => '/item-list'], function () {
+    Route::get('/select/{item_id}', [ItemProfileController::class, 'apiSelect']);
+    Route::get('/edit/{item_id}', [ItemProfileController::class, 'apiEdit']);
 });

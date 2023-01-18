@@ -7,8 +7,8 @@
                     <h5 class="col pt-2">Replace Request Information</h5>
                     <a href="{{ route('replace.create') }}"
                         class="col-2 btn my-btn-primary d-flex gap-2 align-items-center rounded-3">
-                        <span class="material-icons-outlined text-white fs-4">add_box</span>
-                        Create Replace Request
+                        <span class="material-icons-outlined text-white fs-4 ms-3">add_box</span>
+                        Create Request
                     </a>
                 </div>
                 <div class="container">

@@ -9,9 +9,7 @@ use App\Http\Controllers\ListingItem;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\RepairRequestController;
 use App\Http\Controllers\ReplaceRequestController;
-use App\Http\Controllers\ReturnRequestController;
-
-;
+use App\Http\Controllers\ReturnRequestController;;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -35,7 +33,7 @@ Route::get('/test', function () {
 
 Route::get('/', [HomeController::class, 'home']);
 Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-Route::get('/item-list', [HomeController::class, 'itemList'])->name('item.list');
+Route::get('/item-profiles', [HomeController::class, 'itemList'])->name('item.list');
 Route::get('/process-request', [HomeController::class, 'processRequest'])->name('process.request');
 Route::get('/data-entry', [HomeController::class, 'dataEntry'])->name('data.entry');
 Route::get('/reports', [HomeController::class, 'reports'])->name('reports');
@@ -74,9 +72,9 @@ Route::post('/return-request/destroy', [ReturnRequestController::class, 'destroy
 
 Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
 Route::post('/ProfileItem/store', [ItemProfileController::class, 'store'])->name('itemstore');
+Route::get('/ProfileItem/select/{id}', [ItemProfileController::class, 'select'])->name('item.select');
+Route::put('/ProfileItem/update', [ItemProfileController::class, 'update'])->name('item.update');
+Route::post('/ProfileItem/destroy', [ItemProfileController::class, 'destroy'])->name('item.destroy');
 // Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
-
-
-

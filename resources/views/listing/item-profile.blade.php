@@ -19,7 +19,10 @@
                                     <label for="photo"> Item Image </label>
                                     <input type="file" class="form-control" name="photo" id="photo" />
                                 </div>
-
+                                <div class="col-4">
+                                    <label for="supplier"> Supplier </label>
+                                    <input type="text" class="form-control" name="supplier" id="supplier" />
+                                </div>
                             </div>
 
                             <div class="row g-3">
@@ -29,8 +32,8 @@
                                         id="inventory_number">
                                 </div>
                                 <div class="col-4">
-                                    <label for="colFormLabelSm">Type</label>
-                                    <select class="form-select" aria-label="Default select example" name="type"
+                                    <label for="colFormLabelSm">Classification</label>
+                                    <select class="form-select" aria-label="Default select example" name="classification"
                                         id="type">
                                         <option value="Machine">Machine</option>
                                         <option value="Plant">Plant</option>
@@ -50,14 +53,17 @@
                                     <input type="text" class="form-control" name="notes" id="notes">
                                 </div>
                                 <div class="col-4">
-                                    <label for="colFormLabelSm">Classification</label>
-                                    <select class="form-select" aria-label="Default select example" name="classification"
+                                    <label for="colFormLabelSm">Condition</label>
+                                    <select class="form-select" aria-label="Default select example" name="condition"
                                         id="classification">
                                         <option value="Functional">Functional</option>
                                         <option value="Non-Functional">Non-Functional</option>
                                     </select>
                                 </div>
-
+                                <div class="col-4">
+                                    <label for="photo"> Warranty </label>
+                                    <input type="text" class="form-control" name="warranty" id="warranty" />
+                                </div>
                             </div>
 
                             <div class="row g-3">
@@ -69,9 +75,7 @@
                                     <label for="colFormLabelSm">Purchase Price</label>
                                     <input type="text" class="form-control" name="purchase_price" id="purchase_price">
                                 </div>
-
                             </div>
-
 
                             <div class="row g-3">
                                 <div class="col-4">

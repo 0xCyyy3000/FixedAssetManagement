@@ -1,50 +1,45 @@
 $(document).ready(function () {
-    $(document).on('click', '#edit-item-list', function () {
+    $(document).on('click', '#select-item', function () {
+        let itemId = $(this).val();
         $.ajax({
-            url: '/api/item-list/select/' + $(this).val(),
+            url: '/api/item-list/select/' + itemId,
             method: 'GET',
             dataType: 'JSON',
             data: {
-                _token: '{{csrf_token()}}',
-                id: $(this).val()
+                id: itemId
             },
             success: function (response) {
-                console.table(response);
-                $('#transaction_number').val(response.transaction_no);
-                $('#date').val(response.purchase_date);
-                $('#price').val(response.purchase_price);
-                $('#inventory_number').val(response.inventory_number);
-                $('#type').val(response.type);
-                $('#salvage_value').val(response.salvage_value);
-                $('#serial_number').val(response.serial_number);
-                $('#classification').val(response.classification);
-                $('#lifespan').val(response.lifespan);
-                $('#department').val(response.department);
-                $('#qty').val(response.quantity);
-                $('#operating_cost').val(response.annual_operating_cost);
-                $('#year').val(response.year);
-                $('#replacement_value').val(response.replacement_value);
-                $('#title').val(response.title);
-                $('#trade_in_value').val(response.trade_in_value);
-                $('#body').val(response.body);
-                $('#present_value').val(response.present_value);
-                $('#comment').val(response.comments);
-                $('#note').val(response.notes);
+                if (response.status == 200) {
+                    window.location = '/ProfileItem/select/' + itemId;
+                }
 
             }
         });
     });
-});
 
-$('#updateForm').on('submit', function (e) {
-    e.preventDefault();
-    $.ajax({
-        type: 'POST',
-        url: '/update',
-        data: $('#updateForm').serialize(),
-        success: function (response) {
-            console.log(response);
-        }
+    $(document).on('click', '#edit-item-profile', function () {
+        let itemId = $(this).val();
+        $.ajax({
+            url: '/api/item-list/edit/' + itemId,
+            method: 'GET',
+            dataType: 'JSON',
+            data: {
+                id: itemId
+            },
+            success: function (response) {
+                if (response.status == 200) {
+                    $('#item_title').val(response.item.title);
+                    $('#description').val(response.item.description);
+                    $('#inventory_no').val(response.item.inventory_number);
+                    $('#date').val(response.item.purchase_date);
+                    $('#classification').val(response.item.classification);
+                    $('#price').val(response.item.purchase_price);
+                    $('#depreciation').val(response.item.depreciation);
+                    $('#warranty').val(response.item.warranty);
+                    $('#supplier').val(response.item.supplier);
+                }
+            }
+        });
     });
 });
 

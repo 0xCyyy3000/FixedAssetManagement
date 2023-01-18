@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\ItemProfile;
 use App\Models\Transaction;
 use App\Models\SerialNumber;
@@ -31,9 +32,12 @@ class ItemProfileController extends Controller
             'title' => $request->title,
             'depreciation' => $request->depreciation,
             'description' => $request->description,
-            'type' => $request->type,
+            'condition' => $request->condition,
             'image' => $imagePath,
             'notes' => $request->notes,
+            'inventoried_by' => Auth::user()->id,
+            'supplier' => $request->supplier,
+            'warranty' => $request->warranty
         ]);
 
         if ($newRequest) {
@@ -123,7 +127,64 @@ class ItemProfileController extends Controller
 
     public function select(Request $request)
     {
-        $item = ItemProfile::where('transaction_no', $request->id)->first();
-        return response()->json($item);
+        $item = ItemProfile::where('id', $request->id)->first();
+        $serials = SerialNumber::join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
+            ->where('serial_numbers.reference_no', $request->id)
+            ->get(['item_profiles.*', 'serial_numbers.*']);
+
+        $item->inventoried_by = User::join('positions', 'positions.id', '=', 'users.id')
+            ->where('users.id', $item->inventoried_by)->first(['users.name', 'positions.position']);
+
+        return view('listing.item', ['item' => $item, 'serials' => $serials]);
+    }
+
+    public function apiSelect(Request $request)
+    {
+        $item = ItemProfile::where('id', $request->id)->first();
+
+        if ($item)
+            $response['status'] = 200;
+        else
+            $response['status'] = 400;
+
+        return response()->json($response);
+    }
+
+    public function apiEdit(Request $request)
+    {
+        $item = ItemProfile::where('id', $request->id)->first();
+
+        if ($item) {
+            $response['status'] = 200;
+            $response['item'] = $item;
+        } else
+            $response['status'] = 400;
+
+        return response()->json($response);
+    }
+
+    public function update(Request $request)
+    {
+        $formFields = $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'inventory_number' => 'required',
+            'purchase_date' => 'required',
+            'classification' => 'required',
+            'purchase_price' => 'required',
+            'depreciation' => 'required',
+            'warranty' => 'required',
+            'supplier' => 'required'
+        ]);
+
+        ItemProfile::where('id', $request->id)->update($formFields);
+        return back()->with('alert', 'Changes has been saved!');
+    }
+
+    public function destroy(Request $request)
+    {
+        SerialNumber::where('reference_no', $request->id)->delete();
+        ItemProfile::where('id', $request->id)->delete();
+        return redirect()->route('item.list')->with('alert', 'Item profile has been deleted!');
     }
 }
