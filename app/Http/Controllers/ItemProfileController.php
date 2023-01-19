@@ -15,7 +15,6 @@ class ItemProfileController extends Controller
 {
     public function store(Request $request)
     {
-        dd($request);
         if ($request->hasFile('photo')) {
             $imagePath = $request->file('photo')->store('photos', 'public');
         } else $imagePath = null;

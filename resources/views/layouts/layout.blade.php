@@ -190,7 +190,7 @@
             </ul>
 
             <div class="position-fixed bottom-0 ps-3 mb-2">
-                <a href="#"
+                <a href="{{ route('transaction') }}"
                     class="text-black fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 {{ Request::routeIs('history') ? 'active' : '' }}">
                     <span class="material-icons-outlined me-2">work_history</span>
                     Transaction History

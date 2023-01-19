@@ -9,7 +9,11 @@ use App\Http\Controllers\ListingItem;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\RepairRequestController;
 use App\Http\Controllers\ReplaceRequestController;
-use App\Http\Controllers\ReturnRequestController;;
+use App\Http\Controllers\ReturnRequestController;
+use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
+
+;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -77,4 +81,6 @@ Route::put('/ProfileItem/update', [ItemProfileController::class, 'update'])->nam
 Route::post('/ProfileItem/destroy', [ItemProfileController::class, 'destroy'])->name('item.destroy');
 // Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 
+
+Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
