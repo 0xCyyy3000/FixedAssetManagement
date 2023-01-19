@@ -36,6 +36,10 @@
     color: #301F4C !important;
 }
 
+.my-danger {
+    color: #CC2A2A !important;
+}
+
 .my-btn-primary {
     background-color: #301F4C !important;
     color: white !important;
@@ -43,6 +47,15 @@
 
 .my-bg-primary {
     background-color: #301F4C !important;
+}
+
+.my-bg-danger {
+    background-color: #CC2A2A !important;
+    color: white !important;
+}
+
+.my-text-success {
+    color: rgb(17, 185, 129) !important;
 }
 
 body {

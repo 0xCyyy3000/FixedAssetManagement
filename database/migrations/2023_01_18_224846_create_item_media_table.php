@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('replace_requests', function (Blueprint $table) {
+        Schema::create('item_media', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('requester')->constrained('users');
-            $table->string('transaction_no');
-            $table->string('office_section');
-            $table->double('amount');
-            $table->string('status');
             $table->timestamps();
         });
     }
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('replace_requests');
+        Schema::dropIfExists('item_media');
     }
 };

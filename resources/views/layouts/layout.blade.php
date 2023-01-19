@@ -13,15 +13,14 @@
     <title>Fixed Assets</title>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <script src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
-    <script src="{{ asset('js/clickEvents.js') }}"></script>
+    <script src="{{ asset('js/clickEvents.js') }}" defer></script>
     <script src="{{ asset('js/datePicker.js') }}"></script>
 
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -54,7 +53,7 @@
                     <a href="{{ route('item.list') }}"
                         class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('item.list') ? 'active' : '' }}">
                         <span class="material-icons-outlined me-2">layers</span>
-                        Item List
+                        Item Profiles
                     </a>
                 </li>
                 <li class="list-group">
@@ -142,11 +141,11 @@
                                                 href="{{ route('itemshow') }}">Fixed Asset
                                                 Inventory Form</a>
                                         </li>
-                                        <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('usershow')) selected @endif"
+                                        {{-- <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('usershow')) selected @endif"
                                                 href="">
                                                 User List Form
                                             </a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -177,11 +176,11 @@
                                                 Fixed Asset Inventory Report
                                             </a>
                                         </li>
-                                        <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('user.report')) active @endif"
+                                        {{-- <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('user.report')) active @endif"
                                                 href="">
                                                 User List Report
                                             </a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -206,7 +205,7 @@
         <div class="col">
             <div class="p-4 pb-0">
                 <div class="row bg-white rounded p-2 align-items-center">
-                    <h4 class="col fw-bold fs-4 m-0">Fixed Assets Information Management</h4>
+                    <h4 class="col fs-5 m-0 fw-bolder">Fixed Assets Information Management</h4>
                     <div class="col d-flex gap-3">
                         <form class="d-flex">
                             <div class="input-group border-0">
@@ -220,12 +219,12 @@
                                 </span>
                             </div>
                         </form>
-                        <button class="btn d-flex gap-1 align-items-center p-1 ps-2 pe-2 my-bg-secondary"
+                        {{-- <button class="btn d-flex gap-1 align-items-center p-1 ps-2 pe-2 my-bg-secondary"
                             type="button">
                             New
                             <span class="material-icons">add_circle_outline</span>
-                        </button>
-                        <button class="btn d-flex gap-1 align-items-center p-1 ps-2 pe-2 my-bg-secondary"
+                        </button> --}}
+                        <button class="btn d-flex gap-1 align-items-center ms-5 p-1 ps-2 pe-2 my-bg-secondary"
                             type="button">
                             <span class="material-icons my-primary">notifications</span>
                         </button>

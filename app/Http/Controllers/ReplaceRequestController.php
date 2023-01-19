@@ -29,7 +29,8 @@ class ReplaceRequestController extends Controller
             'transaction_no' => $newTransaction->id,
             'office_section' => $request->section,
             'amount' => $request->amount,
-            'status' => $request->status
+            'status' => $request->status,
+            'requester' => Auth::user()->id
         ]);
 
         if ($newRequest) {

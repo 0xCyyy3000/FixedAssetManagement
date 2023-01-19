@@ -22,11 +22,14 @@ return new class extends Migration
             $table->string('classification');
             $table->string('year');
             $table->string('title');
-            $table->string('name');
+            $table->string('type');
             $table->string('image')->nullable();
             $table->double('depreciation');
             $table->longText('notes');
             $table->longText('description');
+            $table->string('warranty')->nullable();
+            $table->string('supplier')->nullable();
+            $table->foreignId('inventoried_by')->constrained('users');
             $table->timestamps();
         });
     }

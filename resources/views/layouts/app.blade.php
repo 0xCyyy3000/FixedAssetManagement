@@ -15,7 +15,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -84,6 +84,13 @@
             @yield('content')
         </main>
     </div>
+    <script>
+        let msg = "{{ Session::get('alert') }}";
+        let exist = "{{ Session::has('alert') }}";
+        if (exist) {
+            alert(msg);
+        }
+    </script>
 </body>
 
 </html>

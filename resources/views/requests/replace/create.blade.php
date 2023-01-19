@@ -1,10 +1,10 @@
 @extends('layouts.layout')
 @section('content')
     <script src="{{ asset('js/replaceRequest.js') }}"></script>
-    <div class="container">
+    <div class="container px-3">
         <div class="row justify-content-center px-2">
             <div class="container bg-white rounded request-information">
-                <div class="row p-3 pb-0 mb-5 sticky-top bg-white shadow">
+                <div class="row p-3 pb-0 mb-5 sticky-top shadow">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item fs-5 text-decoration-underline"><a
@@ -65,7 +65,7 @@
                         <h4 class="text-end d-none" id="items-total">Total: ₱</h4>
                     </div>
                     <div class="row p-3">
-                        <label for="note" class="form-label ps-0">Note</label>
+                        <label for="note" class="form-label ps-0">Purpose</label>
                         <textarea name="note" id="note" class="w-100 p-2 rounded m-auto"></textarea>
                     </div>
                     <div class="row p-3 w-25">

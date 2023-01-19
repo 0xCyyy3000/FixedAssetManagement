@@ -94,6 +94,11 @@ class RegisterController extends Controller
             'position' => 3
         ]);
 
-        return redirect($this->redirectTo);
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login')->with('alert', 'Registration successful!');
     }
 }
