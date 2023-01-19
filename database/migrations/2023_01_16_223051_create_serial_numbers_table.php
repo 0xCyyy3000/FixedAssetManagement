@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id('id');
             $table->integer('reference_no');
             $table->string('serial_no')->unique();
-            $table->string('type');
+            $table->string('condition');
             $table->string('color');
             $table->string('lifespan');
-            $table->string('department');
+            $table->string('location');
             $table->timestamps();
         });
     }

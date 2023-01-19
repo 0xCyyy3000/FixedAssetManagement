@@ -139,7 +139,7 @@
                                         <th scope="col" class="p-3">Condition</th>
                                         <th scope="col" class="p-3">Color</th>
                                         <th scope="col" class="p-3">Location</th>
-                                        <th scope="col" class="p-3">Useful life</th>
+                                        <th scope="col" class="p-3">Life span</th>
                                         <th scope="col" class="p-3">Action</th>
                                     </tr>
                                 </thead>
@@ -159,7 +159,7 @@
                                             </td>
                                             <td class="p-3">{{ $serial->color }}</td>
                                             <td class="p-3">{{ $serial->location }}</td>
-                                            <td class="p-3">{{ $serial->useful_life }}</td>
+                                            <td class="p-3">{{ $serial->lifespan }}</td>
                                             <td style="width: 18% !important;">
                                                 <div class="d-flex">
                                                     <button type="button" class="btn my-bg-secondary rounded-5 p-0 px-2"
@@ -177,6 +177,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            {{ $serials->links() }}
                         </div>
                     </div>
                 </div>
