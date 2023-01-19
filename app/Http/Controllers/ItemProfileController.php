@@ -15,7 +15,8 @@ class ItemProfileController extends Controller
 {
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request->all());
+
         if ($request->hasFile('photo')) {
             $imagePath = $request->file('photo')->store('photos', 'public');
         } else $imagePath = null;
@@ -31,7 +32,7 @@ class ItemProfileController extends Controller
             'title' => $request->title,
             'depreciation' => $request->depreciation,
             'description' => $request->description,
-            // 'type' => $request->type,
+            'notes' => null,
             'image' => $imagePath,
             'notes' => $request->notes,
             'inventoried_by' => Auth::user()->id,
@@ -40,14 +41,19 @@ class ItemProfileController extends Controller
         ]);
 
         if ($newRequest) {
-            foreach ($request->serials as $serial) {
+            foreach ($request->serials as $key => $value) {
+                $lifespan = $request->lifespans[$key];
+                $location = $request->locations[$key];
+                $color = $request->colors[$key];
+                $condition = $request->conditions[$key];
+
                 SerialNumber::create([
                     'reference_no' => $newRequest->id,
-                    'serial_no' => $serial,
-                    'type' => $serial,
-                    'lifespan' => $serial,
-                    'department' => $serial,
-                    'color' => $serial
+                    'serial_no' => $value,
+                    'condition' => $condition,
+                    'lifespan' => $lifespan,
+                    'location' => $location,
+                    'color' => $color
                 ]);
             }
             return back()->with('alert', 'Item profile added!');
@@ -133,7 +139,7 @@ class ItemProfileController extends Controller
         $item = ItemProfile::where('id', $request->id)->first();
         $serials = SerialNumber::join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('serial_numbers.reference_no', $request->id)
-            ->get(['item_profiles.*', 'serial_numbers.*']);
+            ->select(['item_profiles.*', 'serial_numbers.*'])->paginate(5);
 
         $item->inventoried_by = User::join('positions', 'positions.id', '=', 'users.id')
             ->where('users.id', $item->inventoried_by)->first(['users.name', 'positions.position']);

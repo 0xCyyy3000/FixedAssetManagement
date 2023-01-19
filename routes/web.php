@@ -31,12 +31,14 @@ Route::get('/test', function () {
     return view('layouts.layout');
 });
 
-Route::get('/', [HomeController::class, 'home']);
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-Route::get('/item-profiles', [HomeController::class, 'itemList'])->name('item.list');
-Route::get('/process-request', [HomeController::class, 'processRequest'])->name('process.request');
-Route::get('/data-entry', [HomeController::class, 'dataEntry'])->name('data.entry');
-Route::get('/reports', [HomeController::class, 'reports'])->name('reports');
+Route::group(['middleware' => 'auth', 'prefix' => '/'], function () {
+    Route::get('/', [HomeController::class, 'home']);
+    Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+    Route::get('/item-profiles', [HomeController::class, 'itemList'])->name('item.list');
+    Route::get('/process-request', [HomeController::class, 'processRequest'])->name('process.request');
+    Route::get('/data-entry', [HomeController::class, 'dataEntry'])->name('data.entry');
+    Route::get('/reports', [HomeController::class, 'reports'])->name('reports');
+});
 
 Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
     Route::get('/badge-number', [EmployeeController::class, 'create'])->name('register.certify-create');
@@ -45,36 +47,46 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
 });
 
 // For Replace Request Routes
-Route::get('/replace-request', [ReplaceRequestController::class, 'index'])->name('replace.request');
-Route::get('/replace-request/create', [ReplaceRequestController::class, 'create'])->name('replace.create');
-Route::post('/replace-request/store', [ReplaceRequestController::class, 'store'])->name('replace.store');
-Route::post('/replace-request/destroy', [ReplaceRequestController::class, 'destroy'])->name('replace.destroy');
+Route::group(['middleware' => 'auth', 'prefix' => '/replace-request'], function () {
+    Route::get('/', [ReplaceRequestController::class, 'index'])->name('replace.request');
+    Route::get('/create', [ReplaceRequestController::class, 'create'])->name('replace.create');
+    Route::post('/store', [ReplaceRequestController::class, 'store'])->name('replace.store');
+    Route::post('/destroy', [ReplaceRequestController::class, 'destroy'])->name('replace.destroy');
+});
 
 // For Repair Request Routes
-Route::get('/repair-request', [RepairRequestController::class, 'index'])->name('repair.request');
-Route::get('/repair-request/create', [RepairRequestController::class, 'create'])->name('repair.create');
-Route::post('/repair-request/store', [RepairRequestController::class, 'store'])->name('repair.store');
-Route::post('/repair-request/destroy', [RepairRequestController::class, 'destroy'])->name('repair.destroy');
+Route::group(['middlware' => 'auth', 'prefix' => '/repair-request'], function () {
+    Route::get('/', [RepairRequestController::class, 'index'])->name('repair.request');
+    Route::get('/create', [RepairRequestController::class, 'create'])->name('repair.create');
+    Route::post('/store', [RepairRequestController::class, 'store'])->name('repair.store');
+    Route::post('/destroy', [RepairRequestController::class, 'destroy'])->name('repair.destroy');
+});
 
 
 // For Purchase Request Routes
-Route::get('/purchase-request', [PurchaseRequestController::class, 'index'])->name('purchase.request');
-Route::get('/purchase-request/create', [PurchaseRequestController::class, 'create'])->name('purchase.create');
-Route::post('/purchase-request/store', [PurchaseRequestController::class, 'store'])->name('purchase.store');
-Route::post('/purchase-request/destroy', [PurchaseRequestController::class, 'destroy'])->name('purchase.destroy');
+Route::group(['middleware' => 'auth', 'prefix' => '/purchase-request'], function () {
+    Route::get('/', [PurchaseRequestController::class, 'index'])->name('purchase.request');
+    Route::get('/create', [PurchaseRequestController::class, 'create'])->name('purchase.create');
+    Route::post('/store', [PurchaseRequestController::class, 'store'])->name('purchase.store');
+    Route::post('/destroy', [PurchaseRequestController::class, 'destroy'])->name('purchase.destroy');
+});
 
 // For return Request Routes
-Route::get('/return-request', [ReturnRequestController::class, 'index'])->name('return.request');
-Route::get('/return-request/create', [ReturnRequestController::class, 'create'])->name('return.create');
-Route::post('/return-request/store', [ReturnRequestController::class, 'store'])->name('return.store');
-Route::post('/return-request/destroy', [ReturnRequestController::class, 'destroy'])->name('return.destroy');
+Route::group(['middleware' => 'auth', 'prefix' => '/return-request'], function () {
+    Route::get('/', [ReturnRequestController::class, 'index'])->name('return.request');
+    Route::get('/create', [ReturnRequestController::class, 'create'])->name('return.create');
+    Route::post('/store', [ReturnRequestController::class, 'store'])->name('return.store');
+    Route::post('/destroy', [ReturnRequestController::class, 'destroy'])->name('return.destroy');
+});
 
 
-Route::get('/ProfileItem', [ItemProfileController::class, 'create'])->name('itemshow');
-Route::post('/ProfileItem/store', [ItemProfileController::class, 'store'])->name('itemstore');
-Route::get('/ProfileItem/select/{id}', [ItemProfileController::class, 'select'])->name('item.select');
-Route::put('/ProfileItem/update', [ItemProfileController::class, 'update'])->name('item.update');
-Route::post('/ProfileItem/destroy', [ItemProfileController::class, 'destroy'])->name('item.destroy');
+Route::group(['middleware' => 'auth', 'prefix' => '/ProfileItem'], function () {
+    Route::get('/', [ItemProfileController::class, 'create'])->name('itemshow');
+    Route::post('/store', [ItemProfileController::class, 'store'])->name('itemstore');
+    Route::get('/select/{id}', [ItemProfileController::class, 'select'])->name('item.select');
+    Route::put('/update', [ItemProfileController::class, 'update'])->name('item.update');
+    Route::post('/destroy', [ItemProfileController::class, 'destroy'])->name('item.destroy');
+});
 // Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
