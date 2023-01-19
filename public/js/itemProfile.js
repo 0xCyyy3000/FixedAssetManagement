@@ -4,7 +4,7 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(serial_no, type, lifespan, department,color) {
+        constructor(serial_no, type, lifespan, department, color) {
             this.serial_no = serial_no;
             this.type = type;
             this.lifespan = lifespan;
@@ -17,17 +17,24 @@ $(document).ready(function () {
         e.preventDefault();
 
         // Adding the item to the items[] array
-        if ($('#serial_no').val()) {
-            items.push(new Item($('#serial_no').val()));
-            items.push(new Item($('#type').val()));
-            items.push(new Item($('#lifespan').val()));
-            items.push(new Item($('#department').val()));
-            items.push(new Item($('#color').val()));
-            console.table(items);
+        items.push(
+            new Item(
+                $('#serial_no').val(), $('#type').val(),
+                $('#lifespan').val(), $('#department').val(),
+                $('#color').val(),
+            )
+        );
+        // if ($('#serial_no').val()) {
+        //     items.push(new Item($('#serial_no').val()));
+        //     items.push(new Item($('#type').val()));
+        //     items.push(new Item($('#lifespan').val()));
+        //     items.push(new Item($('#department').val()));
+        //     items.push(new Item($('#color').val()));
+        //     console.table(items);
 
             loadItems();
             resetFields();
-        }
+        // }
     });
 
     function loadItems() {
@@ -38,6 +45,10 @@ $(document).ready(function () {
             let template =
                 `   <tr>
                         <td>${item.serial_no}</td>
+                        <td>${item.type}</td>
+                        <td>${item.lifespan}</td>
+                        <td>${item.department}</td>
+                        <td>${item.color}</td>
                      </tr>
                 `;
             tableBody.innerHTML += template;
@@ -46,6 +57,10 @@ $(document).ready(function () {
 
     function resetFields() {
         $('#serial_no').val('');
+        $('#type').val('');
+        $('#lifespan').val('');
+        $('#department').val('');
+        $('#color').val('');
     }
 
 

@@ -31,7 +31,7 @@ class ItemProfileController extends Controller
             'title' => $request->title,
             'depreciation' => $request->depreciation,
             'description' => $request->description,
-            'type' => $request->type,
+            // 'type' => $request->type,
             'image' => $imagePath,
             'notes' => $request->notes,
             'inventoried_by' => Auth::user()->id,

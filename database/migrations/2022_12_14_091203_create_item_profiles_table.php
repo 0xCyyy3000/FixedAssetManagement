@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('purchase_price');
             $table->string('inventory_number');
             $table->string('classification');
-            $table->string('year');
+            $table->string('year'); 
             $table->string('title');
             $table->string('type');
             $table->string('image')->nullable();
