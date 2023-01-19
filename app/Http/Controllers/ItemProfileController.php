@@ -14,6 +14,7 @@ class ItemProfileController extends Controller
 {
     public function store(Request $request)
     {
+        dd($request);
         if ($request->hasFile('photo')) {
             $imagePath = $request->file('photo')->store('photos', 'public');
         } else $imagePath = null;
@@ -25,13 +26,10 @@ class ItemProfileController extends Controller
             'purchase_price' => $request->purchase_price,
             'inventory_number' => $request->inventory_number,
             'classification' => $request->classification,
-            'lifespan' => $request->lifespan,
-            'department' => $request->department,
             'year' => $request->year,
             'title' => $request->title,
             'depreciation' => $request->depreciation,
             'description' => $request->description,
-            'type' => $request->type,
             'image' => $imagePath,
             'notes' => $request->notes,
         ]);
@@ -40,7 +38,11 @@ class ItemProfileController extends Controller
             foreach ($request->serials as $serial) {
                 SerialNumber::create([
                     'reference_no' => $newRequest->id,
-                    'serial_no' => $serial
+                    'serial_no' => $serial,
+                    'type' => $serial,
+                    'lifespan' => $serial,
+                    'department' => $serial,
+                    'color' => $serial
                 ]);
             }
             return back()->with('alert', 'Item profile added!');

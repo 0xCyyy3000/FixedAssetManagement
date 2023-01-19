@@ -20,11 +20,9 @@ return new class extends Migration
             $table->string('purchase_price');
             $table->string('inventory_number');
             $table->string('classification');
-            $table->string('lifespan');
-            $table->string('department');
             $table->string('year');
             $table->string('title');
-            $table->string('type');
+            $table->string('name');
             $table->string('image')->nullable();
             $table->double('depreciation');
             $table->longText('notes');

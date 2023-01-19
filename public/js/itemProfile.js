@@ -4,8 +4,12 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(serial_no) {
+        constructor(serial_no, type, lifespan, department,color) {
             this.serial_no = serial_no;
+            this.type = type;
+            this.lifespan = lifespan;
+            this.color = color;
+            this.department = department;
         }
     }
     let items = [];
@@ -15,6 +19,10 @@ $(document).ready(function () {
         // Adding the item to the items[] array
         if ($('#serial_no').val()) {
             items.push(new Item($('#serial_no').val()));
+            items.push(new Item($('#type').val()));
+            items.push(new Item($('#lifespan').val()));
+            items.push(new Item($('#department').val()));
+            items.push(new Item($('#color').val()));
             console.table(items);
 
             loadItems();
