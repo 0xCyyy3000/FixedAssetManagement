@@ -15,7 +15,7 @@ class ItemProfileController extends Controller
 {
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         if ($request->hasFile('photo')) {
             $imagePath = $request->file('photo')->store('photos', 'public');
         } else $imagePath = null;
@@ -173,6 +173,7 @@ class ItemProfileController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request);
         $formFields = $request->validate([
             'title' => 'required',
             'description' => 'required',
@@ -194,5 +195,21 @@ class ItemProfileController extends Controller
         SerialNumber::where('reference_no', $request->id)->delete();
         ItemProfile::where('id', $request->id)->delete();
         return redirect()->route('item.list')->with('alert', 'Item profile has been deleted!');
+    }
+
+
+    public function updatephoto(Request $request, ItemProfile $user)
+    {    
+
+        // // dd($request);
+        $formFields = $request->validate([
+            'image' => 'required',
+            
+        ]);
+         if ($request->hasFile('photo')) {
+            $formFields = $request->file('photo')->store('photos', 'public');
+        } 
+        $user->where('id', $request->id)->update($formFields);
+        return back()->with('alert', 'Changes has been saved!');  
     }
 }

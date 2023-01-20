@@ -112,7 +112,7 @@
                                     <div class="row bg-white rounded-2 p-3">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h5>Media</h5>
-                                            <button class="p-0 btn px-3 rounded-3 my-bg-third mb-2" type="button">
+                                            <button class="p-0 btn px-3 rounded-3 my-bg-third mb-2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
                                                 Edit media
                                             </button>
                                         </div>
@@ -217,9 +217,11 @@
                         <div class="col-md-4">
                             <label for="classification" class="form-label">Classification</label>
                             <select id="classification" class="form-select" name="classification">
-                                <option value="Machine">Machine</option>
-                                <option value="Plant">Plant</option>
-                                <option value="Tangible">Tangible</option>
+                                <option value="Land">Land</option>
+                                <option value="Buildings">Buildings</option>
+                                <option value="Office Equipment">Office Equipment</option>
+                                <option value="Appliances">Appliances</option>
+                                <option value="Vehicle">Vehicle</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -268,6 +270,43 @@
                         <button type="submit" class="btn my-bg-danger"> Yes, delete item</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="staticBackdrop1Label">Photo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="container">
+                    <form action="{{ route('item.updatephoto', ['id' => $item->id]) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                    <div class="row bg-white rounded-2 p-3">
+                        <div class="row mb-2">
+                            <div class="mb-2 col-6">
+                                <label for="photo"></label>
+                                <input required type="file" class="form-control" name="photo" id="photo" />
+                            </div>
+                            <div class="mb-5 col-6">
+                                <label for="media"></label>
+                                <input required type="file" class="form-control" name="media" id="media" />
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn my-bg-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn my-btn-primary">Save
+                                changes</button>
+                        </div>
+                    </div>
+                   </form>
+                </div>
             </div>
         </div>
     </div>
