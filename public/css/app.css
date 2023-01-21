@@ -5,6 +5,10 @@
     color: white !important;
 }
 
+li.active a {
+    color: white !important;
+}
+
 .active .material-icons-outlined {
     color: white !important;
 }
@@ -14,15 +18,15 @@
     padding: .16rem !important;
 }
 
-.accordion.accordion .accordion-body ul.selected li a {
+/* .accordion.accordion .accordion-body ul.selected li a {
     color: white !important;
 }
 
 .accordion.accordion .accordion-body ul li a.selected {
     text-decoration: underline !important;
-    text-decoration-color: goldenrod !important;
+    text-decoration-color: white !important;
     text-decoration-thickness: 1.5px !important;
-}
+} */
 
 .my-bg-secondary {
     background-color: #e0e0e0 !important;
@@ -133,6 +137,19 @@ li a {
 .item_image {
     width: 20%;
     height: 29px;
+    object-position: center;
+    object-fit: scale-down;
+}
+
+img.media {
+    aspect-ratio: 2/2 !important;
+    width: 45% !important;
+    margin-bottom: 1rem !important;
+}
+
+img.media-profile {
+    aspect-ratio: 2/2 !important;
+    width: 25%;
     object-position: center;
     object-fit: scale-down;
 }

@@ -11,9 +11,7 @@ use App\Http\Controllers\RepairRequestController;
 use App\Http\Controllers\ReplaceRequestController;
 use App\Http\Controllers\ReturnRequestController;
 use App\Http\Controllers\TransactionController;
-use App\Models\Transaction;
-
-;
+use App\Models\Transaction;;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -90,7 +88,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/ProfileItem'], function () {
     Route::get('/select/{id}', [ItemProfileController::class, 'select'])->name('item.select');
     Route::put('/update', [ItemProfileController::class, 'update'])->name('item.update');
     Route::post('/destroy', [ItemProfileController::class, 'destroy'])->name('item.destroy');
-    Route::put('/updatephoto', [ItemProfileController::class, 'updatephoto'])->name('item.updatephoto');
+    Route::put('/update-thumbnail', [ItemProfileController::class, 'updateThumbnail'])->name('item.thumbnail.update');
+    Route::put('/update-media', [ItemProfileController::class, 'updatephoto'])->name('item.media.update');
 });
 // Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 

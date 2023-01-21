@@ -101,7 +101,8 @@
                                     <div class="row bg-white p-3 mb-3 rounded-2">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h5>Thumbnail</h5>
-                                            <button class="p-0 btn px-3 rounded-3 my-bg-third mb-2" type="button">
+                                            <button class="p-0 btn px-3 rounded-3 my-bg-third mb-2" type="button"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop4">
                                                 Change
                                             </button>
                                         </div>
@@ -112,16 +113,21 @@
                                     <div class="row bg-white rounded-2 p-3">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h5>Media</h5>
-                                            <button class="p-0 btn px-3 rounded-3 my-bg-third mb-2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                                            <button class="p-0 btn px-3 rounded-3 my-bg-third mb-2" type="button"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
                                                 Edit media
                                             </button>
                                         </div>
 
-                                        @foreach (range(0, 2) as $limit)
-                                            <img class="w-25 img-thumbnail ms-3"
-                                                src="{{ $item->image ? asset('storage/' . $item->image) : '' }}"
-                                                alt="thumbnail">
-                                        @endforeach
+                                        <img class="img-thumbnail ms-3 media-profile"
+                                            src="{{ $medias->media1 ? asset('storage/' . $medias->media1) : '' }}"
+                                            alt="thumbnail">
+                                        <img class="img-thumbnail ms-3 media-profile"
+                                            src="{{ $medias->media2 ? asset('storage/' . $medias->media2) : '' }}"
+                                            alt="thumbnail">
+                                        <img class="img-thumbnail ms-3 media-profile"
+                                            src="{{ $medias->media3 ? asset('storage/' . $medias->media3) : '' }}"
+                                            alt="thumbnail">
                                     </div>
                                 </div>
                             </div>
@@ -274,38 +280,83 @@
         </div>
     </div>
 
+    <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-5" id="staticBackdrop1Label">Item thumbnail</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('item.thumbnail.update', ['id' => $item->id]) }}" method="POST"
+                    enctype="multipart/form-data" id="thumbnail-form">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body border-0 d-flex flex-column">
+                        <img class="media m-auto p-2" id="preview-thumbnail"
+                            src="{{ $item->image ? asset('storage/' . $item->image) : asset('imgs/BFP Logo.png') }}">
+                        <input required type="file" class="form-control thumbnail-input m-auto" name="thumbnail"
+                            id="thumbnail" />
+                    </div>
+                    <div class="container">
+                        <div class="moda-footer">
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn my-bg-third border my-primary"
+                                    data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn my-btn-primary" form="thumbnail-form">
+                                    Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop1Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5" id="staticBackdrop1Label">Photo</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdrop1Label">Item media</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="container">
-                    <form action="{{ route('item.updatephoto', ['id' => $item->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('item.media.update', ['id' => $item->id]) }}" method="POST" id="media-form"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                    <div class="row bg-white rounded-2 p-3">
-                        <div class="row mb-2">
-                            <div class="mb-2 col-6">
-                                <label for="photo"></label>
-                                <input required type="file" class="form-control" name="photo" id="photo" />
+                        <div class="row bg-white rounded-2 p-3">
+                            <div class="row mb-2">
+                                <div class="mb-2 col-6">
+                                    <img class="media" id="preview-media1"
+                                        src="{{ $medias->media1 ? asset('storage/' . $medias->media1) : asset('imgs/BFP Logo.png') }}">
+                                    <input type="file" class="form-control media-input" name="media1"
+                                        id="media1" />
+                                </div>
+                                <div class="mb-5 col-6">
+                                    <img class="media" id="preview-media2"
+                                        src="{{ $medias->media2 ? asset('storage/' . $medias->media2) : asset('imgs/BFP Logo.png') }}">
+                                    <input type="file" class="form-control media-input" name="media2"
+                                        id="media2" />
+                                </div>
+                                <div class="mb-5 col-6">
+                                    <img class="media" id="preview-media3"
+                                        src="{{ $medias->media3 ? asset('storage/' . $medias->media3) : asset('imgs/BFP Logo.png') }}">
+                                    <input type="file" class="form-control media-input" name="media3"
+                                        id="media3" />
+                                </div>
                             </div>
-                            <div class="mb-5 col-6">
-                                <label for="media"></label>
-                                <input required type="file" class="form-control" name="media" id="media" />
-                            </div>
-                        </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn my-bg-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn my-btn-primary">Save
-                                changes</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn my-bg-secondary"
+                                    data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn my-btn-primary" form="media-form">
+                                    Save changes
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                   </form>
+                    </form>
                 </div>
             </div>
         </div>
