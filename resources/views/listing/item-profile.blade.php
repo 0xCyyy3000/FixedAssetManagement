@@ -1,6 +1,5 @@
 @extends('layouts.layout')
 @section('content')
-    <script src="{{ asset('js/itemProfile.js') }}"></script>
     <div class="container">
         <div class="row justify-content-center px-2">
             <div class="container p-0 bg-white rounded request-information">

@@ -19,11 +19,13 @@ $(document).ready(function () {
 
     $(document).on('click', '#btn_serial', function (e) {
         e.preventDefault();
-
         // Adding the item to the items[] array
         if ($('#serial_no').val() && $('#lifespan').val()
             && $('#location').val() && $('#color').val()) {
-            const existing = items[items.findIndex(item => item.id == $('#serial_no').val())];
+            let existing;
+            const found = items[items.findIndex(item => item.id == $('#serial_no').val())]
+            items.size && found ? existing = true : existing = false;
+
             if (editing) {
                 const selectedItem = items[items.findIndex(item => item.id == currentId)];
                 selectedItem.id = $('#serial_no').val();
@@ -36,10 +38,8 @@ $(document).ready(function () {
                 alert('Serial number must be unique!');
             }
             else {
-                items.push(
-                    new Item($('#serial_no').val(), $('#serial_no').val(), $('#lifespan').val(),
-                        $('#condition').val(), $('#location').val(), $('#color').val())
-                );
+                items.push(new Item($('#serial_no').val(), $('#serial_no').val(), $('#lifespan').val(),
+                    $('#condition').val(), $('#location').val(), $('#color').val()));
             }
 
             loadItems();
