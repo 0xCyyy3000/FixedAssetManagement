@@ -4,12 +4,10 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(serial_no, item, description, quantity, unit, remarks, price, total) {
+        constructor(serial_no, item, description, remarks, price, total) {
             this.serial_no = serial_no;
             this.item = item;
             this.description = description;
-            this.quantity = quantity;
-            this.unit = unit;
             this.remarks = remarks;
             this.price = price;
             this.total = total;
@@ -24,8 +22,7 @@ $(document).ready(function () {
         items.push(
             new Item(
                 $('#serial_no').val(), $('#item').val(),
-                $('#description').val(), $('#quantity').val(),
-                $('#unit').val(), $('#remarks').val(),
+                $('#description').val(), $('#remarks').val(),
                 $('#price').val(), $('#total').val()
             )
         );
@@ -45,8 +42,6 @@ $(document).ready(function () {
                     <td>${item.serial_no}</td>
                     <td>${item.item}</td>
                     <td>${item.description}</td>
-                    <td>${item.quantity}</td>
-                    <td>${item.unit}</td>
                     <td>${item.remarks}</td>
                     <td>${item.price}</td>
                     <td>${item.total}</td>
@@ -66,8 +61,6 @@ $(document).ready(function () {
         $('#serial_no').val('');
         $('#item').val('');
         $('#description').val('');
-        $('#quantity').val('');
-        $('#unit').val('');
         $('#remarks').val('');
         $('#price').val('');
         $('#total-amount').val('')
@@ -75,7 +68,7 @@ $(document).ready(function () {
 
     // Computing Total Amount on Price input
     $(document).on('input', '#price', function () {
-        $('#total').val($('#quantity').val() * $(this).val())
+        $('#total').val($('#price').val() * $(this).val())
     });
 
     $(document).on('click', '#submit-return', function () {

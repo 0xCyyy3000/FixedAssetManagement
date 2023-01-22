@@ -200,16 +200,19 @@ class ItemProfileController extends Controller
 
     public function updatephoto(Request $request, ItemProfile $user)
     {    
+        // $formFields = $request->validate([
+        //     'title' => 'required'
+        // ]);
+        //  if ($request->hasFile('photo')) {
+        //     $formFields = $request->file('photo')->move('photos', 'public');
+        // } 
+        // $user->where('id', $request->id)->update($formFields);
+        // return back()->with('alert', 'Changes has been saved!'); 
+        if ($request->hasFile('photo')){
+            $file = $request->file('file');
+            $file->move('photos', 'public');
+        }
 
-        // // dd($request);
-        $formFields = $request->validate([
-            'image' => 'required',
-            
-        ]);
-         if ($request->hasFile('photo')) {
-            $formFields = $request->file('photo')->store('photos', 'public');
-        } 
-        $user->where('id', $request->id)->update($formFields);
-        return back()->with('alert', 'Changes has been saved!');  
+        return redirect()->route('users.index')->with('success','Photo Updated Successfully'); 
     }
 }

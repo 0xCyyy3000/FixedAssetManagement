@@ -53,8 +53,6 @@
                                     <th scope="col">Serial No.</th>
                                     <th scope="col">Item</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Unit</th>
                                     <th scope="col">Remarks</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Total</th>
@@ -107,14 +105,6 @@
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
                             <input type="text" class="form-control" id="description" name="description">
-                        </div>
-                        <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input type="number" id="quantity" class="form-control" name="quantity">
-                        </div>
-                        <div class="mb-3">
-                            <label for="unit" class="form-label">Unit</label>
-                            <input type="text" class="form-control" id="unit" name="unit">
                         </div>
                         <div class="mb-3">
                             <label for="remarks" class="form-label">Remarks</label>
