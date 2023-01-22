@@ -19,18 +19,25 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
+    {{-- Utilities --}}
     <script src="{{ asset('js/jquery-3.6.3.min.js') }}"></script>
     <script src="{{ asset('js/clickEvents.js') }}" defer></script>
-    <script src="{{ asset('js/datePicker.js') }}"></script>
+    <script src="{{ asset('js/datePicker.js') }}" defer></script>
 
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+
+    {{-- System scripts --}}
+    <script src="{{ asset('js/itemProfile.js') }}"></script>
+    <script src="{{ asset('js/purchaseRequest.js') }}"></script>
+    <script src="{{ asset('js/replaceRequest.js') }}"></script>
+    <script src="{{ asset('js/repairRequest.js') }}"></script>
+    <script src="{{ asset('js/returnRequest.js') }}"></script>
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -51,17 +58,13 @@
                 </li>
                 <li class="list-group">
                     <a href="{{ route('item.list') }}"
-                        class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('item.list') ? 'active' : '' }}">
+                        class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('item.list') || Request::routeIs('item.select') ? 'active' : '' }}">
                         <span class="material-icons-outlined me-2">layers</span>
                         Item Profiles
                     </a>
                 </li>
                 <li class="list-group">
-                    <div class="accordion mb-2 pt-1 ps-4 pb-1 @if (Request::routeIs('purchase.request') ||
-                            Request::routeIs('repair.request') ||
-                            Request::routeIs('replace.request') ||
-                            Request::routeIs('return.request')) active @endif"
-                        id="accordionExample">
+                    <div class="accordion mb-2 pt-1 ps-4 pb-1 " id="accordionExample">
                         <div class="accordion-item bg-transparent">
                             <h2 class="accordion-header bg-transparent fs-6 rounded-3 d-flex align-items-center"
                                 id="headingOne">
@@ -79,37 +82,33 @@
                                         Request::routeIs('return.request')) show @endif"
                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body pt-0 pb-0">
-                                    <ul class=" list-group pt-2 @if (Request::routeIs('purchase.request') ||
-                                            Request::routeIs('repair.request') ||
-                                            Request::routeIs('replace.request') ||
-                                            Request::routeIs('return.request')) selected @endif">
-                                        <li class=" list-group">
-                                            <a class="fs-6 d-flex mb-1 align-items-center
-                                                @if (Request::routeIs('purchase.request')) selected @endif"
+                                    <ul class=" list-group pt-2">
+                                        <li class=" list-group @if (Request::routeIs('purchase.request')) active @endif">
+                                            <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('purchase.request') }}">
                                                 <span class="material-icons-outlined me-2">shopping_cart</span>
-                                                Purchase Request
+                                                Purchase
                                             </a>
                                         </li>
-                                        <li class=" list-group">
-                                            <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('repair.request')) selected @endif"
+                                        <li class=" list-group @if (Request::routeIs('repair.request')) active @endif">
+                                            <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('repair.request') }}">
                                                 <span class="material-icons-outlined me-2">build</span>
-                                                Repair Request
+                                                Repair
                                             </a>
                                         </li>
-                                        <li class=" list-group"><a
-                                                class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('replace.request')) selected @endif"
+                                        <li class=" list-group @if (Request::routeIs('replace.request')) active @endif">
+                                            <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('replace.request') }}">
                                                 <span class="material-icons-outlined me-2">find_replace</span>
-                                                Replace Request
+                                                Replace
                                             </a>
                                         </li>
-                                        <li class=" list-group">
-                                            <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('return.request')) selected @endif"
+                                        <li class="list-group @if (Request::routeIs('return.request')) active @endif">
+                                            <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('return.request') }}">
                                                 <span class="material-icons-outlined me-2">assignment_return</span>
-                                                Return Request
+                                                Return
                                             </a>
                                         </li>
                                     </ul>
@@ -119,8 +118,7 @@
                     </div>
                 </li>
                 <li class="list-group">
-                    <div class="accordion mb-2 pt-1 ps-4 pb-1 rounded-2 @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) active @endif"
-                        id="accordionExample2">
+                    <div class="accordion mb-2 pt-1 ps-4 pb-1 rounded-2" id="accordionExample2">
                         <div class="accordion-item bg-transparent">
                             <h2 class="accordion-header bg-transparent fs-6 rounded-3 d-flex align-items-center"
                                 id="headingTwo">
@@ -132,14 +130,16 @@
                                 </button>
                             </h2>
                             <div id="collapseTwo"
-                                class="accordion-collapse collapse @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) show @endif"
+                                class="accordion-collapse collapse @if (Request::routeIs('itemshow')) show @endif"
                                 aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
                                 <div class="accordion-body pt-0 pb-0">
-                                    <ul class="list-group pt-2 @if (Request::routeIs('itemshow') || Request::routeIs('usershow')) selected @endif">
-                                        <li>
-                                            <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('itemshow')) selected @endif"
-                                                href="{{ route('itemshow') }}">Fixed Asset
-                                                Inventory Form</a>
+                                    <ul class=" list-group pt-2">
+                                        <li class=" list-group @if (Request::routeIs('itemshow')) active @endif">
+                                            <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
+                                                href="{{ route('itemshow') }}">
+                                                <span class="material-icons-outlined me-2">note_add</span>
+                                                Inventory
+                                            </a>
                                         </li>
                                         {{-- <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('usershow')) selected @endif"
                                                 href="">
@@ -170,10 +170,10 @@
                                 aria-labelledby="heading3" data-bs-parent="#accordionExample3">
                                 <div class="accordion-body pt-0 pb-0">
                                     <ul class=" list-group pt-2">
-                                        <li>
+                                        <li class="list-group">
                                             <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('asset.report')) active @endif"
                                                 href="">
-                                                Fixed Asset Inventory Report
+                                                Inventory Report
                                             </a>
                                         </li>
                                         {{-- <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('user.report')) active @endif"

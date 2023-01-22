@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemMedia;
 use App\Models\User;
 use App\Models\ItemProfile;
 use App\Models\Transaction;
@@ -16,8 +17,11 @@ class ItemProfileController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        if ($request->hasFile('photo')) {
+        if ($request->hasFile('photo') && $request->hasFile('media1')  && $request->hasFile('media2') && $request->hasFile('media3')) {
             $imagePath = $request->file('photo')->store('photos', 'public');
+            $media1 = $request->file('media1')->store('photos', 'public');
+            $media2 = $request->file('media2')->store('photos', 'public');
+            $media3 = $request->file('media3')->store('photos', 'public');
         } else $imagePath = null;
 
         $newTransaction = Transaction::create(['content' => 'New Item Profile added by ' . Auth::user()->name]);
@@ -40,6 +44,13 @@ class ItemProfileController extends Controller
         ]);
 
         if ($newRequest) {
+            ItemMedia::create([
+                'item_id' => $newRequest->id,
+                'media1' => $media1,
+                'media2' => $media2,
+                'media3' => $media3,
+            ]);
+
             foreach ($request->serials as $key => $value) {
                 $lifespan = $request->lifespans[$key];
                 $location = $request->locations[$key];
@@ -57,24 +68,6 @@ class ItemProfileController extends Controller
             }
             return back()->with('alert', 'Item profile added!');
         }
-        // $items = $request->validate([
-        //     'purchase_date' => 'required|date',
-        //     'purchase_price' => 'required',
-        //     'inventory_number' => 'required',
-        //     'type' => 'required|in:Machine,Plant,Tangible',
-        //     'serial_number' => 'required',
-        //     'classification' => 'required|in:Functional,Non-Functional',
-        //     'lifespan' => 'required',
-        //     'department' => 'required',
-        //     'year' => 'required',
-        //     'title' => 'required',
-        //     'depreciation' => 'required',
-        //     'description' => 'required',
-        //     'condition' => 'required',
-        //     'notes' => 'required',
-        // ]);
-        // ItemProfile::create($items);
-        // return redirect('/dashboard');
     }
 
     public function create()
@@ -87,52 +80,6 @@ class ItemProfileController extends Controller
         return view('listing.item-list', ['items' => $data]);
     }
 
-    // public function listEdit(Request $request)
-    // {
-    //     // Retrieve the most recent transaction from the database
-    //    $request->validate([
-    //         'purchase_date' => 'required|date',
-    //         'purchase_price' => 'required',
-    //         'inventory_number' => 'required',
-    //         'type' => 'required|in:Machine,Plant,Tangible',
-    //         'serial_number' => 'required',
-    //         'classification' => 'required|in:Functional,Non-Functional',
-    //         'lifespan' => 'required',
-    //         'department' => 'required',
-    //         'year' => 'required',
-    //         'title' => 'required',
-    //         'depreciation' => 'required',
-    //         'description' => 'required',
-    //         'condition' => 'required',
-    //         'notes' => 'required',
-    //     ]);
-
-    //     $item = ItemProfile::where('transaction_number', $request->transaction_number)->update([
-    //         'purchase_date' => $request->input('purchase_date'),
-    //         'purchase_price' => $request->input('purchase_price'),
-    //         'inventory_number' => $request->input('inventory_number'),
-    //         'type' => $request->input('type'),
-    //         'salvage_value' => $request->input('salvage_value'),
-    //         'classification' => $request->input('classification'),
-    //         'lifespan' => $request->input('lifespan'),
-    //         'department' => $request->input('department'),
-    //         'quantity' => $request->input('quantity'),
-    //         'annual_operating_cost' => $request->input('annual_operating_cost'),
-    //         'body' => $request->input('body'),
-    //         'comments' => $request->input('comments'),
-    //         'notes' => $request->input('notes'),
-    //         'title' => $request->input('title'),
-    //         'replacement_value' => $request->input('replacement_value'),
-    //         'trade_in_value' => $request->input('trade_in_value'),
-    //         'present_value' => $request->input('present_value')
-
-    //     ]);
-
-
-    //     return redirect('/item-list');
-
-    // }
-
     public function select(Request $request)
     {
         $item = ItemProfile::where('id', $request->id)->first();
@@ -143,7 +90,9 @@ class ItemProfileController extends Controller
         $item->inventoried_by = User::join('positions', 'positions.id', '=', 'users.id')
             ->where('users.id', $item->inventoried_by)->first(['users.name', 'positions.position']);
 
-        return view('listing.item', ['item' => $item, 'serials' => $serials]);
+        $medias = ItemMedia::where('item_id', $request->id)->first();
+        // dd($medias);
+        return view('listing.item', ['item' => $item, 'serials' => $serials, 'medias' => $medias]);
     }
 
     public function apiSelect(Request $request)
@@ -198,21 +147,31 @@ class ItemProfileController extends Controller
     }
 
 
-    public function updatephoto(Request $request, ItemProfile $user)
-    {    
-        // $formFields = $request->validate([
-        //     'title' => 'required'
-        // ]);
-        //  if ($request->hasFile('photo')) {
-        //     $formFields = $request->file('photo')->move('photos', 'public');
-        // } 
-        // $user->where('id', $request->id)->update($formFields);
-        // return back()->with('alert', 'Changes has been saved!'); 
-        if ($request->hasFile('photo')){
-            $file = $request->file('file');
-            $file->move('photos', 'public');
+    public function updatephoto(Request $request)
+    {
+        $count = 0;
+        foreach ($request->all() as $key => $value) {
+            if ($request->hasFile($key)) {
+                $path = $request->file($key)->store('photos', 'public');
+                ItemMedia::where('item_id', $request->id)->update([$key => $path]);
+                $count++;
+            }
         }
 
-        return redirect()->route('users.index')->with('success','Photo Updated Successfully'); 
+        if ($count) {
+            return back()->with('alert', 'Changes has been saved!');
+        } else
+            return back()->with('alert', 'Please select an item to upload!');
+    }
+
+    public function updateThumbnail(Request $request)
+    {
+        if ($request->hasFile('thumbnail')) {
+            $thumnail = $request->file('thumbnail')->store('photos', 'public');
+            ItemProfile::where('id', $request->id)->update([
+                'image' => $thumnail
+            ]);
+            return back()->with('alert', 'Thumbnail has been changed!');
+        } else return back()->with('alert', 'Please select a photo');
     }
 }

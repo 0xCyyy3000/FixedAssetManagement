@@ -41,5 +41,37 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on('change', '#thumbnail', function () {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-thumbnail').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $(document).on('change', '#media1', function () {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-media1').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $(document).on('change', '#media2', function () {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-media2').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $(document).on('change', '#media3', function () {
+        let reader = new FileReader();
+        reader.onload = (e) => {
+            $('#preview-media3').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
 });
 

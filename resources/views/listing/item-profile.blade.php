@@ -1,11 +1,10 @@
 @extends('layouts.layout')
 @section('content')
-    <script src="{{ asset('js/itemProfile.js') }}"></script>
     <div class="container">
         <div class="row justify-content-center px-2">
             <div class="container p-0 bg-white rounded request-information">
-                <div class="row p-3 pb-0 mb-5 sticky-top bg-white shadow">
-                    <p class="text-center fs-3 fw-bolder">Fixed Asset Inventroy Form</p>
+                <div class="row p-3 pb-0 mb-5 bg-white shadow">
+                    <p class="text-start fs-3 fw-bolder">Inventroy Form</p>
                 </div>
                 <div class="row">
                     <h3 class="text-center fs-4">Item Description</h3>
@@ -86,9 +85,17 @@
                             <label for="photo"></label>
                             <input required type="file" class="form-control" name="photo" id="photo" />
                         </div>
+                        <div class="mb-2 col-6">
+                            <label for="media"></label>
+                            <input required type="file" class="form-control" name="media1" id="media" />
+                        </div>
+                        <div class="mb-2 col-6">
+                            <label for="media"></label>
+                            <input required type="file" class="form-control" name="media2" id="media" />
+                        </div>
                         <div class="mb-5 col-6">
                             <label for="media"></label>
-                            <input required type="file" class="form-control" name="media" id="media" />
+                            <input required type="file" class="form-control" name="media3" id="media" />
                         </div>
                     </div>
 
@@ -148,7 +155,7 @@
                         </div>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn btn-primary me-md-2" type="submit" id="sumbit-reg">Submit form</button>
+                        <button class="btn my-btn-primary me-md-2" type="submit" id="sumbit-reg">Submit form</button>
                     </div>
                     <div id="serial_input"></div>
                 </form>

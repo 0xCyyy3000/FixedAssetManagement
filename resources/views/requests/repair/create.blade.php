@@ -1,6 +1,5 @@
 @extends('layouts.layout')
 @section('content')
-    <script src="{{ asset('js/repairRequest.js') }}"></script>
     <div class="container">
         <div class="row justify-content-center px-2">
             <div class="container bg-white rounded request-information">

@@ -1,6 +1,5 @@
 @extends('layouts.layout')
 @section('content')
-    <script src="{{ asset('js/replaceRequest.js') }}"></script>
     <div class="container px-3">
         <div class="row justify-content-center px-2">
             <div class="container bg-white rounded request-information">
@@ -119,8 +118,7 @@
                             <input type="number" class="form-control" id="total" name="total" readonly>
                         </div>
                         <div class="d-flex justify-content-end gap-2">
-                            <button class="btn my-btn-primary text-white" id="submit_item" type="submit"
-                                form="item-form">
+                            <button class="btn my-btn-primary text-white" id="submit_item" type="button">
                                 Submit item
                             </button>
                             <button class="btn btn-secondary" data-dismiss="modal" id="cancel" type="button">

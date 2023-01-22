@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('item_media', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('item_id')->constrained('item_profiles');
+            $table->string('media1')->nullable();
+            $table->string('media2')->nullable();
+            $table->string('media3')->nullable();
             $table->timestamps();
         });
     }

@@ -33,9 +33,9 @@
                                         <td>{{ $item->classification }}</td>
                                         <td>{{ Auth::user()->countItem($item->id) }}x</td>
                                         <td>
-                                            <button type="button" class="btn bg-warning rounded-5 p-0" id="select-item"
+                                            <button type="button" class="btn my-bg-primary rounded-5 p-0" id="select-item"
                                                 value="{{ $item->id }}">
-                                                <small class="p-3 text-black">See details</small>
+                                                <small class="p-3 text-white">See details</small>
                                             </button>
                                         </td>
                                     </tr>
