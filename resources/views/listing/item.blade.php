@@ -110,7 +110,7 @@
                                             src="{{ $item->image ? asset('storage/' . $item->image) : asset('imgs/BFP Logo.png') }}"
                                             alt="thumbnail">
                                     </div>
-                                    <div class="row bg-white rounded-2 p-3">
+                                    <div class="row bg-white rounded-2 p-3 mb-3">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h5>Media</h5>
                                             <button class="p-0 btn px-3 rounded-3 my-bg-third mb-2" type="button"
@@ -129,14 +129,18 @@
                                             src="{{ $medias->media3 ? asset('storage/' . $medias->media3) : '' }}"
                                             alt="thumbnail">
                                     </div>
+
+                                    <div class="row">
+                                        <button
+                                            class="btn my-btn-primary d-flex gap-2 align-items-center justify-content-center rounded-5 mt-5 m-auto p-3"
+                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop5">
+                                            <span class="material-icons-outlined text-white fs-4">add_box</span>
+                                            Add new serial
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <button class="col-2 btn my-btn-primary d-flex gap-2 align-items-center rounded-0 mt-5 ms-0 mb-2">
-                            <span class="material-icons-outlined text-white fs-4 ms-4">add_box</span>
-                            Add new serial
-                        </button>
                         <div class="row bg-white rounded-2">
                             <table class="table">
                                 <thead>
@@ -168,13 +172,15 @@
                                             <td class="p-3">{{ $serial->lifespan }}</td>
                                             <td style="width: 18% !important;">
                                                 <div class="d-flex">
-                                                    <button type="button" class="btn my-bg-secondary rounded-5 p-0 px-2"
-                                                        id="select-item" value="{{ $item->id }}">
+                                                    <button type="button"
+                                                        class="btn my-bg-secondary rounded-5 mt-2 p-0 px-2 edit-serial"
+                                                        value="{{ $serial->id }}">
                                                         <small class="p-3 text-black">Edit</small>
                                                     </button>
 
-                                                    <button type="button" class="btn my-bg-danger rounded-5 p-0 ms-4"
-                                                        id="select-item" value="{{ $serial->id }}">
+                                                    <button type="button"
+                                                        class="btn my-bg-danger rounded-5 mt-2 p-0 ms-4 remove-serial"
+                                                        value="{{ $serial->id }}">
                                                         <small class="p-3 text-white">Remove</small>
                                                     </button>
                                                 </div>
@@ -199,7 +205,7 @@
                     @csrf
                     @method('PUT')
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Editing item profile</h1>
+                        <h1 class="modal-title fs-4" id="staticBackdropLabel">Editing item profile</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body row g-3">
@@ -262,7 +268,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5" id="staticBackdrop1Label">Delete item</h1>
+                    <h1 class="modal-title fs-4" id="staticBackdrop1Label">Delete item</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body border-0 mb-0 p-0 ps-3 pt-2">
@@ -285,7 +291,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5" id="staticBackdrop1Label">Item thumbnail</h1>
+                    <h1 class="modal-title fs-4" id="staticBackdrop1Label">Item thumbnail</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('item.thumbnail.update', ['id' => $item->id]) }}" method="POST"
@@ -318,7 +324,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h1 class="modal-title fs-5" id="staticBackdrop1Label">Item media</h1>
+                    <h1 class="modal-title fs-4" id="staticBackdrop1Label">Item media</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="container">
@@ -358,6 +364,163 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-lg" id="staticBackdrop5" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-4" id="staticBackdrop1Label">Serial form</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('serial.store', ['reference_no' => $item->id]) }}" method="POST"
+                    id="serial-form">
+                    @csrf
+                    <div class="modal-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="serial_no">Serial No.</label>
+                                <input type="text" id="serial_no" name="serial_no" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="condition">Condition</label>
+                                <select id="condition" name="condition" class="form-select">
+                                    <option value="Functional">Functional</option>
+                                    <option value="Non-Functional">Non-functional</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="color">Color</label>
+                                <input type="text" id="color" name="color" value="none"
+                                    class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="location">Location</label>
+                                <input type="text" id="location" name="location" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Lifespan</label>
+                                <input type="text" id="lifespan" name="lifespan" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="moda-footer">
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn my-bg-third border my-primary"
+                                    data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn my-btn-primary" form="serial-form">
+                                    Submit form</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-lg" id="staticBackdrop6" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-4" id="staticBackdrop1Label">Serial form</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('serial.update', ['reference_no' => $item->id]) }}" method="POST"
+                    id="edit-serial-form">
+                    @csrf
+                    @method('PUT')
+                    <input type="hidden" id="serial-id" name="id">
+                    <div class="modal-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="serial_no">Serial No.</label>
+                                <input type="text" id="edit-serial_no" name="serial_no" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="mb-3 col-6">
+                                <label for="condition">Condition</label>
+                                <select id="condition" name="condition" class="form-select">
+                                    <option value="Functional">Functional</option>
+                                    <option value="Non-Functional">Non-functional</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="color">Color</label>
+                                <input type="text" id="edit-color" name="color" value="none"
+                                    class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="location">Location</label>
+                                <input type="text" id="edit-location" name="location" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Lifespan</label>
+                                <input type="text" id="edit-lifespan" name="lifespan" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="moda-footer">
+                            <div class="modal-footer border-0">
+                                <button type="button" class="btn my-bg-third border my-primary"
+                                    data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn my-btn-primary" form="edit-serial-form">
+                                    Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="staticBackdrop7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-4" id="staticBackdrop1Label">Delete serial</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body border-0 mb-0 p-0 ps-3 pt-2">
+                    <p>Are you sure you want to delete this serial?</p>
+                </div>
+                <form action="{{ route('serial.destroy') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="id" id="remove-serial-id">
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn my-bg-third border my-primary" data-bs-dismiss="modal">No,
+                            cancel</button>
+                        <button type="submit" class="btn my-bg-danger"> Yes, delete serial</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

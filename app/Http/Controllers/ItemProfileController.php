@@ -141,6 +141,7 @@ class ItemProfileController extends Controller
 
     public function destroy(Request $request)
     {
+        ItemMedia::where('item_id', $request->id)->delete();
         SerialNumber::where('reference_no', $request->id)->delete();
         ItemProfile::where('id', $request->id)->delete();
         return redirect()->route('item.list')->with('alert', 'Item profile has been deleted!');

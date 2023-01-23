@@ -269,7 +269,10 @@
         if (exist) {
             alert(msg);
         }
+
+        let hasErrors = "{{ $errors->any() }}";
     </script>
+    <script src="{{ asset('js/item.js') }}"></script>
 </body>
 
 </html>

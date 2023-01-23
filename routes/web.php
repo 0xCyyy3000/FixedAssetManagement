@@ -10,6 +10,7 @@ use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\RepairRequestController;
 use App\Http\Controllers\ReplaceRequestController;
 use App\Http\Controllers\ReturnRequestController;
+use App\Http\Controllers\SerialNumberController;
 use App\Http\Controllers\TransactionController;
 use App\Models\Transaction;;
 
@@ -90,6 +91,12 @@ Route::group(['middleware' => 'auth', 'prefix' => '/ProfileItem'], function () {
     Route::post('/destroy', [ItemProfileController::class, 'destroy'])->name('item.destroy');
     Route::put('/update-thumbnail', [ItemProfileController::class, 'updateThumbnail'])->name('item.thumbnail.update');
     Route::put('/update-media', [ItemProfileController::class, 'updatephoto'])->name('item.media.update');
+});
+
+Route::group(['middleware' => 'auth', 'prefix' => '/serial'], function () {
+    Route::post('/store', [SerialNumberController::class, 'store'])->name('serial.store');
+    Route::put('/update', [SerialNumberController::class, 'update'])->name('serial.update');
+    Route::delete('/destroy', [SerialNumberController::class, 'destroy'])->name('serial.destroy');
 });
 // Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 

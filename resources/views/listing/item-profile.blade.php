@@ -77,14 +77,21 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <h3 class="text-center fs-4">Media and Thumbnail</h3>
+                    <div class="row mb-0">
+                        <h3 class="text-center fs-4">Thumbnail</h3>
                     </div>
-                    <div class="row w-75 m-auto">
-                        <div class="mb-2 col-6">
+
+                    <div class="row w-75 m-auto mt-0">
+                        <div class="col-6 mt-0">
                             <label for="photo"></label>
                             <input required type="file" class="form-control" name="photo" id="photo" />
                         </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <h3 class="text-center fs-4">Media</h3>
+                    </div>
+                    <div class="row w-75 m-auto">
                         <div class="mb-2 col-6">
                             <label for="media"></label>
                             <input required type="file" class="form-control" name="media1" id="media" />

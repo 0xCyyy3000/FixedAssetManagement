@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ItemProfileController;
+use App\Http\Controllers\SerialNumberController;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,3 +32,5 @@ Route::group(['prefix' => '/item-list'], function () {
     Route::get('/select/{item_id}', [ItemProfileController::class, 'apiSelect']);
     Route::get('/edit/{item_id}', [ItemProfileController::class, 'apiEdit']);
 });
+
+Route::get('/serial/select/{id}', [SerialNumberController::class, 'select']);
