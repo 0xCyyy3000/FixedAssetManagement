@@ -4,28 +4,29 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(serial_no, item, description, remarks, price, total) {
-            this.serial_no = serial_no;
+        constructor(id, item, serial_id, serial_no, description, remarks, cost) {
+            this.id = id;
             this.item = item;
+            this.serial_id = serial_id;
+            this.serial_no = serial_no;
             this.description = description;
             this.remarks = remarks;
-            this.price = price;
-            this.total = total;
+            this.cost = cost;
         }
     }
 
     let total = 0;
     let items = [];
 
-    $(document).on('click', '#submit_item', function (e) {
+    $(document).on('click', '#add-item-replace', function (e) {
         e.preventDefault();
         // Adding the item to the items[] array
         items.push(
             new Item(
-                $('#serial_no').val(),$('#item').val(),
-                $('#description').val(), $('#quantity').val(),
-                $('#unit').val(), $('#remarks').val(),
-                $('#price').val(), $('#total').val()
+                $('#replace_item option:selected').val(), $('#replace_item option:selected').text(),
+                $('#replace_serial_no option:selected').val(), $('#replace_serial_no option:selected').text(),
+                $('#replace_description').val(), $('#replace_remarks').val(),
+                $('#replace_cost').val()
             )
         );
 
@@ -35,55 +36,70 @@ $(document).ready(function () {
     });
 
     function loadItems() {
-        let tableBody = document.getElementById('items-table-body');
+        console.table(items);
+        let tableBody = document.getElementById('replace-items-table-body');
         tableBody.innerHTML = '';
         total = 0;
 
         items.forEach(item => {
             let template = `
                 <tr>
-                    <td>${item.serial_no}</td>
                     <td>${item.item}</td>
+                    <td>${item.serial_no}</td>
                     <td>${item.description}</td>
-                    <td>${item.quantity}</td>
-                    <td>${item.unit}</td>
                     <td>${item.remarks}</td>
-                    <td>${item.price}</td>
-                    <td>${item.total}</td>
+                    <td>₱${item.cost}</td>
                 </tr>
             `;
-            total += parseInt(item.total);
+            total += parseInt(item.cost);
             tableBody.innerHTML += template;
             console.table(item);
         });
 
-        $('#items-total').removeClass('d-none');
-        $('#items-total').text('Total: ₱' + total);
-        $('#total-amount').val(total);
+        $('#replace-items-total').removeClass('d-none');
+        $('#replace-items-total').text('Total cost: ₱' + total);
     }
 
     function resetFields() {
-        $('#serial_no').val('');
-        $('#item').val('');
-        $('#description').val('');
-        $('#remarks').val('');
-        $('#price').val('');
-        $('#total-amount').val('')
+        $('#replace_serial_no').val('');
+        $('#replace_item').val('');
+        $('#replace_description').val('');
+        $('#replace_remarks').val('');
+        $('#replace_cost').val('0');
     }
 
-    // Computing Total Amount on Price input
-    $(document).on('input', '#price', function () {
-        $('#total').val($('#quantity').val() * $(this).val())
+    // Cascading Select options
+    $(document).on('change', '#replace_item', function () {
+        // Terminating request if no selected item
+        if ($(this).val() == '') {
+            $('#replace_serial_no').empty().append('<option></option>');
+            return;
+        }
+
+        $.ajax({
+            url: '/api/serials/index/',
+            method: 'GET',
+            data: {
+                reference_no: $(this).val()
+            },
+            success: function (response) {
+                $('#replace_serial_no').empty().append('<option></option>');
+                response.forEach(item => {
+                    let template = `<option value="${item.id}">${item.serial_no}</option>`;
+                    $('#replace_serial_no').append(template);
+                });
+            }
+        });
     });
 
     $(document).on('click', '#submit-replace', function () {
-        if (items.size) {
+        if (items.length) {
             $.ajax({
                 url: '/replace-request/store',
                 method: 'POST',
                 dataType: 'JSON',
                 data: {
-                    _token: $('#token').val(),
+                    _token: $('#replace_token').val(),
                     items: items,
                     entity: $('#entity').val(),
                     fund_cluster: $('#fund_cluster').val(),
@@ -102,5 +118,9 @@ $(document).ready(function () {
                 }
             });
         }
+    });
+
+    $(document).on('click', '#delete-replace', function () {
+        $('#replace_remove_id').val($(this).val());
     });
 });

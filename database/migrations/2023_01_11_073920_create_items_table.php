@@ -17,12 +17,8 @@ return new class extends Migration
             $table->id('id');
             $table->integer('reference_no');
             $table->string('serial_no')->unique();
-            $table->string('item');
-            $table->string('description');
-            $table->integer('qty');
-            $table->string('unit');
-            $table->integer('price');
-            $table->double('total');
+            $table->string('description')->nullable();
+            $table->double('cost')->default(0);
             $table->string('remarks');
             $table->timestamps();
         });

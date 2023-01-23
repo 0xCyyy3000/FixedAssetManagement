@@ -34,3 +34,5 @@ Route::group(['prefix' => '/item-list'], function () {
 });
 
 Route::get('/serial/select/{id}', [SerialNumberController::class, 'select']);
+
+Route::get('/serials/index', [SerialNumberController::class, 'indexSub']);

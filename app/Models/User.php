@@ -78,4 +78,9 @@ class User extends Authenticatable
     {
         return SerialNumber::where('reference_no', $reference_no)->count();
     }
+
+    public function requester($id)
+    {
+        return $this::where('id', $id)->first('name');
+    }
 }

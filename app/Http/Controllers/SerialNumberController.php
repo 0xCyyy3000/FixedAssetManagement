@@ -63,4 +63,10 @@ class SerialNumberController extends Controller
         $serial = SerialNumber::find($request->id);
         return response()->json($serial);
     }
+
+    public function indexSub(Request $request)
+    {
+        $serials = SerialNumber::where('reference_no', $request->reference_no)->get(['id', 'serial_no']);
+        return response()->json($serials);
+    }
 }

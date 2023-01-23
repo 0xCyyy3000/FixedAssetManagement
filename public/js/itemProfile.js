@@ -17,29 +17,29 @@ $(document).ready(function () {
     let editing = false;
     let currentId = 0;
 
-    $(document).on('click', '#btn_serial', function (e) {
+    $(document).on('click', '#ip_btn_serial', function (e) {
         e.preventDefault();
         // Adding the item to the items[] array
-        if ($('#serial_no').val() && $('#lifespan').val()
-            && $('#location').val() && $('#color').val()) {
+        if ($('#ip_serial_no').val() && $('#ip_lifespan').val()
+            && $('#ip_location').val() && $('#ip_color').val()) {
             let existing;
-            const found = items[items.findIndex(item => item.id == $('#serial_no').val())]
-            items.size && found ? existing = true : existing = false;
+            const found = items[items.findIndex(item => item.id == $('#ip_serial_no').val())]
+            items.length && found ? existing = true : existing = false;
 
             if (editing) {
                 const selectedItem = items[items.findIndex(item => item.id == currentId)];
-                selectedItem.id = $('#serial_no').val();
-                selectedItem.serial_no = $('#serial_no').val();
-                selectedItem.lifespan = $('#lifespan').val();
-                selectedItem.condition = $('#condition').val();
-                selectedItem.location = $('#location').val();
-                selectedItem.color = $('#color').val();
+                selectedItem.id = $('#ip_serial_no').val();
+                selectedItem.serial_no = $('#ip_serial_no').val();
+                selectedItem.lifespan = $('#ip_lifespan').val();
+                selectedItem.condition = $('#ip_condition').val();
+                selectedItem.location = $('#ip_location').val();
+                selectedItem.color = $('#ip_color').val();
             } else if (existing && !editing) {
                 alert('Serial number must be unique!');
             }
             else {
-                items.push(new Item($('#serial_no').val(), $('#serial_no').val(), $('#lifespan').val(),
-                    $('#condition').val(), $('#location').val(), $('#color').val()));
+                items.push(new Item($('#ip_serial_no').val(), $('#ip_serial_no').val(), $('#ip_lifespan').val(),
+                    $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val()));
             }
 
             loadItems();
@@ -48,7 +48,7 @@ $(document).ready(function () {
     });
 
     function loadItems() {
-        let tableBody = document.getElementById('serials-table-body');
+        let tableBody = document.getElementById('ip_serials-table-body');
         let color = '';
         tableBody.innerHTML = '';
         items.forEach(item => {
@@ -88,25 +88,25 @@ $(document).ready(function () {
     }
 
     function resetFields() {
-        $('#serial_no').val('');
-        $('#condition').val('Functional');
-        $('#lifespan').val('');
-        $('#location').val('');
-        $('#color').val('');
+        $('#ip_serial_no').val('');
+        $('#ip_condition').val('Functional');
+        $('#ip_lifespan').val('');
+        $('#ip_location').val('');
+        $('#ip_color').val('');
 
         editing = false;
-        $('#btn_serial').text('Add item');
-        $('#btn_cancel').addClass('d-none');
+        $('#ip_btn_serial').text('Add item');
+        $('#ip_btn_cancel').addClass('d-none');
     }
 
-    $(document).on('click', '#sumbit-reg', function () {
+    $(document).on('click', '#ip_sumbit-reg', function () {
         items.forEach(item => {
             let serial = `<input type="hidden" name="serials[]" value="${item.serial_no}">`;
             let condition = `<input type="hidden" name="conditions[]" value="${item.condition}">`;
             let lifespan = `<input type="hidden" name="lifespans[]" value="${item.lifespan}">`;
             let location = `<input type="hidden" name="locations[]" value="${item.location}">`;
             let color = `<input type="hidden" name="colors[]" value="${item.color}">`;
-            let serialInput = document.getElementById('serial_input');
+            let serialInput = document.getElementById('ip_serial_input');
             serialInput.innerHTML += serial;
             serialInput.innerHTML += condition;
             serialInput.innerHTML += lifespan;
@@ -143,20 +143,20 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.edit', function () {
-        $('#btn_cancel').removeClass('d-none');
-        $('#btn_serial').text('Save changes');
+        $('#ip_btn_cancel').removeClass('d-none');
+        $('#ip_btn_serial').text('Save changes');
         editing = true;
         currentId = $(this).val();
         const selectedItem = items[items.findIndex(item => item.id == currentId)];
 
-        $('#serial_no').val(selectedItem.serial_no);
-        $('#condition').val(selectedItem.condition);
-        $('#lifespan').val(selectedItem.lifespan);
-        $('#location').val(selectedItem.location);
-        $('#color').val(selectedItem.color);
+        $('#ip_serial_no').val(selectedItem.serial_no);
+        $('#ip_condition').val(selectedItem.condition);
+        $('#ip_lifespan').val(selectedItem.lifespan);
+        $('#ip_location').val(selectedItem.location);
+        $('#ip_color').val(selectedItem.color);
     });
 
-    $(document).on('click', '#btn_cancel', function () {
+    $(document).on('click', '#ip_btn_cancel', function () {
         resetFields();
     });
 

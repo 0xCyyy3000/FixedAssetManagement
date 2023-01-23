@@ -78,7 +78,9 @@
                             <div id="collapseOne"
                                 class="accordion-collapse collapse @if (Request::routeIs('purchase.request') ||
                                         Request::routeIs('repair.request') ||
-                                        Request::routeIs('replace.request') ||
+                                        (Request::routeIs('replace.request') ||
+                                            Request::routeIs('replace.select') ||
+                                            Request::routeIs('replace.create')) ||
                                         Request::routeIs('return.request')) show @endif"
                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body pt-0 pb-0">
@@ -97,7 +99,7 @@
                                                 Repair
                                             </a>
                                         </li>
-                                        <li class=" list-group @if (Request::routeIs('replace.request')) active @endif">
+                                        <li class=" list-group @if (Request::routeIs('replace.request') || Request::routeIs('replace.select') || Request::routeIs('replace.create')) active @endif">
                                             <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('replace.request') }}">
                                                 <span class="material-icons-outlined me-2">find_replace</span>
