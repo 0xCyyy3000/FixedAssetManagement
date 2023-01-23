@@ -12,6 +12,7 @@ use App\Http\Controllers\ReplaceRequestController;
 use App\Http\Controllers\ReturnRequestController;
 use App\Http\Controllers\SerialNumberController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use App\Models\Transaction;;
 
 use Illuminate\Support\Facades\Auth;
@@ -100,6 +101,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/serial'], function () {
 });
 // Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 
+Route::get('/profile',[UserController::class,'index'])->name('profile');
+Route::put('profile.update',[UserController::class,'update'])->name('profile.update');
 
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');

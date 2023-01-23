@@ -195,7 +195,7 @@
                     <span class="material-icons-outlined me-2">work_history</span>
                     Transaction History
                 </a>
-                <a href="#"
+                <a href="{{ route('profile') }}"
                     class="text-black fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 {{ Request::routeIs('settings') ? 'active' : '' }}">
                     <span class="material-icons-outlined me-2">settings</span>
                     Settings
