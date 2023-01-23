@@ -15,9 +15,10 @@
                             <tbody>
                                 @foreach ($items as $item)
                                     <tr>
-                                        <a href="{{ route('repair.request') }}"><td>{{ $item->content }}</td></a>
-                                        <td>{{ $item->created_at->formatLocalized('%A / %B %d %Y')}}</td>
-
+                                        <a href="{{ route('repair.request') }}">
+                                            <td>{{ $item->content }}</td>
+                                        </a>
+                                        <td>{{ $item->created_at }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
