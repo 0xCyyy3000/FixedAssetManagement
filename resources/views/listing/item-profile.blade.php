@@ -111,32 +111,32 @@
                     </div>
                     <div class="row w-75 m-auto">
                         <div class="mb-2 col-6">
-                            <label for="serial_no" class="form-label">Serial</label>
-                            <input type="text" class="form-control" id="serial_no">
+                            <label for="ip_serial_no" class="form-label">Serial</label>
+                            <input type="text" class="form-control" id="ip_serial_no">
                         </div>
                         <div class="mb-2 col-6">
-                            <label for="lifespan" class="form-label">Lifespan</label>
-                            <input type="text" class="form-control" id="lifespan">
+                            <label for="ip_lifespan" class="form-label">Lifespan</label>
+                            <input type="text" class="form-control" id="ip_lifespan">
                         </div>
                         <div class="mb-2 col-6">
-                            <label for="location" class="form-label">Location</label>
-                            <input type="text" class="form-control" id="location">
+                            <label for="ip_location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="ip_location">
                         </div>
                         <div class="mb-3 col-6">
-                            <label for="condition" class="form-label">Condition</label>
-                            <select class="form-select" aria-label="Default select example" id="condition">
+                            <label for="ip_condition" class="form-label">Condition</label>
+                            <select class="form-select" aria-label="Default select example" id="ip_condition">
                                 <option value="Functional">Functional</option>
                                 <option value="Non-Functional">Non-Functional</option>
                             </select>
                         </div>
                         <div class="mb-3 col-6">
-                            <label for="color" class="form-label">Color</label>
-                            <input type="text" class="form-control" id="color">
+                            <label for="ip_color" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="ip_color">
                         </div>
                         <div class="col-12">
-                            <button class="btn my-btn-primary w-100" type="button" id="btn_serial">Add item</button>
+                            <button class="btn my-btn-primary w-100" type="button" id="ip_btn_serial">Add item</button>
                             <button class="btn bg-transparent w-100 mt-2 my-danger d-none" type="button"
-                                id="btn_cancel">
+                                id="ip_btn_cancel">
                                 Cancel
                             </button>
                         </div>
@@ -150,7 +150,7 @@
                                     <th scope="col">Color</th>
                                     <th scope="col">Action</th>
                                 </thead>
-                                <tbody id="serials-table-body"></tbody>
+                                <tbody id="ip_serials-table-body"></tbody>
                             </table>
                         </div>
                     </div>
@@ -162,9 +162,9 @@
                         </div>
                     </div>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn my-btn-primary me-md-2" type="submit" id="sumbit-reg">Submit form</button>
+                        <button class="btn my-btn-primary me-md-2" type="submit" id="ip_sumbit-reg">Submit form</button>
                     </div>
-                    <div id="serial_input"></div>
+                    <div id="ip_serial_input"></div>
                 </form>
             </div>
         </div>

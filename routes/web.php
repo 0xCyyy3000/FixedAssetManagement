@@ -56,6 +56,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/replace-request'], function 
     Route::get('/create', [ReplaceRequestController::class, 'create'])->name('replace.create');
     Route::post('/store', [ReplaceRequestController::class, 'store'])->name('replace.store');
     Route::post('/destroy', [ReplaceRequestController::class, 'destroy'])->name('replace.destroy');
+    Route::post('/update', [ReplaceRequestController::class, 'update'])->name('replace.update');
+    Route::get('/select', [ReplaceRequestController::class, 'select'])->name('replace.select');
 });
 
 // For Repair Request Routes

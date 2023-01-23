@@ -27,8 +27,7 @@
                         </div>
                         <div class="mb-3 col-4">
                             <label for="replace_date" class="form-label">Date</label>
-                            <input type="date" class="form-control" id="replace_date" name="date"
-                                value="<?php echo date('Y-m-d'); ?>">
+                            <p type="text" class="form-control"><?php echo date('Y-m-d'); ?></p>
                         </div>
                     </div>
                     <div class="row w-75 m-auto mb-3">
@@ -49,34 +48,33 @@
                         <table class="table mb-3">
                             <thead class="table-light">
                                 <tr>
-                                    <th scope="col">Serial No.</th>
                                     <th scope="col">Item</th>
+                                    <th scope="col">Serial No.</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Remarks</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Total</th>
+                                    <th scope="col">Cost</th>
                                 </tr>
                             </thead>
-                            <tbody id="items-table-body"></tbody>
+                            <tbody id="replace-items-table-body"></tbody>
                         </table>
-                        <h4 class="text-end d-none" id="items-total">Total: ₱</h4>
+                        <h4 class="text-end d-none" id="replace-items-total"></h4>
                     </div>
                     <div class="row p-3">
                         <label for="note" class="form-label ps-0">Purpose</label>
                         <textarea name="note" id="note" class="w-100 p-2 rounded m-auto"></textarea>
                     </div>
-                    <div class="row p-3 w-25">
+                    {{-- <div class="row p-3 w-25">
                         <label for="status" class="form-label ps-0">Status</label>
                         <select class="form-select" id="status">
                             <option value="Pending">Pending</option>
                             <option value="Approved">Approved</option>
                             <option value="Rejected">Rejected</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="d-flex p-3 justify-content-end gap-2">
-                        <input type="hidden" id="token" value="{{ csrf_token() }}">
-                        <button type="button" class="btn my-btn-primary" id="submit-replace">Submit Form</button>
+                        <input type="hidden" id="replace_token" value="{{ csrf_token() }}">
                         <a href="{{ route('replace.request') }}" class="btn btn-secondary">Cancel</a>
+                        <button type="button" class="btn my-btn-primary" id="submit-replace">Submit request</button>
                     </div>
                 </div>
             </div>
@@ -85,44 +83,46 @@
 
     <div class="modal fade" id="repair_request_item" tabindex="-1" aria-labelledby="repair_request_itemLabel"
         aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="repair_request_itemLabel">Adding Item</h5>
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fs-4" id="repair_request_itemLabel">Item form</h5>
                     <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="serial_no" class="form-label">Serial No.</label>
-                            <input type="text" id="serial_no" class="form-control" name="serial_no">
-                        </div>
-                        <div class="mb-3">
+                    <div class="card-body row">
+                        <div class="mb-3 col-6">
                             <label for="item" class="form-label">Item</label>
-                            <input type="text" class="form-control" id="item" name="item">
+                            <select class="form-select" id="replace_item" name="item">
+                                <option value=""></option>
+                                @foreach ($items as $item)
+                                    <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="serial_no" class="form-label">Serial No.</label>
+                            <select id="replace_serial_no" class="form-select" name="serial_no">
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="description" name="description">
+                            <input type="text" class="form-control" id="replace_description" name="description">
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-3 col-6">
                             <label for="remarks" class="form-label">Remarks</label>
-                            <input type="text" class="form-control" id="remarks" name="remarks">
+                            <input type="text" class="form-control" id="replace_remarks" name="remarks">
                         </div>
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="number" class="form-control" id="price" name="price">
-                        </div>
-                        <div class="mb-3">
-                            <label for="total" class="form-label">Total</label>
-                            <input type="number" class="form-control" id="total" name="total" readonly>
+                        <div class="mb-3 col-6">
+                            <label for="cost" class="form-label">Cost</label>
+                            <input type="number" class="form-control" id="replace_cost" name="cost" value="0">
                         </div>
                         <div class="d-flex justify-content-end gap-2">
-                            <button class="btn my-btn-primary text-white" id="submit_item" type="button">
-                                Submit item
-                            </button>
                             <button class="btn btn-secondary" data-dismiss="modal" id="cancel" type="button">
                                 Cancel
+                            </button>
+                            <button class="btn my-btn-primary text-white" id="add-item-replace" type="button">
+                                Submit item
                             </button>
                         </div>
                     </div>
