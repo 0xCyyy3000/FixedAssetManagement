@@ -12,10 +12,10 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('settings', ['user'=>$user]);
+        return view('settings', ['user' => $user]);
     }
 
-    public function update(User $user, Request $request)
+    public function update(Request $request)
     {
         if ($request->hasFile('photo')) {
             $thumbnail = $request->file('photo')->store('photos', 'public');
@@ -23,12 +23,11 @@ class UserController extends Controller
                 'photo' => $thumbnail
             ]);
         }
-        $user->update([
+        User::where('id', Auth::user()->id)->update([
             'name' => $request->name,
             'email' => $request->email,
         ]);
 
-    
-        return redirect('/profile')->with('status', 'Profile updated!');
+        return back()->with('alert', 'Profile updated!');
     }
-} 
+}
