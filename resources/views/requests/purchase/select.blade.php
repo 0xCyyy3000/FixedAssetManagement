@@ -7,23 +7,23 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item fs-5 text-decoration-underline"><a
-                                    href="{{ route('purchase.request') }}">Purchase Requests</a></li>
+                                    href="{{ route('repair.request') }}">Repair Requests</a></li>
                             <li class="breadcrumb-item fs-5" aria-current="page">See details</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="row p-3">
                     <div class="row mb-4">
-                        <h3 class="text-center fw-semibold">Purchase Request Form</h3>
+                        <h3 class="text-center fw-semibold">Repair Request Form</h3>
                         <small class="text-center text-muted">{{ $request->transaction_no }}</small>
                     </div>
                     <div class="row w-75 m-auto">
                         <div class="mb-3 col-4">
-                            <label for="purchase_date" class="form-label">Submitted on</label>
+                            <label for="repair_date" class="form-label">Submitted on</label>
                             <p class="text-muted fw-bold"> {{ $request->created_at }}</p>
                         </div>
                         <div class="mb-3 col-4">
-                            <label for="purchase_date" class="form-label">Requested by</label>
+                            <label for="repair_date" class="form-label">Requested by</label>
                             <p class="text-muted fw-bold">{{ Auth::user()->requester($request->requester)->name }}</p>
                         </div>
                         <div class="mb-3 col-4">
@@ -54,7 +54,7 @@
                                     <th scope="col">Cost</th>
                                 </tr>
                             </thead>
-                            <tbody id="purchase-items-table-body">
+                            <tbody id="repair-items-table-body">
                                 @foreach ($serials as $serial)
                                     <tr>
                                         <td>{{ $serial->title }}</td>
@@ -66,7 +66,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <h4 class="text-end d-none" id="purchase-items-total"></h4>
+                        <h4 class="text-end d-none" id="repair-items-total"></h4>
                     </div>
                     <div class="row p-3">
                         <label for="note" class="form-label ps-0">Purpose</label>
@@ -74,7 +74,7 @@
                             {{ $request->purpose }}
                         </textarea>
                     </div>
-                    <form action="{{ route('purchase.update') }}" method="post">
+                    <form action="{{ route('repair.update') }}" method="post">
                         @csrf
                         <div class="row p-3 w-25">
                             <label for="status" class="form-label ps-0">Status</label>
@@ -85,8 +85,8 @@
                             </select>
                         </div>
                         <div class="d-flex p-3 justify-content-end gap-2">
-                            <input type="hidden" id="purchase_token" value="{{ csrf_token() }}">
-                            <a href="{{ route('purchase.request') }}" class="btn btn-secondary">Cancel</a>
+                            <input type="hidden" id="repair_token" value="{{ csrf_token() }}">
+                            <a href="{{ route('repair.request') }}" class="btn btn-secondary">Cancel</a>
                             <button type="submit" class="btn my-btn-primary" name="id"
                                 value="{{ $request->id }}">Save changes</button>
                         </div>
