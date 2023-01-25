@@ -9,7 +9,15 @@
                 <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @elseif (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
                     <div class="container text-center"> 
                     <div class="text-center w-80 m-auto mb-3">
                         <img class="my-bg-secondary rounded-4" id="preview-thumbnail"
@@ -36,10 +44,8 @@
                             value="{{ $user->email }}">
                           </div>
                         </div>
-                        <div class="d-grid gap-2 col-2 mx-auto ">
-                            <button class="btn my-btn-primary mb-3 " type="submit">Save Edit</button>
-                        </div>
                       </div>
+                      
                     {{-- <div class="card-body">
 
                         
@@ -66,6 +72,43 @@
                             <button class="btn my-btn-primary mb-3 " type="submit">Save Edit</button>
                         </div>
                     </div> --}}
+
+                        <div class="card-body">
+                          
+
+                            <div class="row align-items-center w-75 m-auto mb-3">
+                                <div class="d-grid gap-2 col-5 mx-auto">
+                                <label for="oldPasswordInput" class="form-label">Old Password</label>
+                                <input name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" id="oldPasswordInput"
+                                    placeholder="Old Password">
+                                @error('old_password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            </div>
+                            <div class="d-grid gap-2 col-5 mx-auto">
+                            <div class="row align-items-center w-75 m-auto mb-3">
+                                <label for="newPasswordInput" class="form-label">New Password</label>
+                                <input name="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" id="newPasswordInput"
+                                    placeholder="New Password">
+                                @error('new_password')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 col-5 mx-auto">
+                            <div class="row align-items-center w-75 m-auto mb-3">
+                                <label for="confirmNewPasswordInput" class="form-label">Confirm New Password</label>
+                                <input name="new_password_confirmation" type="password" class="form-control" id="confirmNewPasswordInput"
+                                    placeholder="Confirm New Password">
+                            </div>
+                        </div>
+
+                        </div>
+
+                        <div class="card-footer text-center">
+                            <button class="btn btn-success">Update</button>
+                        </div>
                 </form>
             </div>
         </div>

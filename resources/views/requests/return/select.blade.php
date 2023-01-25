@@ -90,7 +90,7 @@
                             <a href="{{ route('return.request') }}" class="btn btn-secondary">Cancel</a>
                             <button type="submit" class="btn my-btn-primary" name="id"
                                 value="{{ $request->id }}">Save changes</button>
-                            <a href="{{ route('viewPdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1"  target="_blank">Download PDF</a>
+                            <a href="{{ route('viewPdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1"  target="_blank">View PDF</a>
                             <a href="{{ route('downloadPdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1">Download PDF</a>
                         </div>
                     </form>
