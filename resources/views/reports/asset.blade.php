@@ -24,12 +24,30 @@
         table{
             margin-left: auto;
             margin-right: auto;
+            margin-top: 0;
+        }
+        .margin{
+            margin-top: 0;
+            margin-bottom: 0;
+
+        }
+        .margin1{
+            margin-top: 0;
+            margin-bottom: 0;
+            text-align: center;
+            margin-left: 0;
         }
         </style>
 </head>
 <body>
+    <img src="{{ asset('imgs/BFP Logo.png') }}" style="float:left;width:100px;height:100px;">
+    <h1 class="margin1">Republic of the Ph</h1>
+    <h1 class="margin1"> Dept of interior and local governance </h1>
+    <h1 class="margin1"> Bureau of Fire Protection</h1>
     <hr>
-    <h1>Asset Inventory</h1>
+    <h1 class="margin">Fixed Asset Inventory</h1>
+    <p class="margin">{{ \Carbon\Carbon::now()->format('d-m-Y')}}</p>
+    <hr style="width:50%;text-align:left;margin-left">
     <table >
         <thead >
             <th scope="col"> </th>
@@ -64,10 +82,6 @@
                     <td >{{ $items->lifespan}}</td>
                 </tr>
             @endforeach
-            
-           
-
-            
         </tbody>
     </table>             
 </html>

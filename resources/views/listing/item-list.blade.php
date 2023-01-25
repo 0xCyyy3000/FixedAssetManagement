@@ -6,6 +6,8 @@
                 <div class="card">
                     <div class="card-header">
                         <h5 class="m-auto p-2">Item profiles</h5>
+                        <a href="{{ route('view')}}"class="btn btn-primary btn-sm float-end mx-1">Download PDF</a>
+                        <a href="{{ route('viewonly')}}"class="btn btn-primary btn-sm float-end mx-1" target="_blank">View PDF</a>
                     </div>
                     <div class="card-body">
                         <table class="table">
