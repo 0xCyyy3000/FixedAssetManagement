@@ -77,22 +77,29 @@
                             </h2>
                             <div id="collapseOne"
                                 class="accordion-collapse collapse @if (Request::routeIs('purchase.request') ||
-                                        Request::routeIs('repair.request') ||
-                                        (Request::routeIs('replace.request') ||
-                                            Request::routeIs('replace.select') ||
-                                            Request::routeIs('replace.create')) ||
-                                        Request::routeIs('return.request')) show @endif"
+                                Request::routeIs('purchase.index') ||
+                                Request::routeIs('purchase.create') ||
+                                Request::routeIs('purchase.select') ||
+                                Request::routeIs('repair.request') ||
+                                Request::routeIs('repair.create') ||
+                                Request::routeIs('repair.index') ||
+                                (Request::routeIs('replace.request') ||
+                                    Request::routeIs('replace.select') ||
+                                    Request::routeIs('replace.create')) ||
+                                Request::routeIs('return.request') ||
+                                Request::routeIs('return.select') ||
+                                Request::routeIs('return.create')) show @endif"
                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body pt-0 pb-0">
                                     <ul class=" list-group pt-2">
-                                        <li class=" list-group @if (Request::routeIs('purchase.request')) active @endif">
+                                        <li class=" list-group @if (Request::routeIs('purchase.request') || Request::routeIs('purchase.select') || Request::routeIs('purchase.create')) active @endif">
                                             <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('purchase.request') }}">
                                                 <span class="material-icons-outlined me-2">shopping_cart</span>
                                                 Purchase
                                             </a>
                                         </li>
-                                        <li class=" list-group @if (Request::routeIs('repair.request')) active @endif">
+                                        <li class=" list-group @if (Request::routeIs('repair.request') || Request::routeIs('repair.select') || Request::routeIs('repair.create')) active @endif">
                                             <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('repair.request') }}">
                                                 <span class="material-icons-outlined me-2">build</span>
@@ -106,7 +113,7 @@
                                                 Replace
                                             </a>
                                         </li>
-                                        <li class="list-group @if (Request::routeIs('return.request')) active @endif">
+                                        <li class="list-group @if (Request::routeIs('return.request') || Request::routeIs('return.select') || Request::routeIs('return.create')) active @endif">
                                             <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('return.request') }}">
                                                 <span class="material-icons-outlined me-2">assignment_return</span>

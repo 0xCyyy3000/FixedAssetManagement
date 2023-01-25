@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\items;
+use App\Models\ItemProfile;
 use App\Models\Transaction;
-use function Ramsey\Uuid\v1;
 
+use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use App\Models\RepairRequest;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,8 @@ class RepairRequestController extends Controller
 
     public function create()
     {
-        return view('requests.repair.create');
+        $items = ItemProfile::get(['id', 'title']);
+        return view('requests.repair.create', ['items' => $items]);
     }
 
     public function store(Request $request)
@@ -31,8 +33,10 @@ class RepairRequestController extends Controller
         $newRequest = RepairRequest::create([
             'transaction_no' => $newTransaction->id,
             'office_section' => $request->section,
+            'fund_cluster' => $request->fund_cluster,
             'amount' => $request->amount,
-            'status' => $request->status
+            'status' => 'Pending',
+            'requester' => Auth::user()->id
         ]);
 
         if ($newRequest) {
@@ -40,17 +44,11 @@ class RepairRequestController extends Controller
                 items::create([
                     'reference_no' => $newRequest->id,
                     'serial_no' => $item['serial_no'],
-                    'item' => $item['item'],
                     'description' => $item['description'],
-                    'qty' => $item['quantity'],
-                    'unit' => $item['unit'],
-                    'price' => $item['price'],
-                    'total' => $item['total'],
+                    'cost' => $item['cost'],
                     'remarks' => $item['remarks']
                 ]);
             }
-
-            // return redirect()->route('replace.request');
             return response()->json(['status' => 200]);
         }
     }
@@ -60,6 +58,30 @@ class RepairRequestController extends Controller
         // dd($request->all());
         items::where('reference_no', $request->reference)->delete();
         RepairRequest::where('id', $request->reference)->delete();
-        return back();
+        return back()->with('alert', 'Request has been deleted!');
+    }
+
+    public function select(Request $request)
+    {
+        $repairRequest = RepairRequest::find($request->id);
+        $serials = items::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items.serial_no')
+            ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
+            ->where('items.reference_no', $request->id)
+            ->get(['items.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
+
+        return view('requests.repair.select', ['request' => $repairRequest, 'serials' => $serials]);
+    }
+
+    public function update(Request $request)
+    {
+        // dd($request->all());
+        $updated = RepairRequest    ::where('id', $request->id)->update([
+            'status' => $request->status
+        ]);
+
+        if ($updated) {
+            return back()->with('alert', 'Request has been updated!');
+        } else
+            return back()->with('alert', 'There was an error, try again.');
     }
 }

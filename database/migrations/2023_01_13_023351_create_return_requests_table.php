@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('return_requests', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('requester')->constrained('users');
             $table->string('transaction_no');
             $table->string('office_section');
+            $table->string('fund_cluster');
             $table->double('amount');
             $table->string('status');
             $table->timestamps();

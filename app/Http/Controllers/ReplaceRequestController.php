@@ -31,8 +31,9 @@ class ReplaceRequestController extends Controller
         $newRequest = ReplaceRequest::create([
             'transaction_no' => $newTransaction->id,
             'office_section' => $request->section,
+            'fund_cluster' => $request->fund_cluster,
             'amount' => $request->amount,
-            'status' => $request->status,
+            'status' => 'Pending',
             'requester' => Auth::user()->id
         ]);
 
