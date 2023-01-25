@@ -9,6 +9,7 @@ use App\Http\Controllers\ListingItem;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\RepairRequestController;
 use App\Http\Controllers\ReplaceRequestController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\ReturnRequestController;
 use App\Http\Controllers\SerialNumberController;
 use App\Http\Controllers\TransactionController;
@@ -90,6 +91,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/return-request'], function (
     Route::post('/destroy', [ReturnRequestController::class, 'destroy'])->name('return.destroy');
     Route::post('/update', [ReturnRequestController::class, 'update'])->name('return.update');
     Route::get('/select', [ReturnRequestController::class, 'select'])->name('return.select');
+    Route::get('/viewPdf', [ReturnRequestController::class, 'viewPdf'])->name('viewPdf');
+    Route::get('/downloadPdf', [ReturnRequestController::class, 'download'])->name('downloadPdf');
 });
 
 
@@ -110,8 +113,23 @@ Route::group(['middleware' => 'auth', 'prefix' => '/serial'], function () {
 });
 // Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 
+
+
 Route::get('/profile',[UserController::class,'index'])->name('profile');
 Route::put('profile.update',[UserController::class,'update'])->name('profile.update');
+Route::put('profile.updatepass',[UserController::class,'updatepass'])->name('profile.updatepass');
+
+
+
+
+Route::get('/view', [ReportsController::class, 'download'])->name('view');
+Route::get('/viewonly', [ReportsController::class, 'view'])->name('viewonly');
+Route::get('/reporest', [ReportsController::class, 'index'])->name('reports.buttons');
+
+
+
+
+
 
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');

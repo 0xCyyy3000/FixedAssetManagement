@@ -30,4 +30,14 @@ class UserController extends Controller
 
         return back()->with('alert', 'Profile updated!');
     }
+    public function updatepass(Request $request)
+    {
+        
+        $formFields = $request->validate([
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        User::where('id', $request->id)->update($formFields);
+        return back()->with('alert', 'Changes has been saved!');
+    }
 }
