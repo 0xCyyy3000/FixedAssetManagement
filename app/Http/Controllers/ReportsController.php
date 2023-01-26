@@ -18,7 +18,10 @@ class ReportsController extends Controller
 {
     //
     public function index(){
-        return view('reports.buttons');
+        $data=ItemProfile::join('serial_numbers','serial_numbers.reference_no', '=', 'item_profiles.id')
+        ->get(['item_profiles.inventory_number','item_profiles.title','item_profiles.description','item_profiles.classification','item_profiles.purchase_date','item_profiles.purchase_price','serial_numbers.serial_no','serial_numbers.condition','serial_numbers.color','serial_numbers.lifespan','serial_numbers.location',]);
+
+        return view('reports.buttons', compact('data'));
     }
     public function download()
     {

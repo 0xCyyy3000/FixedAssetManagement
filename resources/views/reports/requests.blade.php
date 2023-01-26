@@ -9,7 +9,6 @@
 
     <style>
         table, th, td {
-         border: 1px solid white;
          border-collapse: collapse;
          border: 1px solid black;
          
@@ -23,8 +22,8 @@
          }
          td{
              text-align:center;
-             width:100px;
-             height:100px;
+             width:120px;
+             height:50px;
          }
          table{
              margin-left: auto;

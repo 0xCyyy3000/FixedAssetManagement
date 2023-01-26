@@ -8,12 +8,11 @@
 
     <style>
        table, th, td {
-        border: 1px solid white;
+        border: 2px solid rgb(0, 0, 0);
         border-collapse: collapse;
         
         }
         th, td {
-        background-color: #96D4D4;
        
         }
         td{
@@ -40,17 +39,16 @@
         </style>
 </head>
 <body>
-    <img src="{{ asset('imgs/BFP Logo.png') }}" style="float:left;width:100px;height:100px;">
-    <h1 class="margin1">Republic of the Ph</h1>
-    <h1 class="margin1"> Dept of interior and local governance </h1>
+    <h1 class="margin1">Republic of the Philippines</h1>
+    <h1 class="margin1"> Deptartment of interior and local governance </h1>
     <h1 class="margin1"> Bureau of Fire Protection</h1>
     <hr>
     <h1 class="margin">Fixed Asset Inventory</h1>
     <p class="margin">{{ \Carbon\Carbon::now()->format('d-m-Y')}}</p>
-    <hr style="width:50%;text-align:left;margin-left">
+    <hr>
     <table >
         <thead >
-            <th scope="col"> </th>
+            <th scope="col">No.</th>
             <th scope="col">Inventory Number</th>
             <th scope="col">Asset</th>
             <th scope="col">Model</th>
