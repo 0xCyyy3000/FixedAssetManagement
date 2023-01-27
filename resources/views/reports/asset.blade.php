@@ -40,7 +40,7 @@
 </head>
 <body>
     <h1 class="margin1">Republic of the Philippines</h1>
-    <h1 class="margin1"> Deptartment of interior and local governance </h1>
+    <h1 class="margin1"> Deptartment of interior and local Government </h1>
     <h1 class="margin1"> Bureau of Fire Protection</h1>
     <hr>
     <h1 class="margin">Fixed Asset Inventory</h1>

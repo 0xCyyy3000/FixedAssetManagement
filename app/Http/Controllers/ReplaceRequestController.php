@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ItemProfile;
 use App\Models\items;
+use App\Models\ItemsReplace;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\ReplaceRequest;
@@ -39,7 +40,7 @@ class ReplaceRequestController extends Controller
 
         if ($newRequest) {
             foreach ($request->items as $item) {
-                items::create([
+                ItemsReplace::create([
                     'reference_no' => $newRequest->id,
                     'serial_no' => $item['serial_no'],
                     'description' => $item['description'],
@@ -54,7 +55,7 @@ class ReplaceRequestController extends Controller
     public function destroy(Request $request)
     {
         // dd($request->all());
-        items::where('reference_no', $request->reference)->delete();
+        ItemsReplace::where('reference_no', $request->reference)->delete();
         ReplaceRequest::where('id', $request->reference)->delete();
         return back()->with('alert', 'Request has been deleted!');
     }
@@ -62,10 +63,10 @@ class ReplaceRequestController extends Controller
     public function select(Request $request)
     {
         $replaceRequest = ReplaceRequest::find($request->id);
-        $serials = items::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items.serial_no')
+        $serials = ItemsReplace::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_replaces.serial_no')
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
-            ->where('items.reference_no', $request->id)
-            ->get(['items.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
+            ->where('items_replaces.reference_no', $request->id)
+            ->get(['items_replaces.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
 
         return view('requests.replace.select', ['request' => $replaceRequest, 'serials' => $serials]);
     }

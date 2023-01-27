@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ItemsRepair;
+use App\Models\ItemsReturn;
+use App\Models\ItemsReplace;
 use App\Models\SerialNumber;
 use Illuminate\Http\Request;
 
@@ -66,7 +69,26 @@ class SerialNumberController extends Controller
 
     public function indexSub(Request $request)
     {
-        $serials = SerialNumber::where('reference_no', $request->reference_no)->get(['id', 'serial_no']);
-        return response()->json($serials);
+       
+        $serials = SerialNumber::where('reference_no', $request->reference_no)
+        ->whereNotIn('serial_no',ItemsRepair::pluck('serial_no'))
+        ->whereNotIn('serial_no',ItemsReturn::pluck('serial_no'))
+        ->whereNotIn('serial_no',ItemsReplace::pluck('serial_no'))
+        ->get(['id', 'serial_no']);
+    
+    return response()->json(['serials' => $serials]);
+        
+        // $serials = SerialNumber::where('reference_no', $request->reference_no)->get(['id', 'serial_no']);
+        // return response()->json(['serials' => $serials]);
+    }
+
+    public function serial(Request $request)
+    {
+        $serial_no = $request->get('serial_no');
+        $repair_exists = ItemsRepair::where('serial_no', $serial_no)->exists();
+        $return_exist = ItemsReturn::where('serial_no', $serial_no)->exists();
+        $replace_exist = ItemsReplace::where('serial_no', $serial_no)->exists();
+        $exist= [ $repair_exists,$return_exist,$replace_exist];
+        return response()->json(['exists' => $exist]);
     }
 }

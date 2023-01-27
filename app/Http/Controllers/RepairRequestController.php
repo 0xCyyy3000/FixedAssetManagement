@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\items;
 use App\Models\ItemProfile;
+use App\Models\ItemsRepair;
 use App\Models\Transaction;
 
 use function Ramsey\Uuid\v1;
@@ -41,7 +42,7 @@ class RepairRequestController extends Controller
 
         if ($newRequest) {
             foreach ($request->items as $item) {
-                items::create([
+                ItemsRepair::create([
                     'reference_no' => $newRequest->id,
                     'serial_no' => $item['serial_no'],
                     'description' => $item['description'],
@@ -56,7 +57,7 @@ class RepairRequestController extends Controller
     public function destroy(Request $request)
     {
         // dd($request->all());
-        items::where('reference_no', $request->reference)->delete();
+        ItemsRepair::where('reference_no', $request->reference)->delete();
         RepairRequest::where('id', $request->reference)->delete();
         return back()->with('alert', 'Request has been deleted!');
     }
@@ -64,10 +65,10 @@ class RepairRequestController extends Controller
     public function select(Request $request)
     {
         $repairRequest = RepairRequest::find($request->id);
-        $serials = items::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items.serial_no')
+        $serials = ItemsRepair::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_repairs.serial_no')
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
-            ->where('items.reference_no', $request->id)
-            ->get(['items.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
+            ->where('items_repairs.reference_no', $request->id)
+            ->get(['items_repairs.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
 
         return view('requests.repair.select', ['request' => $repairRequest, 'serials' => $serials]);
     }

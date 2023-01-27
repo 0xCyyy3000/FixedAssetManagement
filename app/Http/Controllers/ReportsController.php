@@ -33,7 +33,7 @@ class ReportsController extends Controller
 
         $data=['data' => $item];
             $pdf = Pdf::loadView('reports.asset', $data);
-            return $pdf->download('return request.pdf');
+            return $pdf->download('Fixed Asset Inventory '.date("F j, Y").'.pdf');
         // return view('reports.asset', compact('item'));
     }
 

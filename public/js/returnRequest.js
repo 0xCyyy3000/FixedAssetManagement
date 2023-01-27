@@ -16,12 +16,12 @@ $(document).ready(function () {
     }
 
     let total = 0;
-    let items = [];
+    let items_returns = [];
 
     $(document).on('click', '#add-item-return', function (e) {
         e.preventDefault();
         // Adding the item to the items[] array
-        items.push(
+        items_returns.push(
             new Item(
                 $('#return_item option:selected').val(), $('#return_item option:selected').text(),
                 $('#return_serial_no option:selected').val(), $('#return_serial_no option:selected').text(),
@@ -36,24 +36,24 @@ $(document).ready(function () {
     });
 
     function loadItems() {
-        console.table(items);
+        console.table(items_returns);
         let tableBody = document.getElementById('return-items-table-body');
         tableBody.innerHTML = '';
         total = 0;
 
-        items.forEach(item => {
+        items_returns.forEach(items_returns => {
             let template = `
                 <tr>
-                    <td>${item.item}</td>
-                    <td>${item.serial_no}</td>
-                    <td>${item.description}</td>
-                    <td>${item.remarks}</td>
-                    <td>₱${item.cost}</td>
+                    <td>${items_returns.item}</td>
+                    <td>${items_returns.serial_no}</td>
+                    <td>${items_returns.description}</td>
+                    <td>${items_returns.remarks}</td>
+                    <td>₱${items_returns.cost}</td>
                 </tr>
             `;
-            total += parseInt(item.cost);
+            total += parseInt(items_returns.cost);
             tableBody.innerHTML += template;
-            console.table(item);
+            console.table(items_returns);
         });
 
         $('#return-items-total').removeClass('d-none');
@@ -69,38 +69,58 @@ $(document).ready(function () {
     }
 
     // Cascading Select options
+    // $(document).on('change', '#return_item', function () {
+    //     // Terminating request if no selected item
+    //     if ($(this).val() == '') {
+    //         $('#return_serial_no').empty().append('<option></option>');
+    //         return;
+    //     }
+
     $(document).on('change', '#return_item', function () {
         // Terminating request if no selected item
         if ($(this).val() == '') {
             $('#return_serial_no').empty().append('<option></option>');
             return;
         }
-
+    
         $.ajax({
             url: '/api/serials/index/',
             method: 'GET',
             data: {
                 reference_no: $(this).val()
             },
-            success: function (response) {
-                $('#return_serial_no').empty().append('<option></option>');
-                response.forEach(item => {
+            success: function(response) {
+                $.each(response.serials, function(index, item) {
                     let template = `<option value="${item.id}">${item.serial_no}</option>`;
                     $('#return_serial_no').append(template);
                 });
             }
         });
+    //     $.ajax({
+    //         url: '/api/serials/index/',
+    //         method: 'GET',
+    //         data: {
+    //             reference_no: $(this).val()
+    //         },
+    //         success: function (response) {
+    //             $('#return_serial_no').empty().append('<option></option>');
+    //             response.forEach(item => {
+    //                 let template = `<option value="${item.id}">${item.serial_no}</option>`;
+    //                 $('#return_serial_no').append(template);
+    //             });
+    //         }
+    //     });
     });
 
     $(document).on('click', '#submit-return', function () {
-        if (items.length) {
+        if (items_returns.length) {
             $.ajax({
                 url: '/return-request/store',
                 method: 'POST',
                 dataType: 'JSON',
                 data: {
                     _token: $('#return_token').val(),
-                    items: items,
+                    items: items_returns,
                     entity: $('#entity').val(),
                     fund_cluster: $('#fund_cluster').val(),
                     return_date: $('#return_date').val(),

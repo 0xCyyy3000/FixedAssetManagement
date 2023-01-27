@@ -9,8 +9,8 @@
                 </div>
                 <img src="{{ asset('imgs/BFP Logo.png') }}" style="float:left;width:100px;height:100px;">
                 <div class="text-center ">
-                    <h1 class="fs-4">Republic of the Ph</h1>
-                    <h1 class="fs-4"> Dept of interior and local governance </h1>
+                    <h1 class="fs-4">Republic of the Philippines</h1>
+                    <h1 class="fs-4"> Dept of interior and local Government </h1>
                     <h1 class="fs-4"> Bureau of Fire Protection</h1>
                 </div>
                 <hr>
