@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('return_requests', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('requester')->constrained('users');
-            $table->string('transaction_no');
-            $table->string('office_section');
-            $table->string('fund_cluster');
-            $table->double('amount');
-            $table->string('status');
+        Schema::create('items_replaces', function (Blueprint $table) {
+            $table->id('id');
+            $table->integer('reference_no');
+            $table->string('serial_no')->unique();
+            $table->string('description')->nullable();
+            $table->double('cost')->default(0);
+            $table->string('remarks');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('return_requests');
+        Schema::dropIfExists('items_replaces');
     }
 };

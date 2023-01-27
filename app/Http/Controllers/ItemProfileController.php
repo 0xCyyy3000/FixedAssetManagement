@@ -24,7 +24,7 @@ class ItemProfileController extends Controller
             $media3 = $request->file('media3')->store('photos', 'public');
         } else $imagePath = null;
 
-        $newTransaction = Transaction::create(['content' => 'New Item Profile added by ' . Auth::user()->name]);
+        $newTransaction = Transaction::create(['content' => 'New Asset added by ' . Auth::user()->name]);
         $newRequest = ItemProfile::create([
             'transaction_no' => $newTransaction->id,
             'purchase_date' => $request->purchase_date,
@@ -144,7 +144,7 @@ class ItemProfileController extends Controller
         ItemMedia::where('item_id', $request->id)->delete();
         SerialNumber::where('reference_no', $request->id)->delete();
         ItemProfile::where('id', $request->id)->delete();
-        return redirect()->route('item.list')->with('alert', 'Item profile has been deleted!');
+        return redirect()->route('item.list')->with('alert', 'Asset has been deleted!');
     }
 
 

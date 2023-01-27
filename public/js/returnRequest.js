@@ -4,26 +4,29 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(serial_no, item, description, remarks, price, total) {
-            this.serial_no = serial_no;
+        constructor(id, item, serial_id, serial_no, description, remarks, cost) {
+            this.id = id;
             this.item = item;
+            this.serial_id = serial_id;
+            this.serial_no = serial_no;
             this.description = description;
             this.remarks = remarks;
-            this.price = price;
-            this.total = total;
+            this.cost = cost;
         }
     }
 
     let total = 0;
-    let items = [];
-    $(document).on('click', '#submit_return', function (e) {
+    let items_returns = [];
+
+    $(document).on('click', '#add-item-return', function (e) {
         e.preventDefault();
         // Adding the item to the items[] array
-        items.push(
+        items_returns.push(
             new Item(
-                $('#serial_no').val(), $('#item').val(),
-                $('#description').val(), $('#remarks').val(),
-                $('#price').val(), $('#total').val()
+                $('#return_item option:selected').val(), $('#return_item option:selected').text(),
+                $('#return_serial_no option:selected').val(), $('#return_serial_no option:selected').text(),
+                $('#return_description').val(), $('#return_remarks').val(),
+                $('#return_cost').val()
             )
         );
 
@@ -33,67 +36,111 @@ $(document).ready(function () {
     });
 
     function loadItems() {
-        let tableBody = document.getElementById('items-table-body');
+        console.table(items_returns);
+        let tableBody = document.getElementById('return-items-table-body');
         tableBody.innerHTML = '';
         total = 0;
-        items.forEach(item => {
+
+        items_returns.forEach(items_returns => {
             let template = `
                 <tr>
-                    <td>${item.serial_no}</td>
-                    <td>${item.item}</td>
-                    <td>${item.description}</td>
-                    <td>${item.remarks}</td>
-                    <td>${item.price}</td>
-                    <td>${item.total}</td>
+                    <td>${items_returns.item}</td>
+                    <td>${items_returns.serial_no}</td>
+                    <td>${items_returns.description}</td>
+                    <td>${items_returns.remarks}</td>
+                    <td>₱${items_returns.cost}</td>
                 </tr>
             `;
-            total += parseInt(item.total);
+            total += parseInt(items_returns.cost);
             tableBody.innerHTML += template;
-            console.table(item);
+            console.table(items_returns);
         });
 
-        $('#items-total').removeClass('d-none');
-        $('#items-total').text('Total: ₱' + total);
-        $('#total-amount').val(total);
+        $('#return-items-total').removeClass('d-none');
+        $('#return-items-total').text('Total cost: ₱' + total);
     }
 
     function resetFields() {
-        $('#serial_no').val('');
-        $('#item').val('');
-        $('#description').val('');
-        $('#remarks').val('');
-        $('#price').val('');
-        $('#total-amount').val('')
+        $('#return_serial_no').val('');
+        $('#return_item').val('');
+        $('#return_description').val('');
+        $('#return_remarks').val('');
+        $('#return_cost').val('0');
     }
 
-    // Computing Total Amount on Price input
-    $(document).on('input', '#price', function () {
-        $('#total').val($('#price').val() * $(this).val())
+    // Cascading Select options
+    // $(document).on('change', '#return_item', function () {
+    //     // Terminating request if no selected item
+    //     if ($(this).val() == '') {
+    //         $('#return_serial_no').empty().append('<option></option>');
+    //         return;
+    //     }
+
+    $(document).on('change', '#return_item', function () {
+        // Terminating request if no selected item
+        if ($(this).val() == '') {
+            $('#return_serial_no').empty().append('<option></option>');
+            return;
+        }
+    
+        $.ajax({
+            url: '/api/serials/index/',
+            method: 'GET',
+            data: {
+                reference_no: $(this).val()
+            },
+            success: function(response) {
+                $.each(response.serials, function(index, item) {
+                    let template = `<option value="${item.id}">${item.serial_no}</option>`;
+                    $('#return_serial_no').append(template);
+                });
+            }
+        });
+    //     $.ajax({
+    //         url: '/api/serials/index/',
+    //         method: 'GET',
+    //         data: {
+    //             reference_no: $(this).val()
+    //         },
+    //         success: function (response) {
+    //             $('#return_serial_no').empty().append('<option></option>');
+    //             response.forEach(item => {
+    //                 let template = `<option value="${item.id}">${item.serial_no}</option>`;
+    //                 $('#return_serial_no').append(template);
+    //             });
+    //         }
+    //     });
     });
 
     $(document).on('click', '#submit-return', function () {
-        $.ajax({
-            url: '/return-request/store',
-            method: 'POST',
-            dataType: 'JSON',
-            data: {
-                _token: $('#token').val(),
-                items: items,
-                entity: $('#entity').val(),
-                fund_cluster: $('#fund_cluster').val(),
-                replace_date: $('#replace_date').val(),
-                section: $('#section').val(),
-                appendix_no: $('#appendix_no').val(),
-                note: $('#note').val(),
-                status: $('#status').val(),
-                amount: total
-            },
-            success: function (response) {
-                if (response.status == 200) {
-                    alert('Return Request has been submitted!');
-                    location.reload();
+        if (items_returns.length) {
+            $.ajax({
+                url: '/return-request/store',
+                method: 'POST',
+                dataType: 'JSON',
+                data: {
+                    _token: $('#return_token').val(),
+                    items: items_returns,
+                    entity: $('#entity').val(),
+                    fund_cluster: $('#fund_cluster').val(),
+                    return_date: $('#return_date').val(),
+                    section: $('#section').val(),
+                    appendix_no: $('#appendix_no').val(),
+                    note: $('#note').val(),
+                    status: $('#status').val(),
+                    amount: total
+                },
+                success: function (response) {
+                    if (response.status == 200) {
+                        alert('Return Request has been submitted!');
+                        location.reload();
+                    }
                 }
-            }
-        });
+            });
+        }
+    });
+
+    $(document).on('click', '#delete-return', function () {
+        $('#return_remove_id').val($(this).val());
     });
 });

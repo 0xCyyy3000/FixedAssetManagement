@@ -9,6 +9,7 @@ use App\Http\Controllers\ListingItem;
 use App\Http\Controllers\PurchaseRequestController;
 use App\Http\Controllers\RepairRequestController;
 use App\Http\Controllers\ReplaceRequestController;
+use App\Http\Controllers\ReportsController;
 use App\Http\Controllers\ReturnRequestController;
 use App\Http\Controllers\SerialNumberController;
 use App\Http\Controllers\TransactionController;
@@ -61,11 +62,13 @@ Route::group(['middleware' => 'auth', 'prefix' => '/replace-request'], function 
 });
 
 // For Repair Request Routes
-Route::group(['middlware' => 'auth', 'prefix' => '/repair-request'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => '/repair-request'], function () {
     Route::get('/', [RepairRequestController::class, 'index'])->name('repair.request');
     Route::get('/create', [RepairRequestController::class, 'create'])->name('repair.create');
     Route::post('/store', [RepairRequestController::class, 'store'])->name('repair.store');
     Route::post('/destroy', [RepairRequestController::class, 'destroy'])->name('repair.destroy');
+    Route::post('/update', [RepairRequestController::class, 'update'])->name('repair.update');
+    Route::get('/select', [RepairRequestController::class, 'select'])->name('repair.select');
 });
 
 
@@ -75,7 +78,10 @@ Route::group(['middleware' => 'auth', 'prefix' => '/purchase-request'], function
     Route::get('/create', [PurchaseRequestController::class, 'create'])->name('purchase.create');
     Route::post('/store', [PurchaseRequestController::class, 'store'])->name('purchase.store');
     Route::post('/destroy', [PurchaseRequestController::class, 'destroy'])->name('purchase.destroy');
+    Route::post('/update', [PurchaseRequestController::class, 'update'])->name('purchase.update');
+    Route::get('/select', [PurchaseRequestController::class, 'select'])->name('purchase.select');
 });
+
 
 // For return Request Routes
 Route::group(['middleware' => 'auth', 'prefix' => '/return-request'], function () {
@@ -83,6 +89,10 @@ Route::group(['middleware' => 'auth', 'prefix' => '/return-request'], function (
     Route::get('/create', [ReturnRequestController::class, 'create'])->name('return.create');
     Route::post('/store', [ReturnRequestController::class, 'store'])->name('return.store');
     Route::post('/destroy', [ReturnRequestController::class, 'destroy'])->name('return.destroy');
+    Route::post('/update', [ReturnRequestController::class, 'update'])->name('return.update');
+    Route::get('/select', [ReturnRequestController::class, 'select'])->name('return.select');
+    Route::get('/viewPdf', [ReturnRequestController::class, 'viewPdf'])->name('viewPdf');
+    Route::get('/downloadPdf', [ReturnRequestController::class, 'download'])->name('downloadPdf');
 });
 
 
@@ -103,8 +113,23 @@ Route::group(['middleware' => 'auth', 'prefix' => '/serial'], function () {
 });
 // Route::put('/ItemListEdit', [ItemProfileController::class, 'listEdit'])->name('itemstore');
 
+
+
 Route::get('/profile',[UserController::class,'index'])->name('profile');
 Route::put('profile.update',[UserController::class,'update'])->name('profile.update');
+Route::put('profile.updatepass',[UserController::class,'updatepass'])->name('profile.updatepass');
+
+
+
+
+Route::get('/view', [ReportsController::class, 'download'])->name('view');
+Route::get('/viewonly', [ReportsController::class, 'view'])->name('viewonly');
+Route::get('/reporest', [ReportsController::class, 'index'])->name('reports.buttons');
+
+
+
+
+
 
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');

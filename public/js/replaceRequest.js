@@ -16,12 +16,12 @@ $(document).ready(function () {
     }
 
     let total = 0;
-    let items = [];
+    let items_replaces = [];
 
     $(document).on('click', '#add-item-replace', function (e) {
         e.preventDefault();
         // Adding the item to the items[] array
-        items.push(
+        items_replaces.push(
             new Item(
                 $('#replace_item option:selected').val(), $('#replace_item option:selected').text(),
                 $('#replace_serial_no option:selected').val(), $('#replace_serial_no option:selected').text(),
@@ -36,24 +36,24 @@ $(document).ready(function () {
     });
 
     function loadItems() {
-        console.table(items);
+        console.table(items_replaces);
         let tableBody = document.getElementById('replace-items-table-body');
         tableBody.innerHTML = '';
         total = 0;
 
-        items.forEach(item => {
+        items_replaces.forEach(items_replaces => {
             let template = `
                 <tr>
-                    <td>${item.item}</td>
-                    <td>${item.serial_no}</td>
-                    <td>${item.description}</td>
-                    <td>${item.remarks}</td>
-                    <td>₱${item.cost}</td>
+                    <td>${items_replaces.item}</td>
+                    <td>${items_replaces.serial_no}</td>
+                    <td>${items_replaces.description}</td>
+                    <td>${items_replaces.remarks}</td>
+                    <td>₱${items_replaces.cost}</td>
                 </tr>
             `;
-            total += parseInt(item.cost);
+            total += parseInt(items_replaces.cost);
             tableBody.innerHTML += template;
-            console.table(item);
+            console.table(items_replaces);
         });
 
         $('#replace-items-total').removeClass('d-none');
@@ -69,38 +69,59 @@ $(document).ready(function () {
     }
 
     // Cascading Select options
+    // $(document).on('change', '#replace_item', function () {
+    //     // Terminating request if no selected item
+    //     if ($(this).val() == '') {
+    //         $('#replace_serial_no').empty().append('<option></option>');
+    //         return;
+    //     }
+
     $(document).on('change', '#replace_item', function () {
         // Terminating request if no selected item
         if ($(this).val() == '') {
             $('#replace_serial_no').empty().append('<option></option>');
             return;
         }
-
+    
         $.ajax({
             url: '/api/serials/index/',
             method: 'GET',
             data: {
                 reference_no: $(this).val()
             },
-            success: function (response) {
-                $('#replace_serial_no').empty().append('<option></option>');
-                response.forEach(item => {
+            success: function(response) {
+                $.each(response.serials, function(index, item) {
                     let template = `<option value="${item.id}">${item.serial_no}</option>`;
                     $('#replace_serial_no').append(template);
                 });
             }
         });
+
+        // $.ajax({
+        //     url: '/api/serials/index/',
+        //     method: 'GET',
+        //     data: {
+        //         reference_no: $(this).val()
+        //     },
+        //     success: function (response) {
+        //         $('#replace_serial_no').empty().append('<option></option>');
+        //         response.forEach(item => {
+        //             let template = `<option value="${item.id}">${item.serial_no}</option>`;
+        //             $('#replace_serial_no').append(template);
+        //         });
+        //     }
+        // });
     });
 
     $(document).on('click', '#submit-replace', function () {
-        if (items.length) {
+        if (items_replaces.length) {
             $.ajax({
                 url: '/replace-request/store',
                 method: 'POST',
                 dataType: 'JSON',
                 data: {
                     _token: $('#replace_token').val(),
-                    items: items,
+                    items: items_replaces,
                     entity: $('#entity').val(),
                     fund_cluster: $('#fund_cluster').val(),
                     replace_date: $('#replace_date').val(),
