@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\items;
 use App\Models\ItemProfile;
+use App\Models\PurchaseReqItems;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\PurchaseRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class PurchaseRequestController extends Controller
@@ -39,12 +41,13 @@ class PurchaseRequestController extends Controller
 
         if ($newRequest) {
             foreach ($request->items as $item) {
-                items::create([
-                    'reference_no' => $newRequest->id,
-                    'serial_no' => $item['serial_no'],
+                PurchaseReqItems::create([
+                    'purchase_req_id' => $newRequest->id,
+                    'item' => $item['item'],
                     'description' => $item['description'],
-                    'cost' => $item['cost'],
-                    'remarks' => $item['remarks']
+                    'price' => $item['price'],
+                    'qty' => $item['qty'],
+                    'total' => $item['total']
                 ]);
             }
             return response()->json(['status' => 200]);

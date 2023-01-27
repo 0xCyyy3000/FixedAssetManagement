@@ -49,10 +49,9 @@
                         <table class="table mb-3">
                             <thead class="table-light">
                                 <tr>
-                                    <th scope="col">Serial No.</th>
                                     <th scope="col">Item</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Remarks</th>
+                                    <th scope="col">Item description</th>
+                                    <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Total</th>
                                 </tr>
@@ -63,16 +62,16 @@
                     </div>
                     <div class="row p-3">
                         <label for="note" class="form-label ps-0">Note</label>
-                        <textarea name="note" id="note" class="w-100 p-2 rounded m-auto"></textarea>
+                        <textarea name="note" id="note" class="w-100 p-2 rounded m-auto" placeholder="Describe your purpose"></textarea>
                     </div>
-                    <div class="row p-3 w-25">
+                    {{-- <div class="row p-3 w-25">
                         <label for="status" class="form-label ps-0">Status</label>
                         <select class="form-select" id="status">
                             <option value="Pending">Pending</option>
                             <option value="Approved">Approved</option>
                             <option value="Rejected">Rejected</option>
                         </select>
-                    </div>
+                    </div> --}}
                     <div class="d-flex p-3 justify-content-end gap-2">
                         <input type="hidden" id="token" value="{{ csrf_token() }}">
                         <button type="button" class="btn my-btn-primary" id="submit-purchase">Submit Form</button>
@@ -94,20 +93,16 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="serial_no" class="form-label">Serial No.</label>
-                            <input type="text" id="serial_no" class="form-control" name="serial_no">
-                        </div>
-                        <div class="mb-3">
                             <label for="item" class="form-label">Item</label>
                             <input type="text" class="form-control" id="item" name="item">
                         </div>
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
+                            <label for="description" class="form-label">Item description</label>
                             <input type="text" class="form-control" id="description" name="description">
                         </div>
                         <div class="mb-3">
-                            <label for="remarks" class="form-label">Remarks</label>
-                            <input type="text" class="form-control" id="remarks" name="remarks">
+                            <label for="qty" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="qty" name="qty">
                         </div>
                         <div class="mb-3">
                             <label for="price" class="form-label">Price</label>

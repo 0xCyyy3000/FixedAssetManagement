@@ -4,11 +4,10 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(serial_no, item, description,  remarks, price, total) {
-            this.serial_no = serial_no;
+        constructor(item, description, qty, price, total) {
             this.item = item;
             this.description = description;
-            this.remarks = remarks;
+            this.qty = qty;
             this.price = price;
             this.total = total;
         }
@@ -21,9 +20,8 @@ $(document).ready(function () {
         // Adding the item to the items[] array
         items.push(
             new Item(
-                $('#serial_no').val(), $('#item').val(),
-                $('#description').val(), $('#remarks').val(),
-                $('#price').val(), $('#total').val()
+                $('#item').val(), $('#description').val(),
+                $('#qty').val(), $('#price').val(), $('#total').val()
             )
         );
 
@@ -39,12 +37,11 @@ $(document).ready(function () {
         items.forEach(item => {
             let template = `
                 <tr>
-                    <td>${item.serial_no}</td>
                     <td>${item.item}</td>
                     <td>${item.description}</td>
-                    <td>${item.remarks}</td>
-                    <td>${item.price}</td>
-                    <td>${item.total}</td>
+                    <td>${item.qty}x</td>
+                    <td>₱${item.price}</td>
+                    <td>₱${item.total}</td>
                 </tr>
             `;
             total += parseInt(item.total);
@@ -58,20 +55,26 @@ $(document).ready(function () {
     }
 
     function resetFields() {
-        $('#serial_no').val('');
         $('#item').val('');
         $('#description').val('');
-        $('#remarks').val('');
+        $('#qty').val('');
         $('#price').val('');
-        $('#total-amount').val('')
+        $('#total').val('')
     }
 
     // Computing Total Amount on Price input
     $(document).on('input', '#price', function () {
-        $('#total').val($('#price').val() * $(this).val())
+        if ($('#qty').val())
+            $('#total').val($(this).val() * $('#qty').val());
     });
 
-    $(document).on('click', '#sumbit-purchase', function () {
+    $(document).on('input', '#qty', function () {
+        if ($('#price').val())
+            $('#total').val($('#price').val() * $(this).val());
+    });
+
+    $(document).on('click', '#submit-purchase', function () {
+        console.log('hi this is purchase request!');
         $.ajax({
             url: '/purchase-request/store',
             method: 'POST',

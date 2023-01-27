@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->id('id');
-            $table->integer('reference_no');
-            $table->string('serial_no')->unique()->nullable();
-            $table->string('description')->nullable();
-            $table->double('cost')->default(0);
-            $table->string('remarks');
+        Schema::create('purchase_req_items', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('purchase_req_id')->constrained('purchase_requests');
+            $table->string('item');
+            $table->string('description');
+            $table->string('price');
+            $table->string('qty');
+            $table->string('total');
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('purchase_req_items');
     }
 };
