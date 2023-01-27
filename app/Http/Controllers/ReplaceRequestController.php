@@ -32,7 +32,7 @@ class ReplaceRequestController extends Controller
             'transaction_no' => $newTransaction->id,
             'office_section' => $request->section,
             'amount' => $request->amount,
-            'status' => $request->status,
+            'status' => 'Pending',
             'requester' => Auth::user()->id
         ]);
 
