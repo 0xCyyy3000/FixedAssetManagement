@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ItemMedia;
 use App\Models\User;
+use App\Models\ItemMedia;
 use App\Models\ItemProfile;
 use App\Models\Transaction;
 use App\Models\SerialNumber;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Symfony\Component\Console\Input\Input;
 
 class ItemProfileController extends Controller
@@ -76,6 +77,9 @@ class ItemProfileController extends Controller
     }
     public function view()
     {
+        // if (!Gate::allows('admin', Auth::user())) {
+        //     abort(404);
+        // }
         $data = ItemProfile::all();
         return view('listing.item-list', ['items' => $data]);
     }

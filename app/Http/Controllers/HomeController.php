@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ItemProfile;
 use App\Models\SerialNumber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -36,6 +38,9 @@ class HomeController extends Controller
 
     public function itemList()
     {
+        if (!Gate::allows('admin', Auth::user())) {
+            abort(404);
+        }
         $items = ItemProfile::latest()->paginate(8);
         return view('listing.item-list', ['items' => $items]);
     }

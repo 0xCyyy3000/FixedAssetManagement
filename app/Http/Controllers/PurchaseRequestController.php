@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\items;
 use App\Models\ItemProfile;
-use App\Models\PurchaseReqItems;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\PurchaseRequest;
+use App\Models\PurchaseReqItems;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class PurchaseRequestController extends Controller
 {
@@ -75,7 +76,6 @@ class PurchaseRequestController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request->all());
         $updated = PurchaseRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
