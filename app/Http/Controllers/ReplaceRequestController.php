@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ItemProfile;
 use App\Models\items;
-use App\Models\ItemsReplace;
+use App\Models\ItemProfile;
 use App\Models\Transaction;
+use App\Models\ItemsReplace;
+use App\Models\SerialNumber;
 use Illuminate\Http\Request;
 use App\Models\ReplaceRequest;
-use App\Models\SerialNumber;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
 class ReplaceRequestController extends Controller
@@ -82,5 +83,32 @@ class ReplaceRequestController extends Controller
             return back()->with('alert', 'Request has been updated!');
         } else
             return back()->with('alert', 'There was an error, try again.');
+    }
+
+    public function viewPdf(Request $request)
+    {
+        $replaceRequest = ReplaceRequest::find($request->id);
+        $serials = ItemsReplace::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_replaces.serial_no')
+            ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
+            ->where('items_replaces.reference_no', $request->id)
+            ->get(['items_replaces.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
+            
+            // $pdf = Pdf::loadView('pdf.invoice', $data);
+            // return $pdf->download('invoice.pdf');
+            return view('requests.replace.requests', ['request' => $replaceRequest, 'serials' => $serials]);
+    }
+
+    public function download(Request $request)
+    {
+        $replaceRequest = ReplaceRequest::find($request->id);
+        $serials = ItemsReplace::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_replaces.serial_no')
+            ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
+            ->where('items_replaces.reference_no', $request->id)
+            ->get(['items_replaces.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
+            
+            
+            $data = ['request' => $replaceRequest, 'serials' => $serials];
+            $pdf = Pdf::loadView('requests.replace.requests', $data);
+            return $pdf->download(' request.pdf');
     }
 }

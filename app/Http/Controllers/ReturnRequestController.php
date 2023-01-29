@@ -96,7 +96,7 @@ class ReturnRequestController extends Controller
             
             // $pdf = Pdf::loadView('pdf.invoice', $data);
             // return $pdf->download('invoice.pdf');
-            return view('reports.requests', ['request' => $returnRequest, 'serials' => $serials]);
+            return view('requests.return.requests', ['request' => $returnRequest, 'serials' => $serials]);
     }
 
     public function download(Request $request)
@@ -108,7 +108,7 @@ class ReturnRequestController extends Controller
             ->get(['items_returns.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
             
             $data = ['request' => $returnRequest, 'serials' => $serials];
-            $pdf = Pdf::loadView('reports.requests', $data);
+            $pdf = Pdf::loadView('requests.return.requests', $data);
             return $pdf->download('return request.pdf');
     }
 }

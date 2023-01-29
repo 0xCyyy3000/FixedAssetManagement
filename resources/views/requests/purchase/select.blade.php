@@ -7,14 +7,14 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item fs-5 text-decoration-underline"><a
-                                    href="{{ route('repair.request') }}">Repair Requests</a></li>
+                                    href="{{ route('purchase.request') }}">Purchase Requests</a></li>
                             <li class="breadcrumb-item fs-5" aria-current="page">See details</li>
                         </ol>
                     </nav>
                 </div>
                 <div class="row p-3">
                     <div class="row mb-4">
-                        <h3 class="text-center fw-semibold">Repair Request Form</h3>
+                        <h3 class="text-center fw-semibold">Purchase Request Form</h3>
                         <small class="text-center text-muted">{{ $request->transaction_no }}</small>
                     </div>
                     <div class="row w-75 m-auto">
@@ -48,21 +48,21 @@
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col">Item</th>
-                                    <th scope="col">Serial No.</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Remarks</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">Price</th>
                                     <th scope="col">Cost</th>
                                 </tr>
                             </thead>
                             <tbody id="repair-items-table-body">
-                                @foreach ($serials as $serial)
-                                    <tr>
-                                        <td>{{ $serial->title }}</td>
-                                        <td>{{ $serial->serial_no }}</td>
-                                        <td>{{ $serial->description }}</td>
-                                        <td>{{ $serial->remarks }}</td>
-                                        <td>₱{{ $serial->cost }}</td>
-                                    </tr>
+                                @foreach($serials as $serial)
+                                <tr>
+                                    <td>{{ $serial->item }}</td>
+                                    <td>{{ $serial->description }}</td>                    
+                                    <td>{{ $serial->qty }}</td>
+                                    <td>{{ $serial->price }}</td>
+                                    <td>{{ $serial->total }}</td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -74,7 +74,7 @@
                             {{ $request->purpose }}
                         </textarea>
                     </div>
-                    <form action="{{ route('repair.update') }}" method="post">
+                    <form action="{{ route('purchase.update') }}" method="post">
                         @csrf
                         <div class="row p-3 w-25">
                             <label for="status" class="form-label ps-0">Status</label>
@@ -86,9 +86,11 @@
                         </div>
                         <div class="d-flex p-3 justify-content-end gap-2">
                             <input type="hidden" id="repair_token" value="{{ csrf_token() }}">
-                            <a href="{{ route('repair.request') }}" class="btn btn-secondary">Cancel</a>
+                            <a href="{{ route('purchase.request') }}" class="btn btn-secondary">Cancel</a>
                             <button type="submit" class="btn my-btn-primary" name="id"
                                 value="{{ $request->id }}">Save changes</button>
+                                <a href="{{ route('purchasePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1"  target="_blank">View PDF</a>
+                                <a href="{{ route('dlpurchasePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1">Download PDF</a>
                         </div>
                     </form>
 

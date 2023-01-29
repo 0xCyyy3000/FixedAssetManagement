@@ -14,6 +14,7 @@ use App\Http\Controllers\ReturnRequestController;
 use App\Http\Controllers\SerialNumberController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Models\ReplaceRequest;
 use App\Models\Transaction;;
 
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/replace-request'], function 
     Route::post('/destroy', [ReplaceRequestController::class, 'destroy'])->name('replace.destroy');
     Route::post('/update', [ReplaceRequestController::class, 'update'])->name('replace.update');
     Route::get('/select', [ReplaceRequestController::class, 'select'])->name('replace.select');
+    Route::get('/replacePdf', [ReplaceRequestController::class, 'viewPdf'])->name('replacePdf');
+    Route::get('/downloadreplacePdf', [ReplaceRequestController::class, 'download'])->name('downloadreplacePdf');
 });
 
 // For Repair Request Routes
@@ -69,6 +72,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/repair-request'], function (
     Route::post('/destroy', [RepairRequestController::class, 'destroy'])->name('repair.destroy');
     Route::post('/update', [RepairRequestController::class, 'update'])->name('repair.update');
     Route::get('/select', [RepairRequestController::class, 'select'])->name('repair.select');
+    Route::get('/repairPdf', [RepairRequestController::class, 'viewPdf'])->name('repairPdf');
+    Route::get('/downloadrepairPdf', [RepairRequestController::class, 'download'])->name('downloadrepairPdf');
 });
 
 
@@ -80,6 +85,8 @@ Route::group(['middleware' => 'auth', 'prefix' => '/purchase-request'], function
     Route::post('/destroy', [PurchaseRequestController::class, 'destroy'])->name('purchase.destroy');
     Route::post('/update', [PurchaseRequestController::class, 'update'])->name('purchase.update');
     Route::get('/select', [PurchaseRequestController::class, 'select'])->name('purchase.select');
+    Route::get('/purchasePdf', [PurchaseRequestController::class, 'viewPdf'])->name('purchasePdf');
+    Route::get('/dlpurchasePdf', [PurchaseRequestController::class, 'download'])->name('dlpurchasePdf');
 });
 
 

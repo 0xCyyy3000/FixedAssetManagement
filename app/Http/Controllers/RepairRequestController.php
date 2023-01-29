@@ -10,6 +10,7 @@ use App\Models\Transaction;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use App\Models\RepairRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Auth;
 
 class RepairRequestController extends Controller
@@ -84,5 +85,31 @@ class RepairRequestController extends Controller
             return back()->with('alert', 'Request has been updated!');
         } else
             return back()->with('alert', 'There was an error, try again.');
+    }
+    public function viewPdf(Request $request)
+    {
+        $repairRequest = RepairRequest::find($request->id);
+        $serials = ItemsRepair::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_repairs.serial_no')
+            ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
+            ->where('items_repairs.reference_no', $request->id)
+            ->get(['items_repairs.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
+            
+            // $pdf = Pdf::loadView('pdf.invoice', $data);
+            // return $pdf->download('invoice.pdf');
+            return view('requests.repair.requests', ['request' => $repairRequest, 'serials' => $serials]);
+    }
+
+    public function download(Request $request)
+    {
+        $repairRequest = RepairRequest::find($request->id);
+        $serials = ItemsRepair::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_repairs.serial_no')
+            ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
+            ->where('items_repairs.reference_no', $request->id)
+            ->get(['items_repairs.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
+            
+            
+            $data = ['request' => $repairRequest, 'serials' => $serials];
+            $pdf = Pdf::loadView('requests.repair.requests', $data);
+            return $pdf->download(' request.pdf');
     }
 }
