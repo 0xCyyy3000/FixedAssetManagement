@@ -52,16 +52,13 @@
                         <h3 class="text-center fs-4">Purchase Information</h3>
                     </div>
                     <div class="row w-75 m-auto">
-                        <div class="mb-3 col-4">
+                        <div class="mb-3 col-6">
                             <label for="purchase_date" class="form-label">Purchase Date</label>
                             <input required type="text" class="form-control" readonly id="date"
                                 name="purchase_date">
                         </div>
-                        <div class="mb-3 col-4">
-                            <label for="purchase_price" class="form-label">Price</label>
-                            <input required type="number" class="form-control" id="purchase_price" name="purchase_price">
-                        </div>
-                        <div class="mb-3 col-4">
+                     
+                        <div class="mb-3 col-6">
                             <label for="depreciation" class="form-label">Depreciation</label>
                             <input required type="number" class="form-control" id="depreciation" name="depreciation">
                         </div>
@@ -130,6 +127,10 @@
                             </select>
                         </div>
                         <div class="mb-3 col-6">
+                            <label for="ip_price" class="form-label">Price</label>
+                            <input required type="number" class="form-control" id="ip_price" name="ip_price">
+                        </div>
+                        <div class="mb-3 col-6">
                             <label for="ip_color" class="form-label">Color</label>
                             <input type="text" class="form-control" id="ip_color">
                         </div>
@@ -147,6 +148,7 @@
                                     <th scope="col">Condition</th>
                                     <th scope="col">Lifespan</th>
                                     <th scope="col">Location</th>
+                                    <th scope="col">Price</th>
                                     <th scope="col">Color</th>
                                     <th scope="col">Action</th>
                                 </thead>

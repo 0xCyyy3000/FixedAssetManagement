@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('transaction_no');
             $table->string('purchase_date');
-            $table->string('purchase_price');
             $table->string('inventory_number');
             $table->string('classification');
             $table->string('year');

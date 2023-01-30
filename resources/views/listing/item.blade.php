@@ -58,10 +58,7 @@
                                             <p class="text-muted mb-0">Purchase Date</p>
                                             <p class="text-muted mb-0">{{ $item->purchase_date }}</p>
                                         </div>
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-muted mb-0">Price</p>
-                                            <p class="text-muted mb-0">₱{{ $item->purchase_price }}</p>
-                                        </div>
+                                       
                                         <div class="d-flex justify-content-between">
                                             <p class="text-muted mb-0">Warranty</p>
                                             <p class="text-muted mb-0">{{ $item->warranty }}</p>
@@ -148,6 +145,7 @@
                                         <th scope="col" class="p-3">Serial</th>
                                         <th scope="col" class="p-3">Condition</th>
                                         <th scope="col" class="p-3">Color</th>
+                                        <th scope="col" class="p-3">Price</th>
                                         <th scope="col" class="p-3">Location</th>
                                         <th scope="col" class="p-3">Life span</th>
                                         <th scope="col" class="p-3">Action</th>
@@ -168,6 +166,7 @@
                                                 </div>
                                             </td>
                                             <td class="p-3">{{ $serial->color }}</td>
+                                            <td class="p-3">{{ $serial->price }}</td>
                                             <td class="p-3">{{ $serial->location }}</td>
                                             <td class="p-3">{{ $serial->lifespan }}</td>
                                             <td style="width: 18% !important;">
@@ -235,10 +234,6 @@
                                 <option value="Appliances">Appliances</option>
                                 <option value="Vehicle">Vehicle</option>
                             </select>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="price" class="form-label">Price</label>
-                            <input required type="number" class="form-control" id="price" name="purchase_price">
                         </div>
                         <div class="col-md-4">
                             <label for="depreciation" class="form-label">Depreciation value</label>
@@ -394,7 +389,12 @@
                                 <label for="serial_no">Serial No.</label>
                                 <input type="text" id="serial_no" name="serial_no" class="form-control">
                             </div>
+                            <div class="mb-3 col-6">
+                                <label for="price">Price</label>
+                                <input type="text" id="price" name="price" class="form-control">
+                            </div>
                         </div>
+                        
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label for="condition">Condition</label>
@@ -403,6 +403,7 @@
                                     <option value="Non-Functional">Non-functional</option>
                                 </select>
                             </div>
+                            
                             <div class="mb-3 col-6">
                                 <label for="color">Color</label>
                                 <input type="text" id="color" name="color" value="none"
@@ -461,6 +462,10 @@
                                 <label for="serial_no">Serial No.</label>
                                 <input type="text" id="edit-serial_no" name="serial_no" class="form-control">
                             </div>
+                                <div class="mb-3 col-6">
+                                    <label for="price">Price</label>
+                                    <input type="text" id="edit-price" name="price" class="form-control">
+                                </div>
                         </div>
                         <div class="row">
                             <div class="mb-3 col-6">

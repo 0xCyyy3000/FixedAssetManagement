@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PurchaseRequest;
+use App\Models\RepairRequest;
+use App\Models\ReplaceRequest;
+use App\Models\ReturnRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -60,4 +64,6 @@ class UserController extends Controller
         User::where('id', $request->id)->update($formFields);
         return back()->with('alert', 'Changes has been saved!');
     }
+
+   
 }

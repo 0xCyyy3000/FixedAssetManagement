@@ -29,7 +29,6 @@ class ItemProfileController extends Controller
         $newRequest = ItemProfile::create([
             'transaction_no' => $newTransaction->id,
             'purchase_date' => $request->purchase_date,
-            'purchase_price' => $request->purchase_price,
             'inventory_number' => $request->inventory_number,
             'classification' => $request->classification,
             'year' => $request->year,
@@ -56,12 +55,14 @@ class ItemProfileController extends Controller
                 $lifespan = $request->lifespans[$key];
                 $location = $request->locations[$key];
                 $color = $request->colors[$key];
+                $price = $request->prices[$key];
                 $condition = $request->conditions[$key];
 
                 SerialNumber::create([
                     'reference_no' => $newRequest->id,
                     'serial_no' => $value,
                     'condition' => $condition,
+                    'price' => $price,
                     'lifespan' => $lifespan,
                     'location' => $location,
                     'color' => $color
@@ -133,7 +134,6 @@ class ItemProfileController extends Controller
             'inventory_number' => 'required',
             'purchase_date' => 'required',
             'classification' => 'required',
-            'purchase_price' => 'required',
             'depreciation' => 'required',
             'warranty' => 'required',
             'supplier' => 'required'

@@ -40,7 +40,7 @@
 </head>
 <body>
     <h1 class="margin1">Republic of the Philippines</h1>
-    <h1 class="margin1"> Deptartment of interior and local Government </h1>
+    <h1 class="margin1"> Deptartment of Interior and Local Government </h1>
     <h1 class="margin1"> Bureau of Fire Protection</h1>
     <hr>
     <h1 class="margin">Fixed Asset Inventory</h1>
@@ -71,7 +71,7 @@
                     <td >{{ $items->description}}</td>
                     <td >{{ $items->classification}}</td>
                     <td >{{ $items->purchase_date}}</td>
-                    <td >{{ $items->location}}</td>
+                    <td >{{ $items->price}}</td>
                   
                     <td>{{ $items->serial_no}}</td>
                     <td >{{ $items->condition}}</td>

@@ -54,33 +54,58 @@ class User extends Authenticatable
         return Position::where('id', $this->position)->first('position');
     }
 
-    public function totalItems()
-    {
-        return ItemProfile::count();
-    }
-
     public function functionalItems()
     {
-        return ItemProfile::where('classification', 'Functional')->count();
+        return SerialNumber::where('condition', 'Functional')->count();
     }
 
     public function nonFunctionalItems()
     {
-        return ItemProfile::where('classification', 'Non-Functional')->count();
+        return SerialNumber::where('condition', 'Non-Functional')->count();
     }
-
-    public function itemType($type)
-    {
-        return ItemProfile::where('type', $type)->count();
-    }
-
+    
     public function countItem($reference_no)
     {
         return SerialNumber::where('reference_no', $reference_no)->count();
+    }
+    public function allItems()
+    {
+        return SerialNumber::count();
     }
 
     public function requester($id)
     {
         return $this::where('id', $id)->first('name');
     }
+    public function totalApproved()
+    {
+        $repairCount = RepairRequest::where('status', 'Approved')->count();
+        $replaceCount = ReplaceRequest::where('status', 'Approved')->count();
+        $returnCount = ReturnRequest::where('status', 'Approved')->count();
+        $purchaseCount = PurchaseRequest::where('status', 'Approved')->count();
+
+        $count = $repairCount + $replaceCount + $returnCount + $purchaseCount;
+        return $count;
+    }
+    public function totalPending()
+    {
+        $repairCount = RepairRequest::where('status', 'Pending')->count();
+        $replaceCount = ReplaceRequest::where('status', 'Pending')->count();
+        $returnCount = ReturnRequest::where('status', 'Pending')->count();
+        $purchaseCount = PurchaseRequest::where('status', 'Pending')->count();
+
+        $count = $repairCount + $replaceCount + $returnCount + $purchaseCount;
+        return $count;
+    }
+    public function totalDenied()
+    {
+        $repairCount = RepairRequest::where('status', 'Rejected')->count();
+        $replaceCount = ReplaceRequest::where('status', 'Rejected')->count();
+        $returnCount = ReturnRequest::where('status', 'Rejected')->count();
+        $purchaseCount = PurchaseRequest::where('status', 'Rejected')->count();
+
+        $count = $repairCount + $replaceCount + $returnCount + $purchaseCount;
+        return $count;
+    }
+
 }

@@ -17,6 +17,7 @@ class SerialNumberController extends Controller
             'serial_no' => ['required', 'unique:serial_numbers'],
             'condition' => 'required',
             'color' => 'required',
+            'price' => 'required',
             'location' => 'required',
             'lifespan' => ['required', 'numeric', 'min:1']
         ]);
@@ -42,6 +43,7 @@ class SerialNumberController extends Controller
             'serial_no' => 'required',
             'condition' => 'required',
             'color' => 'required',
+            'price' => 'required',
             'location' => 'required',
             'lifespan' => ['required', 'numeric', 'min:1']
         ]);

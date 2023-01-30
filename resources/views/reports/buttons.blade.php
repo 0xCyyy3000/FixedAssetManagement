@@ -10,7 +10,7 @@
                 <img src="{{ asset('imgs/BFP Logo.png') }}" style="float:left;width:100px;height:100px;">
                 <div class="text-center ">
                     <h1 class="fs-4">Republic of the Philippines</h1>
-                    <h1 class="fs-4"> Dept of interior and local Government </h1>
+                    <h1 class="fs-4"> Deptartment of interior and Local Government </h1>
                     <h1 class="fs-4"> Bureau of Fire Protection</h1>
                 </div>
                 <hr>
@@ -47,7 +47,7 @@
                                         <td >{{ $items->description}}</td>
                                         <td >{{ $items->classification}}</td>
                                         <td >{{ $items->purchase_date}}</td>
-                                        <td >{{ $items->location}}</td>
+                                        <td >{{ $items->price}}</td>
                                         <td>{{ $items->serial_no}}</td>
                                         <td >{{ $items->condition}}</td>
                                         <td >{{ $items->color}}</td>

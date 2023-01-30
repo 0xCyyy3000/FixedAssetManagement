@@ -18,6 +18,7 @@ $(document).ready(function () {
                 $('#edit-color').val(response.color);
                 $('#edit-location').val(response.location);
                 $('#edit-lifespan').val(response.lifespan);
+                $('#edit-price').val(response.price);
                 $('#staticBackdrop6').modal('show');
             }
         });

@@ -4,13 +4,14 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(id, serial_no, lifespan, condition, location, color) {
+        constructor(id, serial_no, lifespan, condition, location, color, price) {
             this.id = id
             this.serial_no = serial_no;
             this.lifespan = lifespan;
             this.condition = condition;
             this.location = location;
             this.color = color;
+            this.price = price;
         }
     }
     let items = [];
@@ -34,12 +35,13 @@ $(document).ready(function () {
                 selectedItem.condition = $('#ip_condition').val();
                 selectedItem.location = $('#ip_location').val();
                 selectedItem.color = $('#ip_color').val();
+                selectedItem.color = $('#price').val();
             } else if (existing && !editing) {
                 alert('Serial number must be unique!');
             }
             else {
                 items.push(new Item($('#ip_serial_no').val(), $('#ip_serial_no').val(), $('#ip_lifespan').val(),
-                    $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val()));
+                    $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val(),$('#ip_price').val(),));
             }
 
             loadItems();
@@ -69,6 +71,7 @@ $(document).ready(function () {
                         <td>${item.lifespan}</td>
                         <td>${item.location}</td>
                         <td>${item.color}</td>
+                        <td>${item.price}</td>
                         <td>
                             <div class="d-flex align-items-center gap-3"> 
                                 <button type="button" class="p-0 btn px-3 rounded-3 bg-warning d-flex align-items-center edit"
@@ -93,6 +96,7 @@ $(document).ready(function () {
         $('#ip_lifespan').val('');
         $('#ip_location').val('');
         $('#ip_color').val('');
+        $('#price').val('');
 
         editing = false;
         $('#ip_btn_serial').text('Add item');
@@ -106,12 +110,14 @@ $(document).ready(function () {
             let lifespan = `<input type="hidden" name="lifespans[]" value="${item.lifespan}">`;
             let location = `<input type="hidden" name="locations[]" value="${item.location}">`;
             let color = `<input type="hidden" name="colors[]" value="${item.color}">`;
+            let price = `<input type="hidden" name="prices[]" value="${item.price}">`;
             let serialInput = document.getElementById('ip_serial_input');
             serialInput.innerHTML += serial;
             serialInput.innerHTML += condition;
             serialInput.innerHTML += lifespan;
             serialInput.innerHTML += location;
             serialInput.innerHTML += color;
+            serialInput.innerHTML += price;
         });
         //     url: '/ProfileItem/store',
         //     method: 'POST',
@@ -154,6 +160,7 @@ $(document).ready(function () {
         $('#ip_lifespan').val(selectedItem.lifespan);
         $('#ip_location').val(selectedItem.location);
         $('#ip_color').val(selectedItem.color);
+        $('#ip_price').val(selectedItem.price);
     });
 
     $(document).on('click', '#ip_btn_cancel', function () {
