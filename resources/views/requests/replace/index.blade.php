@@ -42,6 +42,9 @@
                                                 data-bs-target="#remove-warning-replace">
                                                 <small class="p-3 text-white">Delete</small>
                                             </button>
+                                            @if ($request->status == 'Approved')
+                                            <a href="{{ route('downloadreplacePdf', ['id' => $request->id]) }}"class="btn btn-success btn-sm rounded-5 p-0"> <small class="p-3 text-white">Download PDF</small></a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

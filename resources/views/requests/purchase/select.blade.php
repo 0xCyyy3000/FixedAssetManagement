@@ -89,8 +89,8 @@
                             <a href="{{ route('purchase.request') }}" class="btn btn-secondary">Cancel</a>
                             <button type="submit" class="btn my-btn-primary" name="id"
                                 value="{{ $request->id }}">Save changes</button>
-                                <a href="{{ route('purchasePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1"  target="_blank">View PDF</a>
-                                <a href="{{ route('dlpurchasePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1">Download PDF</a>
+                                {{-- <a href="{{ route('purchasePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1"  target="_blank">View PDF</a> --}}
+                               
                         </div>
                     </form>
 

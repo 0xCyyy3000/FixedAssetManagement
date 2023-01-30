@@ -96,8 +96,8 @@
                         @else
                             <a href="{{ route('replace.request') }}" class="btn btn-secondary">Go back</a>
                         @endif --}}
-                        <a href="{{ route('replacePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1"  target="_blank">View PDF</a>
-                        <a href="{{ route('downloadreplacePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1">Download PDF</a>
+                        {{-- <a href="{{ route('replacePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1"  target="_blank">View PDF</a>
+                        <a href="{{ route('downloadreplacePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1">Download PDF</a> --}}
                         </div>
                     </form>
 
