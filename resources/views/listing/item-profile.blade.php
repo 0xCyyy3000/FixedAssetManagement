@@ -59,7 +59,7 @@
                         </div>
                      
                         <div class="mb-3 col-6">
-                            <label for="depreciation" class="form-label">Depreciation</label>
+                            <label for="depreciation" class="form-label">Salvage Value</label>
                             <input required type="number" class="form-control" id="depreciation" name="depreciation">
                         </div>
                     </div>

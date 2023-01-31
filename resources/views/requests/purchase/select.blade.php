@@ -74,6 +74,7 @@
                             {{ $request->purpose }}
                         </textarea>
                     </div>
+                    @if(Auth()->user()->position == 1)
                     <form action="{{ route('purchase.update') }}" method="post">
                         @csrf
                         <div class="row p-3 w-25">
@@ -93,6 +94,7 @@
                                
                         </div>
                     </form>
+                    @endif
 
                 </div>
             </div>

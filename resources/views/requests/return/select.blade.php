@@ -75,6 +75,7 @@
                             {{ $request->purpose }}
                         </textarea>
                     </div>
+                    @if(Auth()->user()->position == 1)
                     <form action="{{ route('return.update') }}" method="post">
                         @csrf
                         <div class="row p-3 w-25">
@@ -94,6 +95,7 @@
                             <a href="{{ route('downloadPdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1">Download PDF</a> --}}
                         </div>
                     </form>
+                    @endif
 
                 </div>
             </div>

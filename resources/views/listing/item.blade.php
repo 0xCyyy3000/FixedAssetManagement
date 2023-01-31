@@ -72,7 +72,7 @@
                                     <div class="container mb-3">
                                         <h6 class="mb-1 fw-bolder">Information on Value</h6>
                                         <div class="d-flex justify-content-between">
-                                            <p class="text-muted mb-0">Deprciation</p>
+                                            <p class="text-muted mb-0">Salvage Value</p>
                                             <p class="text-muted mb-0">{{ $item->depreciation }}</p>
                                         </div>
                                     </div>
@@ -236,7 +236,7 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <label for="depreciation" class="form-label">Depreciation value</label>
+                            <label for="depreciation" class="form-label">Salvage value</label>
                             <input required type="number" class="form-control" id="depreciation" name="depreciation">
                         </div>
                         <div class="col-md-4">
