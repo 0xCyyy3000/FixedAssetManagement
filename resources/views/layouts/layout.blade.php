@@ -40,6 +40,7 @@
     <script src="{{ asset('js/returnRequest.js') }}"></script>
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body>
@@ -217,7 +218,9 @@
                 <div class="row bg-white rounded p-2 align-items-center">
                     <h4 class="col fs-5 m-0 fw-bolder">Fixed Assets Information Management</h4>
                     <div class="col d-flex gap-3">
-                        <form class="d-flex">
+
+                        <livewire:search/>
+                        {{-- <form class="d-flex">
                             <div class="input-group border-0">
                                 <input type="search" class="form-control my-bg-third" placeholder="Search"
                                     aria-label="Username" aria-describedby="basic-addon1">
@@ -228,7 +231,7 @@
                                     </button>
                                 </span>
                             </div>
-                        </form>
+                        </form> --}}
                         {{-- <button class="btn d-flex gap-1 align-items-center p-1 ps-2 pe-2 my-bg-secondary"
                             type="button">
                             New
@@ -283,6 +286,7 @@
         let hasErrors = "{{ $errors->any() }}";
     </script>
     <script src="{{ asset('js/item.js') }}"></script>
+    @livewireScripts
 </body>
 
 </html>
