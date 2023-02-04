@@ -78,18 +78,18 @@
                             </h2>
                             <div id="collapseOne"
                                 class="accordion-collapse collapse @if (Request::routeIs('purchase.request') ||
-                                Request::routeIs('purchase.index') ||
-                                Request::routeIs('purchase.create') ||
-                                Request::routeIs('purchase.select') ||
-                                Request::routeIs('repair.request') ||
-                                Request::routeIs('repair.create') ||
-                                Request::routeIs('repair.index') ||
-                                (Request::routeIs('replace.request') ||
-                                    Request::routeIs('replace.select') ||
-                                    Request::routeIs('replace.create')) ||
-                                Request::routeIs('return.request') ||
-                                Request::routeIs('return.select') ||
-                                Request::routeIs('return.create')) show @endif"
+                                        Request::routeIs('purchase.index') ||
+                                        Request::routeIs('purchase.create') ||
+                                        Request::routeIs('purchase.select') ||
+                                        Request::routeIs('repair.request') ||
+                                        Request::routeIs('repair.create') ||
+                                        Request::routeIs('repair.index') ||
+                                        (Request::routeIs('replace.request') ||
+                                            Request::routeIs('replace.select') ||
+                                            Request::routeIs('replace.create')) ||
+                                        Request::routeIs('return.request') ||
+                                        Request::routeIs('return.select') ||
+                                        Request::routeIs('return.create')) show @endif"
                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body pt-0 pb-0">
                                     <ul class=" list-group pt-2">
@@ -127,7 +127,7 @@
                         </div>
                     </div>
                 </li>
-               
+
                 <li class="list-group">
                     <div class="accordion mb-2 pt-1 ps-4 pb-1 rounded-2" id="accordionExample2">
                         <div class="accordion-item bg-transparent">
@@ -219,7 +219,7 @@
                     <h4 class="col fs-5 m-0 fw-bolder">Fixed Assets Information Management</h4>
                     <div class="col d-flex gap-3">
 
-                        <livewire:search/>
+                        <livewire:search />
                         {{-- <form class="d-flex">
                             <div class="input-group border-0">
                                 <input type="search" class="form-control my-bg-third" placeholder="Search"
@@ -246,7 +246,7 @@
                                 <h1 class="mb-0 fw-semibold">{{ Auth::user()->getName() }}</h1>
                                 <small class="text-muted">{{ Auth::user()->getPosition()->position }}</small>
                             </div>
-                            <img class="my-bg-secondary rounded-4" src="{{  asset('imgs/avatar.png') }}"
+                            <img class="my-bg-secondary rounded-4" src="{{ asset('imgs/avatar.png') }}"
                                 alt="" width="42" height="42">
                             <div class="drop-down">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
