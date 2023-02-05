@@ -15,8 +15,8 @@ class Search extends Component
     public function render()
     {
 
-        if(strlen($this->query)>2){
-            $this->results = ItemProfile::where('title','like', "%{$this->query}%")->get();
+        if (strlen($this->query) > 1) {
+            $this->results = ItemProfile::where('title', 'like', "%{$this->query}%")->get();
         }
         return view('livewire.search');
     }

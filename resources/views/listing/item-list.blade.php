@@ -4,13 +4,16 @@
         <div class="row justify-content-center">
             <div class="p-2">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-center align-items-center">
                         <h5 class="m-auto p-2">Item profiles</h5>
-                        <a href="{{ route('view')}}"class="btn btn-primary btn-sm float-end mx-1">Download PDF</a>
-                        <a href="{{ route('viewonly')}}"class="btn btn-primary btn-sm float-end mx-1" target="_blank">View PDF</a>
+                        <div class="d-flex gap-3">
+                            <a href="{{ route('view') }}"class="btn btn-sm btn-warning text-dark">Download PDF</a>
+                            <a href="{{ route('viewonly') }}"class="btn btn-sm btn-secondary text-white" target="_blank">
+                                View PDF</a>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Item</th>
