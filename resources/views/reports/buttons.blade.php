@@ -46,7 +46,7 @@
                                         <td>{{ $items->title }}</td>
                                         <td>{{ $items->description }}</td>
                                         <td>{{ $items->classification }}</td>
-                                        <td>{{ $items->purchase_date }}</td>
+                                        <td>{{ $items->date }}</td>
                                         <td>{{ $items->price }}</td>
                                         <td>{{ $items->serial_no }}</td>
                                         <td>{{ $items->condition }}</td>
