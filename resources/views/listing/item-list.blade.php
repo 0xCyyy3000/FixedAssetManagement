@@ -18,7 +18,6 @@
                                 <tr>
                                     <th scope="col">Item</th>
                                     <th scope="col">Inventory No.</th>
-                                    <th scope="col">Date Purchased</th>
                                     <th scope="col">Classification</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Action</th>
@@ -34,7 +33,6 @@
                                             {{ $item->title }}
                                         </td>
                                         <td>{{ $item->inventory_number }}</td>
-                                        <td>{{ $item->purchase_date }}</td>
                                         <td>{{ $item->classification }}</td>
                                         <td>{{ Auth::user()->countItem($item->id) }}x</td>
                                         <td>

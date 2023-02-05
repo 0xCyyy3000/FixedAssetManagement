@@ -4,3 +4,17 @@ $(function () {
         todayHighlight: true
     });
 });
+
+$(function () {
+    $("#edit-date").datepicker({
+        autoClose: true,
+        todayHighlight: true
+    });
+});
+
+$(function () {
+    $("#date").datepicker({
+        autoClose: true,
+        todayHighlight: true
+    });
+});

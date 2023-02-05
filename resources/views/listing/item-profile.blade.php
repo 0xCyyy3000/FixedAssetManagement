@@ -45,33 +45,6 @@
                                 placeholder="Give the item a short and clear description"></textarea>
                         </div>
                     </div>
-
-                    <div class="row mb-2">
-                        <h3 class="text-center fs-4">Purchase Information</h3>
-                    </div>
-                    <div class="row w-75 m-auto">
-                        <div class="mb-3 col-6">
-                            <label for="purchase_date" class="form-label">Purchase Date</label>
-                            <input required type="text" class="form-control" readonly id="date"
-                                name="purchase_date">
-                        </div>
-
-                        <div class="mb-3 col-6">
-                            <label for="depreciation" class="form-label">Salvage Value</label>
-                            <input required type="number" class="form-control" id="depreciation" name="depreciation">
-                        </div>
-                    </div>
-                    <div class="row w-75 m-auto mb-5">
-                        <div class="mb-3 col-6">
-                            <label for="purchase_date" class="form-label">Warranty</label>
-                            <input required type="text" class="form-control" id="waranty" name="warranty">
-                        </div>
-                        <div class="mb-3 col-6">
-                            <label for="purchase_price" class="form-label">Supplier</label>
-                            <input required type="text" class="form-control" id="date" name="supplier">
-                        </div>
-                    </div>
-
                     <div class="row mb-0">
                         <h3 class="text-center fs-4">Thumbnail</h3>
                     </div>

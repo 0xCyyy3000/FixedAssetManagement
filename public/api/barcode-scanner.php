@@ -1,11 +1,11 @@
 <?php
 
 $host = 'localhost';
-$db_name = 'fixed_assets';
+$db_name = 'fixedasset';
 $db_user = 'root';
-$db_password = 'qwertyuiop';
+$db_password = 
 
-$connection = mysqli_connect($host, $db_user, $db_password);
+$connection = mysqli_connect($host, $db_user);
 mysqli_select_db($connection, $db_name) or die(mysqli_error($connection));
 mysqli_query($connection, 'SET CHARACTER SET utf8');
 mysqli_query($connection, "SET NAMES 'utf8'");

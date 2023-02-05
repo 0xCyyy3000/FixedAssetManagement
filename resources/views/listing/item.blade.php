@@ -52,22 +52,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="container mb-3">
-                                        <h6 class="mb-1 fw-bolder">Purchase Information</h6>
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-muted mb-0">Purchase Date</p>
-                                            <p class="text-muted mb-0">{{ $item->purchase_date }}</p>
-                                        </div>
-                                       
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-muted mb-0">Warranty</p>
-                                            <p class="text-muted mb-0">{{ $item->warranty }}</p>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-muted mb-0">Supplier</p>
-                                            <p class="text-muted mb-0">{{ $item->supplier }}</p>
-                                        </div>
-                                    </div>
 
                                     <div class="container mb-3">
                                         <h6 class="mb-1 fw-bolder">Information on Value</h6>
@@ -151,6 +135,7 @@
                                         <th scope="col" class="p-3">Warranty</th>
                                         <th scope="col" class="p-3">Location</th>
                                         <th scope="col" class="p-3">Life span</th>
+                                        <th scope="col" class="p-3">Depreciation</th>
                                         <th scope="col" class="p-3">Action</th>
                                     </tr>
                                 </thead>
@@ -170,11 +155,12 @@
                                             </td>
                                             <td class="p-3">{{ $serial->color }}</td>
                                             <td class="p-3">{{ $serial->price }}</td>
-                                            <td class="p-3">{{ $serial->purchase_date }}</td>
+                                            <td class="p-3">{{ $serial->date }}</td>
                                             <td class="p-3">{{ $serial->supplier }}</td>
                                             <td class="p-3">{{ $serial->warranty }}</td>
                                             <td class="p-3">{{ $serial->location }}</td>
                                             <td class="p-3">{{ $serial->lifespan }}</td>
+                                            <td class="p-3">{{ $serial->depreciation_value }}</td>
                                             <td style="width: 18% !important;">
                                                 <div class="d-flex">
                                                     <button type="button"
@@ -228,10 +214,6 @@
                                 name="inventory_number">
                         </div>
                         <div class="col-md-4">
-                            <label for="date" class="form-label">Purchased date</label>
-                            <input required type="text" class="form-control" id="date" name="purchase_date">
-                        </div>
-                        <div class="col-md-4">
                             <label for="classification" class="form-label">Classification</label>
                             <select id="classification" class="form-select" name="classification">
                                 <option value="Land">Land</option>
@@ -245,14 +227,7 @@
                             <label for="depreciation" class="form-label">Salvage value</label>
                             <input required type="number" class="form-control" id="depreciation" name="depreciation">
                         </div>
-                        <div class="col-md-4">
-                            <label for="warranty" class="form-label">Warranty</label>
-                            <input required type="text" class="form-control" id="warranty" name="warranty">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="supplier" class="form-label">Supplier</label>
-                            <input required type="text" class="form-control" id="supplier" name="supplier">
-                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn my-bg-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -423,6 +398,18 @@
                                 <label for="lifespan">Lifespan</label>
                                 <input type="text" id="lifespan" name="lifespan" class="form-control">
                             </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Purchase Date</label>
+                                <input type="text" id="date" name="date" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Warranty</label>
+                                <input type="text" id="warranty" name="warranty" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Supplier</label>
+                                <input type="text" id="supplier" name="supplier" class="form-control">
+                            </div>
                         </div>
                     </div>
                     <div class="container">
@@ -493,6 +480,18 @@
                             <div class="mb-3 col-6">
                                 <label for="lifespan">Lifespan</label>
                                 <input type="text" id="edit-lifespan" name="lifespan" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="date">Purchase Date</label>
+                                <input type="text" id="edit-date" name="ip_date" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="warranty">Warranty</label>
+                                <input type="text" id="edit-warranty" name="warranty" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="supplier">Lifespan</label>
+                                <input type="text" id="edit-supplier" name="supplier" class="form-control">
                             </div>
                         </div>
                     </div>

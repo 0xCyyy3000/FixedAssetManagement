@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('serial_numbers', function (Blueprint $table) {
             //
-            $table->double('depreciation_value');
+            $table->double('depreciation_value')->nullable();
         });
     }
 
