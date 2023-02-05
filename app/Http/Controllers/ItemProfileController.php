@@ -78,9 +78,9 @@ class ItemProfileController extends Controller
     }
     public function view()
     {
-        // if (!Gate::allows('admin', Auth::user())) {
-        //     abort(404);
-        // }
+        if (!Gate::allows('admin', Auth::user())) {
+            abort(403);
+        }
         $data = ItemProfile::all();
         return view('listing.item-list', ['items' => $data]);
     }

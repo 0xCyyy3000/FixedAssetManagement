@@ -57,7 +57,7 @@
                             <input required type="text" class="form-control" readonly id="date"
                                 name="purchase_date">
                         </div>
-                     
+
                         <div class="mb-3 col-6">
                             <label for="depreciation" class="form-label">Salvage Value</label>
                             <input required type="number" class="form-control" id="depreciation" name="depreciation">
@@ -109,7 +109,11 @@
                     <div class="row w-75 m-auto">
                         <div class="mb-2 col-6">
                             <label for="ip_serial_no" class="form-label">Serial</label>
-                            <input type="text" class="form-control" id="ip_serial_no">
+                            {{-- <input type="text" class="form-control" id="ip_serial_no"> --}}
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="ip_serial_no">
+                                <button class="btn btn-outline-secondary" type="button" id="btn-listen">Listen</button>
+                            </div>
                         </div>
                         <div class="mb-2 col-6">
                             <label for="ip_lifespan" class="form-label">Lifespan</label>

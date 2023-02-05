@@ -41,11 +41,23 @@ $(document).ready(function () {
             }
             else {
                 items.push(new Item($('#ip_serial_no').val(), $('#ip_serial_no').val(), $('#ip_lifespan').val(),
-                    $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val(),$('#ip_price').val(),));
+                    $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val(), $('#ip_price').val(),));
             }
+
+            console.log('clearing ' + $('#ip_serial_no').val() + '...');;
+            $.ajax({
+                url: '/api/barcode-scanner.php?action=destroy&data=' + $('#ip_serial_no').val(),
+                type: 'GET',
+                success: function (data) {
+                    if (data) {
+                        console.log(data);
+                    }
+                }
+            });
 
             loadItems();
             resetFields();
+
         } else alert('Please provide the required fields!');
     });
 
@@ -177,5 +189,22 @@ $(document).ready(function () {
         loadItems()
         resetFields();
     });
+
+    $(document).on('click', '#btn-listen', function () {
+        $.ajax({
+            url: '/api/barcode-scanner.php?action=get',
+            type: 'GET',
+            success: function (data) {
+                if (data) {
+                    console.log(data);
+                    $('#ip_serial_no').val(data);
+                } else {
+                    console.log('listening...');
+                    console.log('\n');
+                    $.ajax(this);
+                }
+            }
+        });
+    })
 
 });

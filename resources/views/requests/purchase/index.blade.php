@@ -7,8 +7,9 @@
                     <h5 class="col pt-2">Purchase Request Information</h5>
                     <a href="{{ route('purchase.create') }}"
                         class="col-2 btn my-btn-primary d-flex gap-2 align-items-center rounded-3">
-                        <span class="material-icons-outlined text-white fs-4">add_box</span>
-                        Create Purchase Request
+                        <span class="material-icons-outlined text-white fs-4 ms-3">add_box</span>
+                        Create Request
+                    </a>
                     </a>
                 </div>
                 <div class="container">
@@ -32,7 +33,7 @@
                                         <td>{{ $request->office_section }}</td>
                                         <td>{{ $request->amount }}</td>
                                         <td>{{ $request->status }}</td>
-                                        <td class="d-flex">
+                                        <td class="d-flex gap-2">
                                             <a type="button" class="btn my-bg-primary rounded-5 p-0" id="select-item"
                                                 href="{{ route('purchase.select', ['id' => $request->id]) }}">
                                                 <small class="p-3 text-white">See details</small>
@@ -43,7 +44,9 @@
                                                 <small class="p-3 text-white">Delete</small>
                                             </button>
                                             @if ($request->status == 'Approved')
-                                            <a href="{{ route('dlpurchasePdf', ['id' => $request->id]) }}"class="btn btn-success btn-sm rounded-5 p-0"> <small class="p-3 text-white">Download PDF</small></a>
+                                                <a
+                                                    href="{{ route('dlpurchasePdf', ['id' => $request->id]) }}"class="btn btn-secondary btn-sm rounded-5 p-0">
+                                                    <small class="p-3 text-white">Download PDF</small></a>
                                             @endif
                                         </td>
                                     </tr>
@@ -58,8 +61,8 @@
     </div>
     <form action="{{ route('purchase.destroy') }}" method="post" id="remove-request-repair">
         @csrf
-        <div class="modal fade" id="remove-warning-repair" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+        <div class="modal fade" id="remove-warning-repair" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdrop1Label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header border-0">
