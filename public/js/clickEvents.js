@@ -31,12 +31,9 @@ $(document).ready(function () {
                     $('#item_title').val(response.item.title);
                     $('#description').val(response.item.description);
                     $('#inventory_no').val(response.item.inventory_number);
-                    $('#date').val(response.item.purchase_date);
                     $('#classification').val(response.item.classification);
                     $('#price').val(response.item.purchase_price);
                     $('#depreciation').val(response.item.depreciation);
-                    $('#warranty').val(response.item.warranty);
-                    $('#supplier').val(response.item.supplier);
                 }
             }
         });

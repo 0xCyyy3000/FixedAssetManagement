@@ -18,6 +18,10 @@ class ItemProfileController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $recentItem = ItemProfile::latest()->first();
+        $new_inventory = $recentItem ? $recentItem->inventory_number+1 : 1;
+        // $recent_id=ItemProfile::latest()->first()->inventory_number + 1;
+        // dd($recent_id);
         if ($request->hasFile('photo') && $request->hasFile('media1')  && $request->hasFile('media2') && $request->hasFile('media3')) {
             $imagePath = $request->file('photo')->store('photos', 'public');
             $media1 = $request->file('media1')->store('photos', 'public');
@@ -25,11 +29,11 @@ class ItemProfileController extends Controller
             $media3 = $request->file('media3')->store('photos', 'public');
         } else $imagePath = null;
 
+
         $newTransaction = Transaction::create(['content' => 'New Asset added by ' . Auth::user()->name]);
         $newRequest = ItemProfile::create([
             'transaction_no' => $newTransaction->id,
-            'purchase_date' => $request->purchase_date,
-            'inventory_number' => $request->inventory_number,
+            'inventory_number'=>$new_inventory,
             'classification' => $request->classification,
             'year' => $request->year,
             'title' => $request->title,
@@ -39,8 +43,6 @@ class ItemProfileController extends Controller
             'image' => $imagePath,
             'notes' => $request->notes,
             'inventoried_by' => Auth::user()->id,
-            'supplier' => $request->supplier,
-            'warranty' => $request->warranty
         ]);
 
         if ($newRequest) {
@@ -57,17 +59,25 @@ class ItemProfileController extends Controller
                 $color = $request->colors[$key];
                 $price = $request->prices[$key];
                 $condition = $request->conditions[$key];
+                $date = $request->date[$key];
+                $supplier = $request->supplier[$key];
+                $warranty = $request->warranty[$key];
 
                 SerialNumber::create([
                     'reference_no' => $newRequest->id,
                     'serial_no' => $value,
                     'condition' => $condition,
                     'price' => $price,
+                    'date' => $date,
+                    'supplier' => $supplier,
+                    'warranty' => $warranty,
                     'lifespan' => $lifespan,
                     'location' => $location,
-                    'color' => $color
+                    'color' => $color,
+                    'depreciation_value'=>($price-$request->depreciation)/intval($lifespan)
                 ]);
             }
+            
             return back()->with('alert', 'Item profile added!');
         }
     }
@@ -131,12 +141,8 @@ class ItemProfileController extends Controller
         $formFields = $request->validate([
             'title' => 'required',
             'description' => 'required',
-            'inventory_number' => 'required',
-            'purchase_date' => 'required',
             'classification' => 'required',
             'depreciation' => 'required',
-            'warranty' => 'required',
-            'supplier' => 'required'
         ]);
 
         ItemProfile::where('id', $request->id)->update($formFields);

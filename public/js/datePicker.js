@@ -1,5 +1,5 @@
 $(function () {
-    $("#date").datepicker({
+    $("#ip_date").datepicker({
         autoClose: true,
         todayHighlight: true
     });

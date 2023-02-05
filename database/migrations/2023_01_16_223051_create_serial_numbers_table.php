@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('lifespan');
             $table->string('location');
             $table->string('price');
+            $table->string('warranty')->nullable();
+            $table->string('supplier')->nullable();
+            $table->string('date');
             $table->timestamps();
         });
     }

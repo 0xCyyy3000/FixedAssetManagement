@@ -146,6 +146,9 @@
                                         <th scope="col" class="p-3">Condition</th>
                                         <th scope="col" class="p-3">Color</th>
                                         <th scope="col" class="p-3">Price</th>
+                                        <th scope="col" class="p-3">Purchase Date</th>
+                                        <th scope="col" class="p-3">Supplier</th>
+                                        <th scope="col" class="p-3">Warranty</th>
                                         <th scope="col" class="p-3">Location</th>
                                         <th scope="col" class="p-3">Life span</th>
                                         <th scope="col" class="p-3">Action</th>
@@ -167,6 +170,9 @@
                                             </td>
                                             <td class="p-3">{{ $serial->color }}</td>
                                             <td class="p-3">{{ $serial->price }}</td>
+                                            <td class="p-3">{{ $serial->purchase_date }}</td>
+                                            <td class="p-3">{{ $serial->supplier }}</td>
+                                            <td class="p-3">{{ $serial->warranty }}</td>
                                             <td class="p-3">{{ $serial->location }}</td>
                                             <td class="p-3">{{ $serial->lifespan }}</td>
                                             <td style="width: 18% !important;">

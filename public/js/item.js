@@ -19,6 +19,9 @@ $(document).ready(function () {
                 $('#edit-location').val(response.location);
                 $('#edit-lifespan').val(response.lifespan);
                 $('#edit-price').val(response.price);
+                $('#edit-date').val(response.date);
+                $('#edit-warranty').val(response.warranty);
+                $('#edit-supplier').val(response.supplier);
                 $('#staticBackdrop6').modal('show');
             }
         });

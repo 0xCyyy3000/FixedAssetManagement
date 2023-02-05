@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('item_profiles', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_no');
-            $table->string('purchase_date');
-            $table->string('inventory_number');
+            $table->integer('inventory_number');
             $table->string('classification');
             $table->string('year');
             $table->string('title');
@@ -25,8 +24,6 @@ return new class extends Migration
             $table->double('depreciation');
             $table->longText('notes')->nullable();
             $table->longText('description');
-            $table->string('warranty')->nullable();
-            $table->string('supplier')->nullable();
             $table->foreignId('inventoried_by')->constrained('users');
             $table->timestamps();
         });
