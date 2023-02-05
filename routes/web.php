@@ -122,16 +122,16 @@ Route::group(['middleware' => 'auth', 'prefix' => '/serial'], function () {
 
 
 
-Route::get('/profile',[UserController::class,'index'])->name('profile');
-Route::put('profile.update',[UserController::class,'update'])->name('profile.update');
-Route::put('profile.updatepass',[UserController::class,'updatepass'])->name('profile.updatepass');
+Route::get('/profile', [UserController::class, 'index'])->name('profile');
+Route::put('profile.update', [UserController::class, 'update'])->name('profile.update');
+Route::put('profile.updatepass', [UserController::class, 'updatepass'])->name('profile.updatepass');
 
 
 
 
 Route::get('/view', [ReportsController::class, 'download'])->name('view');
 Route::get('/viewonly', [ReportsController::class, 'view'])->name('viewonly');
-Route::get('/reporest', [ReportsController::class, 'index'])->name('reports.buttons');
+Route::get('/reports', [ReportsController::class, 'index'])->name('reports.buttons');
 
 
 

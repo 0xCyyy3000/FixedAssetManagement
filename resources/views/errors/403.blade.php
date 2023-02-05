@@ -6,7 +6,7 @@
                 <img class="w-75 m-auto" src="{{ asset('imgs/BFP Logo.png') }}" alt="">
             </div>
             <h2 class="text-center">
-                Page not found
+                Unauthorized Page
             </h2>
             <a class="text-decoration-none text-center" href="/">Go back</a>
         </div>

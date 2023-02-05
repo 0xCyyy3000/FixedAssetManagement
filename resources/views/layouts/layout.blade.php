@@ -38,7 +38,6 @@
     <script src="{{ asset('js/replaceRequest.js') }}"></script>
     <script src="{{ asset('js/repairRequest.js') }}"></script>
     <script src="{{ asset('js/returnRequest.js') }}"></script>
-
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -164,39 +163,11 @@
                     </div>
                 </li>
                 <li class="list-group">
-                    <div class="accordion mb-2 pt-1 ps-4 pb-1 @if (Request::routeIs('asset.report') || Request::routeIs('user.report')) active @endif"
-                        id="accordionExample3">
-                        <div class="accordion-item bg-transparent">
-                            <h2 class="accordion-header bg-transparent fs-6 rounded-3 d-flex align-items-center"
-                                id="heading3">
-                                <span class="material-icons-outlined me-2">description</span>
-                                <button class="accordion-button collapsed bg-transparent p-0 fs-6" type="button"
-                                    data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true"
-                                    aria-controls="collapse3">
-                                    Reports
-                                </button>
-                            </h2>
-                            <div id="collapse3"
-                                class="accordion-collapse collapse @if (Request::routeIs('asset.report') || Request::routeIs('user.report')) show @endif"
-                                aria-labelledby="heading3" data-bs-parent="#accordionExample3">
-                                <div class="accordion-body pt-0 pb-0">
-                                    <ul class=" list-group pt-2">
-                                        <li class="list-group">
-                                            <a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('asset.report')) active @endif"
-                                                href="{{ route('reports.buttons') }}">
-                                                Inventory Report
-                                            </a>
-                                        </li>
-                                        {{-- <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('user.report')) active @endif"
-                                                href="">
-                                                User List Report
-                                            </a>
-                                        </li> --}}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <a href="{{ route('reports.buttons') }}"
+                        class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('reports.buttons') ? 'active' : '' }}">
+                        <span class="material-icons-outlined me-2">summarize</span>
+                        Inventory Report
+                    </a>
                 </li>
             </ul>
 
@@ -214,7 +185,7 @@
             </div>
         </nav>
         <div class="col">
-            <div class="p-4 pb-0">
+            <div class="p-4 pt-3 pb-1">
                 <div class="row bg-white rounded p-2 align-items-center">
                     <h4 class="col fs-5 m-0 fw-bolder">Fixed Assets Information Management</h4>
                     <div class="col d-flex gap-3">
@@ -271,7 +242,7 @@
                     </div>
                 </div>
             </div>
-            <main class="my-2">
+            <main class="px-1 pt-1">
                 @yield('content')
             </main>
         </div>

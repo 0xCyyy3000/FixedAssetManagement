@@ -43,7 +43,9 @@
                                                 <small class="p-3 text-white">Delete</small>
                                             </button>
                                             @if ($request->status == 'Approved')
-                                            <a href="{{ route('downloadrepairPdf', ['id' => $request->id]) }}"class="btn btn-success btn-sm rounded-5 p-0"> <small class="p-3 text-white">Download PDF</small></a>
+                                                <a
+                                                    href="{{ route('downloadrepairPdf', ['id' => $request->id]) }}"class="btn btn-secondary btn-sm rounded-5 p-0">
+                                                    <small class="p-3 text-white">Download PDF</small></a>
                                             @endif
                                         </td>
                                     </tr>
@@ -59,8 +61,8 @@
 
     <form action="{{ route('repair.destroy') }}" method="post" id="remove-request-repair">
         @csrf
-        <div class="modal fade" id="remove-warning-repair" data-bs-backdrop="static" data-bs-keyboard="false"
-            tabindex="-1" aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+        <div class="modal fade" id="remove-warning-repair" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdrop1Label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header border-0">

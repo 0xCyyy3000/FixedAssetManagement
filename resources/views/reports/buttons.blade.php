@@ -3,22 +3,22 @@
     <div class="container">
         <div class="row justify-content-center px-2">
             <div class="container p-0 bg-white rounded request-information">
-                <div class=" p-3 pb-0 mb-5 bg-white shadow">
-                    <p class="text-start fs-3 fw-bolder">Reports</p>
-                    <a href="{{ route('view')}}"class="btn btn-primary btn-sm float-end">Download PDF</a>
-                </div>
-                <img src="{{ asset('imgs/BFP Logo.png') }}" style="float:left;width:100px;height:100px;">
-                <div class="text-center ">
-                    <h1 class="fs-4">Republic of the Philippines</h1>
-                    <h1 class="fs-4"> Deptartment of interior and Local Government </h1>
-                    <h1 class="fs-4"> Bureau of Fire Protection</h1>
+                <div class="d-flex center px-3 pt-3 pb-0 justify-content-between">
+                    <div class="container">
+                        <h1 class="fw-bolder fs-2 mb-0" style="">Reports</h1>
+                        <p class="fs-6 fw-light">{{ \Carbon\Carbon::now()->format('M. d, Y') }}</p>
+                    </div>
+                    <div class="container">
+                        <h1 class="text-center pt-1 mb-0 fw-semibold">
+                            Republic of the Philippines <br> Department of Interior and Local Government <br> Bureau of Fire
+                            Protection
+                        </h1>
+                    </div>
+                    <div class="container">
+                        <a href="{{ route('view') }}"class="btn my-bg-primary btn-sm float-end text-white">Download PDF</a>
+                    </div>
                 </div>
                 <hr>
-                <div class="mx-auto">
-                    <h3 class="fs-5">Fixed Asset Inventory</h3>
-                    <p class="fs-6">{{ \Carbon\Carbon::now()->format('d-m-Y')}}</p>
-                </div>
-                <hr >
                 <div class=" p-3 text-center gap-2">
                     <div class="bg-white rounded-2">
                         <table class="table ">
@@ -39,29 +39,29 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $items)
+                                @foreach ($data as $items)
                                     <tr>
-                                        <td >{{ $loop->iteration }}</td>
-                                        <td >{{ $items->inventory_number}}</td>
-                                        <td >{{ $items->title}}</td>
-                                        <td >{{ $items->description}}</td>
-                                        <td >{{ $items->classification}}</td>
-                                        <td >{{ $items->purchase_date}}</td>
-                                        <td >{{ $items->price}}</td>
-                                        <td>{{ $items->serial_no}}</td>
-                                        <td >{{ $items->condition}}</td>
-                                        <td >{{ $items->color}}</td>
-                                        <td >{{ $items->location}}</td>
-                                        <td >{{ $items->lifespan}}</td>
-                                        
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $items->inventory_number }}</td>
+                                        <td>{{ $items->title }}</td>
+                                        <td>{{ $items->description }}</td>
+                                        <td>{{ $items->classification }}</td>
+                                        <td>{{ $items->purchase_date }}</td>
+                                        <td>{{ $items->price }}</td>
+                                        <td>{{ $items->serial_no }}</td>
+                                        <td>{{ $items->condition }}</td>
+                                        <td>{{ $items->color }}</td>
+                                        <td>{{ $items->location }}</td>
+                                        <td>{{ $items->lifespan }}</td>
+
                                     </tr>
-                                    @endforeach
+                                @endforeach
                             </tbody>
-                        </table >
-                        
+                        </table>
+
                     </div>
                 </div>
-               
+
             </div>
         </div>
     </div>
