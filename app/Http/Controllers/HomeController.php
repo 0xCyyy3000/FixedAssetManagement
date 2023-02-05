@@ -39,7 +39,7 @@ class HomeController extends Controller
     public function itemList()
     {
         if (!Gate::allows('admin', Auth::user())) {
-            abort(404);
+            abort(403);
         }
         $items = ItemProfile::latest()->paginate(8);
         return view('listing.item-list', ['items' => $items]);
