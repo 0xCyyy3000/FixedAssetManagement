@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 class SerialNumberController extends Controller
 {
     public function store(Request $request)
-    {
-        
+    {   
+        // dd($request->all());
         $formFields = $request->validate([
             'reference_no' => 'required',
             'serial_no' => ['required', 'unique:serial_numbers'],
@@ -24,17 +24,19 @@ class SerialNumberController extends Controller
             'supplier' => 'required',
             'warranty' => 'required',
             'location' => 'required',
-            'lifespan' => ['required', 'numeric', 'min:1']
-        ]);
-        $itemProfile = ItemProfile::where('id', $request->id)->first();
-       
-        $dep = $itemProfile->depreciation; 
-       
-        $depreciation_value = ($formFields['price'] - $dep) / intval($formFields['lifespan']);
-        
-        $created = SerialNumber::create($formFields);
-        $created->depreciation_value = $depreciation_value;
-        $created->save();
+            'lifespan' => ['required', 'numeric', 'min:1'],
+            'depreciation_value' => 'required',
+         ]);
+
+         $depre = $request->input('depreciation_value');
+         $price =$request->input('price');
+         $span =$request->input('lifespan');
+
+         $all=($price-$depre)/intval($span);
+         $dep['depreciation_value'] = $all;
+        $created = SerialNumber::create(array_merge($formFields , $dep));
+        // $created->depreciation_value = $depreciation_value;
+        // $created->save();
         if ($created) {
             return back()->with('alert', 'Serial has been added!');
         } else return back()->with('alert', 'Serial has not been added due error, please try again.');

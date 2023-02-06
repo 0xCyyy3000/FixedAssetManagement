@@ -368,7 +368,11 @@
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label for="serial_no">Serial No.</label>
-                                <input type="text" id="serial_no" name="serial_no" class="form-control">
+                                {{-- <input type="text" id="serial_no" name="serial_no" class="form-control"> --}}
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="ip_serial_no" name="serial_no"> 
+                                    <button class="btn btn-outline-secondary" type="button" id="btn-listen">Listen</button>
+                                </div>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="price">Price</label>
@@ -410,6 +414,10 @@
                                 <label for="lifespan">Supplier</label>
                                 <input type="text" id="supplier" name="supplier" class="form-control">
                             </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Salvage Value</label>
+                                <input type="text" id="depreciation_value" name="depreciation_value" class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
+                            </div>
                         </div>
                     </div>
                     <div class="container">
@@ -417,12 +425,13 @@
                             <div class="modal-footer border-0">
                                 <button type="button" class="btn my-bg-third border my-primary"
                                     data-bs-dismiss="modal">Cancel</button>
-                                <button type="submit" class="btn my-btn-primary" form="serial-form">
+                                <button type="submit" class="btn my-btn-primary" form="serial-form" id="ip_submit_form">
                                     Submit form</button>
                             </div>
                         </div>
                     </div>
                 </form>
+                <div id="ip_serial_input"></div>
             </div>
         </div>
     </div>
@@ -483,7 +492,7 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="date">Purchase Date</label>
-                                <input type="text" id="edit-date" name="ip_date" class="form-control">
+                                <input type="text" id="edit-date" name="date" class="form-control">
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="warranty">Warranty</label>
