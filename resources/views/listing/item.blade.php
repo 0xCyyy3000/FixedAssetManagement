@@ -416,7 +416,7 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="lifespan">Salvage Value</label>
-                                <input type="text" id="depreciation_value" name="depreciation_value" class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
+                                <input type="text" id="depreciation_value" name="depreciation_value" hide class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
                             </div>
                         </div>
                     </div>

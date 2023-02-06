@@ -36,6 +36,7 @@
                                     <th scope="col" class="p-3">Color</th>
                                     <th scope="col" class="p-3">Location</th>
                                     <th scope="col" class="p-3">Lifespan</th>
+                                    <th scope="col" class="p-3">Depreciation</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,6 +54,7 @@
                                         <td>{{ $items->color }}</td>
                                         <td>{{ $items->location }}</td>
                                         <td>{{ $items->lifespan }}</td>
+                                        <td>{{ $items->depreciation_value }}</td>
 
                                     </tr>
                                 @endforeach

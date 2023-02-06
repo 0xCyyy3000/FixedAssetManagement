@@ -35,8 +35,6 @@ class SerialNumberController extends Controller
          $all=($price-$depre)/intval($span);
          $dep['depreciation_value'] = $all;
         $created = SerialNumber::create(array_merge($formFields , $dep));
-        // $created->depreciation_value = $depreciation_value;
-        // $created->save();
         if ($created) {
             return back()->with('alert', 'Serial has been added!');
         } else return back()->with('alert', 'Serial has not been added due error, please try again.');
