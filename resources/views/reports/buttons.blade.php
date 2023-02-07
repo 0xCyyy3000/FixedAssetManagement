@@ -1,3 +1,4 @@
+ 
 @extends('layouts.layout')
 @section('content')
     <div class="container">
@@ -19,8 +20,16 @@
                     </div>
                 </div>
                 <hr>
+                @foreach ($data as $items)
+                @php
+                $total = 0;
+                $total += $items->price 
+                @endphp
+                
+               <p class="float-end gap-2 p-3 w-3 fs-4 fst-normal" scope="col">Total Inventroy Value: <Span class="my-bg- w-1 fw-bold"> ₱ {{ $total }}</Span></p>
                 <div class=" p-3 text-center gap-2">
                     <div class="bg-white rounded-2">
+                       
                         <table class="table ">
                             <thead>
                                 <tr>
@@ -30,17 +39,19 @@
                                     <th scope="col" class="p-3">Model</th>
                                     <th scope="col" class="p-3">Classification</th>
                                     <th scope="col" class="p-3">Purchase Date</th>
-                                    <th scope="col" class="p-3">Price</th>
+                                   
                                     <th scope="col" class="p-3">Serial</th>
                                     <th scope="col" class="p-3">Condition</th>
                                     <th scope="col" class="p-3">Color</th>
                                     <th scope="col" class="p-3">Location</th>
                                     <th scope="col" class="p-3">Lifespan</th>
                                     <th scope="col" class="p-3">Depreciation</th>
+                                    <th scope="col" class="p-3">Price</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($data as $items)
+                               
+                               
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $items->inventory_number }}</td>
@@ -48,15 +59,17 @@
                                         <td>{{ $items->description }}</td>
                                         <td>{{ $items->classification }}</td>
                                         <td>{{ $items->date }}</td>
-                                        <td>{{ $items->price }}</td>
+                                        
                                         <td>{{ $items->serial_no }}</td>
                                         <td>{{ $items->condition }}</td>
                                         <td>{{ $items->color }}</td>
                                         <td>{{ $items->location }}</td>
                                         <td>{{ $items->lifespan }}</td>
                                         <td>{{ $items->depreciation_value }}</td>
-
+                                        <td>{{ $items->price }}</td>
+                                       
                                     </tr>
+                                   
                                 @endforeach
                             </tbody>
                         </table>

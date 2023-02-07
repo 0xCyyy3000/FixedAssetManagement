@@ -108,10 +108,12 @@
                                     <th scope="col">Description</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
+                                    
                                 </tr>
                             </thead>
                             
                             <tbody id="return-items-table-body">
+                                
                                         @foreach($serials as $serial)
                                 <tr>
                                     <td>{{ $serial->item }}</td>
