@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="container ">
+    <div class="overflow-hidden px-3 ">
         <div class="row justify-content-center ">
             <div class="p-2">
                 <div class="card bg-transparent border-0 p-1">
@@ -13,9 +13,9 @@
                             </ol>
                         </nav>
                     </div>
-                    <div class="card-body bg-transparent">
+                    <div class="card-body bg- pt-2">
                         <div class="row mb-3">
-                            <div class="col-7 bg-white container m-0 rounded-2 p-3">
+                            <div class="col-7 bg-white overflow-hidden m-0 rounded-2 p-3">
                                 <div class="d-flex justify-content-between">
                                     <h5 class="fw-bolder">{{ $item->title }}</h5>
                                     <div class="d-flex p-0 m-0 gap-2 align-self-end">
@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="row">
                                     <small class="text-muted mb-4">{{ $item->description }}</small>
-                                    <div class="container mb-3">
+                                    <div class="overflow-hidden mb-3">
                                         <h6 class="mb-1 fw-bolder">Item information</h6>
                                         <div class="d-flex justify-content-between">
                                             <p class="text-muted mb-0">Transaction number</p>
@@ -53,7 +53,7 @@
                                     </div>
 
 
-                                    <div class="container mb-3">
+                                    <div class="overflow-hidden mb-3">
                                         <h6 class="mb-1 fw-bolder">Information on Value</h6>
                                         <div class="d-flex justify-content-between">
                                             <p class="text-muted mb-0">Salvage Value</p>
@@ -61,7 +61,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="container mb-3">
+                                    <div class="overflow-hidden mb-3">
                                         <h6 class="mb-1 fw-bolder">Registration details</h6>
                                         <div class="d-flex justify-content-between">
                                             <p class="text-muted mb-0">Date Registered</p>
@@ -77,8 +77,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 bg-transparent container rounded-2 p-0">
-                                <div class="container">
+                            <div class="col-4 bg-transparent overflow-hidden rounded-2 p-2 pt-1">
+                                <div class="overflow-hidden">
                                     <div class="row bg-white p-3 mb-3 rounded-2">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h5>Thumbnail</h5>
@@ -223,9 +223,9 @@
                                 <option value="Vehicle">Vehicle</option>
                             </select>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4" >
                             <label for="depreciation" class="form-label">Salvage value</label>
-                            <input required type="number" class="form-control" id="depreciation" name="depreciation">
+                            <input required type="number" class="form-control"  id="depreciation"  name="depreciation">
                         </div>
 
                     </div>
@@ -280,7 +280,7 @@
                         <input required type="file" class="form-control thumbnail-input m-auto" name="thumbnail"
                             id="thumbnail" />
                     </div>
-                    <div class="container">
+                    <div class="overflow-hidden">
                         <div class="moda-footer">
                             <div class="modal-footer border-0">
                                 <button type="button" class="btn my-bg-third border my-primary"
@@ -303,7 +303,7 @@
                     <h1 class="modal-title fs-4" id="staticBackdrop1Label">Item media</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="container">
+                <div class="overflow-hidden">
                     <form action="{{ route('item.media.update', ['id' => $item->id]) }}" method="POST" id="media-form"
                         enctype="multipart/form-data">
                         @csrf
@@ -414,13 +414,13 @@
                                 <label for="lifespan">Supplier</label>
                                 <input type="text" id="supplier" name="supplier" class="form-control">
                             </div>
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-6" hidden> 
                                 <label for="lifespan">Salvage Value</label>
-                                <input type="text" id="depreciation_value" name="depreciation_value" hide class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
+                                <input type="text" id="depreciation_value" name="depreciation_value"  class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
                             </div>
                         </div>
                     </div>
-                    <div class="container">
+                    <div class="overflow-hidden">
                         <div class="moda-footer">
                             <div class="modal-footer border-0">
                                 <button type="button" class="btn my-bg-third border my-primary"
@@ -504,7 +504,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="container">
+                    <div class="overflow-hidden">
                         <div class="moda-footer">
                             <div class="modal-footer border-0">
                                 <button type="button" class="btn my-bg-third border my-primary"

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="container">
+    <div class="overflow-hidden p-3 pt-1">
         <div class="row justify-content-center px-2">
             <div class="container bg-white rounded request-information">
                 <div class="row p-3 border-bottom border-3 mb-3">
@@ -11,7 +11,7 @@
                         Create Request
                     </a>
                 </div>
-                <div class="container">
+                <div class="overflow-hidden p-4">
                     <table class="table">
                         <thead class="table-light">
                             <tr>

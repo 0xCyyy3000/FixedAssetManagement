@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="container">
+    <div class="overflow-hidden p-2 pt-1">
         <div class="row justify-content-center px-2">
             <div class="container bg-white rounded request-information">
                 <div class="row p-3 pb-0 mb-5 sticky-top bg-white shadow">
@@ -41,7 +41,7 @@
                             <input type="text" class="form-control" id="appendix_no" name="appendix_no">
                         </div>
                     </div>
-                    <div class="container mt-5 mb-3">
+                    <div class="overflow-hidden mt-5 mb-3">
                         <div class="d-flex justify-content-end mb-3">
                             <button class="btn my-btn-primary" type="button" data-toggle="modal"
                                 data-target="#repair_request_item">Add item</button>

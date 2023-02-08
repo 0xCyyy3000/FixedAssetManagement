@@ -1,21 +1,21 @@
  
 @extends('layouts.layout')
 @section('content')
-    <div class="container">
+    <div class="overflow-hidden p-3 pt-1">
         <div class="row justify-content-center px-2">
-            <div class="container p-0 bg-white rounded request-information">
+            <div class="overflow-hidden p-0 bg-white rounded request-information">
                 <div class="d-flex center px-3 pt-3 pb-0 justify-content-between">
-                    <div class="container">
+                    <div class="">
                         <h1 class="fw-bolder fs-2 mb-0" style="">Reports</h1>
                         <p class="fs-6 fw-light">{{ \Carbon\Carbon::now()->format('M. d, Y') }}</p>
                     </div>
-                    <div class="container">
-                        <h1 class="text-center pt-1 mb-0 fw-semibold">
+                    <div class="text-center">
+                        <h1 class=" pt-1 mb-0 fw-semibold">
                             Republic of the Philippines <br> Department of Interior and Local Government <br> Bureau of Fire
                             Protection
                         </h1>
                     </div>
-                    <div class="container">
+                    <div class="">
                         <a href="{{ route('view') }}"class="btn my-bg-primary btn-sm float-end text-white">Download PDF</a>
                     </div>
                 </div>

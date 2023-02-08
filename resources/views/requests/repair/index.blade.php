@@ -1,17 +1,17 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="container">
+    <div class="overflow-hidden p-3 pt-1">
         <div class="row justify-content-center px-2">
             <div class="container bg-white rounded request-information">
                 <div class="row p-3 border-bottom border-3 mb-3">
                     <h5 class="col pt-2">Repair Request Information</h5>
                     <a href="{{ route('repair.create') }}"
-                        class="col-2 btn my-btn-primary d-flex gap-2 align-items-center rounded-3">
+                        class="col-2 btn my-btn-primary d-flex gap-2 align-items-center rounded-2 ">
                         <span class="material-icons-outlined text-white fs-4 ms-3">add_box</span>
                         Create Request
                     </a>
                 </div>
-                <div class="container">
+                <div class="overflow-hidden p-4">
                     <table class="table">
                         <thead class="table-light">
                             <tr>

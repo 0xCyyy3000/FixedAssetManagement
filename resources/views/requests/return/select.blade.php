@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="container px-3">
+    <div class="overflow-hidden px-3">
         <div class="row justify-content-center px-2">
             <div class="container bg-white rounded request-information">
                 <div class="row p-3 pb-0 mb-5 sticky-top shadow">
@@ -44,7 +44,7 @@
                             <p class="text-muted fw-bold"> {{ $request->appendix_no }}</p>
                         </div>
                     </div>
-                    <div class="container mt-5 mb-3">
+                    <div class="overflow-hidden mt-5 mb-3">
                         <table class="table mb-3">
                             <thead class="table-light">
                                 <tr>
