@@ -7,10 +7,12 @@ use App\Models\ItemProfile;
 use App\Models\ItemsRepair;
 use App\Models\Transaction;
 
+use App\Models\SerialNumber;
 use function Ramsey\Uuid\v1;
 use Illuminate\Http\Request;
 use App\Models\RepairRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class RepairRequestController extends Controller
@@ -42,6 +44,11 @@ class RepairRequestController extends Controller
         ]);
 
         if ($newRequest) {
+            DB::table('requests_purposes')->insert([
+                'reference_no' => $newRequest->id,
+                'purpose' => $request->note,
+                'type' => 2
+            ]);
             foreach ($request->items as $item) {
                 ItemsRepair::create([
                     'reference_no' => $newRequest->id,
@@ -50,6 +57,8 @@ class RepairRequestController extends Controller
                     'cost' => $item['cost'],
                     'remarks' => $item['remarks']
                 ]);
+
+                SerialNumber::where('serial_no', $item['serial_no'])->update(['status' => 1]);
             }
             return response()->json(['status' => 200]);
         }
@@ -66,18 +75,19 @@ class RepairRequestController extends Controller
     public function select(Request $request)
     {
         $repairRequest = RepairRequest::find($request->id);
+        $note = DB::table('requests_purposes')->where('reference_no', $request->id)->where('type', 2)->first('purpose');
         $serials = ItemsRepair::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_repairs.serial_no')
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_repairs.reference_no', $request->id)
             ->get(['items_repairs.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
 
-        return view('requests.repair.select', ['request' => $repairRequest, 'serials' => $serials]);
+        return view('requests.repair.select', ['request' => $repairRequest, 'serials' => $serials, 'purpose' => $note->purpose]);
     }
 
     public function update(Request $request)
     {
         // dd($request->all());
-        $updated = RepairRequest    ::where('id', $request->id)->update([
+        $updated = RepairRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
 
@@ -93,10 +103,10 @@ class RepairRequestController extends Controller
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_repairs.reference_no', $request->id)
             ->get(['items_repairs.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
-            
-            // $pdf = Pdf::loadView('pdf.invoice', $data);
-            // return $pdf->download('invoice.pdf');
-            return view('requests.repair.requests', ['request' => $repairRequest, 'serials' => $serials]);
+
+        // $pdf = Pdf::loadView('pdf.invoice', $data);
+        // return $pdf->download('invoice.pdf');
+        return view('requests.repair.requests', ['request' => $repairRequest, 'serials' => $serials]);
     }
 
     public function download(Request $request)
@@ -106,10 +116,10 @@ class RepairRequestController extends Controller
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_repairs.reference_no', $request->id)
             ->get(['items_repairs.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
-            
-            
-            $data = ['request' => $repairRequest, 'serials' => $serials];
-            $pdf = Pdf::loadView('requests.repair.requests', $data);
-            return $pdf->download(' request.pdf');
+
+
+        $data = ['request' => $repairRequest, 'serials' => $serials];
+        $pdf = Pdf::loadView('requests.repair.requests', $data);
+        return $pdf->download(' request.pdf');
     }
 }

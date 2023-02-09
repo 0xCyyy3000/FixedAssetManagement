@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('items_returns', function (Blueprint $table) {
             $table->id('id');
             $table->integer('reference_no');
-            $table->string('serial_no')->unique();
+            $table->string('serial_no');
             $table->string('description')->nullable();
             $table->double('cost')->default(0);
             $table->string('remarks');

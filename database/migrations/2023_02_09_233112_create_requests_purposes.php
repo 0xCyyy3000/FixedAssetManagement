@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('items_repairs', function (Blueprint $table) {
-            $table->id('id');
+        Schema::create('requests_purposes', function (Blueprint $table) {
+            $table->id();
             $table->integer('reference_no');
-            $table->string('serial_no');
-            $table->string('description')->nullable();
-            $table->double('cost')->default(0);
-            $table->string('remarks');
+            $table->longText('purpose');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items_repairs');
+        Schema::dropIfExists('requests_purposes');
     }
 };

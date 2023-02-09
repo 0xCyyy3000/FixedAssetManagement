@@ -10,6 +10,7 @@ use App\Models\SerialNumber;
 use Illuminate\Http\Request;
 use App\Models\ReplaceRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ReplaceRequestController extends Controller
@@ -40,6 +41,11 @@ class ReplaceRequestController extends Controller
         ]);
 
         if ($newRequest) {
+            DB::table('requests_purposes')->insert([
+                'reference_no' => $newRequest->id,
+                'purpose' => $request->note,
+                'type' => 3
+            ]);
             foreach ($request->items as $item) {
                 ItemsReplace::create([
                     'reference_no' => $newRequest->id,
@@ -48,6 +54,8 @@ class ReplaceRequestController extends Controller
                     'cost' => $item['cost'],
                     'remarks' => $item['remarks']
                 ]);
+
+                SerialNumber::where('serial_no', $item['serial_no'])->update(['status' => 1]);
             }
             return response()->json(['status' => 200]);
         }
@@ -64,12 +72,13 @@ class ReplaceRequestController extends Controller
     public function select(Request $request)
     {
         $replaceRequest = ReplaceRequest::find($request->id);
+        $note = DB::table('requests_purposes')->where('reference_no', $request->id)->where('type', 3)->first('purpose');
         $serials = ItemsReplace::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_replaces.serial_no')
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_replaces.reference_no', $request->id)
             ->get(['items_replaces.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
 
-        return view('requests.replace.select', ['request' => $replaceRequest, 'serials' => $serials]);
+        return view('requests.replace.select', ['request' => $replaceRequest, 'serials' => $serials, 'purpose' => $note->purpose]);
     }
 
     public function update(Request $request)
@@ -92,10 +101,10 @@ class ReplaceRequestController extends Controller
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_replaces.reference_no', $request->id)
             ->get(['items_replaces.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
-            
-            // $pdf = Pdf::loadView('pdf.invoice', $data);
-            // return $pdf->download('invoice.pdf');
-            return view('requests.replace.requests', ['request' => $replaceRequest, 'serials' => $serials]);
+
+        // $pdf = Pdf::loadView('pdf.invoice', $data);
+        // return $pdf->download('invoice.pdf');
+        return view('requests.replace.requests', ['request' => $replaceRequest, 'serials' => $serials]);
     }
 
     public function download(Request $request)
@@ -105,10 +114,10 @@ class ReplaceRequestController extends Controller
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_replaces.reference_no', $request->id)
             ->get(['items_replaces.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
-            
-            
-            $data = ['request' => $replaceRequest, 'serials' => $serials];
-            $pdf = Pdf::loadView('requests.replace.requests', $data);
-            return $pdf->download(' request.pdf');
+
+
+        $data = ['request' => $replaceRequest, 'serials' => $serials];
+        $pdf = Pdf::loadView('requests.replace.requests', $data);
+        return $pdf->download(' request.pdf');
     }
 }

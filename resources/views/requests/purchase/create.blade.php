@@ -43,8 +43,8 @@
                     </div>
                     <div class="overflow-hidden mt-5 mb-3">
                         <div class="d-flex justify-content-end mb-3">
-                            <button class="btn my-btn-primary" type="button" data-toggle="modal"
-                                data-target="#repair_request_item">Add item</button>
+                            <button class="btn my-btn-primary" type="button" id="add-purchase-request-item"
+                                data-toggle="modal" data-target="#repair_request_item">Add item</button>
                         </div>
                         <table class="table mb-3">
                             <thead class="table-light">
@@ -54,6 +54,7 @@
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Total</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="items-table-body"></tbody>

@@ -70,30 +70,33 @@
                     </div>
                     <div class="row p-3">
                         <label for="note" class="form-label ps-0">Purpose</label>
-                        <textarea name="note" id="note" class="w-100 p-2 rounded m-auto">
-                            {{ $request->purpose }}
-                        </textarea>
+                        <p class="w-100 p-2 rounded text-start">
+                            {{ $purpose }}
+                        </p>
                     </div>
-                    @if(Auth()->user()->position == 1)
-                    <form action="{{ route('repair.update') }}" method="post">
-                        @csrf
-                        <div class="row p-3 w-25">
-                            <label for="status" class="form-label ps-0">Status</label>
-                            <select class="form-select" name="status">
-                                <option value="Pending" @if ($request->status == 'Pending') selected @endif>Pending</option>
-                                <option value="Approved" @if ($request->status == 'Approved') selected @endif>Approved</option>
-                                <option value="Rejected" @if ($request->status == 'Rejected') selected @endif>Rejected</option>
-                            </select>
-                        </div>
-                        <div class="d-flex p-3 justify-content-end gap-2">
-                            <input type="hidden" id="repair_token" value="{{ csrf_token() }}">
-                            <a href="{{ route('repair.request') }}" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn my-btn-primary" name="id"
-                                value="{{ $request->id }}">Save changes</button>
+                    @if (Auth()->user()->position == 1)
+                        <form action="{{ route('repair.update') }}" method="post">
+                            @csrf
+                            <div class="row p-3 w-25">
+                                <label for="status" class="form-label ps-0">Status</label>
+                                <select class="form-select" name="status">
+                                    <option value="Pending" @if ($request->status == 'Pending') selected @endif>Pending
+                                    </option>
+                                    <option value="Approved" @if ($request->status == 'Approved') selected @endif>Approved
+                                    </option>
+                                    <option value="Rejected" @if ($request->status == 'Rejected') selected @endif>Rejected
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="d-flex p-3 justify-content-end gap-2">
+                                <input type="hidden" id="repair_token" value="{{ csrf_token() }}">
+                                <a href="{{ route('repair.request') }}" class="btn btn-secondary">Cancel</a>
+                                <button type="submit" class="btn my-btn-primary" name="id"
+                                    value="{{ $request->id }}">Save changes</button>
                                 {{-- <a href="{{ route('purchasePdf', ['id' => $request->id]) }}"class="btn btn-primary btn-sm float-end mx-1"  target="_blank">View PDF</a> --}}
-                               
-                        </div>
-                    </form>
+
+                            </div>
+                        </form>
                     @endif
 
                 </div>

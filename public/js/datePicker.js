@@ -19,9 +19,9 @@ $(function () {
     });
 });
 
-$(function () {
-    $("#ip_warranty").datepicker({
-        autoClose: true,
-        todayHighlight: true
-    });
-});
+// $(function () {
+//     $("#ip_warranty").datepicker({
+//         autoClose: true,
+//         todayHighlight: true
+//     });
+// });

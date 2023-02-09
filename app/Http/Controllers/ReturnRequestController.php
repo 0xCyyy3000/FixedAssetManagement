@@ -6,10 +6,12 @@ use App\Models\items;
 use App\Models\ItemProfile;
 use App\Models\ItemsReturn;
 use App\Models\Transaction;
+use App\Models\SerialNumber;
 use Illuminate\Http\Request;
 use App\Models\RepairRequest;
 use App\Models\ReturnRequest;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ReturnRequestController extends Controller
@@ -41,6 +43,11 @@ class ReturnRequestController extends Controller
         ]);
 
         if ($newRequest) {
+            DB::table('requests_purposes')->insert([
+                'reference_no' => $newRequest->id,
+                'purpose' => $request->note,
+                'type' => 4
+            ]);
             foreach ($request->items as $item) {
                 ItemsReturn::create([
                     'reference_no' => $newRequest->id,
@@ -49,6 +56,8 @@ class ReturnRequestController extends Controller
                     'cost' => $item['cost'],
                     'remarks' => $item['remarks']
                 ]);
+
+                SerialNumber::where('serial_no', $item['serial_no'])->update(['status' => 1]);
             }
             return response()->json(['status' => 200]);
         }
@@ -65,12 +74,13 @@ class ReturnRequestController extends Controller
     public function select(Request $request)
     {
         $returnRequest = ReturnRequest::find($request->id);
+        $note = DB::table('requests_purposes')->where('reference_no', $request->id)->where('type', 4)->first('purpose');
         $serials = ItemsReturn::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items_returns.serial_no')
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_returns.reference_no', $request->id)
             ->get(['items_returns.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
 
-        return view('requests.return.select', ['request' => $returnRequest, 'serials' => $serials]);
+        return view('requests.return.select', ['request' => $returnRequest, 'serials' => $serials, 'purpose' => $note->purpose]);
     }
 
     public function update(Request $request)
@@ -93,10 +103,10 @@ class ReturnRequestController extends Controller
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_returns.reference_no', $request->id)
             ->get(['items_returns.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
-            
-            // $pdf = Pdf::loadView('pdf.invoice', $data);
-            // return $pdf->download('invoice.pdf');
-            return view('requests.return.requests', ['request' => $returnRequest, 'serials' => $serials]);
+
+        // $pdf = Pdf::loadView('pdf.invoice', $data);
+        // return $pdf->download('invoice.pdf');
+        return view('requests.return.requests', ['request' => $returnRequest, 'serials' => $serials]);
     }
 
     public function download(Request $request)
@@ -106,9 +116,9 @@ class ReturnRequestController extends Controller
             ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
             ->where('items_returns.reference_no', $request->id)
             ->get(['items_returns.*', 'serial_numbers.*', 'serial_numbers.id as serial_number_id', 'item_profiles.title']);
-            
-            $data = ['request' => $returnRequest, 'serials' => $serials];
-            $pdf = Pdf::loadView('requests.return.requests', $data);
-            return $pdf->download('return request.pdf');
+
+        $data = ['request' => $returnRequest, 'serials' => $serials];
+        $pdf = Pdf::loadView('requests.return.requests', $data);
+        return $pdf->download('return request.pdf');
     }
 }

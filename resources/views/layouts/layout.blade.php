@@ -83,6 +83,7 @@
                                         Request::routeIs('repair.request') ||
                                         Request::routeIs('repair.create') ||
                                         Request::routeIs('repair.index') ||
+                                        Request::routeIs('repair.select') ||
                                         (Request::routeIs('replace.request') ||
                                             Request::routeIs('replace.select') ||
                                             Request::routeIs('replace.create')) ||

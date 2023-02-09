@@ -4,7 +4,7 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(id, serial_no, lifespan, condition, location, color, price, date,supplier,warranty) {
+        constructor(id, serial_no, lifespan, condition, location, color, price, date, supplier, warranty) {
             this.id = id
             this.serial_no = serial_no;
             this.lifespan = lifespan;
@@ -32,7 +32,7 @@ $(document).ready(function () {
         console.log($('#ip_warranty').val());
         console.log($('#ip_supplier').val());
         console.log($('#ip_condition').val());
-        if ($('#ip_serial_no').val() && $('#ip_lifespan').val() && $('#ip_location').val() && $('#ip_color').val() 
+        if ($('#ip_serial_no').val() && $('#ip_lifespan').val() && $('#ip_location').val() && $('#ip_color').val()
             && $('#ip_date').val() && $('#ip_warranty').val() && $('#ip_supplier').val()) {
             let existing;
             const found = items[items.findIndex(item => item.id == $('#ip_serial_no').val())]
@@ -49,15 +49,15 @@ $(document).ready(function () {
                 selectedItem.warranty = $('#ip_warranty').val();
                 selectedItem.supplier = $('#ip_supplier').val();
                 selectedItem.color = $('#ip_color').val();
-                selectedItem.price = $('#price').val();
+                selectedItem.price = $('#ip_price').val();
             } else if (existing && !editing) {
                 alert('Serial number must be unique!');
             }
             else {
                 items.push(new Item($('#ip_serial_no').val(), $('#ip_serial_no').val(), $('#ip_lifespan').val(),
-                    $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val(),$('#ip_price').val(),
-                    $('#ip_date').val(),$('#ip_supplier').val(),$('#ip_warranty').val(),
-                    ));
+                    $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val(), $('#ip_price').val(),
+                    $('#ip_date').val(), $('#ip_supplier').val(), $('#ip_warranty').val(),
+                ));
             }
 
             console.log('clearing ' + $('#ip_serial_no').val() + '...');;
@@ -127,7 +127,7 @@ $(document).ready(function () {
         $('#ip_lifespan').val('');
         $('#ip_location').val('');
         $('#ip_color').val('');
-        $('#price').val('');
+        // $('#price').val('');
 
         editing = false;
         $('#ip_btn_serial').text('Add item');

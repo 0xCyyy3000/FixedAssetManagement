@@ -42,7 +42,7 @@
                     </div>
                     <div class="overflow-hidden mt-5 mb-3">
                         <div class="d-flex justify-content-end mb-3">
-                            <button class="btn my-btn-primary" type="button" data-toggle="modal"
+                            <button class="btn my-btn-primary" id="add-item-request" type="button" data-toggle="modal"
                                 data-target="#repair_request_item">Add item</button>
                         </div>
                         <table class="table mb-3">
@@ -53,6 +53,7 @@
                                     <th scope="col">Description</th>
                                     <th scope="col">Remarks</th>
                                     <th scope="col">Cost</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="replace-items-table-body"></tbody>
@@ -115,7 +116,7 @@
                         </div>
                         <div class="mb-3 col-6">
                             <label for="cost" class="form-label">Cost</label>
-                            <input type="number" class="form-control" id="replace_cost" name="cost" value="0">
+                            <input type="number" class="form-control" id="replace_cost" name="cost" value="1">
                         </div>
                         <div class="d-flex justify-content-end gap-2">
                             <button class="btn btn-secondary" data-dismiss="modal" id="cancel" type="button">

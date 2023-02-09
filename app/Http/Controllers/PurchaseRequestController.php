@@ -42,6 +42,11 @@ class PurchaseRequestController extends Controller
         ]);
 
         if ($newRequest) {
+            DB::table('requests_purposes')->insert([
+                'reference_no' => $newRequest->id,
+                'purpose' => $request->note,
+                'type' => 1
+            ]);
             foreach ($request->items as $item) {
                 PurchaseReqItems::create([
                     'purchase_req_id' => $newRequest->id,
@@ -68,9 +73,10 @@ class PurchaseRequestController extends Controller
     {
 
         $purchaseRequest = PurchaseRequest::find($request->id);
+        $note = DB::table('requests_purposes')->where('reference_no', $request->id)->where('type', 1)->first('purpose');
         $serials = PurchaseReqItems::where('purchase_req_id', $request->id)->get();
 
-        return view('requests.purchase.select', ['request' => $purchaseRequest, 'serials' => $serials]);
+        return view('requests.purchase.select', ['request' => $purchaseRequest, 'serials' => $serials, 'purpose' => $note->purpose]);
         // $purchaseRequest = PurchaseRequest::find($request->id);
         // $serials = PurchaseReqItems::join('serial_numbers', 'serial_numbers.serial_no', '=', 'items.serial_no')
         //     ->join('item_profiles', 'item_profiles.id', '=', 'serial_numbers.reference_no')
@@ -105,23 +111,23 @@ class PurchaseRequestController extends Controller
     //         return back()->with('alert', 'There was an error, try again.');
     // }
     public function viewPdf(Request $request)
-    {   
+    {
         $purchaseRequest = PurchaseRequest::find($request->id);
         $serials = PurchaseReqItems::where('purchase_req_id', $request->id)->get();
-            // $pdf = Pdf::loadView('pdf.invoice', $data);
-            // return $pdf->download('invoice.pdf');
-            return view('requests.purchase.requests', ['request' => $purchaseRequest, 'serials' => $serials]);
+        // $pdf = Pdf::loadView('pdf.invoice', $data);
+        // return $pdf->download('invoice.pdf');
+        return view('requests.purchase.requests', ['request' => $purchaseRequest, 'serials' => $serials]);
     }
 
     public function download(Request $request)
     {
-       
+
         $purchaseRequest = PurchaseRequest::find($request->id);
         $serials = PurchaseReqItems::where('purchase_req_id', $request->id)->get();
-            
-            
-            $data = ['request' => $purchaseRequest, 'serials' => $serials];
-            $pdf = Pdf::loadView('requests.purchase.requests', $data);
-            return $pdf->download(' request.pdf');
+
+
+        $data = ['request' => $purchaseRequest, 'serials' => $serials];
+        $pdf = Pdf::loadView('requests.purchase.requests', $data);
+        return $pdf->download(' request.pdf');
     }
 }

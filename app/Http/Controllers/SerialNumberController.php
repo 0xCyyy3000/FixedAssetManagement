@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 class SerialNumberController extends Controller
 {
     public function store(Request $request)
-    {   
+    {
         // dd($request->all());
         $formFields = $request->validate([
             'reference_no' => 'required',
@@ -26,15 +26,15 @@ class SerialNumberController extends Controller
             'location' => 'required',
             'lifespan' => ['required', 'numeric', 'min:1'],
             'depreciation_value' => 'required',
-         ]);
+        ]);
 
-         $depre = $request->input('depreciation_value');
-         $price =$request->input('price');
-         $span =$request->input('lifespan');
+        $depre = $request->input('depreciation_value');
+        $price = $request->input('price');
+        $span = $request->input('lifespan');
 
-         $all=($price-$depre)/intval($span);
-         $dep['depreciation_value'] = $all;
-        $created = SerialNumber::create(array_merge($formFields , $dep));
+        $all = ($price - $depre) / intval($span);
+        $dep['depreciation_value'] = $all;
+        $created = SerialNumber::create(array_merge($formFields, $dep));
         if ($created) {
             return back()->with('alert', 'Serial has been added!');
         } else return back()->with('alert', 'Serial has not been added due error, please try again.');
@@ -86,15 +86,16 @@ class SerialNumberController extends Controller
 
     public function indexSub(Request $request)
     {
-       
+
         $serials = SerialNumber::where('reference_no', $request->reference_no)
-        ->whereNotIn('serial_no',ItemsRepair::pluck('serial_no'))
-        ->whereNotIn('serial_no',ItemsReturn::pluck('serial_no'))
-        ->whereNotIn('serial_no',ItemsReplace::pluck('serial_no'))
-        ->get(['id', 'serial_no']);
-    
-    return response()->json(['serials' => $serials]);
-        
+            // ->whereNotIn('serial_no', ItemsRepair::pluck('serial_no'))
+            // ->whereNotIn('serial_no', ItemsReturn::pluck('serial_no'))
+            // ->whereNotIn('serial_no', ItemsReplace::pluck('serial_no'))
+            ->where('status', 0)
+            ->get(['id', 'serial_no']);
+
+        return response()->json(['serials' => $serials]);
+
         // $serials = SerialNumber::where('reference_no', $request->reference_no)->get(['id', 'serial_no']);
         // return response()->json(['serials' => $serials]);
     }
@@ -105,7 +106,7 @@ class SerialNumberController extends Controller
         $repair_exists = ItemsRepair::where('serial_no', $serial_no)->exists();
         $return_exist = ItemsReturn::where('serial_no', $serial_no)->exists();
         $replace_exist = ItemsReplace::where('serial_no', $serial_no)->exists();
-        $exist= [ $repair_exists,$return_exist,$replace_exist];
+        $exist = [$repair_exists, $return_exist, $replace_exist];
         return response()->json(['exists' => $exist]);
     }
 }

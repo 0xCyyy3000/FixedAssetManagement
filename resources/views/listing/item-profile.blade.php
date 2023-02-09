@@ -12,7 +12,7 @@
                 <form class="row p-3" method="POST" enctype="multipart/form-data" action="{{ route('itemstore') }}">
                     @csrf
                     <div class="row w-75 m-auto mb-3">
-                         <div class="mb-2 col-6">
+                        <div class="mb-2 col-6">
                             <label for="name" class="form-label">Name</label>
                             <input required type="text" class="form-control" id="title" name="title">
                         </div>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="mb-3 col-6">
                             <label for="ip_price" class="form-label">Price</label>
-                            <input  type="number" class="form-control" id="ip_price" name="ip_price">
+                            <input type="number" class="form-control" id="ip_price" name="ip_price">
                         </div>
                         <div class="mb-3 col-6">
                             <label for="ip_color" class="form-label">Color</label>
@@ -111,16 +111,15 @@
                         </div>
                         <div class="mb-3 col-6">
                             <label for="ip_date" class="form-label">Purchase Date</label>
-                            <input  type="text" class="form-control" readonly id="ip_date"
-                                name="ip_date">
+                            <input type="text" class="form-control" readonly id="ip_date" name="ip_date">
                         </div>
                         <div class="mb-3 col-6">
                             <label for="ip_warranty" class="form-label">Warranty</label>
-                            <input  type="text" class="form-control" id="ip_warranty" name="ip_warranty">
+                            <input type="date" class="form-control" id="ip_warranty" name="ip_warranty">
                         </div>
                         <div class="mb-3 col-6">
                             <label for="ip_supplier" class="form-label">Supplier</label>
-                            <input  type="text" class="form-control" id="ip_supplier" name="ip_supplier">
+                            <input type="text" class="form-control" id="ip_supplier" name="ip_supplier">
                         </div>
                         <div class="col-12">
                             <button class="btn my-btn-primary w-100" type="button" id="ip_btn_serial">Add item</button>
