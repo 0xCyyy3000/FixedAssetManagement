@@ -42,9 +42,5 @@ class DatabaseSeeder extends Seeder
 
         Position::create(['position' => 'Chief Inspector']);
         Position::create(['position' => 'Master']);
-        Position::create(['position' => 'Normal']);
-
-        Transaction::create(['content' => 'testing']);
-        Transaction::create(['content' => 'testing']);
     }
 }
