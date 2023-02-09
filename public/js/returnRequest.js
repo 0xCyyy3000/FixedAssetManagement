@@ -49,6 +49,14 @@ $(document).ready(function () {
                     <td>${items_returns.description}</td>
                     <td>${items_returns.remarks}</td>
                     <td>₱${items_returns.cost}</td>
+                    <td>
+                    <div class="d-flex align-items-center gap-3"> 
+                        <button type="button" class="p-0 btn px-3 rounded-3 my-bg-danger d-flex align-items-center remove"
+                        value="${items_returns.id}">
+                            <small class="text-white">Remove</small>
+                        </button>
+                    </div>
+                </td>
                 </tr>
             `;
             total += parseInt(items_returns.cost);
@@ -67,6 +75,14 @@ $(document).ready(function () {
         $('#return_remarks').val('');
         $('#return_cost').val('0');
     }
+
+    $(document).on('click', '.remove', function () {
+        currentId = $(this).val();
+        const index = items_returns.findIndex(items_returns => items_returns.id == currentId);
+        if (index >= 0) {
+            items_returns.splice(index, 1);
+        }
+    });
 
     // Cascading Select options
     // $(document).on('change', '#return_item', function () {

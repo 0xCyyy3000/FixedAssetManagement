@@ -156,33 +156,6 @@ $(document).ready(function () {
             serialInput.innerHTML += supplier;
             serialInput.innerHTML += price;
         });
-        //     url: '/ProfileItem/store',
-        //     method: 'POST',
-        //     dataType: 'JSON',
-        //     data: {
-        //         _token: $('#token').val(),
-        //         items: items,
-        //         purchase_date: $('#purchase_date').val(),
-        //         purchase_price: $('#purchase_price').val(),
-        //         inventory_number: $('#inventory_number').val(),
-        //         type: $('#type').val(),
-        //         classification: $('#classification').val(),
-        //         lifespan: $('#lifespan').val(),
-        //         department: $('#department').val(),
-        //         year: $('#year').val(),
-        //         title: $('#title').val(),
-        //         depreciation: $('#depreciation').val(),
-        //         description: $('#description').val(),
-        //         type: $('#condition').val(),
-        //         notes: $('#notes').val(),
-        //     },
-        //     success: function (response) {
-        //         if (response.status == 200) {
-        //             alert('Item has been submitted!');
-        //             location.reload();
-        //         }
-        //     }
-        // });
     });
 
     $(document).on('click', '.edit', function () {

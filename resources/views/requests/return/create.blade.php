@@ -53,6 +53,7 @@
                                 <th scope="col">Description</th>
                                 <th scope="col">Remarks</th>
                                 <th scope="col">Cost</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody id="return-items-table-body"></tbody>

@@ -53,6 +53,7 @@
                                     <th scope="col">Description</th>
                                     <th scope="col">Remarks</th>
                                     <th scope="col">Cost</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody id="return-items-table-body">
@@ -63,6 +64,7 @@
                                         <td>{{ $serial->description }}</td>
                                         <td>{{ $serial->remarks }}</td>
                                         <td>₱{{ $serial->cost }}</td>
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -98,6 +100,32 @@
                     @endif
 
                 </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="staticBackdrop7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdrop1Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title fs-4" id="staticBackdrop1Label">Delete serial</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body border-0 mb-0 p-0 ps-3 pt-2">
+                    <p>Are you sure you want to delete this serial?</p>
+                </div>
+                <form action="{{ route('serial.destroy') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="id" id="remove-serial-id">
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn my-bg-third border my-primary" data-bs-dismiss="modal">No,
+                            cancel</button>
+                        <button type="submit" class="btn my-bg-danger"> Yes, delete serial</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
