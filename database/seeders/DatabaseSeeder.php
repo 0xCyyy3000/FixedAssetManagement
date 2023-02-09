@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
             'full_name' => 'Cyril Pogi'
         ]);
 
-        Position::create(['position' => 'Chief Inspector']);
-        Position::create(['position' => 'Master']);
+        Position::create(['position' => 'Admin']);
+        Position::create(['position' => 'Logistic']);
     }
 }

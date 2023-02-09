@@ -32,7 +32,8 @@ class ReturnRequestController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $newTransaction = Transaction::create(['content' => 'New Return Request submitted by ' . Auth::user()->name]);
+        $recentItem = ReturnRequest::latest()->first();
+        $newTransaction = Transaction::create(['content' => 'New Return Request submitted by ' . Auth::user()->name,'type'=>4,'reference'=>$recentItem]);
         $newRequest = ReturnRequest::create([
             'transaction_no' => $newTransaction->id,
             'office_section' => $request->section,
@@ -86,10 +87,11 @@ class ReturnRequestController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
+        
         $updated = ReturnRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
-
+        Transaction::create(['content' => 'A return request has been updated #'. $request->id, 'type'=>4,'reference'=>$request->id]);
         if ($updated) {
             return back()->with('alert', 'Request has been updated!');
         } else

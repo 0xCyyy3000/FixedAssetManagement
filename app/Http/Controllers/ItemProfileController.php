@@ -30,7 +30,7 @@ class ItemProfileController extends Controller
         } else $imagePath = null;
 
 
-        $newTransaction = Transaction::create(['content' => 'New Asset added by ' . Auth::user()->name]);
+        $newTransaction = Transaction::create(['content' => 'New Asset added by ' . Auth::user()->name,'type'=> 5,'reference'=>$new_inventory]);
         $newRequest = ItemProfile::create([
             'transaction_no' => $newTransaction->id,
             'inventory_number'=>$new_inventory,
