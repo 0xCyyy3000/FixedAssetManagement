@@ -6,11 +6,11 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-center align-items-center">
                         <h5 class="m-auto p-2">Item profiles</h5>
-                        <div class="d-flex gap-3">
+                        {{-- <div class="d-flex gap-3">
                             <a href="{{ route('view') }}"class="btn btn-sm btn-warning text-dark">Download PDF</a>
                             <a href="{{ route('viewonly') }}"class="btn btn-sm btn-secondary text-white" target="_blank">
                                 View PDF</a>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">

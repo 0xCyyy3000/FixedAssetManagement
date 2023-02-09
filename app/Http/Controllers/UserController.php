@@ -21,7 +21,24 @@ class UserController extends Controller
     }
 
     public function update(Request $request)
+    {   
+     
+        if ($request->hasFile('photo')) {
+            $thumbnail = $request->file('photo')->store('photos', 'public');
+            User::where(Auth::user()->id, $request->id)->update([
+                'photo' => $thumbnail
+            ]);
+        }
+        User::where('id', Auth::user()->id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
+        return back()->with('alert', 'Profile updated!');
+    }
+    public function updatepass(Request $request)
     {
+        
         $request->validate([
             'old_password' => 'required',
             'new_password' => 'required|confirmed',
@@ -41,28 +58,6 @@ class UserController extends Controller
 
 
         return back()->with("status", "Profile changed successfully!");
-        if ($request->hasFile('photo')) {
-            $thumbnail = $request->file('photo')->store('photos', 'public');
-            User::where(Auth::user()->id, $request->id)->update([
-                'photo' => $thumbnail
-            ]);
-        }
-        User::where('id', Auth::user()->id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
-
-        return back()->with('alert', 'Profile updated!');
-    }
-    public function updatepass(Request $request)
-    {
-        
-        $formFields = $request->validate([
-            'password' => 'required|confirmed|min:8',
-        ]);
-
-        User::where('id', $request->id)->update($formFields);
-        return back()->with('alert', 'Changes has been saved!');
     }
 
    
