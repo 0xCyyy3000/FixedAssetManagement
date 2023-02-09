@@ -18,7 +18,7 @@
                         {{ session('error') }}
                     </div>
                 @endif
-                    <div class="container text-center"> 
+                    <div class="overflow-hidden text-center"> 
                     <div class="text-center w-80 m-auto mb-3">
                         <img class="my-bg-secondary rounded-4" id="preview-thumbnail"
                             src="{{ $user->photo ? asset('photo/' . $user->photo) : asset('imgs/avatar.png') }}"
@@ -45,14 +45,34 @@
                           </div>
                         </div>
                       </div>
-                      
-                      <div class="text-center p-3">
-                        <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal">
-                          Change Password
-                        </button>
-                      </div>
+                    
                         <div class="card-footer text-center">
                             <button class="btn btn-success">Update</button>
+                        </div>
+
+                    <div class="d-flex justify-content-center ">
+                    <div class="row p-2">
+                        <div class="mb-2 col-6 ">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Change Password
+                            </button>
+                        </div>
+                        @if(Auth()->user()->position == 1)
+                        <div class="mb-2 col-6 ">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#badge">
+                                Add Badge
+                            </button>
+                        </div>
+                        @endif
+                    </div>
+                    </div>
+                       <div class="col">
+                            {{-- <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                              Change Password
+                            </button> --}}
+                        {{-- <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#badge">
+                            Add Badge
+                          </button> --}}
                         </div>
                 </form>
             </div>
@@ -98,6 +118,38 @@
                 </div>
             </div>
         
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-success">Save changes</button>
+            </div>
+        </form>
+    </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="badge" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Add Badge</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('badge.add') }}">
+                    @csrf
+                
+                    <div class="row w-75 m-auto mb-3">
+                        <div class="mb-3 col-4">
+                            <label for="section" class="form-label">Badge Number</label>
+                            <input type="text" class="form-control" id="badge_number" name="badge_number">
+                        </div>
+                        <div class="mb-3 col-4">
+                            <label for="appendix_no" class="form-label">Employee Name</label>
+                            <input type="text" class="form-control" id="full_name" name="full_name">
+                        </div>
+                    </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-success">Save changes</button>

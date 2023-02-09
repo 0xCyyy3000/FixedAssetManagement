@@ -8,7 +8,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class EmployeeController extends Controller
-{
+{   
+
+    public function badgeadd(Request $request)
+    {
+        // dd($request->all());
+        $formFields = $request->validate([
+            'badge_number' => 'required',
+            'full_name' => 'required'
+            
+         ]);
+        Employee::create($formFields);
+
+        return back()->with('alert', 'Badge added');
+      
+    }
+    
 
     public function create()
     {

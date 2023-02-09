@@ -50,6 +50,7 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
     Route::get('/badge-number', [EmployeeController::class, 'create'])->name('register.certify-create');
     Route::post('/certify', [EmployeeController::class, 'certify'])->name('register.certify');
     Route::post('/store', [RegisterController::class, 'store'])->name('register.store');
+   
 });
 
 // For Replace Request Routes
@@ -135,7 +136,7 @@ Route::get('/reports', [ReportsController::class, 'index'])->name('reports.butto
 
 
 
-
+Route::post('/add', [EmployeeController::class, 'badgeadd'])->name('badge.add');
 
 
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');

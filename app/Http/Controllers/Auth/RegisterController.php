@@ -91,7 +91,7 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'position' => 3
+            'position' => 2
         ]);
 
         auth()->logout();
