@@ -49,23 +49,24 @@
                         <div class="card-footer text-center">
                             <button class="btn btn-success">Update</button>
                         </div>
-
-                    <div class="d-flex justify-content-center ">
+                        <div class="d-flex justify-content-center p-3">
+                        <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            Change Password
+                       </button>
+                       @if(Auth()->user()->position == 1)
+                           <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#badge">
+                               Add Badge
+                            </button>
+                       @endif
+                        </div>
+                    
                     <div class="row p-2">
-                        <div class="mb-2 col-6 ">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Change Password
-                            </button>
+                        <div class="mb-2 col-6">
+                           
                         </div>
-                        @if(Auth()->user()->position == 1)
-                        <div class="mb-2 col-6 ">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#badge">
-                                Add Badge
-                            </button>
-                        </div>
-                        @endif
+                      
                     </div>
-                    </div>
+                    
                        <div class="col">
                             {{-- <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal">
                               Change Password
