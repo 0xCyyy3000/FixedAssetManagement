@@ -22,13 +22,14 @@ class UserController extends Controller
 
     public function update(Request $request)
     {   
-     
+        // dd($request->all());
         if ($request->hasFile('photo')) {
-            $thumbnail = $request->file('photo')->store('photos', 'public');
-            User::where(Auth::user()->id, $request->id)->update([
-                'photo' => $thumbnail
+            $photo = $request->file('photo')->store('photos', 'public');
+            User::where('id',Auth::user()->id)->update([
+                'photo' => $photo
             ]);
         }
+        
         User::where('id', Auth::user()->id)->update([
             'name' => $request->name,
             'email' => $request->email,
