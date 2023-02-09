@@ -29,7 +29,7 @@ class ReplaceRequestController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $newTransaction = Transaction::create(['content' => 'New Replace Request submitted by ' . Auth::user()->name]);
+        $newTransaction = Transaction::create(['content' => 'New Replace Request submitted by ' . Auth::user()->name,'type'=>3,'reference'=>$request->id]);
         $newRequest = ReplaceRequest::create([
             'transaction_no' => $newTransaction->id,
             'office_section' => $request->section,
@@ -75,10 +75,11 @@ class ReplaceRequestController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
+        Transaction::create(['content' => 'A return request has been updated #'. $request->id, 'type'=>3]);
         $updated = ReplaceRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
-
+        
         if ($updated) {
             return back()->with('alert', 'Request has been updated!');
         } else

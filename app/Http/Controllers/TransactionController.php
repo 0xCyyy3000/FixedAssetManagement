@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PurchaseRequest;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 

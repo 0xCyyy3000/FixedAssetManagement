@@ -14,10 +14,35 @@
                             </thead>
                             <tbody>
                                 @foreach ($items as $item)
-                                    <tr>
-                                        <a href="{{ route('repair.request') }}">
+                                    <tr>   
+                                        @if ($item->type==5)
+                                        <td>
+                                        <a href="ProfileItem/select/{{ $item->reference }}"  class=" btn">
+                                            {{ $item->content }}
+                                        </a>
+                                        </td>
+                                        @endif
+                                   
+                                        @if ($item->type==2)
+                                        <a href=""  class=" btn ">
                                             <td>{{ $item->content }}</td>
                                         </a>
+                                        @endif
+                                        @if ($item->type==1)
+                                        <a href=""  class=" btn ">
+                                            <td>{{ $item->content }}</td>
+                                        </a>
+                                        @endif
+                                        @if ($item->type==3)
+                                        <a href=""  class=" btn ">
+                                            <td>{{ $item->content }}</td>
+                                        </a>
+                                        @endif
+                                        @if ($item->type==4)
+                                        <a href=""  class=" btn ">
+                                            <td>{{ $item->content }}</td>
+                                        </a>
+                                        @endif
                                         <td>{{ $item->created_at }}</td>
                                     </tr>
                                 @endforeach
