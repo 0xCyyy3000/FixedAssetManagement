@@ -218,7 +218,7 @@
                                 <h1 class="mb-0 fw-semibold">{{ Auth::user()->getName() }}</h1>
                                 <small class="text-muted">{{ Auth::user()->getPosition()->position }}</small>
                             </div>
-                            <img class="my-bg-secondary rounded-4" src="{{ asset('imgs/avatar.png') }}"
+                            <img class="my-bg-secondary rounded-4" src="{{ Auth::user()->photo ? asset('photo/' . Auth::user()->photo) : asset('imgs/avatar.png') }}"
                                 alt="" width="42" height="42">
                             <div class="drop-down">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
