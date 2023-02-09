@@ -208,11 +208,11 @@
                             New
                             <span class="material-icons">add_circle_outline</span>
                         </button> --}}
-                        <button class="btn d-flex gap-1 align-items-center ms-5 p-1 ps-2 pe-2 my-bg-secondary"
+                        {{-- <button class="btn d-flex gap-1 align-items-center ms-5 p-1 ps-2 pe-2 my-bg-secondary"
                             type="button">
                             <span class="material-icons my-primary">notifications</span>
-                        </button>
-                        <div class="d-flex gap-0 align-items-center profile">
+                        </button> --}}
+                        <div class="d-flex gap-0 align-items-center profile ">
                             <div class="row">
                                 <h1 class="mb-0 fw-semibold">{{ Auth::user()->getName() }}</h1>
                                 <small class="text-muted">{{ Auth::user()->getPosition()->position }}</small>

@@ -20,14 +20,7 @@
                     </div>
                 </div>
                 <hr>
-                @foreach ($data as $items)
-                @php
-                $total = 0;
-                $total += $items->price 
-                @endphp
-                
-               <p class="float-end gap-2 p-3 w-3 fs-4 fst-normal" scope="col">Total Inventroy Value: <Span class="my-bg- w-1 fw-bold"> ₱ {{ $total }}</Span></p>
-                <div class=" p-3 text-center gap-2">
+             <div class=" p-3 text-center gap-2">
                     <div class="bg-white rounded-2">
                        
                         <table class="table ">
@@ -50,7 +43,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($data as $items)
+                                {{-- @php
+                                $total = 0;
+                                $add=$items->price
+                                $sum = $total + ; 
+                                @endphp
+                                 --}}
                                
+                                
                                
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
@@ -69,8 +70,9 @@
                                         <td>{{ $items->price }}</td>
                                        
                                     </tr>
-                                   
-                                @endforeach
+                                   {{-- <p class="float-end gap-2 p-3 w-3 fs-4 fst-normal" scope="col">Total Inventroy Value: <Span class="my-bg- w-1 fw-bold"> ₱ {{ $sum}}</Span></p> --}}
+                            @endforeach
+                            
                             </tbody>
                         </table>
 

@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="overflow-hidden px-3 ">
+    <div class="container px-3 ">
         <div class="row justify-content-center ">
             <div class="p-2">
                 <div class="card bg-transparent border-0 p-1">

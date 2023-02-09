@@ -5,11 +5,13 @@
             <div class="container bg-white rounded request-information">
                 <div class="row p-3 border-bottom border-3 mb-3">
                     <h5 class="col pt-2">Replace Request Information</h5>
+                    @if(Auth()->user()->position == 2)
                     <a href="{{ route('replace.create') }}"
                         class="col-2 btn my-btn-primary d-flex gap-2 align-items-center rounded-3">
                         <span class="material-icons-outlined text-white fs-4 ms-3">add_box</span>
                         Create Request
                     </a>
+                    @endif
                 </div>
                 <div class="overflow-hidden p-4">
                     <table class="table">
