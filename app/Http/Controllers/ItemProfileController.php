@@ -34,9 +34,8 @@ class ItemProfileController extends Controller
             $media3 = $request->file('media3')->store('photos', 'public');
         } else $imagePath = null;
 
-        $newTransaction = Transaction::create(['content' => 'New Asset added by ' . Auth::user()->name, 'type' => 5, 'reference' => $new_inventory]);
         $newRequest = ItemProfile::create([
-            'transaction_no' => $newTransaction->id,
+            'transaction_no' => 'none',
             'inventory_number' => $new_inventory,
             'classification' => $request->classification,
             'year' => $request->year,
@@ -50,6 +49,13 @@ class ItemProfileController extends Controller
         ]);
 
         if ($newRequest) {
+            $newTransaction = Transaction::create([
+                'content' => 'New Asset added by ' . Auth::user()->name,
+                'type' => 5, 'reference' => $newRequest->id
+            ]);
+
+            ItemProfile::where('id', $newRequest->id)->update(['transaction_no' => $newTransaction->id]);
+
             ItemMedia::create([
                 'item_id' => $newRequest->id,
                 'media1' => $media1,

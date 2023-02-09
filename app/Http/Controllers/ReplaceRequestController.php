@@ -89,7 +89,7 @@ class ReplaceRequestController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
-        Transaction::create(['content' => 'A return request has been updated #' . $request->id, 'type' => 3]);
+        Transaction::create(['content' => 'A replace request has been updated #' . $request->id, 'type' => 3, 'reference' => $request->id]);
         $updated = ReplaceRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);

@@ -92,7 +92,7 @@ class RepairRequestController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
-        Transaction::create(['content' => 'A return request has been updated #' . $request->id, 'type' => 2, 'reference' => $request->id]);
+        Transaction::create(['content' => 'A repair request has been updated #' . $request->id, 'type' => 2, 'reference' => $request->id]);
         $updated = RepairRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
