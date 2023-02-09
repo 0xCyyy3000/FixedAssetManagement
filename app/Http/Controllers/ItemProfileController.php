@@ -17,11 +17,16 @@ class ItemProfileController extends Controller
 {
     public function store(Request $request)
     {
-        // dd($request);
+        if ($request->serials == null) return back()->with('error', 'Number of items should be atleast 1, please try again.');
+
+        $existing_serials = SerialNumber::get('serial_no')->toArray();
+        foreach ($existing_serials as $serial) {
+            if (in_array($serial['serial_no'], $request->serials))
+                return back()->with('error', 'Serials cannot be duplicated, please try again.');
+        }
+
         $recentItem = ItemProfile::latest()->first();
-        $new_inventory = $recentItem ? $recentItem->inventory_number+1 : 1;
-        // $recent_id=ItemProfile::latest()->first()->inventory_number + 1;
-        // dd($recent_id);
+        $new_inventory = $recentItem ? $recentItem->inventory_number + 1 : 1;
         if ($request->hasFile('photo') && $request->hasFile('media1')  && $request->hasFile('media2') && $request->hasFile('media3')) {
             $imagePath = $request->file('photo')->store('photos', 'public');
             $media1 = $request->file('media1')->store('photos', 'public');
@@ -29,11 +34,10 @@ class ItemProfileController extends Controller
             $media3 = $request->file('media3')->store('photos', 'public');
         } else $imagePath = null;
 
-
-        $newTransaction = Transaction::create(['content' => 'New Asset added by ' . Auth::user()->name,'type'=> 5,'reference'=>$new_inventory]);
+        $newTransaction = Transaction::create(['content' => 'New Asset added by ' . Auth::user()->name, 'type' => 5, 'reference' => $new_inventory]);
         $newRequest = ItemProfile::create([
             'transaction_no' => $newTransaction->id,
-            'inventory_number'=>$new_inventory,
+            'inventory_number' => $new_inventory,
             'classification' => $request->classification,
             'year' => $request->year,
             'title' => $request->title,
@@ -74,10 +78,10 @@ class ItemProfileController extends Controller
                     'lifespan' => $lifespan,
                     'location' => $location,
                     'color' => $color,
-                    'depreciation_value'=>($price-$request->depreciation)/intval($lifespan)
+                    'depreciation_value' => ($price - $request->depreciation) / intval($lifespan)
                 ]);
             }
-            
+
             return back()->with('alert', 'Item profile added!');
         }
     }

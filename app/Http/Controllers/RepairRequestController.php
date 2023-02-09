@@ -33,9 +33,8 @@ class RepairRequestController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $newTransaction = Transaction::create(['content' => 'New Repair Request submitted by ' . Auth::user()->name,'type'=>2,'reference'=>$request->id]);
         $newRequest = RepairRequest::create([
-            'transaction_no' => $newTransaction->id,
+            'transaction_no' => 'none',
             'office_section' => $request->section,
             'fund_cluster' => $request->fund_cluster,
             'amount' => $request->amount,
@@ -44,6 +43,12 @@ class RepairRequestController extends Controller
         ]);
 
         if ($newRequest) {
+            $newTransaction = Transaction::create([
+                'content' => 'New Repair Request submitted by ' . Auth::user()->name,
+                'type' => 2,
+                'reference' => $newRequest->id
+            ]);
+            RepairRequest::where('id', $newRequest->id)->update(['transaction_no' => $newTransaction->id]);
             DB::table('requests_purposes')->insert([
                 'reference_no' => $newRequest->id,
                 'purpose' => $request->note,
@@ -87,11 +92,11 @@ class RepairRequestController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
-        Transaction::create(['content' => 'A return request has been updated #'. $request->id, 'type'=>2,'reference'=>$request->id]);
-        $updated = RepairRequest    ::where('id', $request->id)->update([
+        Transaction::create(['content' => 'A return request has been updated #' . $request->id, 'type' => 2, 'reference' => $request->id]);
+        $updated = RepairRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
-        
+
         if ($updated) {
             return back()->with('alert', 'Request has been updated!');
         } else

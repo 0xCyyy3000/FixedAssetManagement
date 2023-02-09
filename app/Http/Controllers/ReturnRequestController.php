@@ -31,11 +31,8 @@ class ReturnRequestController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        $recentItem = ReturnRequest::latest()->first();
-        $newTransaction = Transaction::create(['content' => 'New Return Request submitted by ' . Auth::user()->name,'type'=>4,'reference'=>$recentItem]);
         $newRequest = ReturnRequest::create([
-            'transaction_no' => $newTransaction->id,
+            'transaction_no' => 'none',
             'office_section' => $request->section,
             'fund_cluster' => $request->fund_cluster,
             'amount' => $request->amount,
@@ -44,6 +41,13 @@ class ReturnRequestController extends Controller
         ]);
 
         if ($newRequest) {
+            $newTransaction = Transaction::create([
+                'content' => 'New Return Request submitted by ' . Auth::user()->name,
+                'type' => 4, 'reference' => $newRequest->id
+            ]);
+
+            ReturnRequest::where('id', $newRequest->id)->update(['transaction_no' => $newTransaction->id]);
+
             DB::table('requests_purposes')->insert([
                 'reference_no' => $newRequest->id,
                 'purpose' => $request->note,
@@ -87,11 +91,11 @@ class ReturnRequestController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
-        
+
         $updated = ReturnRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
-        Transaction::create(['content' => 'A return request has been updated #'. $request->id, 'type'=>4,'reference'=>$request->id]);
+        Transaction::create(['content' => 'A return request has been updated #' . $request->id, 'type' => 4, 'reference' => $request->id]);
         if ($updated) {
             return back()->with('alert', 'Request has been updated!');
         } else

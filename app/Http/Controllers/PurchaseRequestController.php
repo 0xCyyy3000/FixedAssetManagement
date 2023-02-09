@@ -31,10 +31,8 @@ class PurchaseRequestController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        $recentItem = PurchaseRequest::latest()->first();
-        $newTransaction = Transaction::create(['content' => 'New Purchase Request submitted by ' . Auth::user()->name,'type'=>$recentItem]);
         $newRequest = PurchaseRequest::create([
-            'transaction_no' => $newTransaction->id,
+            'transaction_no' => 'none',
             'office_section' => $request->section,
             'fund_cluster' => $request->fund_cluster,
             'amount' => $request->amount,
@@ -48,6 +46,14 @@ class PurchaseRequestController extends Controller
                 'purpose' => $request->note,
                 'type' => 1
             ]);
+
+            $newTransaction = Transaction::create([
+                'content' => 'New Purchase Request submitted by ' . Auth::user()->name,
+                'type' => 1, 'reference' => $newRequest->id
+            ]);
+
+            PurchaseRequest::where('id', $newRequest->id)->update(['transaction_no' => $newTransaction->id]);
+
             foreach ($request->items as $item) {
                 PurchaseReqItems::create([
                     'purchase_req_id' => $newRequest->id,
@@ -89,11 +95,11 @@ class PurchaseRequestController extends Controller
 
     public function update(Request $request)
     {
-        Transaction::create(['content' => 'A return request has been updated #'. $request->id, 'type'=>1,'reference'=>$request->id]);
+        Transaction::create(['content' => 'A return request has been updated #' . $request->id, 'type' => 1, 'reference' => $request->id]);
         $updated = PurchaseRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
-       
+
         if ($updated) {
             return back()->with('alert', 'Request has been updated!');
         } else

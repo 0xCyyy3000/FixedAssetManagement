@@ -50,7 +50,6 @@ Route::group(['middleware' => 'guest', 'prefix' => '/register'], function () {
     Route::get('/badge-number', [EmployeeController::class, 'create'])->name('register.certify-create');
     Route::post('/certify', [EmployeeController::class, 'certify'])->name('register.certify');
     Route::post('/store', [RegisterController::class, 'store'])->name('register.store');
-   
 });
 
 // For Replace Request Routes
@@ -60,7 +59,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/replace-request'], function 
     Route::post('/store', [ReplaceRequestController::class, 'store'])->name('replace.store');
     Route::post('/destroy', [ReplaceRequestController::class, 'destroy'])->name('replace.destroy');
     Route::post('/update', [ReplaceRequestController::class, 'update'])->name('replace.update');
-    Route::get('/select', [ReplaceRequestController::class, 'select'])->name('replace.select');
+    Route::get('/select/{id}', [ReplaceRequestController::class, 'select'])->name('replace.select');
     Route::get('/replacePdf', [ReplaceRequestController::class, 'viewPdf'])->name('replacePdf');
     Route::get('/downloadreplacePdf', [ReplaceRequestController::class, 'download'])->name('downloadreplacePdf');
 });
@@ -72,7 +71,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/repair-request'], function (
     Route::post('/store', [RepairRequestController::class, 'store'])->name('repair.store');
     Route::post('/destroy', [RepairRequestController::class, 'destroy'])->name('repair.destroy');
     Route::post('/update', [RepairRequestController::class, 'update'])->name('repair.update');
-    Route::get('/select', [RepairRequestController::class, 'select'])->name('repair.select');
+    Route::get('/select/{id}', [RepairRequestController::class, 'select'])->name('repair.select');
     Route::get('/repairPdf', [RepairRequestController::class, 'viewPdf'])->name('repairPdf');
     Route::get('/downloadrepairPdf', [RepairRequestController::class, 'download'])->name('downloadrepairPdf');
 });
@@ -85,7 +84,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/purchase-request'], function
     Route::post('/store', [PurchaseRequestController::class, 'store'])->name('purchase.store');
     Route::post('/destroy', [PurchaseRequestController::class, 'destroy'])->name('purchase.destroy');
     Route::post('/update', [PurchaseRequestController::class, 'update'])->name('purchase.update');
-    Route::get('/select', [PurchaseRequestController::class, 'select'])->name('purchase.select');
+    Route::get('/select/{id}', [PurchaseRequestController::class, 'select'])->name('purchase.select');
     Route::get('/purchasePdf', [PurchaseRequestController::class, 'viewPdf'])->name('purchasePdf');
     Route::get('/dlpurchasePdf', [PurchaseRequestController::class, 'download'])->name('dlpurchasePdf');
 });
@@ -98,7 +97,7 @@ Route::group(['middleware' => 'auth', 'prefix' => '/return-request'], function (
     Route::post('/store', [ReturnRequestController::class, 'store'])->name('return.store');
     Route::post('/destroy', [ReturnRequestController::class, 'destroy'])->name('return.destroy');
     Route::post('/update', [ReturnRequestController::class, 'update'])->name('return.update');
-    Route::get('/select', [ReturnRequestController::class, 'select'])->name('return.select');
+    Route::get('/select/{id}', [ReturnRequestController::class, 'select'])->name('return.select');
     Route::get('/viewPdf', [ReturnRequestController::class, 'viewPdf'])->name('viewPdf');
     Route::get('/downloadPdf', [ReturnRequestController::class, 'download'])->name('downloadPdf');
 });

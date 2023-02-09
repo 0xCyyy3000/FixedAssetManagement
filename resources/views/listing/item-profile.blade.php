@@ -5,6 +5,12 @@
             <div class="container p-0 bg-white rounded request-information">
                 <div class="row p-3 pb-0 mb-5 bg-white shadow">
                     <p class="text-start fs-3 fw-bolder">Inventroy Form</p>
+                    @if (session('error'))
+                        <div class="w-75 m-auto mb-3 alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>Something went wrong!</strong> {{ session('error') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                 </div>
                 <div class="row">
                     <h3 class="text-center fs-4">Item Description</h3>

@@ -29,10 +29,8 @@ class ReplaceRequestController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
-        $newTransaction = Transaction::create(['content' => 'New Replace Request submitted by ' . Auth::user()->name,'type'=>3,'reference'=>$request->id]);
         $newRequest = ReplaceRequest::create([
-            'transaction_no' => $newTransaction->id,
+            'transaction_no' => 'none',
             'office_section' => $request->section,
             'fund_cluster' => $request->fund_cluster,
             'amount' => $request->amount,
@@ -41,6 +39,13 @@ class ReplaceRequestController extends Controller
         ]);
 
         if ($newRequest) {
+            $newTransaction = Transaction::create([
+                'content' => 'New Replace Request submitted by ' . Auth::user()->name,
+                'type' => 3,
+                'reference' => $newRequest->id
+            ]);
+            ReplaceRequest::where('id', $newRequest->id)->update(['transaction_no' => $newTransaction->id]);
+
             DB::table('requests_purposes')->insert([
                 'reference_no' => $newRequest->id,
                 'purpose' => $request->note,
@@ -84,11 +89,11 @@ class ReplaceRequestController extends Controller
     public function update(Request $request)
     {
         // dd($request->all());
-        Transaction::create(['content' => 'A return request has been updated #'. $request->id, 'type'=>3]);
+        Transaction::create(['content' => 'A return request has been updated #' . $request->id, 'type' => 3]);
         $updated = ReplaceRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
-        
+
         if ($updated) {
             return back()->with('alert', 'Request has been updated!');
         } else
