@@ -4,7 +4,7 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(id, serial_no, lifespan, condition, location, color, price, date, supplier, warranty) {
+        constructor(id, serial_no, lifespan, condition, location, color, price, date, supplier, warranty, address, contact_no) {
             this.id = id
             this.serial_no = serial_no;
             this.lifespan = lifespan;
@@ -15,6 +15,8 @@ $(document).ready(function () {
             this.date = date;
             this.supplier = supplier;
             this.warranty = warranty;
+            this.address = address;
+            this.contact_no = contact_no;
         }
     }
     let items = [];
@@ -32,8 +34,10 @@ $(document).ready(function () {
         console.log($('#ip_warranty').val());
         console.log($('#ip_supplier').val());
         console.log($('#ip_condition').val());
+        console.log($('#ip_address').val());
+        console.log($('#ip_contact_no').val());
         if ($('#ip_serial_no').val() && $('#ip_lifespan').val() && $('#ip_location').val() && $('#ip_color').val()
-            && $('#ip_date').val() && $('#ip_warranty').val() && $('#ip_supplier').val()) {
+            && $('#ip_date').val() && $('#ip_warranty').val() && $('#ip_supplier').val() && $('#ip_contact_no').val() && $('#ip_address').val()) {
             let existing;
             const found = items[items.findIndex(item => item.id == $('#ip_serial_no').val())]
             items.length && found ? existing = true : existing = false;
@@ -50,13 +54,16 @@ $(document).ready(function () {
                 selectedItem.supplier = $('#ip_supplier').val();
                 selectedItem.color = $('#ip_color').val();
                 selectedItem.price = $('#ip_price').val();
+                selectedItem.supplier = $('#ip_address').val();
+                selectedItem.supplier = $('#ip_contact_no').val();
             } else if (existing && !editing) {
                 alert('Serial number must be unique!');
             }
             else {
                 items.push(new Item($('#ip_serial_no').val(), $('#ip_serial_no').val(), $('#ip_lifespan').val(),
                     $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val(), $('#ip_price').val(),
-                    $('#ip_date').val(), $('#ip_supplier').val(), $('#ip_warranty').val(),
+                    $('#ip_date').val(), $('#ip_supplier').val(), $('#ip_warranty').val(), $('#ip_address').val(), 
+                    $('#ip_contact_no').val(),
                 ));
             }
 
@@ -99,10 +106,12 @@ $(document).ready(function () {
                         <td>${item.lifespan}</td>
                         <td>${item.location}</td>
                         <td>${item.warranty}</td>
-                        <td>${item.supplier}</td>
                         <td>${item.date}</>
                         <td>${item.color}</td>
                         <td>${item.price}</td>
+                        <td>${item.supplier}</td>
+                        <td>${item.address}</td>
+                        <td>${item.contact_no}</td>
                         <td>
                             <div class="d-flex align-items-center gap-3"> 
                                 <button type="button" class="p-0 btn px-3 rounded-3 bg-warning d-flex align-items-center edit"
@@ -145,6 +154,8 @@ $(document).ready(function () {
             let date = `<input type="hidden" name="date[]" value="${item.date}">`;
             let warranty = `<input type="hidden" name="warranty[]" value="${item.warranty}">`;
             let supplier = `<input type="hidden" name="supplier[]" value="${item.supplier}">`;
+            let contact_no = `<input type="hidden" name="contact_no[]" value="${item.contact_no}">`;
+            let address = `<input type="hidden" name="address[]" value="${item.address}">`;
             let serialInput = document.getElementById('ip_serial_input');
             serialInput.innerHTML += serial;
             serialInput.innerHTML += condition;
@@ -155,6 +166,8 @@ $(document).ready(function () {
             serialInput.innerHTML += warranty;
             serialInput.innerHTML += supplier;
             serialInput.innerHTML += price;
+            serialInput.innerHTML += address;
+            serialInput.innerHTML += contact_no;
         });
     });
 
@@ -174,6 +187,8 @@ $(document).ready(function () {
         $('#ip_supplier').val(selectedItem.supplier);
         $('#ip_color').val(selectedItem.color);
         $('#ip_price').val(selectedItem.price);
+        $('#ip_contact_no').val(selectedItem.contact_no);
+        $('#ip_address').val(selectedItem.address);
     });
 
     $(document).on('click', '#ip_btn_cancel', function () {

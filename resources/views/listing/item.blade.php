@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="container px-3 ">
+    <div class="overflow-auto px-3 ">
         <div class="row justify-content-center ">
             <div class="p-2">
                 <div class="card bg-transparent border-0 p-1">
@@ -131,10 +131,13 @@
                                         <th scope="col" class="p-3">Color</th>
                                         <th scope="col" class="p-3">Price</th>
                                         <th scope="col" class="p-3">Purchase Date</th>
-                                        <th scope="col" class="p-3">Supplier</th>
+                                        
                                         <th scope="col" class="p-3">Warranty</th>
                                         <th scope="col" class="p-3">Location</th>
                                         <th scope="col" class="p-3">Life span</th>
+                                        <th scope="col" class="p-3">Supplier</th>
+                                        <th scope="col" class="p-3">Contact No.</th>
+                                        <th scope="col" class="p-3">Address</th>
                                         <th scope="col" class="p-3">Depreciation</th>
                                         <th scope="col" class="p-3">Action</th>
                                     </tr>
@@ -156,10 +159,13 @@
                                             <td class="p-3">{{ $serial->color }}</td>
                                             <td class="p-3">{{ $serial->price }}</td>
                                             <td class="p-3">{{ $serial->date }}</td>
-                                            <td class="p-3">{{ $serial->supplier }}</td>
                                             <td class="p-3">{{ $serial->warranty }}</td>
                                             <td class="p-3">{{ $serial->location }}</td>
                                             <td class="p-3">{{ $serial->lifespan }}</td>
+                                            
+                                            <td class="p-3">{{ $serial->supplier }}</td>
+                                            <td class="p-3">{{ $serial->contact_no }}</td>
+                                            <td class="p-3">{{ $serial->address }}</td>
                                             <td class="p-3">{{ $serial->depreciation_value }}</td>
                                             <td style="width: 18% !important;">
                                                 <div class="d-flex">
@@ -408,11 +414,22 @@
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="lifespan">Warranty</label>
-                                <input type="text" id="warranty" name="warranty" class="form-control">
+                                <input type="date" id="ip_warranty" name="warranty" class="form-control">
+                            </div>
+                            <div class="row mb-0">
+                                <h3 class="text-center fs-4"> Supplier Information</h3>
                             </div>
                             <div class="mb-3 col-6">
                                 <label for="lifespan">Supplier</label>
                                 <input type="text" id="supplier" name="supplier" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Address</label>
+                                <input type="text" id="address" name="address" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Contact No.</label>
+                                <input type="text" id="contact_no" name="contact_no" class="form-control">
                             </div>
                             <div class="mb-3 col-6" hidden> 
                                 <label for="lifespan">Salvage Value</label>

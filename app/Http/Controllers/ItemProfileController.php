@@ -17,6 +17,7 @@ class ItemProfileController extends Controller
 {
     public function store(Request $request)
     {
+        // dd($request->all());
         if ($request->serials == null) return back()->with('error', 'Number of items should be atleast 1, please try again.');
 
         $existing_serials = SerialNumber::get('serial_no')->toArray();
@@ -72,6 +73,9 @@ class ItemProfileController extends Controller
                 $date = $request->date[$key];
                 $supplier = $request->supplier[$key];
                 $warranty = $request->warranty[$key];
+                $address = $request->address[$key];
+                $contact_no = $request->contact_no[$key];
+              
 
                 SerialNumber::create([
                     'reference_no' => $newRequest->id,
@@ -81,6 +85,8 @@ class ItemProfileController extends Controller
                     'date' => $date,
                     'supplier' => $supplier,
                     'warranty' => $warranty,
+                    'address' => $address,
+                    'contact_no' => $contact_no,
                     'lifespan' => $lifespan,
                     'location' => $location,
                     'color' => $color,

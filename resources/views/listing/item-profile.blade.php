@@ -101,19 +101,20 @@
                             <input type="text" class="form-control" id="ip_location">
                         </div>
                         <div class="mb-3 col-6">
-                            <label for="ip_condition" class="form-label">Condition</label>
-                            <select class="form-select" aria-label="Default select example" id="ip_condition">
-                                <option value="Functional">Functional</option>
-                                <option value="Non-Functional">Non-Functional</option>
-                            </select>
+                            <label for="ip_color" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="ip_color">
                         </div>
+                       
                         <div class="mb-3 col-6">
                             <label for="ip_price" class="form-label">Price</label>
                             <input type="number" class="form-control" id="ip_price" name="ip_price">
                         </div>
                         <div class="mb-3 col-6">
-                            <label for="ip_color" class="form-label">Color</label>
-                            <input type="text" class="form-control" id="ip_color">
+                            <label for="ip_condition" class="form-label">Condition</label>
+                            <select class="form-select" aria-label="Default select example" id="ip_condition">
+                                <option value="Functional">Functional</option>
+                                <option value="Non-Functional">Non-Functional</option>
+                            </select>
                         </div>
                         <div class="mb-3 col-6">
                             <label for="ip_date" class="form-label">Purchase Date</label>
@@ -123,9 +124,20 @@
                             <label for="ip_warranty" class="form-label">Warranty</label>
                             <input type="date" class="form-control" id="ip_warranty" name="ip_warranty">
                         </div>
+                        <div class="row mb-0">
+                            <h3 class="text-center fs-4"> Supplier Information</h3>
+                        </div>
                         <div class="mb-3 col-6">
                             <label for="ip_supplier" class="form-label">Supplier</label>
                             <input type="text" class="form-control" id="ip_supplier" name="ip_supplier">
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="ip_address" class="form-label">Address</label>
+                            <input type="text" class="form-control" id="ip_address" name="ip_address">
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label for="ip_contact_no" class="form-label">Contact no.</label>
+                            <input type="text" class="form-control" id="ip_contact_no" name="ip_contact_no">
                         </div>
                         <div class="col-12">
                             <button class="btn my-btn-primary w-100" type="button" id="ip_btn_serial">Add item</button>
@@ -142,10 +154,12 @@
                                     <th scope="col">Lifespan</th>
                                     <th scope="col">Location</th>
                                     <th scope="col">Warranty</th>
-                                    <th scope="col">Supplier</th>
                                     <th scope="col">Purchase Date</th>
                                     <th scope="col">Color</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Supplier</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Contact No.</th>
                                     <th scope="col">Action</th>
                                 </thead>
                                 <tbody id="ip_serials-table-body"></tbody>

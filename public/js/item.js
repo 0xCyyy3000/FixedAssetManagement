@@ -22,6 +22,8 @@ $(document).ready(function () {
                 $('#edit-date').val(response.date);
                 $('#edit-warranty').val(response.warranty);
                 $('#edit-supplier').val(response.supplier);
+                $('#edit-contact_no').val(response.contact_no);
+                $('#edit-address').val(response.address);
                 $('#staticBackdrop6').modal('show');
             }
         });

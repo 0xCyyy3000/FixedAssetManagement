@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('warranty')->nullable();
             $table->string('supplier')->nullable();
             $table->string('date');
+            $table->string('address');
+            $table->string('contact_no');
             $table->timestamps();
         });
     }
