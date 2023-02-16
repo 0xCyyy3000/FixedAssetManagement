@@ -23,7 +23,7 @@
              <div class=" p-3 text-center gap-2">
                     <div class="bg-white rounded-2">
                        
-                        <livewire:user-table />
+                        <livewire:item-table />
                         {{-- <table class="table ">
                             <thead>
                                 <tr>
