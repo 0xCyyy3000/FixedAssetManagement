@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 
 class UserTable extends DataTableComponent
 {
@@ -13,7 +14,11 @@ class UserTable extends DataTableComponent
     public function configure(): void
     {
         $this->setPrimaryKey('id');
-        $this->setDebugEnabled();
+    }
+
+    public function builder(): Builder
+    {
+        return User::query()->latest();
     }
 
     public function columns(): array
@@ -30,8 +35,6 @@ class UserTable extends DataTableComponent
             Column::make("Position", "position")
                 ->sortable(),
             Column::make("Created at", "created_at")
-                ->sortable(),
-            Column::make("Updated at", "updated_at")
                 ->sortable(),
         ];
     }
