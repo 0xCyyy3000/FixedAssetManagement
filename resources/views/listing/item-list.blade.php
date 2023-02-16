@@ -11,6 +11,7 @@
                             <a href="{{ route('viewonly') }}"class="btn btn-sm btn-secondary text-white" target="_blank">
                                 View PDF</a>
                         </div> --}}
+                        <livewire:search />
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">

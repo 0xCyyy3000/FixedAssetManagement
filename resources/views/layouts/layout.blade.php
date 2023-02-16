@@ -38,6 +38,9 @@
     <script src="{{ asset('js/replaceRequest.js') }}"></script>
     <script src="{{ asset('js/repairRequest.js') }}"></script>
     <script src="{{ asset('js/returnRequest.js') }}"></script>
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireStyles
 </head>
@@ -92,7 +95,9 @@
                                         Request::routeIs('return.create')) show @endif"
                                 aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                 <div class="accordion-body pt-0 pb-0">
+                                   
                                     <ul class=" list-group pt-2">
+                                        @if(Auth()->user()->position == 1)
                                         <li class=" list-group @if (Request::routeIs('purchase.request') || Request::routeIs('purchase.select') || Request::routeIs('purchase.create')) active @endif">
                                             <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('purchase.request') }}">
@@ -100,6 +105,7 @@
                                                 Purchase
                                             </a>
                                         </li>
+                                        @endif
                                         <li class=" list-group @if (Request::routeIs('repair.request') || Request::routeIs('repair.select') || Request::routeIs('repair.create')) active @endif">
                                             <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('repair.request') }}">
@@ -107,6 +113,7 @@
                                                 Repair
                                             </a>
                                         </li>
+                                        @if(Auth()->user()->position == 1)
                                         <li class=" list-group @if (Request::routeIs('replace.request') || Request::routeIs('replace.select') || Request::routeIs('replace.create')) active @endif">
                                             <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('replace.request') }}">
@@ -114,13 +121,14 @@
                                                 Replace
                                             </a>
                                         </li>
-                                        <li class="list-group @if (Request::routeIs('return.request') || Request::routeIs('return.select') || Request::routeIs('return.create')) active @endif">
+                                        @endif
+                                        {{-- <li class="list-group @if (Request::routeIs('return.request') || Request::routeIs('return.select') || Request::routeIs('return.create')) active @endif">
                                             <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                 href="{{ route('return.request') }}">
                                                 <span class="material-icons-outlined me-2">assignment_return</span>
                                                 Return
                                             </a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -191,7 +199,7 @@
                     <h4 class="col fs-5 m-0 fw-bolder">Fixed Assets Information Management</h4>
                     <div class="col d-flex gap-3 justify-content-between ">
 
-                        <livewire:search />
+                        
                         {{-- <form class="d-flex">
                             <div class="input-group border-0">
                                 <input type="search" class="form-control my-bg-third" placeholder="Search"
@@ -258,7 +266,9 @@
         let hasErrors = "{{ $errors->any() }}";
     </script>
     <script src="{{ asset('js/item.js') }}"></script>
+    @vite('resources/js/app.js')
     @livewireScripts
+   
 </body>
 
 </html>

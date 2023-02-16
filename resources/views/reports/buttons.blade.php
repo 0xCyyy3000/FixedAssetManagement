@@ -23,7 +23,8 @@
              <div class=" p-3 text-center gap-2">
                     <div class="bg-white rounded-2">
                        
-                        <table class="table ">
+                        <livewire:user-table />
+                        {{-- <table class="table ">
                             <thead>
                                 <tr>
                                     <th scope="col" class="p-3">No.</th>
@@ -44,12 +45,12 @@
                             </thead>
                             <tbody>
                             @foreach ($data as $items)
-                                {{-- @php
+                                 @php
                                 $total = 0;
                                 $add=$items->price
                                 $sum = $total + ; 
                                 @endphp
-                                 --}}
+                               
                                
                                 
                                
@@ -70,11 +71,11 @@
                                         <td>{{ $items->price }}</td>
                                        
                                     </tr>
-                                   {{-- <p class="float-end gap-2 p-3 w-3 fs-4 fst-normal" scope="col">Total Inventroy Value: <Span class="my-bg- w-1 fw-bold"> ₱ {{ $sum}}</Span></p> --}}
+                                  <p class="float-end gap-2 p-3 w-3 fs-4 fst-normal" scope="col">Total Inventroy Value: <Span class="my-bg- w-1 fw-bold"> ₱ {{ $sum}}</Span></p> 
                             @endforeach
                             
                             </tbody>
-                        </table>
+                        </table> --}}
 
                     </div>
                 </div>
