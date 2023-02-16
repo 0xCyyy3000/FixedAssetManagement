@@ -95,7 +95,7 @@ class PurchaseRequestController extends Controller
 
     public function update(Request $request)
     {
-        Transaction::create(['content' => 'A return request has been updated #' . $request->id, 'type' => 1, 'reference' => $request->id]);
+        Transaction::create(['content' => 'A purchase request has been updated #' . $request->id, 'type' => 1, 'reference' => $request->id]);
         $updated = PurchaseRequest::where('id', $request->id)->update([
             'status' => $request->status
         ]);
