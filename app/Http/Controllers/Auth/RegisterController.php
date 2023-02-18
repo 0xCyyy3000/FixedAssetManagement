@@ -70,7 +70,7 @@ class RegisterController extends Controller
         return User::create([
             'badge_number' => $data['badge_number'],
             'name' => $data['name'],
-            'email' => $data['email'],
+            // 'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -82,14 +82,14 @@ class RegisterController extends Controller
         $request->validate([
             'badge_number' => ['required', 'min:5'],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
 
         User::create([
             'badge_number' => $request->badge_number,
             'name' => $request->name,
-            'email' => $request->email,
+            // 'email' => $request->email,
             'password' => Hash::make($request->password),
             'position' => 2
         ]);

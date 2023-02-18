@@ -24,12 +24,13 @@ class ItemTable extends DataTableComponent
     public function columns(): array
     {
         return [
-            Column::make("Id", "id")
+            Column::make("No.", "id")
                 ->sortable(),
             Column::make("Inventroy Number", "inventory_number")
                 ->sortable(),
             Column::make("Asset", "title")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make("Model", "description")
                 ->sortable(),
             Column::make("Classification", "classification")

@@ -29,7 +29,8 @@ class UserTable extends DataTableComponent
             Column::make("Badge number", "badge_number")
                 ->sortable(),
             Column::make("Name", "name")
-                ->sortable(),
+                ->sortable()
+                ->searchable(),
             Column::make("Email", "email")
                 ->sortable(),
             Column::make("Position", "position")

@@ -37,4 +37,10 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // Overriding the username() from the AuthenticatesUsers trait
+    public function username()
+    {
+        return 'badge_number';
+    }
 }

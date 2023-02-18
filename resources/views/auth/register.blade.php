@@ -35,15 +35,22 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            <div class="row mb-0">
                                 <label for="name"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text"
+                                    <input id="name" type="hidden"
                                         class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                        value="{{ session('full_name') }}">
 
+                                    <p disabled class="form-control @error('badge_number') is-invalid @enderror">
+                                        @if (session('full_name'))
+                                            {{ session('full_name') }}
+                                        @else
+                                            {{ __('Not set') }}
+                                        @endif
+                                    </p>
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -52,7 +59,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-3">
+                            {{-- <div class="row mb-3">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
@@ -67,7 +74,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="row mb-3">
                                 <label for="password"
