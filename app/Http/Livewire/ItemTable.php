@@ -104,7 +104,56 @@ class ItemTable extends DataTableComponent
                     fn ($value, $row, Column $column) =>
                     "<p class='fw-bold text-start'> {$value} </p>"
                 )->html(),
-            Column::make('Created at', 'created_at')
+            Column::make('Condition', 'condition')
+                ->sortable()
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) =>
+                    "<p class='fw-bold text-start'> {$value} </p>"
+                )->html(),
+            Column::make('Color', 'color')
+                ->sortable()
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) =>
+                    "<p class='fw-bold text-start'> {$value} </p>"
+                )->html(),
+            Column::make('Lifespan/Yr', 'lifespan')
+                ->sortable()
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) =>
+                    "<p class='fw-bold text-start'> {$value} </p>"
+                )->html(),
+                Column::make('Warranty', 'warranty')
+                ->sortable()
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) =>
+                    "<p class='fw-bold text-start'> {$value} </p>"
+                )->html(),
+                Column::make('Price', 'price')
+                ->sortable()
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) =>
+                    "<p class='fw-bold text-start'> {$value} </p>"
+                )->html(),
+                Column::make('Supplier', 'supplier')
+                ->sortable()
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) =>
+                    "<p class='fw-bold text-start'> {$value} </p>"
+                )->html(),
+            Column::make('Contact Number', 'contact_no')
+                ->sortable()
+                ->searchable()
+                ->format(
+                    fn ($value, $row, Column $column) =>
+                    "<p class='fw-bold text-start'> {$value} </p>"
+                )->html(),
+            Column::make('Date', 'date')
                 ->sortable()
                 ->format(
                     fn ($value, $row, Column $column) =>
