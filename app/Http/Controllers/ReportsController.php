@@ -48,4 +48,17 @@ class ReportsController extends Controller
         return view('reports.asset', compact('data'));
     }
 
+    public function show()
+    {   $users=User::all();
+        return view('accounts', compact('users'));
+    }
+    public function update(Request $request, $id)
+    {
+        // dd($request);
+        $user = User::findOrFail($id);
+        $user->position = $request->position;
+        $user->save();
+        return redirect()->back()->with('success', 'Position updated successfully.');
+    }
+
 }

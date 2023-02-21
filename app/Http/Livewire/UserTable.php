@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use Rappasoft\LaravelLivewireTables\DataTableComponent;
-use Rappasoft\LaravelLivewireTables\Views\Column;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Rappasoft\LaravelLivewireTables\Views\Column;
+use Rappasoft\LaravelLivewireTables\Views\Filter;
+use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class UserTable extends DataTableComponent
 {
@@ -31,8 +33,6 @@ class UserTable extends DataTableComponent
             Column::make("Name", "name")
                 ->sortable()
                 ->searchable(),
-            Column::make("Email", "email")
-                ->sortable(),
             Column::make("Position", "position")
                 ->sortable(),
             Column::make("Created at", "created_at")

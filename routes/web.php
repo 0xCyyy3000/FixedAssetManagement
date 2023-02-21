@@ -136,7 +136,8 @@ Route::get('/reports', [ReportsController::class, 'index'])->name('reports.butto
 
 
 Route::post('/add', [EmployeeController::class, 'badgeadd'])->name('badge.add');
-
+Route::get('/Accounts', [ReportsController::class, 'show'])->name('viewUser');
+Route::put('/users/{id}', [ReportsController::class, 'update'])->name('updateUser');
 
 Route::get('/transactions', [TransactionController::class, 'index'])->name('transaction');
 // Route::post('/ProfileItem', [ItemProfileController::class, 'updatenxt'])->name('updatenxt');
