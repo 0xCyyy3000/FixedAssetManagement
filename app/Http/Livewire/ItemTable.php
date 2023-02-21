@@ -69,7 +69,7 @@ class ItemTable extends DataTableComponent
 
     public function mount()
     {
-        $this->setFilter('classification', 'Office Equipment');
+        // $this->setFilter('classification', 'Office Equipment');
     }
 
     public function columns(): array
@@ -129,21 +129,21 @@ class ItemTable extends DataTableComponent
                     fn ($value, $row, Column $column) =>
                     "<p class='fw-bold text-start'> {$value} </p>"
                 )->html(),
-                Column::make('Warranty', 'warranty')
+            Column::make('Warranty', 'warranty')
                 ->sortable()
                 ->searchable()
                 ->format(
                     fn ($value, $row, Column $column) =>
                     "<p class='fw-bold text-start'> {$value} </p>"
                 )->html(),
-                Column::make('Price', 'price')
+            Column::make('Price', 'price')
                 ->sortable()
                 ->searchable()
                 ->format(
                     fn ($value, $row, Column $column) =>
                     "<p class='fw-bold text-start'> {$value} </p>"
                 )->html(),
-                Column::make('Supplier', 'supplier')
+            Column::make('Supplier', 'supplier')
                 ->sortable()
                 ->searchable()
                 ->format(
