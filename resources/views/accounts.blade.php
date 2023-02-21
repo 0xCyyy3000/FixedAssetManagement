@@ -6,7 +6,8 @@
                 <div class="card">
                     <div class="card-body">
                         {{-- <livewire:user-table /> --}}
-                        <table class="table table-striped">
+                        <livewire:name-search />
+                        {{-- <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">Badge Number</th>
@@ -40,7 +41,7 @@
                                  
                                 @endforeach
                             </tbody>
-                        </table>
+                        </table> --}}
                     </div>
             </div>
         </div>
