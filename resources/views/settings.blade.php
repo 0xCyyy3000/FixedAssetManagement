@@ -50,13 +50,17 @@
                             <button class="btn btn-success">Update</button>
                         </div>
                         <div class="d-flex justify-content-center p-3">
-                        <button type="button" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Change Password
                        </button>
                        @if(Auth()->user()->position == 1)
-                           <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#badge">
+                           <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#badge">
                                Add Badge
                             </button>
+
+                            <a href="{{ route('viewUser') }}" class="btn btn-success m-2">
+                              Dashboard
+                            </a>
                        @endif
                         </div>
                     

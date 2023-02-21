@@ -515,9 +515,24 @@
                                 <label for="warranty">Warranty</label>
                                 <input type="text" id="edit-warranty" name="warranty" class="form-control">
                             </div>
+                            <div class="row mb-0">
+                                <h3 class="text-center fs-4"> Supplier Information</h3>
+                            </div>
                             <div class="mb-3 col-6">
-                                <label for="supplier">Lifespan</label>
+                                <label for="lifespan">Supplier</label>
                                 <input type="text" id="edit-supplier" name="supplier" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Address</label>
+                                <input type="text" id="edit-address" name="address" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Contact No.</label>
+                                <input type="text" id="edit-contact_no" name="contact_no" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6" hidden> 
+                                <label for="lifespan">Salvage Value</label>
+                                <input type="text" id="depreciation_value" name="depreciation_value"  class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
                             </div>
                         </div>
                     </div>
