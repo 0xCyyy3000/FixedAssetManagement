@@ -38,6 +38,7 @@
     <script src="{{ asset('js/replaceRequest.js') }}"></script>
     <script src="{{ asset('js/repairRequest.js') }}"></script>
     <script src="{{ asset('js/returnRequest.js') }}"></script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="//unpkg.com/alpinejs" defer></script>
     <style>
         [x-cloak] {
@@ -269,7 +270,6 @@
         let hasErrors = "{{ $errors->any() }}";
     </script>
     <script src="{{ asset('js/item.js') }}"></script>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @livewireScripts
 
 </body>
