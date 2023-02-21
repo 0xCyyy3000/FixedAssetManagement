@@ -3,12 +3,11 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
-use App\Models\ItemProfile;
 use App\Models\SerialNumber;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Filters\DateFilter;
 use Rappasoft\LaravelLivewireTables\Views\Filters\SelectFilter;
 
 class ItemTable extends DataTableComponent
@@ -16,13 +15,15 @@ class ItemTable extends DataTableComponent
     protected $model = SerialNumber::class;
 
     private $classifications = [
-        0 => 'All',
-        1 => 'Land',
-        2 => 'Buildings',
-        3 => 'Office Equipment',
-        4 => 'Appliances',
-        5 => 'Vehicle'
+        '' => 'All',
+        'Land' => 'Land',
+        'Buildings' => 'Buildings',
+        'Office Equipment' => 'Office Equipment',
+        'Appliances' => 'Appliances',
+        'Vehicle' => 'Vehicle'
     ];
+
+    public bool $dumpFilters = true;
 
     public function configure(): void
     {
@@ -41,31 +42,34 @@ class ItemTable extends DataTableComponent
         ]);
     }
 
-    public function getItemProfile($reference_no): Model
+    public function filters(): array
     {
-        $item = ItemProfile::where('id', $reference_no)->first();
-        return $item;
+        return [
+            SelectFilter::make('Classification')
+                ->setFilterPillTitle('Classification')
+                ->options($this->classifications)
+                ->filter(function (Builder $builder, $classification) {
+                    $builder->where('classification', $classification);
+                }),
+            DateFilter::make('From')
+                ->filter(function (Builder $builder, string $value) {
+                    $builder->where('serial_numbers.created_at', '>=', $value);
+                }),
+            DateFilter::make('To')
+                ->filter(function (Builder $builder, string $value) {
+                    $builder->where('serial_numbers.created_at', '<=', $value);
+                }),
+        ];
     }
-
-    // public function filters(): array
-    // {
-    //     return [
-    //         SelectFilter::make('Classification')
-    //             ->setFilterPillTitle('Classification')
-    //             ->options($this->classifications)->filter(function (Builder $builder, $value) {
-    //                 $value == 0 ? '' : ItemProfile::where('classification', $this->classifications[$value]);
-    //             })
-    //     ];
-    // }
-
-    // public function mount()
-    // {
-    //     $this->setFilter('classification', 3);
-    // }
 
     public function builder(): Builder
     {
         return SerialNumber::query();
+    }
+
+    public function mount()
+    {
+        $this->setFilter('classification', 'Office Equipment');
     }
 
     public function columns(): array
@@ -77,25 +81,25 @@ class ItemTable extends DataTableComponent
                     fn ($value, $row, Column $column) =>
                     "<p class='fw-bold text-start'> {$value} </p>"
                 )->html(),
-            Column::make("Inventory Number", "reference_no")
+            Column::make("Inventory Number", "profile.inventory_number")
                 ->sortable()
                 ->format(
                     fn ($value, $row, Column $column) =>
-                    "<p class='fw-bold text-start'> {$this->getItemProfile($value)->id} </p>"
+                    "<p class='fw-bold text-start'> {$value} </p>"
                 )->html(),
-            Column::make("Asset", "reference_no")
+            Column::make("Asset", "profile.title")
                 ->sortable()
                 ->searchable()
                 ->format(
                     fn ($value, $row, Column $column) =>
-                    "<h6 class='fw-bold text-start'> {$this->getItemProfile($value)->title} </h6>"
+                    "<h6 class='fw-bold text-start'> {$value} </h6>"
                 )->html(),
-            Column::make("Classification", "reference_no")
+            Column::make("Classification", "profile.classification")
                 ->sortable()
                 ->searchable()
                 ->format(
                     fn ($value, $row, Column $column) =>
-                    "<p class='fw-bold text-start'> {$this->getItemProfile($value)->classification} </p>"
+                    "<p class='fw-bold text-start'> {$value} </p>"
                 )->html(),
             Column::make('Serial Number', 'serial_no')
                 ->sortable()

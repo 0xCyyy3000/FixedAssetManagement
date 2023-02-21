@@ -129,9 +129,9 @@ Route::put('profile.updatepass', [UserController::class, 'updatepass'])->name('p
 
 
 
-Route::get('/view', [ReportsController::class, 'download'])->name('view');
-Route::get('/viewonly', [ReportsController::class, 'view'])->name('viewonly');
-Route::get('/reports', [ReportsController::class, 'index'])->name('reports.buttons');
+Route::get('/view', [ReportsController::class, 'download'])->name('view')->middleware('auth');
+Route::get('/viewonly', [ReportsController::class, 'view'])->name('viewonly')->middleware('auth');
+Route::get('/reports', [ReportsController::class, 'index'])->name('reports.buttons')->middleware('auth');
 
 
 

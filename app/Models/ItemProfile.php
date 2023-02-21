@@ -23,4 +23,9 @@ class ItemProfile extends Model
             ->timezone(env("APP_TIMEZONE"))
             ->toDayDateTimeString();
     }
+
+    public function serials()
+    {
+        return $this->hasMany(SerialNumber::class, 'reference_no');
+    }
 }
