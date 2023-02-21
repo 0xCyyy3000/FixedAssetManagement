@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('purchase_req_id')->constrained('purchase_requests');
             $table->string('item');
-            $table->string('description');
             $table->string('price');
             $table->string('qty');
             $table->string('total');

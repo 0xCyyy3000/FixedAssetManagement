@@ -6,12 +6,11 @@ $(document).ready(function () {
     let editing = false;
 
     class Item {
-        constructor(id, item, serial_id, serial_no, description, remarks, cost) {
+        constructor(id, item, serial_id, serial_no, remarks, cost) {
             this.id = id;
             this.item = item;
             this.serial_id = serial_id;
             this.serial_no = serial_no;
-            this.description = description;
             this.remarks = remarks;
             this.cost = cost;
         }
@@ -27,7 +26,6 @@ $(document).ready(function () {
         if (
             $('#repair_item option:selected').val() == '' ||
             $('#repair_serial_no option:selected').val() == '' ||
-            $('#repair_description').val() == '' ||
             $('#repair_remarks').val() == '' ||
             $('#repair_cost').val() == ''
         ) {
@@ -41,13 +39,12 @@ $(document).ready(function () {
                 new Item(
                     $('#repair_item option:selected').val(), $('#repair_item option:selected').text(),
                     $('#repair_serial_no option:selected').val(), $('#repair_serial_no option:selected').text(),
-                    $('#repair_description').val(), $('#repair_remarks').val(),
+                    $('#repair_remarks').val(),
                     $('#repair_cost').val()
                 )
             );
         } else {
             const selectedItem = items_repairs[items_repairs.findIndex(item => item.serial_id == $('#repair_serial_no').val())];
-            selectedItem.description = $('#repair_description').val();
             selectedItem.remarks = $('#repair_remarks').val();
             selectedItem.cost = $('#repair_cost').val();
         }
@@ -68,7 +65,6 @@ $(document).ready(function () {
                 <tr>
                     <td>${items_repairs.item}</td>
                     <td>${items_repairs.serial_no}</td>
-                    <td>${items_repairs.description}</td>
                     <td>${items_repairs.remarks}</td>
                     <td>₱${items_repairs.cost}</td>
                     <td>
@@ -98,7 +94,6 @@ $(document).ready(function () {
 
         $('#repair_serial_no').val('');
         $('#repair_item').val('');
-        $('#repair_description').val('');
         $('#repair_remarks').val('');
         $('#repair_cost').val('0');
 
@@ -147,7 +142,6 @@ $(document).ready(function () {
         $('#repair_item').prop('disabled', true);
 
         $('#repair_serial_no').empty().append('<option value="' + selectedItem.serial_id + '">' + selectedItem.serial_no + '</option>');
-        $('#repair_description').val(selectedItem.description);
         $('#repair_remarks').val(selectedItem.remarks);
         $('#repair_cost').val(selectedItem.cost);
 

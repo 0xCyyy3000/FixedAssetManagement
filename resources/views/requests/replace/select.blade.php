@@ -49,8 +49,7 @@
                                 <tr>
                                     <th scope="col">Item</th>
                                     <th scope="col">Serial No.</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Remarks</th>
+                                    <th scope="col">Reason</th>
                                     <th scope="col">Cost</th>
                                 </tr>
                             </thead>
@@ -59,7 +58,6 @@
                                     <tr>
                                         <td>{{ $serial->title }}</td>
                                         <td>{{ $serial->serial_no }}</td>
-                                        <td>{{ $serial->description }}</td>
                                         <td>{{ $serial->remarks }}</td>
                                         <td>₱{{ $serial->cost }}</td>
                                     </tr>
@@ -67,12 +65,6 @@
                             </tbody>
                         </table>
                         <h4 class="text-end d-none" id="replace-items-total"></h4>
-                    </div>
-                    <div class="row p-3">
-                        <label for="note" class="form-label ps-0">Purpose</label>
-                        <p class="w-100 p-2 rounded text-start">
-                            {{ $purpose }}
-                        </p>
                     </div>
                     @if (Auth()->user()->position == 1)
                         <form action="{{ route('replace.update') }}" method="post">

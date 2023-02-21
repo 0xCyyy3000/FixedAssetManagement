@@ -40,7 +40,8 @@ class DatabaseSeeder extends Seeder
             'full_name' => 'Cyril Pogi'
         ]);
 
+        Position::create(['position' => 'Super Admin']);
         Position::create(['position' => 'Admin']);
-        Position::create(['position' => 'Logistic']);
+        Position::create(['position' => 'User']);
     }
 }

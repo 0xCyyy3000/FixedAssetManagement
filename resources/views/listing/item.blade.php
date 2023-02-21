@@ -52,15 +52,6 @@
                                         </div>
                                     </div>
 
-
-                                    <div class="overflow-hidden mb-3">
-                                        <h6 class="mb-1 fw-bolder">Information on Value</h6>
-                                        <div class="d-flex justify-content-between">
-                                            <p class="text-muted mb-0">Salvage Value</p>
-                                            <p class="text-muted mb-0">{{ $item->depreciation }}</p>
-                                        </div>
-                                    </div>
-
                                     <div class="overflow-hidden mb-3">
                                         <h6 class="mb-1 fw-bolder">Registration details</h6>
                                         <div class="d-flex justify-content-between">
@@ -134,11 +125,11 @@
                                         
                                         <th scope="col" class="p-3">Warranty</th>
                                         <th scope="col" class="p-3">Location</th>
-                                        <th scope="col" class="p-3">Life span</th>
+
                                         <th scope="col" class="p-3">Supplier</th>
                                         <th scope="col" class="p-3">Contact No.</th>
                                         <th scope="col" class="p-3">Address</th>
-                                        <th scope="col" class="p-3">Depreciation</th>
+
                                         <th scope="col" class="p-3">Action</th>
                                     </tr>
                                 </thead>
@@ -161,12 +152,12 @@
                                             <td class="p-3">{{ $serial->date }}</td>
                                             <td class="p-3">{{ $serial->warranty }}</td>
                                             <td class="p-3">{{ $serial->location }}</td>
-                                            <td class="p-3">{{ $serial->lifespan }}</td>
+
                                             
                                             <td class="p-3">{{ $serial->supplier }}</td>
                                             <td class="p-3">{{ $serial->contact_no }}</td>
                                             <td class="p-3">{{ $serial->address }}</td>
-                                            <td class="p-3">{{ $serial->depreciation_value }}</td>
+
                                             <td style="width: 18% !important;">
                                                 <div class="d-flex">
                                                     <button type="button"
@@ -228,10 +219,6 @@
                                 <option value="Appliances">Appliances</option>
                                 <option value="Vehicle">Vehicle</option>
                             </select>
-                        </div>
-                        <div class="col-md-4" >
-                            <label for="depreciation" class="form-label">Salvage value</label>
-                            <input required type="number" class="form-control"  id="depreciation"  name="depreciation">
                         </div>
 
                     </div>
@@ -405,10 +392,6 @@
                                 <input type="text" id="location" name="location" class="form-control">
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="lifespan">Lifespan</label>
-                                <input type="text" id="lifespan" name="lifespan" class="form-control">
-                            </div>
-                            <div class="mb-3 col-6">
                                 <label for="lifespan">Purchase Date</label>
                                 <input type="text" id="date" name="date" class="form-control">
                             </div>
@@ -430,10 +413,6 @@
                             <div class="mb-3 col-6">
                                 <label for="lifespan">Contact No.</label>
                                 <input type="text" id="contact_no" name="contact_no" class="form-control">
-                            </div>
-                            <div class="mb-3 col-6" hidden> 
-                                <label for="lifespan">Salvage Value</label>
-                                <input type="text" id="depreciation_value" name="depreciation_value"  class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
                             </div>
                         </div>
                     </div>
@@ -504,10 +483,6 @@
                                 <input type="text" id="edit-location" name="location" class="form-control">
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="lifespan">Lifespan</label>
-                                <input type="text" id="edit-lifespan" name="lifespan" class="form-control">
-                            </div>
-                            <div class="mb-3 col-6">
                                 <label for="date">Purchase Date</label>
                                 <input type="text" id="edit-date" name="date" class="form-control">
                             </div>
@@ -529,10 +504,6 @@
                             <div class="mb-3 col-6">
                                 <label for="lifespan">Contact No.</label>
                                 <input type="text" id="edit-contact_no" name="contact_no" class="form-control">
-                            </div>
-                            <div class="mb-3 col-6" hidden> 
-                                <label for="lifespan">Salvage Value</label>
-                                <input type="text" id="depreciation_value" name="depreciation_value"  class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
                             </div>
                         </div>
                     </div>

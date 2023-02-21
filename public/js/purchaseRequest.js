@@ -6,10 +6,9 @@ $(document).ready(function () {
     let editing = false;
     let selectedRow = 0;
     class Item {
-        constructor(id, item, description, qty, price, total) {
+        constructor(id, item, qty, price, total) {
             this.id = id;
             this.item = item;
-            this.description = description;
             this.qty = qty;
             this.price = price;
             this.total = total;
@@ -24,7 +23,6 @@ $(document).ready(function () {
         // Validate inputs
         if (
             $('#item').val() == '' ||
-            $('#description').val() == '' ||
             $('#qty').val() == '' ||
             $('#price').val() == '' ||
             $('#total').val() == ''
@@ -35,16 +33,15 @@ $(document).ready(function () {
 
         // Adding the item to the items[] array
         if (!editing) {
-            const id = $('#item').val() + $('#description').val() + $('#qty').val() + $('#price').val() + $('#qty').val() + $('#total').val();
+            const id = $('#item').val() + $('#qty').val() + $('#price').val() + $('#qty').val() + $('#total').val();
             items.push(
                 new Item(
-                    id, $('#item').val(), $('#description').val(), $('#qty').val(), $('#price').val(), $('#total').val()
+                    id, $('#item').val(), $('#qty').val(), $('#price').val(), $('#total').val()
                 )
             );
         } else {
             const selectedItem = items[items.findIndex(item => item.id == selectedRow)];
             selectedItem.item = $('#item').val();
-            selectedItem.description = $('#description').val();
             selectedItem.qty = $('#qty').val();
             selectedItem.price = $('#price').val();
             selectedItem.total = $('#total').val();
@@ -63,7 +60,6 @@ $(document).ready(function () {
             let template = `
                 <tr>
                     <td>${item.item}</td>
-                    <td>${item.description}</td>
                     <td>${item.qty}x</td>
                     <td>₱${item.price}</td>
                     <td>₱${item.total}</td>
@@ -92,7 +88,6 @@ $(document).ready(function () {
 
     function resetFields() {
         $('#item').val('');
-        $('#description').val('');
         $('#qty').val('');
         $('#price').val('');
         $('#total').val('')
@@ -122,7 +117,6 @@ $(document).ready(function () {
 
         // Setting the values
         $('#item').val(selectedItem.item);
-        $('#description').val(selectedItem.description);
         $('#qty').val(selectedItem.qty);
         $('#price').val(selectedItem.price);
         $('#total').val(selectedItem.total);

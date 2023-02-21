@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('year');
             $table->string('title');
             $table->string('image')->nullable();
-            $table->double('depreciation');
             $table->longText('notes')->nullable();
             $table->longText('description');
             $table->foreignId('inventoried_by')->constrained('users');

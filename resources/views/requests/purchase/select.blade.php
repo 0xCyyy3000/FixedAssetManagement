@@ -48,7 +48,6 @@
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col">Item</th>
-                                    <th scope="col">Description</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Cost</th>
@@ -58,7 +57,6 @@
                                 @foreach ($serials as $serial)
                                     <tr>
                                         <td>{{ $serial->item }}</td>
-                                        <td>{{ $serial->description }}</td>
                                         <td>{{ $serial->qty }}</td>
                                         <td>{{ $serial->price }}</td>
                                         <td>{{ $serial->total }}</td>
@@ -67,10 +65,6 @@
                             </tbody>
                         </table>
                         <h4 class="text-end d-none" id="repair-items-total"></h4>
-                    </div>
-                    <div class="row p-3">
-                        <label for="note" class="form-label ps-0">Purpose</label>
-                        <p class="w-100 p-2">{{ $purpose }}</p>
                     </div>
                     @if (Auth()->user()->position == 1)
                         <form action="{{ route('purchase.update') }}" method="post">

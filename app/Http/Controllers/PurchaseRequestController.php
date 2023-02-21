@@ -58,7 +58,6 @@ class PurchaseRequestController extends Controller
                 PurchaseReqItems::create([
                     'purchase_req_id' => $newRequest->id,
                     'item' => $item['item'],
-                    'description' => $item['description'],
                     'price' => $item['price'],
                     'qty' => $item['qty'],
                     'total' => $item['total']

@@ -51,7 +51,7 @@
                                     <th scope="col">Item</th>
                                     <th scope="col">Serial No.</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Remarks</th>
+                                    <th scope="col">Reason</th>
                                     <th scope="col">Cost</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -100,12 +100,8 @@
                             <select id="return_serial_no" class="form-select" name="serial_no">
                             </select>
                         </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <input type="text" class="form-control" id="return_description" name="description">
-                        </div>
                         <div class="mb-3 col-6">
-                            <label for="remarks" class="form-label">Remarks</label>
+                            <label for="remarks" class="form-label">Reason</label>
                             <input type="text" class="form-control" id="return_remarks" name="remarks">
                         </div>
                         <div class="mb-3 col-6">

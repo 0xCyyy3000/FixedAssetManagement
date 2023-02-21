@@ -1,8 +1,8 @@
 @extends('layouts.layout')
 @section('content')
-    <div class="container">
+    <div class="overflow-hidden m-2">
         <div class="row justify-content-center px-2">
-            <div class="container bg-white rounded request-information">
+            <div class="overflow-scroll bg-white rounded request-information">
                 <div class="row p-3 border-bottom border-3 mb-3">
                     <h5 class="col pt-2">Edit Profile</h5>
                 </div>
@@ -33,16 +33,9 @@
                           <div class="d-grid gap-2 col-5 mx-auto">
                             <label for="formGroupExampleInput" class="form-label">Username</label>
                             <input required type="text" class=" form-control text-center" id="name" name="name"
-                            value="{{ $user->name }}">
+                            value="{{ $user->name }}" disabled>
                           </div>
                     
-                        </div>
-                        <div class="row align-items-center w-75 m-auto mb-3">
-                          <div class="d-grid gap-2 col-5 mx-auto">
-                            <label for="formGroupExampleInput" class="form-label">Email</label>
-                            <input required type="text" class=" form-control text-center" id="email" name="email"
-                            value="{{ $user->email }}">
-                          </div>
                         </div>
                       </div>
                     
@@ -59,7 +52,7 @@
                             </button>
 
                             <a href="{{ route('viewUser') }}" class="btn btn-success m-2">
-                              Dashboard
+                              Accounts
                             </a>
                        @endif
                         </div>

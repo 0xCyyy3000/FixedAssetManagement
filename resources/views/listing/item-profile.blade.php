@@ -39,10 +39,10 @@
                                 <option value="Vehicle">Vehicle</option>
                             </select>
                         </div>
-                        <div class="mb-3 col-6">
+                        {{-- <div class="mb-3 col-6">
                             <label for="depreciation" class="form-label">Salvage Value</label>
                             <input required type="number" class="form-control" id="depreciation" name="depreciation">
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="row w-75 m-auto mb-5">
                         <div class="m-auto col-20">
@@ -92,10 +92,10 @@
                                 <button class="btn btn-outline-secondary" type="button" id="btn-listen">Listen</button>
                             </div>
                         </div>
-                        <div class="mb-2 col-6">
+                        {{-- <div class="mb-2 col-6">
                             <label for="ip_lifespan" class="form-label">Lifespan</label>
                             <input type="text" class="form-control" id="ip_lifespan">
-                        </div>
+                        </div> --}}
                         <div class="mb-2 col-6">
                             <label for="ip_location" class="form-label">Location</label>
                             <input type="text" class="form-control" id="ip_location">
@@ -151,7 +151,6 @@
                                 <thead class="table-light">
                                     <th scope="col">Serial No.</th>
                                     <th scope="col">Condition</th>
-                                    <th scope="col">Lifespan</th>
                                     <th scope="col">Location</th>
                                     <th scope="col">Warranty</th>
                                     <th scope="col">Purchase Date</th>

@@ -6,12 +6,11 @@ $(document).ready(function () {
     let editing = false;
 
     class Item {
-        constructor(id, item, serial_id, serial_no, description, remarks, cost) {
+        constructor(id, item, serial_id, serial_no, remarks, cost) {
             this.id = id;
             this.item = item;
             this.serial_id = serial_id;
             this.serial_no = serial_no;
-            this.description = description;
             this.remarks = remarks;
             this.cost = cost;
         }
@@ -27,7 +26,6 @@ $(document).ready(function () {
         if (
             $('#replace_item option:selected').val() == '' ||
             $('#replace_serial_no option:selected').val() == '' ||
-            $('#replace_description').val() == '' ||
             $('#replace_remarks').val() == '' ||
             $('replace_cost').val() == ''
         ) {
@@ -41,13 +39,12 @@ $(document).ready(function () {
                 new Item(
                     $('#replace_item option:selected').val(), $('#replace_item option:selected').text(),
                     $('#replace_serial_no option:selected').val(), $('#replace_serial_no option:selected').text(),
-                    $('#replace_description').val(), $('#replace_remarks').val(),
+                    $('#replace_remarks').val(),
                     $('#replace_cost').val()
                 )
             );
         } else {
             const selectedItem = items_replaces[items_replaces.findIndex(item => item.serial_id == $('#replace_serial_no').val())];
-            selectedItem.description = $('#replace_description').val();
             selectedItem.remarks = $('#replace_remarks').val();
             selectedItem.cost = $('#replace_cost').val();
         }
@@ -68,7 +65,6 @@ $(document).ready(function () {
                 <tr>
                     <td>${items_replaces.item}</td>
                     <td>${items_replaces.serial_no}</td>
-                    <td>${items_replaces.description}</td>
                     <td>${items_replaces.remarks}</td>
                     <td>₱${items_replaces.cost}</td>
                     <td>
@@ -98,7 +94,6 @@ $(document).ready(function () {
 
         $('#replace_serial_no').val('');
         $('#replace_item').val('');
-        $('#replace_description').val('');
         $('#replace_remarks').val('');
         $('#replace_cost').val('1');
 
@@ -179,7 +174,6 @@ $(document).ready(function () {
         $('#replace_item').prop('disabled', true);
 
         $('#replace_serial_no').empty().append('<option value="' + selectedItem.serial_id + '">' + selectedItem.serial_no + '</option>');
-        $('#replace_description').val(selectedItem.description);
         $('#replace_remarks').val(selectedItem.remarks);
         $('#replace_cost').val(selectedItem.cost);
 

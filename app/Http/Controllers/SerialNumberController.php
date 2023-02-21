@@ -26,17 +26,11 @@ class SerialNumberController extends Controller
             'contact_no' => ['required', 'numeric', 'min:1'],
             'warranty' => 'required',
             'location' => 'required',
-            'lifespan' => ['required', 'numeric', 'min:1'],
-            'depreciation_value' => 'required',
+            // 'lifespan' => ['required', 'numeric', 'min:1'],
+            // 'depreciation_value' => 'required',
         ]);
 
-        $depre = $request->input('depreciation_value');
-        $price = $request->input('price');
-        $span = $request->input('lifespan');
-
-        $all = ($price - $depre) / intval($span);
-        $dep['depreciation_value'] = $all;
-        $created = SerialNumber::create(array_merge($formFields, $dep));
+        $created = SerialNumber::create(array_merge($formFields));
         if ($created) {
             return back()->with('alert', 'Serial has been added!');
         } else return back()->with('alert', 'Serial has not been added due error, please try again.');
@@ -64,7 +58,7 @@ class SerialNumberController extends Controller
             'supplier' => 'required',
             'warranty' => 'required',
             'location' => 'required',
-            'lifespan' => ['required', 'numeric', 'min:1']
+            // 'lifespan' => ['required', 'numeric', 'min:1']
         ]);
 
         $updated = SerialNumber::where('id', $request->id)->update($formFields);

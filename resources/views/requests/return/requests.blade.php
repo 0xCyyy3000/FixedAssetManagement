@@ -59,38 +59,7 @@
 <body>
     
 </body>
-</html>      
-                {{-- <div class="row p-3">
-                    <div class="center">
-                        <h3 >Return Request Form</h3>
-                        <p class="text-align:center;">{{ $request->transaction_no }}</p>
-                    </div>
-                    <div class="">
-                        <div class="">
-                            <label for="return_date" class="text-align:center;">Submitted on</label>
-                            <p class="text-align:center;"> {{ $request->created_at }}</p>
-                        </div>
-                        <div class="">
-                            <label for="return_date" class="form-label">Requested by</label>
-                            <p class="text-muted fw-bold">{{ Auth::user()->requester($request->requester)->name }}</p>
-                        </div>
-                        <div class="">
-                            <label for="entity" class="form-label">Entity Name</label>
-                            <p class="text-muted fw-bold"> {{ $request->entity }}</p>
-                        </div>
-                        <div class="">
-                            <label for="fund_cluster" class="form-label">Fund Cluster</label>
-                            <p class="text-muted fw-bold">{{ $request->fund_cluster }} </p>
-                        </div>
-                        <div class="">
-                            <label for="section" class="form-label">Office Section</label>
-                            <p class="text-muted fw-bold">{{ $request->office_section }}</p>
-                        </div>
-                        <div class="">
-                            <label for="appendix_no" class="form-label">Appendix No.</label>
-                            <p class="text-muted fw-bold"> {{ $request->appendix_no }}</p>
-                        </div>
-                    </div> --}}
+</html>
                     <div class="center">
                         <h1 class="h1">Return Request</h1>
                         <p >{{ $request->transaction_no }}</p>
@@ -106,8 +75,7 @@
                                 <tr>
                                     <th scope="col">Item</th>
                                     <th scope="col">Serial No.</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Remarks</th>
+                                    <th scope="col">Reason</th>
                                     <th scope="col">Cost</th>
                                 </tr>
                             </thead>
@@ -117,7 +85,6 @@
                                     <tr>
                                         <td>{{ $serial->title }}</td>
                                         <td>{{ $serial->serial_no }}</td>
-                                        <td>{{ $serial->description }}</td>
                                         <td>{{ $serial->remarks }}</td>
                                         <td><span>&#8369;</span> {{ $serial->cost }}</td>
                                        

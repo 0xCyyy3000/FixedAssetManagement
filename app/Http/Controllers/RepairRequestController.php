@@ -58,7 +58,6 @@ class RepairRequestController extends Controller
                 ItemsRepair::create([
                     'reference_no' => $newRequest->id,
                     'serial_no' => $item['serial_no'],
-                    'description' => $item['description'],
                     'cost' => $item['cost'],
                     'remarks' => $item['remarks']
                 ]);

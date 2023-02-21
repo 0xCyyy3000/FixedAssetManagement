@@ -106,8 +106,7 @@
                                 <tr>
                                     <th scope="col">Item</th>
                                     <th scope="col">Serial No.</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Remarks</th>
+                                    <th scope="col">Reason</th>
                                     <th scope="col">Cost</th>
                                 </tr>
                             </thead>
@@ -117,7 +116,6 @@
                                     <tr>
                                         <td>{{ $serial->title }}</td>
                                         <td>{{ $serial->serial_no }}</td>
-                                        <td>{{ $serial->description }}</td>
                                         <td>{{ $serial->remarks }}</td>
                                         <td><span>&#8369;</span> {{ $serial->cost }}</td>
                                        

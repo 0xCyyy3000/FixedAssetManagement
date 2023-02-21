@@ -57,46 +57,15 @@
          </style>
 </head>
 <body>
-    
 </body>
 </html>      
-                {{-- <div class="row p-3">
-                    <div class="center">
-                        <h3 >Return Request Form</h3>
-                        <p class="text-align:center;">{{ $request->transaction_no }}</p>
-                    </div>
-                    <div class="">
-                        <div class="">
-                            <label for="return_date" class="text-align:center;">Submitted on</label>
-                            <p class="text-align:center;"> {{ $request->created_at }}</p>
-                        </div>
-                        <div class="">
-                            <label for="return_date" class="form-label">Requested by</label>
-                            <p class="text-muted fw-bold">{{ Auth::user()->requester($request->requester)->name }}</p>
-                        </div>
-                        <div class="">
-                            <label for="entity" class="form-label">Entity Name</label>
-                            <p class="text-muted fw-bold"> {{ $request->entity }}</p>
-                        </div>
-                        <div class="">
-                            <label for="fund_cluster" class="form-label">Fund Cluster</label>
-                            <p class="text-muted fw-bold">{{ $request->fund_cluster }} </p>
-                        </div>
-                        <div class="">
-                            <label for="section" class="form-label">Office Section</label>
-                            <p class="text-muted fw-bold">{{ $request->office_section }}</p>
-                        </div>
-                        <div class="">
-                            <label for="appendix_no" class="form-label">Appendix No.</label>
-                            <p class="text-muted fw-bold"> {{ $request->appendix_no }}</p>
-                        </div>
-                    </div> --}}
                     <div class="center">
                         <h1 class="h1">Purchase Request</h1>
                         <p >{{ $request->transaction_no }}</p>
                         <label class="column" for="return_date" >Submitted on: {{ $request->created_at }}</label>
                         <div class="column"><label>Requested by:{{ Auth::user()->requester($request->requester)->name }}</label>
                 </div>
+            </div>
                    <div class="center">
                     <label class="column" for="return_date" >Fund Cluster: {{ $request->fund_cluster }}</label>
                         <div class="column"><label>Office Section: {{ $request->office_section }}</label>
@@ -105,7 +74,6 @@
                             <thead class="">
                                 <tr>
                                     <th scope="col">Item</th>
-                                    <th scope="col">Description</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     
@@ -116,8 +84,7 @@
                                 
                                         @foreach($serials as $serial)
                                 <tr>
-                                    <td>{{ $serial->item }}</td>
-                                    <td>{{ $serial->description }}</td>                    
+                                    <td>{{ $serial->item }}</td>                  
                                     <td>{{ $serial->qty }}</td>
                                     <td><span>&#8369;</span> {{ $serial->price }}</td>
                                 </tr>
@@ -135,5 +102,6 @@
                                 </tr>
                               </tfoot>
                         </table>
+                    </div>
                   
 

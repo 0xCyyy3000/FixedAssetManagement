@@ -100,7 +100,7 @@
                                 <div class="accordion-body pt-0 pb-0">
 
                                     <ul class=" list-group pt-2">
-                                        @if (Auth()->user()->position == 1)
+                                        @if (Auth()->user()->position == 1 || Auth()->user()->position == 2)
                                             <li class=" list-group @if (Request::routeIs('purchase.request') || Request::routeIs('purchase.select') || Request::routeIs('purchase.create')) active @endif">
                                                 <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                     href="{{ route('purchase.request') }}">
@@ -116,7 +116,7 @@
                                                 Repair
                                             </a>
                                         </li>
-                                        @if (Auth()->user()->position == 1)
+                                        @if (Auth()->user()->position == 1 || Auth()->user()->position == 2)
                                             <li class=" list-group @if (Request::routeIs('replace.request') || Request::routeIs('replace.select') || Request::routeIs('replace.create')) active @endif">
                                                 <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
                                                     href="{{ route('replace.request') }}">

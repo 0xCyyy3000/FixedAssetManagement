@@ -50,7 +50,6 @@
                             <thead class="table-light">
                                 <tr>
                                     <th scope="col">Item</th>
-                                    <th scope="col">Item description</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Total</th>
@@ -96,10 +95,6 @@
                         <div class="mb-3">
                             <label for="item" class="form-label">Item</label>
                             <input type="text" class="form-control" id="item" name="item">
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Item description</label>
-                            <input type="text" class="form-control" id="description" name="description">
                         </div>
                         <div class="mb-3">
                             <label for="qty" class="form-label">Quantity</label>

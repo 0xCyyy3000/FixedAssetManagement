@@ -19,7 +19,7 @@ class ReportsController extends Controller
     //
     public function index(){
         $data=ItemProfile::join('serial_numbers','serial_numbers.reference_no', '=', 'item_profiles.id')
-        ->get(['item_profiles.inventory_number','item_profiles.title','item_profiles.description','item_profiles.classification','serial_numbers.serial_no','serial_numbers.price','serial_numbers.date','serial_numbers.condition','serial_numbers.color','serial_numbers.lifespan','serial_numbers.location','serial_numbers.depreciation_value']);
+        ->get(['item_profiles.inventory_number','item_profiles.title','item_profiles.description','item_profiles.classification','serial_numbers.serial_no','serial_numbers.price','serial_numbers.date','serial_numbers.condition','serial_numbers.color','serial_numbers.location',]);
         
         return view('reports.buttons', compact('data'));
     }
@@ -29,7 +29,7 @@ class ReportsController extends Controller
         // $item = ItemProfile::all();
         // $serials = SerialNumber::where();
         $item=ItemProfile::join('serial_numbers','serial_numbers.reference_no', '=', 'item_profiles.id')
-            ->get(['item_profiles.inventory_number','item_profiles.title','item_profiles.description','item_profiles.classification','serial_numbers.serial_no','serial_numbers.date','serial_numbers.price','serial_numbers.condition','serial_numbers.color','serial_numbers.lifespan','serial_numbers.location','serial_numbers.depreciation_value']);
+            ->get(['item_profiles.inventory_number','item_profiles.title','item_profiles.description','item_profiles.classification','serial_numbers.serial_no','serial_numbers.date','serial_numbers.price','serial_numbers.condition','serial_numbers.color','serial_numbers.location',]);
 
         $data=['data' => $item];
             $pdf = Pdf::loadView('reports.asset', $data);
@@ -43,7 +43,7 @@ class ReportsController extends Controller
         // $item = ItemProfile::all();
         // $serials = SerialNumber::where();
         $data=ItemProfile::join('serial_numbers','serial_numbers.reference_no', '=', 'item_profiles.id')
-            ->get(['item_profiles.inventory_number','item_profiles.title','item_profiles.description','item_profiles.classification','serial_numbers.serial_no','serial_numbers.date','serial_numbers.price','serial_numbers.condition','serial_numbers.color','serial_numbers.lifespan','serial_numbers.location','serial_numbers.depreciation_value']);
+            ->get(['item_profiles.inventory_number','item_profiles.title','item_profiles.description','item_profiles.classification','serial_numbers.serial_no','serial_numbers.date','serial_numbers.price','serial_numbers.condition','serial_numbers.color','serial_numbers.location']);
 
         return view('reports.asset', compact('data'));
     }

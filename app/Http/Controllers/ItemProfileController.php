@@ -41,7 +41,6 @@ class ItemProfileController extends Controller
             'classification' => $request->classification,
             'year' => $request->year,
             'title' => $request->title,
-            'depreciation' => $request->depreciation,
             'description' => $request->description,
             'notes' => null,
             'image' => $imagePath,
@@ -65,7 +64,6 @@ class ItemProfileController extends Controller
             ]);
 
             foreach ($request->serials as $key => $value) {
-                $lifespan = $request->lifespans[$key];
                 $location = $request->locations[$key];
                 $color = $request->colors[$key];
                 $price = $request->prices[$key];
@@ -87,10 +85,8 @@ class ItemProfileController extends Controller
                     'warranty' => $warranty,
                     'address' => $address,
                     'contact_no' => $contact_no,
-                    'lifespan' => $lifespan,
                     'location' => $location,
                     'color' => $color,
-                    'depreciation_value' => ($price - $request->depreciation) / intval($lifespan)
                 ]);
             }
 
@@ -158,7 +154,6 @@ class ItemProfileController extends Controller
             'title' => 'required',
             'description' => 'required',
             'classification' => 'required',
-            'depreciation' => 'required',
         ]);
 
         ItemProfile::where('id', $request->id)->update($formFields);

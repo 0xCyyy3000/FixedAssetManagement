@@ -29,11 +29,6 @@ class UserController extends Controller
                 'photo' => $photo
             ]);
         }
-        
-        User::where('id', Auth::user()->id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);
 
         return back()->with('alert', 'Profile updated!');
     }

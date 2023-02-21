@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id('id');
             $table->integer('reference_no');
             $table->string('serial_no');
-            $table->string('description')->nullable();
             $table->double('cost')->default(0);
             $table->string('remarks');
             $table->timestamps();

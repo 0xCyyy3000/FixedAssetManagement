@@ -4,10 +4,9 @@
 
 $(document).ready(function () {
     class Item {
-        constructor(id, serial_no, lifespan, condition, location, color, price, date, supplier, warranty, address, contact_no) {
+        constructor(id, serial_no, condition, location, color, price, date, supplier, warranty, address, contact_no) {
             this.id = id
             this.serial_no = serial_no;
-            this.lifespan = lifespan;
             this.condition = condition;
             this.location = location;
             this.color = color;
@@ -27,7 +26,7 @@ $(document).ready(function () {
         e.preventDefault();
         // Adding the item to the items[] array
         console.log($('#ip_serial_no').val());
-        console.log($('#ip_lifespan').val());
+        // console.log($('#ip_lifespan').val());
         console.log($('#ip_location').val());
         console.log($('#ip_color').val());
         console.log($('#ip_date').val());
@@ -36,7 +35,7 @@ $(document).ready(function () {
         console.log($('#ip_condition').val());
         console.log($('#ip_address').val());
         console.log($('#ip_contact_no').val());
-        if ($('#ip_serial_no').val() && $('#ip_lifespan').val() && $('#ip_location').val() && $('#ip_color').val()
+        if ($('#ip_serial_no').val()  && $('#ip_location').val() && $('#ip_color').val()
             && $('#ip_date').val() && $('#ip_warranty').val() && $('#ip_supplier').val() && $('#ip_contact_no').val() && $('#ip_address').val()) {
             let existing;
             const found = items[items.findIndex(item => item.id == $('#ip_serial_no').val())]
@@ -46,7 +45,7 @@ $(document).ready(function () {
                 const selectedItem = items[items.findIndex(item => item.id == currentId)];
                 selectedItem.id = $('#ip_serial_no').val();
                 selectedItem.serial_no = $('#ip_serial_no').val();
-                selectedItem.lifespan = $('#ip_lifespan').val();
+                // selectedItem.lifespan = $('#ip_lifespan').val();
                 selectedItem.condition = $('#ip_condition').val();
                 selectedItem.location = $('#ip_location').val();
                 selectedItem.date = $('#ip_date').val();
@@ -60,7 +59,7 @@ $(document).ready(function () {
                 alert('Serial number must be unique!');
             }
             else {
-                items.push(new Item($('#ip_serial_no').val(), $('#ip_serial_no').val(), $('#ip_lifespan').val(),
+                items.push(new Item($('#ip_serial_no').val(), $('#ip_serial_no').val(),
                     $('#ip_condition').val(), $('#ip_location').val(), $('#ip_color').val(), $('#ip_price').val(),
                     $('#ip_date').val(), $('#ip_supplier').val(), $('#ip_warranty').val(), $('#ip_address').val(), 
                     $('#ip_contact_no').val(),
@@ -103,7 +102,6 @@ $(document).ready(function () {
                                 ${item.condition}
                             </div>
                         </td>
-                        <td>${item.lifespan}</td>
                         <td>${item.location}</td>
                         <td>${item.warranty}</td>
                         <td>${item.date}</>
@@ -133,7 +131,6 @@ $(document).ready(function () {
     function resetFields() {
         $('#ip_serial_no').val('');
         $('#ip_condition').val('Functional');
-        $('#ip_lifespan').val('');
         $('#ip_location').val('');
         $('#ip_color').val('');
         // $('#price').val('');
@@ -147,7 +144,6 @@ $(document).ready(function () {
         items.forEach(item => {
             let serial = `<input type="hidden" name="serials[]" value="${item.serial_no}">`;
             let condition = `<input type="hidden" name="conditions[]" value="${item.condition}">`;
-            let lifespan = `<input type="hidden" name="lifespans[]" value="${item.lifespan}">`;
             let location = `<input type="hidden" name="locations[]" value="${item.location}">`;
             let color = `<input type="hidden" name="colors[]" value="${item.color}">`;
             let price = `<input type="hidden" name="prices[]" value="${item.price}">`;
@@ -159,7 +155,6 @@ $(document).ready(function () {
             let serialInput = document.getElementById('ip_serial_input');
             serialInput.innerHTML += serial;
             serialInput.innerHTML += condition;
-            serialInput.innerHTML += lifespan;
             serialInput.innerHTML += location;
             serialInput.innerHTML += color;
             serialInput.innerHTML += date;
@@ -180,7 +175,6 @@ $(document).ready(function () {
 
         $('#ip_serial_no').val(selectedItem.serial_no);
         $('#ip_condition').val(selectedItem.condition);
-        $('#ip_lifespan').val(selectedItem.lifespan);
         $('#ip_location').val(selectedItem.location);
         $('#ip_date').val(selectedItem.date);
         $('#ip_warranty').val(selectedItem.warranty);

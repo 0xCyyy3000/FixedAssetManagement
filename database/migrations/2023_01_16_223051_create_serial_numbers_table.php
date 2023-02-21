@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('serial_no')->unique();
             $table->string('condition');
             $table->string('color');
-            $table->string('lifespan');
             $table->string('location');
             $table->string('price');
             $table->string('warranty')->nullable();
