@@ -20,16 +20,31 @@
                     <div class="row w-75 m-auto mb-3">
                         <div class="mb-2 col-6">
                             <label for="name" class="form-label">Name</label>
-                            <input required type="text" class="form-control" id="title" name="title">
+                            <input required type="text" class="form-control @error('title') is-invalid @enderror"
+                                id="title" name="title" value="{{ old('title') }}">
+
+                            @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="col-6">
-                            <label for="transaction_no" class="form-label">Year</label>
-                            <input required type="text" class="form-control" id="year" name="year">
+                            <label for="transaction_no" class="form-label @error('year') is-invalid @enderror">Year</label>
+                            <input required type="number" value="{{ old('year') }}" class="form-control" id="year"
+                                name="year">
+
+                            @error('year')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                     </div>
                     <div class="row w-75 m-auto mb-3">
                         <div class="mb-2 col-6">
-                            <label for="description" class="form-label ps-0">Classification</label>
+                            <label for="description"
+                                class="form-label ps-0 @error('classification') is-invalid @enderror">Classification</label>
                             <select required class="form-select" aria-label="Default select example" name="classification"
                                 id="classification">
                                 <option value="Land">Land</option>
@@ -38,6 +53,12 @@
                                 <option value="Appliances">Appliances</option>
                                 <option value="Vehicle">Vehicle</option>
                             </select>
+
+                            @error('classification')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         {{-- <div class="mb-3 col-6">
                             <label for="depreciation" class="form-label">Salvage Value</label>
@@ -58,7 +79,8 @@
                     <div class="row w-75 m-auto mt-0">
                         <div class="col-6 mt-0">
                             <label for="photo"></label>
-                            <input required type="file" class="form-control" name="photo" id="photo" />
+                            <input required type="file" value="{{ old('photo') }}" class="form-control" name="photo"
+                                id="photo" />
                         </div>
                     </div>
 
@@ -68,15 +90,18 @@
                     <div class="row w-75 m-auto">
                         <div class="mb-2 col-6">
                             <label for="media"></label>
-                            <input required type="file" class="form-control" name="media1" id="media" />
+                            <input required type="file" value="{{ old('media1') }}" class="form-control" name="media1"
+                                id="media" />
                         </div>
                         <div class="mb-2 col-6">
                             <label for="media"></label>
-                            <input required type="file" class="form-control" name="media2" id="media" />
+                            <input required type="file" value="{{ old('media2') }}" class="form-control" name="media2"
+                                id="media" />
                         </div>
                         <div class="mb-5 col-6">
                             <label for="media"></label>
-                            <input required type="file" class="form-control" name="media3" id="media" />
+                            <input required type="file" value="{{ old('media3') }}" class="form-control" name="media3"
+                                id="media" />
                         </div>
                     </div>
 
@@ -104,7 +129,7 @@
                             <label for="ip_color" class="form-label">Color</label>
                             <input type="text" class="form-control" id="ip_color">
                         </div>
-                       
+
                         <div class="mb-3 col-6">
                             <label for="ip_price" class="form-label">Price</label>
                             <input type="number" class="form-control" id="ip_price" name="ip_price">

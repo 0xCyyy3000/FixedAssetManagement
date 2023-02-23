@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Carbon\Carbon;
 use App\Models\SerialNumber;
+use App\Exports\ItemProfileExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -38,7 +40,8 @@ class ItemTable extends DataTableComponent
         $this->setFilterSlideDownDefaultStatusEnabled();
 
         $this->setBulkActions([
-            'exportSelected' => 'Export',
+            'print' => 'Print',
+            'excel' => 'Export excel',
         ]);
     }
 
@@ -67,9 +70,16 @@ class ItemTable extends DataTableComponent
         return SerialNumber::query();
     }
 
-    public function mount()
+    public function print()
     {
-        // $this->setFilter('classification', 'Office Equipment');
+    }
+
+    public function excel()
+    {
+        $date = date('M. d, Y');
+        $items = $this->getSelected();
+        $this->clearSelected();
+        return Excel::download(new ItemProfileExport($items), "Report {$date}.xlsx");
     }
 
     public function columns(): array
