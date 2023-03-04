@@ -46,7 +46,7 @@
                         <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             Change Password
                        </button>
-                       @if(Auth()->user()->position == 1)
+                       @if(Auth()->user()->position <= 2)
                            <button type="button" class="btn btn-success m-2" data-bs-toggle="modal" data-bs-target="#badge">
                                Add Badge
                             </button>

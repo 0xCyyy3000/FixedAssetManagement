@@ -132,7 +132,7 @@
                                         <th scope="col" class="p-3">Price</th>
                                         <th scope="col" class="p-3">Purchase Date</th>
                                         <th scope="col" class="p-3">Supplier</th>
-                                        <th scope="col" class="p-3">Warranty</th>
+                                        <th scope="col" class="p-3">Warranty Expiration</th>
                                         <th scope="col" class="p-3">Location</th>
                                         <th scope="col" class="p-3">Life span</th>
                                         <th scope="col" class="p-3">Depreciation</th>
@@ -407,7 +407,7 @@
                                 <input type="text" id="date" name="date" class="form-control">
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="lifespan">Warranty</label>
+                                <label for="lifespan">Warranty Expiration</label>
                                 <input type="text" id="warranty" name="warranty" class="form-control">
                             </div>
                             <div class="mb-3 col-6">
@@ -495,7 +495,7 @@
                                 <input type="text" id="edit-date" name="date" class="form-control">
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="warranty">Warranty</label>
+                                <label for="warranty">Warranty Expiration</label>
                                 <input type="text" id="edit-warranty" name="warranty" class="form-control">
                             </div>
                             <div class="mb-3 col-6">

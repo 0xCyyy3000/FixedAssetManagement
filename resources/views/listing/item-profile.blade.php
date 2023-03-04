@@ -146,7 +146,7 @@
                             <input type="text" class="form-control" readonly id="ip_date" name="ip_date">
                         </div>
                         <div class="mb-3 col-6">
-                            <label for="ip_warranty" class="form-label">Warranty</label>
+                            <label for="ip_warranty" class="form-label">Warranty Expiration</label>
                             <input type="date" class="form-control" id="ip_warranty" name="ip_warranty">
                         </div>
                         <div class="row mb-0">
