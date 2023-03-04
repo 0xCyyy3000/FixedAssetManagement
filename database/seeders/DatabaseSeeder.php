@@ -42,6 +42,6 @@ class DatabaseSeeder extends Seeder
 
         Position::create(['position' => 'Super Admin']);
         Position::create(['position' => 'Admin']);
-        Position::create(['position' => 'User']);
+        Position::create(['position' => 'Logistics']);
     }
 }
