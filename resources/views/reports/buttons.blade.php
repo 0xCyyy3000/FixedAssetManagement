@@ -16,7 +16,7 @@
                         </h1>
                     </div>
                     <div class="">
-                        <a href="{{ route('view') }}"class="btn my-bg-primary btn-sm float-end text-white">Download PDF</a>
+                        <a href="{{ route('view') }}"class="btn my-bg-primary btn-sm float-end text-white " hidden>Download PDF</a>
                     </div>
                 </div>
                 <hr>

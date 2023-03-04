@@ -42,6 +42,7 @@ class ItemTable extends DataTableComponent
         $this->setBulkActions([
             'print' => 'Print',
             'excel' => 'Export excel',
+            'pdf' => 'Export PDF',
         ]);
     }
 
@@ -80,6 +81,13 @@ class ItemTable extends DataTableComponent
         $items = $this->getSelected();
         $this->clearSelected();
         return Excel::download(new ItemProfileExport($items), "Report {$date}.xlsx");
+    }
+    public function pdf()
+    {
+        $date = date('M. d, Y');
+        $items = $this->getSelected();
+        $this->clearSelected();
+        return Excel::download(new ItemProfileExport($items), "Report {$date}.PDF");
     }
 
     public function columns(): array

@@ -196,10 +196,10 @@
                 </a>
             </div>
         </nav>
-        <div class="col">
+        <div class="col ">
             <div class="p-4 pt-3 pb-1">
                 <div class="row bg-white rounded p-2 align-items-center">
-                    <h4 class="col fs-5 m-0 fw-bolder">Fixed Assets Information Management</h4>
+                    <h4 class="col fs-5 m-0 fw-bolder float-start">Fixed Assets Information Management</h4>
                     <div class="col d-flex gap-3 justify-content-between ">
 
 
@@ -224,8 +224,8 @@
                             type="button">
                             <span class="material-icons my-primary">notifications</span>
                         </button> --}}
-                        <div class="d-flex gap-0 align-items-center profile  ">
-                            <div class="row">
+                        <div class="d-flex  float-end align-items-center profile ">
+                            <div class="row float-end">
                                 <h1 class="mb-0 fw-semibold">{{ Auth::user()->getName() }}</h1>
                                 <small class="text-muted">{{ Auth::user()->getPosition()->position }}</small>
                             </div>

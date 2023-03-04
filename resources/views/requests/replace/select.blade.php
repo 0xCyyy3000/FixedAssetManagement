@@ -66,7 +66,7 @@
                         </table>
                         <h4 class="text-end d-none" id="replace-items-total"></h4>
                     </div>
-                    @if (Auth()->user()->position == 1)
+                    @if (Auth()->user()->position == 2)
                         <form action="{{ route('replace.update') }}" method="post">
                             @csrf
                             <div class="row p-3 w-25">
