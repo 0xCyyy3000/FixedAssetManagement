@@ -63,12 +63,47 @@
                     </a>
                 </li>
                 <li class="list-group">
+                    <div class="accordion mb-2 pt-1 ps-4 pb-1 rounded-2" id="accordionExample2">
+                        <div class="accordion-item bg-transparent">
+                            <h2 class="accordion-header bg-transparent fs-6 rounded-3 d-flex align-items-center"
+                                id="headingTwo">
+                                <span class="material-icons-outlined me-2">description</span>
+                                <button class="accordion-button collapsed bg-transparent p-0 fs-6" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true"
+                                    aria-controls="collapseTwo">
+                                    Data entry
+                                </button>
+                            </h2>
+                            <div id="collapseTwo"
+                                class="accordion-collapse collapse @if (Request::routeIs('itemshow')) show @endif"
+                                aria-labelledby="headingTwo" data-bs-parent="#accordionExample2">
+                                <div class="accordion-body pt-0 pb-0">
+                                    <ul class=" list-group pt-2">
+                                        <li class=" list-group @if (Request::routeIs('itemshow')) active @endif">
+                                            <a class="fs-6 d-flex mb-1 align-items-center ms-4 p-1 pb-0"
+                                                href="{{ route('itemshow') }}">
+                                                <span class="material-icons-outlined me-2">note_add</span>
+                                                Inventory
+                                            </a>
+                                        </li>
+                                        {{-- <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('usershow')) selected @endif"
+                                                href="">
+                                                User List Form
+                                            </a>
+                                        </li> --}}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{-- <li class="list-group">
                     <a href="{{ route('item.list') }}"
                         class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('item.list') || Request::routeIs('item.select') ? 'active' : '' }}">
                         <span class="material-icons-outlined me-2">layers</span>
                         Item Profiles
                     </a>
-                </li>
+                </li> --}}
                 <li class="list-group">
                     <div class="accordion mb-2 pt-1 ps-4 pb-1 " id="accordionExample">
                         <div class="accordion-item bg-transparent">
@@ -138,7 +173,7 @@
                         </div>
                     </div>
                 </li>
-
+{{-- 
                 <li class="list-group">
                     <div class="accordion mb-2 pt-1 ps-4 pb-1 rounded-2" id="accordionExample2">
                         <div class="accordion-item bg-transparent">
@@ -163,17 +198,17 @@
                                                 Inventory
                                             </a>
                                         </li>
-                                        {{-- <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('usershow')) selected @endif"
+                                        <li><a class="fs-6 d-flex mb-1 align-items-center @if (Request::routeIs('usershow')) selected @endif"
                                                 href="">
                                                 User List Form
                                             </a>
-                                        </li> --}}
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> --}}
                 <li class="list-group">
                     <a href="{{ route('reports.buttons') }}"
                         class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('reports.buttons') ? 'active' : '' }}">
@@ -200,10 +235,10 @@
             <div class="p-4 pt-3 pb-1">
                 <div class="row bg-white rounded p-2 align-items-center">
                     <h4 class="col fs-5 m-0 fw-bolder float-start">Fixed Assets Information Management</h4>
-                    <div class="col d-flex gap-3 justify-content-between ">
+                    <div class="col d-flex gap-3 justify-content-between">
 
 
-                        {{-- <form class="d-flex">
+                        {{-- <form class="d-flex" hidden>
                             <div class="input-group border-0">
                                 <input type="search" class="form-control my-bg-third" placeholder="Search"
                                     aria-label="Username" aria-describedby="basic-addon1">
@@ -214,25 +249,25 @@
                                     </button>
                                 </span>
                             </div>
-                        </form> --}}
-                        {{-- <button class="btn d-flex gap-1 align-items-center p-1 ps-2 pe-2 my-bg-secondary"
+                        </form>
+                        <button class="btn d-flex gap-1 align-items-center p-1 ps-2 pe-2 my-bg-secondary"
                             type="button">
                             New
                             <span class="material-icons">add_circle_outline</span>
-                        </button> --}}
-                        {{-- <button class="btn d-flex gap-1 align-items-center ms-5 p-1 ps-2 pe-2 my-bg-secondary"
+                        </button>
+                        <button class="btn d-flex gap-1 align-items-center ms-5 p-1 ps-2 pe-2 my-bg-secondary"
                             type="button">
                             <span class="material-icons my-primary">notifications</span>
                         </button> --}}
-                        <div class="d-flex  float-end align-items-center profile ">
-                            <div class="row float-end">
+                        <div class="d-flex  align-items-center profile ">
+                            <div class="row ">
                                 <h1 class="mb-0 fw-semibold">{{ Auth::user()->getName() }}</h1>
                                 <small class="text-muted">{{ Auth::user()->getPosition()->position }}</small>
                             </div>
                             <img class="my-bg-secondary rounded-4"
                                 src="{{ Auth::user()->photo ? asset('photo/' . Auth::user()->photo) : asset('imgs/avatar.png') }}"
                                 alt="" width="42" height="42">
-                            <div class="drop-down">
+                            <div class="drop-down ">
                                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 </button>
