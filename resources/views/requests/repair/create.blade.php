@@ -97,7 +97,7 @@
                         </div>
                         <div class="mb-3 col-6">
                             <label for="remarks" class="form-label">Reason</label>
-                            <input type="text" class="form-control" id="repair_remarks" name="remarks">
+                            <input type="text" class="form-control" id="purpose" name="purpose">
                         </div>
                         <div class="mb-3 col-6">
                             <label for="cost" class="form-label">Cost</label>
