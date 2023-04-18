@@ -19,17 +19,17 @@ $(document).ready(function () {
     let total = 0;
     let items_repairs = [];
 
-    $(document).on('click', '#add-item-repair', function (e) {
+    $(document).on("click", "#add-item-repair", function (e) {
         e.preventDefault();
 
         // Validate inputs
         if (
-            $('#repair_item option:selected').val() == '' ||
-            $('#repair_serial_no option:selected').val() == '' ||
-            $('#repair_remarks').val() == '' ||
-            $('#repair_cost').val() == ''
+            $("#repair_item option:selected").val() == "" ||
+            $("#repair_serial_no option:selected").val() == "" ||
+            $("#repair_remarks").val() == "" ||
+            $("#repair_cost").val() == ""
         ) {
-            alert('Fields cannot be empty!');
+            alert("Fields cannot be empty!");
             return;
         }
 
@@ -37,30 +37,36 @@ $(document).ready(function () {
         if (!editing) {
             items_repairs.push(
                 new Item(
-                    $('#repair_item option:selected').val(), $('#repair_item option:selected').text(),
-                    $('#repair_serial_no option:selected').val(), $('#repair_serial_no option:selected').text(),
-                    $('#repair_remarks').val(),
-                    $('#repair_cost').val()
+                    $("#repair_item option:selected").val(),
+                    $("#repair_item option:selected").text(),
+                    $("#repair_serial_no option:selected").val(),
+                    $("#repair_serial_no option:selected").text(),
+                    $("#repair_remarks").val(),
+                    $("#repair_cost").val()
                 )
             );
         } else {
-            const selectedItem = items_repairs[items_repairs.findIndex(item => item.serial_id == $('#repair_serial_no').val())];
-            selectedItem.remarks = $('#repair_remarks').val();
-            selectedItem.cost = $('#repair_cost').val();
+            const selectedItem =
+                items_repairs[
+                    items_repairs.findIndex(
+                        (item) => item.serial_id == $("#repair_serial_no").val()
+                    )
+                ];
+            selectedItem.remarks = $("#repair_remarks").val();
+            selectedItem.cost = $("#repair_cost").val();
         }
 
         loadItems();
         resetFields();
-        $('#cancel').click();
+        $("#cancel").click();
     });
 
-
     function loadItems() {
-        let tableBody = document.getElementById('repair-items-table-body');
-        tableBody.innerHTML = '';
+        let tableBody = document.getElementById("repair-items-table-body");
+        tableBody.innerHTML = "";
         total = 0;
 
-        items_repairs.forEach(items_repairs => {
+        items_repairs.forEach((items_repairs) => {
             let template = `
                 <tr>
                     <td>${items_repairs.item}</td>
@@ -85,111 +91,141 @@ $(document).ready(function () {
             tableBody.innerHTML += template;
         });
 
-        $('#repair-items-total').removeClass('d-none');
-        $('#repair-items-total').text('Total cost: ₱' + total);
+        $("#repair-items-total").removeClass("d-none");
+        $("#repair-items-total").text("Total cost: ₱" + total);
     }
 
     function resetFields() {
-        $('#repair_item').prop('disabled', false);
+        $("#repair_item").prop("disabled", false);
 
-        $('#repair_serial_no').val('');
-        $('#repair_item').val('');
-        $('#repair_remarks').val('');
-        $('#repair_cost').val('0');
+        $("#repair_serial_no").val("");
+        $("#repair_item").val("");
+        $("#repair_remarks").val("");
+        $("#repair_cost").val("0");
 
         if (!editing) {
-            $('#repair').empty().append('<option value=""></option>');
+            $("#repair").empty().append('<option value=""></option>');
         }
     }
 
-    $(document).on('change', '#repair_item', function () {
+    $(document).on("change", "#repair_item", function () {
         // Terminating request if no selected item
-        if ($(this).val() == '') {
-            $('#repair_serial_no').empty().append('<option></option>');
+        if ($(this).val() == "") {
+            $("#repair_serial_no").empty().append("<option></option>");
             return;
         }
 
         $.ajax({
-            url: '/api/serials/index/',
-            method: 'GET',
+            url: "/api/serials/index/",
+            method: "GET",
             data: {
-                reference_no: $(this).val()
+                reference_no: $(this).val(),
             },
             success: function (response) {
-                $('#repair_serial_no').empty().append('<option value=""></option>');
+                $("#repair_serial_no")
+                    .empty()
+                    .append('<option value=""></option>');
                 $.each(response.serials, function (index, item) {
                     // Only loading serials that is not found from the list
                     const currentSerial = item.id;
-                    const exisiting_index = items_repairs.findIndex(item => item.serial_id == currentSerial);
+                    const exisiting_index = items_repairs.findIndex(
+                        (item) => item.serial_id == currentSerial
+                    );
                     if (exisiting_index == -1) {
                         let template = `<option value="${item.id}">${item.serial_no}</option>`;
-                        $('#repair_serial_no').append(template);
+                        $("#repair_serial_no").append(template);
                     }
                 });
-            }
+            },
         });
     });
 
-    $(document).on('click', '.repair_edit', function () {
+    $(document).on("click", ".repair_edit", function () {
         const currentSerial = $(this).val();
-        const selectedItem = items_repairs[items_repairs.findIndex(item => item.serial_id == currentSerial)];
+        const selectedItem =
+            items_repairs[
+                items_repairs.findIndex(
+                    (item) => item.serial_id == currentSerial
+                )
+            ];
 
         // Showing the modal
-        $('#add-repair-request-item').click();
+        $("#add-repair-request-item").click();
 
         // Setting the values
-        $('#repair_item').val(selectedItem.id);
-        $('#repair_item').prop('disabled', true);
+        $("#repair_item").val(selectedItem.id);
+        $("#repair_item").prop("disabled", true);
 
-        $('#repair_serial_no').empty().append('<option value="' + selectedItem.serial_id + '">' + selectedItem.serial_no + '</option>');
-        $('#repair_remarks').val(selectedItem.remarks);
-        $('#repair_cost').val(selectedItem.cost);
+        $("#repair_serial_no")
+            .empty()
+            .append(
+                '<option value="' +
+                    selectedItem.serial_id +
+                    '">' +
+                    selectedItem.serial_no +
+                    "</option>"
+            );
+        $("#repair_remarks").val(selectedItem.remarks);
+        $("#repair_cost").val(selectedItem.cost);
 
         editing = true;
     });
 
-    $(document).on('click', '.repair_remove', function () {
+    $(document).on("click", ".repair_remove", function () {
         const currentSerial = $(this).val();
-        const index = items_repairs.findIndex(item => item.serial_id == currentSerial);
-        index >= 0 ? items_repairs.splice(index, 1) : '';
+        const index = items_repairs.findIndex(
+            (item) => item.serial_id == currentSerial
+        );
+        index >= 0 ? items_repairs.splice(index, 1) : "";
         loadItems();
     });
 
-    $(document).on('click', '#add-repair-request-item', function () {
+    $(document).on("click", "#add-repair-request-item", function () {
         // Making sure the fields are empty
         resetFields();
     });
 
-
-    $(document).on('click', '#submit-repair', function () {
+    $(document).on("click", "#submit-repair", function () {
         if (items_repairs.length) {
             $.ajax({
-                url: '/repair-request/store',
-                method: 'POST',
-                dataType: 'JSON',
+                url: "/repair-request/store",
+                method: "POST",
+                dataType: "JSON",
                 data: {
-                    _token: $('#repair_token').val(),
+                    _token: $("#repair_token").val(),
                     items: items_repairs,
-                    entity: $('#entity').val(),
-                    fund_cluster: $('#fund_cluster').val(),
-                    repair_date: $('#repair_date').val(),
-                    section: $('#section').val(),
-                    appendix_no: $('#appendix_no').val(),
-                    note: $('#note').val(),
-                    status: $('#status').val(),
-                    amount: total
+                    entity: $("#entity").val(),
+                    fund_cluster: $("#fund_cluster").val(),
+                    repair_date: $("#repair_date").val(),
+                    section: $("#section").val(),
+                    appendix_no: $("#appendix_no").val(),
+                    note: $("#remarks").val(),
+                    status: $("#status").val(),
+                    amount: total,
                 },
                 success: function (response) {
                     if (response.status == 200) {
-                        alert('Repair Request has been submitted!');
+                        alert("Repair Request has been submitted!");
                         location.reload();
                     }
-                }
+                },
+            });
+            console.log({
+                _token: $("#repair_token").val(),
+                items: items_repairs,
+                entity: $("#entity").val(),
+                fund_cluster: $("#fund_cluster").val(),
+                repair_date: $("#repair_date").val(),
+                section: $("#section").val(),
+                appendix_no: $("#appendix_no").val(),
+                note: $("#remarks").val(),
+                status: $("#status").val(),
+                amount: total,
             });
         }
     });
 
-    $(document).on('click', '#delete-repair', function () {
-        $('#repair_remove_id').val($(this).val());
+    $(document).on("click", "#delete-repair", function () {
+        $("#repair_remove_id").val($(this).val());
     });
 });

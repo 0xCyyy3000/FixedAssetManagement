@@ -97,13 +97,13 @@
                         </div>
                     </div>
                 </li>
-                {{-- <li class="list-group">
+               <li class="list-group">
                     <a href="{{ route('item.list') }}"
                         class="fs-6 rounded-3 mb-2 fs-5 d-flex align-items-center pe-4 ps-4 pt-1 pb-1 {{ Request::routeIs('item.list') || Request::routeIs('item.select') ? 'active' : '' }}">
                         <span class="material-icons-outlined me-2">layers</span>
                         Item Profiles
                     </a>
-                </li> --}}
+                </li> 
                 <li class="list-group">
                     <div class="accordion mb-2 pt-1 ps-4 pb-1 " id="accordionExample">
                         <div class="accordion-item bg-transparent">

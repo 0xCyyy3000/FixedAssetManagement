@@ -46,17 +46,18 @@ class ReplaceRequestController extends Controller
             ]);
             ReplaceRequest::where('id', $newRequest->id)->update(['transaction_no' => $newTransaction->id]);
 
-            DB::table('requests_purposes')->insert([
-                'reference_no' => $newRequest->id,
-                'purpose' => $request->note,
-                'type' => 3
-            ]);
+           
             foreach ($request->items as $item) {
                 ItemsReplace::create([
                     'reference_no' => $newRequest->id,
                     'serial_no' => $item['serial_no'],
                     'cost' => $item['cost'],
                     'remarks' => $item['remarks']
+                ]);
+                DB::table('requests_purposes')->insert([
+                    'reference_no' => $newRequest->id,
+                    'purpose' => $item['remarks'],
+                    'type' => 3
                 ]);
 
                 SerialNumber::where('serial_no', $item['serial_no'])->update(['status' => 1]);

@@ -131,11 +131,11 @@
                                         <th scope="col" class="p-3">Color</th>
                                         <th scope="col" class="p-3">Price</th>
                                         <th scope="col" class="p-3">Purchase Date</th>
-                                        <th scope="col" class="p-3">Supplier</th>
                                         <th scope="col" class="p-3">Warranty Expiration</th>
                                         <th scope="col" class="p-3">Location</th>
-                                        <th scope="col" class="p-3">Life span</th>
-                                        <th scope="col" class="p-3">Depreciation</th>
+                                        <th scope="col" class="p-3">Supplier</th>
+                                        <th scope="col" class="p-3">Address</th>
+                                        <th scope="col" class="p-3">Contact Number</th>
                                         <th scope="col" class="p-3">Action</th>
                                     </tr>
                                 </thead>
@@ -156,11 +156,11 @@
                                             <td class="p-3">{{ $serial->color }}</td>
                                             <td class="p-3">{{ $serial->price }}</td>
                                             <td class="p-3">{{ $serial->date }}</td>
-                                            <td class="p-3">{{ $serial->supplier }}</td>
                                             <td class="p-3">{{ $serial->warranty }}</td>
                                             <td class="p-3">{{ $serial->location }}</td>
-                                            <td class="p-3">{{ $serial->lifespan }}</td>
-                                            <td class="p-3">{{ $serial->depreciation_value }}</td>
+                                            <td class="p-3">{{ $serial->supplier }}</td>
+                                            <td class="p-3">{{ $serial->address }}</td>
+                                            <td class="p-3">{{ $serial->contact_no }}</td>
                                             <td style="width: 18% !important;">
                                                 <div class="d-flex">
                                                     <button type="button"
@@ -399,10 +399,6 @@
                                 <input type="text" id="location" name="location" class="form-control">
                             </div>
                             <div class="mb-3 col-6">
-                                <label for="lifespan">Lifespan</label>
-                                <input type="text" id="lifespan" name="lifespan" class="form-control">
-                            </div>
-                            <div class="mb-3 col-6">
                                 <label for="lifespan">Purchase Date</label>
                                 <input type="text" id="date" name="date" class="form-control">
                             </div>
@@ -414,9 +410,13 @@
                                 <label for="lifespan">Supplier</label>
                                 <input type="text" id="supplier" name="supplier" class="form-control">
                             </div>
-                            <div class="mb-3 col-6" hidden> 
-                                <label for="lifespan">Salvage Value</label>
-                                <input type="text" id="depreciation_value" name="depreciation_value"  class="form-control" placeholder="{{ $item->depreciation }}" value="{{ $item->depreciation }}">
+                            <div class="mb-3 col-6">
+                                <label for="lifespan">Address</label>
+                                <input type="text" id="address" name="address" class="form-control">
+                            </div>
+                            <div class="mb-3 col-6"> 
+                                <label for="lifespan">Contact Number</label>
+                                <input type="text" id="contact_no" name="contact_no"  class="form-control">
                             </div>
                         </div>
                     </div>

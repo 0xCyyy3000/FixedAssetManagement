@@ -19,17 +19,17 @@ $(document).ready(function () {
     let total = 0;
     let items_replaces = [];
 
-    $(document).on('click', '#add-item-replace', function (e) {
+    $(document).on("click", "#add-item-replace", function (e) {
         e.preventDefault();
 
         // Validate inputs
         if (
-            $('#replace_item option:selected').val() == '' ||
-            $('#replace_serial_no option:selected').val() == '' ||
-            $('#replace_remarks').val() == '' ||
-            $('replace_cost').val() == ''
+            $("#replace_item option:selected").val() == "" ||
+            $("#replace_serial_no option:selected").val() == "" ||
+            $("#replace_remarks").val() == "" ||
+            $("replace_cost").val() == ""
         ) {
-            alert('Fields cannot be empty!');
+            alert("Fields cannot be empty!");
             return;
         }
 
@@ -37,30 +37,38 @@ $(document).ready(function () {
         if (!editing) {
             items_replaces.push(
                 new Item(
-                    $('#replace_item option:selected').val(), $('#replace_item option:selected').text(),
-                    $('#replace_serial_no option:selected').val(), $('#replace_serial_no option:selected').text(),
-                    $('#replace_remarks').val(),
-                    $('#replace_cost').val()
+                    $("#replace_item option:selected").val(),
+                    $("#replace_item option:selected").text(),
+                    $("#replace_serial_no option:selected").val(),
+                    $("#replace_serial_no option:selected").text(),
+                    $("#replace_remarks").val(),
+                    $("#replace_cost").val()
                 )
             );
         } else {
-            const selectedItem = items_replaces[items_replaces.findIndex(item => item.serial_id == $('#replace_serial_no').val())];
-            selectedItem.remarks = $('#replace_remarks').val();
-            selectedItem.cost = $('#replace_cost').val();
+            const selectedItem =
+                items_replaces[
+                    items_replaces.findIndex(
+                        (item) =>
+                            item.serial_id == $("#replace_serial_no").val()
+                    )
+                ];
+            selectedItem.remarks = $("#replace_remarks").val();
+            selectedItem.cost = $("#replace_cost").val();
         }
 
         loadItems();
         resetFields();
-        $('#cancel').click();
+        $("#cancel").click();
     });
 
     function loadItems() {
-        let tableBody = document.getElementById('replace-items-table-body');
-        tableBody.innerHTML = '';
+        let tableBody = document.getElementById("replace-items-table-body");
+        tableBody.innerHTML = "";
         total = 0;
         editing = false;
 
-        items_replaces.forEach(items_replaces => {
+        items_replaces.forEach((items_replaces) => {
             let template = `
                 <tr>
                     <td>${items_replaces.item}</td>
@@ -85,109 +93,144 @@ $(document).ready(function () {
             tableBody.innerHTML += template;
         });
 
-        $('#replace-items-total').removeClass('d-none');
-        $('#replace-items-total').text('Total cost: ₱' + total);
+        $("#replace-items-total").removeClass("d-none");
+        $("#replace-items-total").text("Total cost: ₱" + total);
     }
 
     function resetFields() {
-        $('#replace_item').prop('disabled', false);
+        $("#replace_item").prop("disabled", false);
 
-        $('#replace_serial_no').val('');
-        $('#replace_item').val('');
-        $('#replace_remarks').val('');
-        $('#replace_cost').val('1');
+        $("#replace_serial_no").val("");
+        $("#replace_item").val("");
+        $("#replace_remarks").val("");
+        $("#replace_cost").val("1");
 
         if (!editing) {
-            $('#replace_serial_no').empty().append('<option value=""></option>');
+            $("#replace_serial_no")
+                .empty()
+                .append('<option value=""></option>');
         }
     }
 
-    $(document).on('change', '#replace_item', function () {
+    $(document).on("change", "#replace_item", function () {
         // Terminating request if no selected item
-        if ($(this).val() == '') {
-            $('#replace_serial_no').empty().append('<option value=""></option>');
+        if ($(this).val() == "") {
+            $("#replace_serial_no")
+                .empty()
+                .append('<option value=""></option>');
             return;
         }
 
         $.ajax({
-            url: '/api/serials/index/',
-            method: 'GET',
+            url: "/api/serials/index/",
+            method: "GET",
             data: {
-                reference_no: $(this).val()
+                reference_no: $(this).val(),
             },
             success: function (response) {
-                $('#replace_serial_no').empty().append('<option value=""></option>');
+                $("#replace_serial_no")
+                    .empty()
+                    .append('<option value=""></option>');
                 $.each(response.serials, function (index, item) {
                     // Only loading serials that is not found from the list
                     const currentSerial = item.id;
-                    const exisiting_index = items_replaces.findIndex(item => item.serial_id == currentSerial);
+                    const exisiting_index = items_replaces.findIndex(
+                        (item) => item.serial_id == currentSerial
+                    );
                     if (exisiting_index == -1) {
                         let template = `<option value="${item.id}">${item.serial_no}</option>`;
-                        $('#replace_serial_no').append(template);
+                        $("#replace_serial_no").append(template);
                     }
                 });
-            }
+            },
         });
     });
 
-    $(document).on('click', '#submit-replace', function () {
+    $(document).on("click", "#submit-replace", function () {
         if (items_replaces.length) {
             $.ajax({
-                url: '/replace-request/store',
-                method: 'POST',
-                dataType: 'JSON',
+                url: "/replace-request/store",
+                method: "POST",
+                dataType: "JSON",
                 data: {
-                    _token: $('#replace_token').val(),
+                    _token: $("#replace_token").val(),
                     items: items_replaces,
-                    entity: $('#entity').val(),
-                    fund_cluster: $('#fund_cluster').val(),
-                    replace_date: $('#replace_date').val(),
-                    section: $('#section').val(),
-                    appendix_no: $('#appendix_no').val(),
-                    note: $('#note').val(),
-                    status: $('#status').val(),
-                    amount: total
+                    entity: $("#entity").val(),
+                    fund_cluster: $("#fund_cluster").val(),
+                    replace_date: $("#replace_date").val(),
+                    section: $("#section").val(),
+                    appendix_no: $("#appendix_no").val(),
+                    note: $("#remarks").val(),
+                    status: $("#status").val(),
+                    amount: total,
                 },
                 success: function (response) {
                     if (response.status == 200) {
-                        alert('Replace Request has been submitted!');
+                        alert("Replace Request has been submitted!");
                         location.reload();
                     }
-                }
+                },
+            });
+            console.log({
+                _token: $("#repair_token").val(),
+                items: items_replaces,
+                entity: $("#entity").val(),
+                fund_cluster: $("#fund_cluster").val(),
+                repair_date: $("#repair_date").val(),
+                section: $("#section").val(),
+                appendix_no: $("#appendix_no").val(),
+                note: $("#remarks").val(),
+                status: $("#status").val(),
+                amount: total,
             });
         }
     });
 
-    $(document).on('click', '#delete-replace', function () {
-        $('#replace_remove_id').val($(this).val());
+    $(document).on("click", "#delete-replace", function () {
+        $("#replace_remove_id").val($(this).val());
     });
 
-    $(document).on('click', '.replace_edit', function () {
+    $(document).on("click", ".replace_edit", function () {
         const currentSerial = $(this).val();
-        const selectedItem = items_replaces[items_replaces.findIndex(item => item.serial_id == currentSerial)];
+        const selectedItem =
+            items_replaces[
+                items_replaces.findIndex(
+                    (item) => item.serial_id == currentSerial
+                )
+            ];
 
         // Showing the modal
-        $('#add-item-request').click();
+        $("#add-item-request").click();
 
         // Setting the values
-        $('#replace_item').val(selectedItem.id);
-        $('#replace_item').prop('disabled', true);
+        $("#replace_item").val(selectedItem.id);
+        $("#replace_item").prop("disabled", true);
 
-        $('#replace_serial_no').empty().append('<option value="' + selectedItem.serial_id + '">' + selectedItem.serial_no + '</option>');
-        $('#replace_remarks').val(selectedItem.remarks);
-        $('#replace_cost').val(selectedItem.cost);
+        $("#replace_serial_no")
+            .empty()
+            .append(
+                '<option value="' +
+                    selectedItem.serial_id +
+                    '">' +
+                    selectedItem.serial_no +
+                    "</option>"
+            );
+        $("#replace_remarks").val(selectedItem.remarks);
+        $("#replace_cost").val(selectedItem.cost);
 
         editing = true;
     });
 
-    $(document).on('click', '.replace_remove', function () {
+    $(document).on("click", ".replace_remove", function () {
         const currentSerial = $(this).val();
-        const index = items_replaces.findIndex(item => item.serial_id == currentSerial);
-        index >= 0 ? items_replaces.splice(index, 1) : '';
+        const index = items_replaces.findIndex(
+            (item) => item.serial_id == currentSerial
+        );
+        index >= 0 ? items_replaces.splice(index, 1) : "";
         loadItems();
     });
 
-    $(document).on('click', '#add-item-request', function () {
+    $(document).on("click", "#add-item-request", function () {
         // Making sure the fields are empty
         resetFields();
     });
